@@ -1,0 +1,109 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 10
+  metrics: count: path: 19
+  metrics: count: method: 19
+
+  entity: console: {
+    path: "/consoles": {
+      op: list: method: *GET
+    }
+    path: "/consoles/{consoleId}": {
+      rename: param: "consoleId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: franchis: {
+    path: "/franchises": {
+      op: list: method: *GET
+    }
+    path: "/franchises/{franchiseId}": {
+      rename: param: "franchiseId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: game: {
+    path: "/games": {
+      op: list: method: *GET
+    }
+    path: "/games/platform/{platformId}": {
+      rename: param: "platformId": *"platform_id"
+      op: load: method: *GET
+    }
+    path: "/games/{gameId}": {
+      rename: param: "gameId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: platform: {
+    path: "/status": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: price: {
+    path: "/consoles/{consoleId}/prices": {
+      rename: param: "consoleId": *"console_id"
+      op: list: method: *GET
+    }
+    path: "/games/{gameId}/prices": {
+      rename: param: "gameId": *"game_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: retailer: {
+    path: "/retailers": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/search": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: studio: {
+    path: "/studios": {
+      op: list: method: *GET
+    }
+    path: "/studios/{studioId}": {
+      rename: param: "studioId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: user: {
+    path: "/users/{userId}": {
+      rename: param: "userId": *"id"
+      op: load: method: *GET
+    }
+    path: "/users/{userId}/library": {
+      action: "library": {}
+      rename: param: "userId": *"id"
+      op: list: method: *GET
+    }
+    path: "/users/{userId}/wishlist": {
+      action: "wishlist": {}
+      rename: param: "userId": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: widget: {
+    path: "/widgets/button": {
+      action: "button": {}
+      op: load: method: *GET
+    }
+    path: "/widgets/product-card": {
+      action: "product_card": {}
+      op: load: method: *GET
+    }
+  }
+
+}

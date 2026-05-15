@@ -1,0 +1,44 @@
+# BasicStudioFlow
+
+main: kit: flow: BasicStudioFlow:
+{
+  entity: "studio",
+  kind: "basic",
+  name: "BasicStudioFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "studio_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "studio_ref01",
+        srcdatavar: "studio_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "studio01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-studio_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStudioFlow"
+}

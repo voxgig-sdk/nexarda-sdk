@@ -1,0 +1,1682 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "NEXARDA API",
+    "description": "The NEXARDA API provides access to a video game price comparison service, allowing users to find deals from over 90 approved retailers. It enables developers to integrate price checks for video games, consoles, and gaming gear directly into their applications. Most endpoints are free to use and don't require authentication.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "devteam@nexarda.com"
+    },
+    "termsOfService": "https://www.nexarda.com/",
+    "x-logo": {
+      "url": "https://imgcdn1.nexarda.com/main/static/branding/logo.svg"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.nexarda.com",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Games",
+      "description": "Video game information and details"
+    },
+    {
+      "name": "Prices",
+      "description": "Real-time price information for games and gear"
+    },
+    {
+      "name": "Consoles",
+      "description": "Game consoles and gaming gear information"
+    },
+    {
+      "name": "Franchises",
+      "description": "Game franchise information"
+    },
+    {
+      "name": "Studios",
+      "description": "Game studio (developers and publishers) information"
+    },
+    {
+      "name": "Users",
+      "description": "User profile information"
+    },
+    {
+      "name": "Search",
+      "description": "Search functionality for games and products"
+    },
+    {
+      "name": "Retailers",
+      "description": "Approved retailers information"
+    },
+    {
+      "name": "Platform",
+      "description": "Platform status and information"
+    },
+    {
+      "name": "Widgets",
+      "description": "Embeddable widgets for websites"
+    }
+  ],
+  "paths": {
+    "/games": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Get list of video games",
+        "description": "Retrieve a list of video games with information such as release dates, age ratings, media/screenshots and more",
+        "operationId": "getGames",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Number of results to skip for pagination",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Game"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/games/{gameId}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Get video game by ID",
+        "description": "Retrieve detailed information about a specific video game including release dates, age ratings, media, screenshots and more",
+        "operationId": "getGameById",
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the game",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Game"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/games/{gameId}/prices": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Get real-time prices for a video game",
+        "description": "Retrieve current prices for a video game from multiple retailers in different currencies (GBP, EUR, USD)",
+        "operationId": "getGamePrices",
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the game",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Currency code for price display",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "GBP",
+                "EUR",
+                "USD"
+              ],
+              "default": "USD"
+            }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Region code for regional pricing",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Price"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/games/platform/{platformId}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "summary": "Get game details from platform ID",
+        "description": "Retrieve game information using platform-specific IDs such as Steam or GOG",
+        "operationId": "getGameByPlatformId",
+        "parameters": [
+          {
+            "name": "platformId",
+            "in": "path",
+            "required": true,
+            "description": "Platform-specific ID (e.g., Steam App ID)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "platform",
+            "in": "query",
+            "description": "Platform name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "steam",
+                "gog",
+                "epic",
+                "playstation",
+                "xbox",
+                "nintendo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Game"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/consoles": {
+      "get": {
+        "tags": [
+          "Consoles"
+        ],
+        "summary": "Get list of game consoles",
+        "description": "Retrieve information about game consoles and gaming gear",
+        "operationId": "getConsoles",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Console"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/consoles/{consoleId}": {
+      "get": {
+        "tags": [
+          "Consoles"
+        ],
+        "summary": "Get console by ID",
+        "description": "Retrieve detailed information about a specific game console or gaming gear",
+        "operationId": "getConsoleById",
+        "parameters": [
+          {
+            "name": "consoleId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the console",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Console"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/consoles/{consoleId}/prices": {
+      "get": {
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Get real-time prices for consoles and gear",
+        "description": "Retrieve current prices for game consoles and gaming gear from multiple retailers in different currencies",
+        "operationId": "getConsolePrices",
+        "parameters": [
+          {
+            "name": "consoleId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the console",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Currency code for price display",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "GBP",
+                "EUR",
+                "USD"
+              ],
+              "default": "USD"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Price"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/franchises": {
+      "get": {
+        "tags": [
+          "Franchises"
+        ],
+        "summary": "Get list of game franchises",
+        "description": "Retrieve information about game franchises including names, included games and logos",
+        "operationId": "getFranchises",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Franchise"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/franchises/{franchiseId}": {
+      "get": {
+        "tags": [
+          "Franchises"
+        ],
+        "summary": "Get franchise by ID",
+        "description": "Retrieve detailed information about a specific game franchise",
+        "operationId": "getFranchiseById",
+        "parameters": [
+          {
+            "name": "franchiseId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the franchise",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Franchise"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/studios": {
+      "get": {
+        "tags": [
+          "Studios"
+        ],
+        "summary": "Get list of game studios",
+        "description": "Retrieve information about game studios (developers and publishers) including their released titles, founding years, locations",
+        "operationId": "getStudios",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by studio type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "developer",
+                "publisher",
+                "both"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Studio"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/studios/{studioId}": {
+      "get": {
+        "tags": [
+          "Studios"
+        ],
+        "summary": "Get studio by ID",
+        "description": "Retrieve detailed information about a specific game studio",
+        "operationId": "getStudioById",
+        "parameters": [
+          {
+            "name": "studioId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the studio",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Studio"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user profile",
+        "description": "Retrieve user profile information including avatars, wish list items, games in library",
+        "operationId": "getUserProfile",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the user",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/users/{userId}/wishlist": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user wishlist",
+        "description": "Retrieve user's wishlist items",
+        "operationId": "getUserWishlist",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the user",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Game"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/users/{userId}/library": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user library",
+        "description": "Retrieve games in user's library",
+        "operationId": "getUserLibrary",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the user",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Game"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Search for games and products",
+        "description": "Search for video games, consoles, and gaming gear",
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query string",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by product type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "game",
+                "console",
+                "gear",
+                "all"
+              ],
+              "default": "all"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "games": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Game"
+                          }
+                        },
+                        "consoles": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Console"
+                          }
+                        },
+                        "totalResults": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/retailers": {
+      "get": {
+        "tags": [
+          "Retailers"
+        ],
+        "summary": "Get list of approved retailers",
+        "description": "Retrieve a list of approved retailers that sell video game related products (90+ retailers)",
+        "operationId": "getRetailers",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Retailer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "tags": [
+          "Platform"
+        ],
+        "summary": "Get platform status",
+        "description": "Retrieve current platform status information for building status pages",
+        "operationId": "getPlatformStatus",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/PlatformStatus"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/widgets/product-card": {
+      "get": {
+        "tags": [
+          "Widgets"
+        ],
+        "summary": "Get product card widget",
+        "description": "Retrieve embeddable product card widget HTML for websites",
+        "operationId": "getProductCardWidget",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "query",
+            "required": true,
+            "description": "Product ID for the widget",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "theme",
+            "in": "query",
+            "description": "Widget theme",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "light",
+                "dark"
+              ],
+              "default": "light"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/widgets/button": {
+      "get": {
+        "tags": [
+          "Widgets"
+        ],
+        "summary": "Get button widget",
+        "description": "Retrieve embeddable button widget HTML for websites",
+        "operationId": "getButtonWidget",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "query",
+            "required": true,
+            "description": "Product ID for the widget",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "description": "Button text",
+            "schema": {
+              "type": "string",
+              "default": "View Deals"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key."
+      }
+    },
+    "schemas": {
+      "Game": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique game identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Game title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Game description"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Release date"
+          },
+          "ageRating": {
+            "type": "string",
+            "description": "Age rating (e.g., ESRB, PEGI)"
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Supported platforms"
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Game genres"
+          },
+          "developer": {
+            "type": "string",
+            "description": "Developer name"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publisher name"
+          },
+          "screenshots": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "Screenshot URLs"
+          },
+          "coverImage": {
+            "type": "string",
+            "format": "uri",
+            "description": "Cover image URL"
+          },
+          "videos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Video media"
+          },
+          "franchiseId": {
+            "type": "string",
+            "description": "Associated franchise ID"
+          }
+        }
+      },
+      "Price": {
+        "type": "object",
+        "properties": {
+          "retailerId": {
+            "type": "string",
+            "description": "Retailer identifier"
+          },
+          "retailerName": {
+            "type": "string",
+            "description": "Retailer name"
+          },
+          "price": {
+            "type": "number",
+            "format": "float",
+            "description": "Current price"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code (GBP, EUR, USD)"
+          },
+          "originalPrice": {
+            "type": "number",
+            "format": "float",
+            "description": "Original price before discount"
+          },
+          "discount": {
+            "type": "number",
+            "format": "float",
+            "description": "Discount percentage"
+          },
+          "affiliateLink": {
+            "type": "string",
+            "format": "uri",
+            "description": "Affiliate link to retailer (do not modify)"
+          },
+          "inStock": {
+            "type": "boolean",
+            "description": "Stock availability"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last price update timestamp"
+          },
+          "region": {
+            "type": "string",
+            "description": "Region code"
+          }
+        }
+      },
+      "Console": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique console identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Console name"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "console",
+              "gear"
+            ],
+            "description": "Product type"
+          },
+          "manufacturer": {
+            "type": "string",
+            "description": "Manufacturer name"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Release date"
+          },
+          "description": {
+            "type": "string",
+            "description": "Product description"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "Product images"
+          },
+          "specifications": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Technical specifications"
+          }
+        }
+      },
+      "Franchise": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique franchise identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Franchise name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Franchise description"
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "description": "Franchise logo URL"
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Game IDs included in franchise"
+          },
+          "totalGames": {
+            "type": "integer",
+            "description": "Total number of games in franchise"
+          }
+        }
+      },
+      "Studio": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique studio identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Studio name"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "developer",
+              "publisher",
+              "both"
+            ],
+            "description": "Studio type"
+          },
+          "foundingYear": {
+            "type": "integer",
+            "description": "Year founded"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "country": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              }
+            },
+            "description": "Studio location"
+          },
+          "description": {
+            "type": "string",
+            "description": "Studio description"
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "description": "Studio logo URL"
+          },
+          "games": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Released game IDs"
+          },
+          "website": {
+            "type": "string",
+            "format": "uri",
+            "description": "Official website"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique user identifier"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username"
+          },
+          "avatar": {
+            "type": "string",
+            "format": "uri",
+            "description": "Avatar image URL"
+          },
+          "joinDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Account creation date"
+          },
+          "wishlistCount": {
+            "type": "integer",
+            "description": "Number of items in wishlist"
+          },
+          "libraryCount": {
+            "type": "integer",
+            "description": "Number of games in library"
+          }
+        }
+      },
+      "Retailer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique retailer identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Retailer name"
+          },
+          "website": {
+            "type": "string",
+            "format": "uri",
+            "description": "Retailer website"
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "description": "Retailer logo URL"
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Supported regions"
+          },
+          "currencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Supported currencies"
+          },
+          "approved": {
+            "type": "boolean",
+            "description": "Approval status"
+          }
+        }
+      },
+      "PlatformStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "operational",
+              "degraded",
+              "down"
+            ],
+            "description": "Overall platform status"
+          },
+          "api": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "operational",
+                  "degraded",
+                  "down"
+                ]
+              },
+              "responseTime": {
+                "type": "number",
+                "description": "Average response time in milliseconds"
+              }
+            }
+          },
+          "website": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "operational",
+                  "degraded",
+                  "down"
+                ]
+              }
+            }
+          },
+          "priceUpdates": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "operational",
+                  "degraded",
+                  "down"
+                ]
+              },
+              "lastUpdate": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Status check timestamp"
+          }
+        }
+      },
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total number of results"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Results per page"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Current offset"
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "Whether more results are available"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code"
+              },
+              "message": {
+                "type": "string",
+                "description": "Error message"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequestError": {
+        "description": "Bad request - invalid parameters",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "UnauthorizedError": {
+        "description": "Unauthorized - invalid or missing API key",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFoundError": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "RateLimitError": {
+        "description": "Rate limit exceeded - too many requests",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ServerError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+# BasicPlatformFlow
+
+main: kit: flow: BasicPlatformFlow:
+{
+  entity: "platform",
+  kind: "basic",
+  name: "BasicPlatformFlow",
+  step: [
+    {
+      input: {
+        ref: "platform_ref01",
+        srcdatavar: "platform_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-platform_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPlatformFlow"
+}

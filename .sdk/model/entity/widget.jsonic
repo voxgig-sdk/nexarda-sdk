@@ -1,0 +1,94 @@
+# Entity: widget
+
+main: kit: entity: widget: {
+
+  alias: field: {}
+
+  name: "widget"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "product_id"
+                orig: "product_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "View Deals"
+                kind: "query"
+                name: "text"
+                orig: "text"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/widgets/button"
+          parts: [
+            "widgets"
+            "button"
+          ]
+          select: {
+            "$action": "button"
+            exist: [
+              "product_id"
+              "text"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "product_id"
+                orig: "product_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "light"
+                kind: "query"
+                name: "theme"
+                orig: "theme"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/widgets/product-card"
+          parts: [
+            "widgets"
+            "product-card"
+          ]
+          select: {
+            "$action": "product_card"
+            exist: [
+              "product_id"
+              "theme"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

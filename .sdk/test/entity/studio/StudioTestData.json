@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "studio": {
+      "STUDIO00": {
+        "data": {},
+        "description": "s6f",
+        "founding_year": "s70",
+        "game": [],
+        "id": "STUDIO00",
+        "location": {},
+        "logo": "s74",
+        "name": "s75",
+        "success": true,
+        "type": "s77",
+        "website": "s78"
+      },
+      "STUDIO01": {
+        "data": {},
+        "description": "sdd",
+        "founding_year": "sde",
+        "game": [],
+        "id": "STUDIO01",
+        "location": {},
+        "logo": "se2",
+        "name": "se3",
+        "success": true,
+        "type": "se5",
+        "website": "se6"
+      },
+      "STUDIO02": {
+        "data": {},
+        "description": "s14b",
+        "founding_year": "s14c",
+        "game": [],
+        "id": "STUDIO02",
+        "location": {},
+        "logo": "s150",
+        "name": "s151",
+        "success": true,
+        "type": "s153",
+        "website": "s154"
+      }
+    }
+  },
+  "new": {
+    "studio": {
+      "studio_ref01": {
+        "data": {},
+        "description": "s1b9",
+        "founding_year": "s1ba",
+        "game": [],
+        "location": {},
+        "logo": "s1be",
+        "name": "s1bf",
+        "success": true,
+        "type": "s1c1",
+        "website": "s1c2"
+      }
+    }
+  }
+}

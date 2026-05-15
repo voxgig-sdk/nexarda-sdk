@@ -1,0 +1,209 @@
+# Entity: user
+
+main: kit: entity: user: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_rating"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "cover_image"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "developer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "franchise_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "genre"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "platform"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "publisher"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "release_date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "screenshot"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "video"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "user"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "user_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/users/{userId}/library"
+          parts: [
+            "users"
+            "{id}"
+            "library"
+          ]
+          rename: {
+            param: {
+              userId: "id"
+            }
+          }
+          select: {
+            "$action": "library"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "user_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/users/{userId}/wishlist"
+          parts: [
+            "users"
+            "{id}"
+            "wishlist"
+          ]
+          rename: {
+            param: {
+              userId: "id"
+            }
+          }
+          select: {
+            "$action": "wishlist"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "user_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/users/{userId}"
+          parts: [
+            "users"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              userId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

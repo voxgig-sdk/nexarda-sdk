@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "widget": {
+      "WIDGET00": {},
+      "WIDGET01": {},
+      "WIDGET02": {}
+    }
+  },
+  "new": {
+    "widget": {
+      "widget_ref01": {}
+    }
+  }
+}

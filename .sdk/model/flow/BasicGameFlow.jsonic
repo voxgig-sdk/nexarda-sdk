@@ -1,0 +1,44 @@
+# BasicGameFlow
+
+main: kit: flow: BasicGameFlow:
+{
+  entity: "game",
+  kind: "basic",
+  name: "BasicGameFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "game_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "game_ref01",
+        srcdatavar: "game_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "game01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-game_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGameFlow"
+}

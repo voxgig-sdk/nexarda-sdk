@@ -1,0 +1,80 @@
+{
+  "existing": {
+    "game": {
+      "GAME00": {
+        "age_rating": "s96",
+        "cover_image": "s97",
+        "data": {},
+        "description": "s99",
+        "developer": "s9a",
+        "franchise_id": "FRANCHISE01",
+        "genre": [],
+        "id": "GAME00",
+        "name": "s9e",
+        "platform": [],
+        "publisher": "sa0",
+        "release_date": "sa1",
+        "screenshot": [],
+        "success": false,
+        "video": [],
+        "platform_id": "PLATFORM01"
+      },
+      "GAME01": {
+        "age_rating": "s12c",
+        "cover_image": "s12d",
+        "data": {},
+        "description": "s12f",
+        "developer": "s130",
+        "franchise_id": "FRANCHISE01",
+        "genre": [],
+        "id": "GAME01",
+        "name": "s134",
+        "platform": [],
+        "publisher": "s136",
+        "release_date": "s137",
+        "screenshot": [],
+        "success": false,
+        "video": [],
+        "platform_id": "PLATFORM01"
+      },
+      "GAME02": {
+        "age_rating": "s1c2",
+        "cover_image": "s1c3",
+        "data": {},
+        "description": "s1c5",
+        "developer": "s1c6",
+        "franchise_id": "FRANCHISE01",
+        "genre": [],
+        "id": "GAME02",
+        "name": "s1ca",
+        "platform": [],
+        "publisher": "s1cc",
+        "release_date": "s1cd",
+        "screenshot": [],
+        "success": false,
+        "video": [],
+        "platform_id": "PLATFORM01"
+      }
+    }
+  },
+  "new": {
+    "game": {
+      "game_ref01": {
+        "age_rating": "s258",
+        "cover_image": "s259",
+        "data": {},
+        "description": "s25b",
+        "developer": "s25c",
+        "franchise_id": "FRANCHISE01",
+        "genre": [],
+        "name": "s260",
+        "platform": [],
+        "publisher": "s262",
+        "release_date": "s263",
+        "screenshot": [],
+        "success": false,
+        "video": []
+      }
+    }
+  }
+}

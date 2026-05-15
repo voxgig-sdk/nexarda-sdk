@@ -1,0 +1,22 @@
+# BasicRetailerFlow
+
+main: kit: flow: BasicRetailerFlow:
+{
+  entity: "retailer",
+  kind: "basic",
+  name: "BasicRetailerFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "retailer_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRetailerFlow"
+}

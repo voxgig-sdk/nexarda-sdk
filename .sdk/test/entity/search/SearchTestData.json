@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "search": {
+      "SEARCH00": {
+        "data": {},
+        "success": false
+      },
+      "SEARCH01": {
+        "data": {},
+        "success": false
+      },
+      "SEARCH02": {
+        "data": {},
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "search": {
+      "search_ref01": {
+        "data": {},
+        "success": false
+      }
+    }
+  }
+}

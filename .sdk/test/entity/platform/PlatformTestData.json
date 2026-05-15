@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "platform": {
+      "PLATFORM00": {
+        "data": {},
+        "success": false
+      },
+      "PLATFORM01": {
+        "data": {},
+        "success": false
+      },
+      "PLATFORM02": {
+        "data": {},
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "platform": {
+      "platform_ref01": {
+        "data": {},
+        "success": false
+      }
+    }
+  }
+}

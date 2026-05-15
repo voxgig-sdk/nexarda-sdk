@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "franchis": {
+      "FRANCHIS00": {
+        "data": {},
+        "description": "s51",
+        "game": [],
+        "id": "FRANCHIS00",
+        "logo": "s54",
+        "name": "s55",
+        "success": true,
+        "total_game": "s57"
+      },
+      "FRANCHIS01": {
+        "data": {},
+        "description": "sa1",
+        "game": [],
+        "id": "FRANCHIS01",
+        "logo": "sa4",
+        "name": "sa5",
+        "success": true,
+        "total_game": "sa7"
+      },
+      "FRANCHIS02": {
+        "data": {},
+        "description": "sf1",
+        "game": [],
+        "id": "FRANCHIS02",
+        "logo": "sf4",
+        "name": "sf5",
+        "success": true,
+        "total_game": "sf7"
+      }
+    }
+  },
+  "new": {
+    "franchis": {
+      "franchis_ref01": {
+        "data": {},
+        "description": "s141",
+        "game": [],
+        "logo": "s144",
+        "name": "s145",
+        "success": true,
+        "total_game": "s147"
+      }
+    }
+  }
+}

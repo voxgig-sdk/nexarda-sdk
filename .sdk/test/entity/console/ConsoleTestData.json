@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "console": {
+      "CONSOLE00": {
+        "data": {},
+        "description": "s65",
+        "id": "CONSOLE00",
+        "image": [],
+        "manufacturer": "s68",
+        "name": "s69",
+        "release_date": "s6a",
+        "specification": {},
+        "success": true,
+        "type": "s6d"
+      },
+      "CONSOLE01": {
+        "data": {},
+        "description": "sc9",
+        "id": "CONSOLE01",
+        "image": [],
+        "manufacturer": "scc",
+        "name": "scd",
+        "release_date": "sce",
+        "specification": {},
+        "success": true,
+        "type": "sd1"
+      },
+      "CONSOLE02": {
+        "data": {},
+        "description": "s12d",
+        "id": "CONSOLE02",
+        "image": [],
+        "manufacturer": "s130",
+        "name": "s131",
+        "release_date": "s132",
+        "specification": {},
+        "success": true,
+        "type": "s135"
+      }
+    }
+  },
+  "new": {
+    "console": {
+      "console_ref01": {
+        "data": {},
+        "description": "s191",
+        "image": [],
+        "manufacturer": "s194",
+        "name": "s195",
+        "release_date": "s196",
+        "specification": {},
+        "success": true,
+        "type": "s199"
+      }
+    }
+  }
+}

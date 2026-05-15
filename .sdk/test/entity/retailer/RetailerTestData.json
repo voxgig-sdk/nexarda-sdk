@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "retailer": {
+      "RETAILER00": {
+        "approved": true,
+        "currency": [],
+        "id": "RETAILER00",
+        "logo": "s49",
+        "name": "s4a",
+        "region": [],
+        "website": "s4c"
+      },
+      "RETAILER01": {
+        "approved": true,
+        "currency": [],
+        "id": "RETAILER01",
+        "logo": "s8f",
+        "name": "s90",
+        "region": [],
+        "website": "s92"
+      },
+      "RETAILER02": {
+        "approved": true,
+        "currency": [],
+        "id": "RETAILER02",
+        "logo": "sd5",
+        "name": "sd6",
+        "region": [],
+        "website": "sd8"
+      }
+    }
+  },
+  "new": {
+    "retailer": {
+      "retailer_ref01": {
+        "approved": true,
+        "currency": [],
+        "logo": "s11b",
+        "name": "s11c",
+        "region": [],
+        "website": "s11e"
+      }
+    }
+  }
+}

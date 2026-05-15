@@ -1,0 +1,228 @@
+# Entity: game
+
+main: kit: entity: game: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_rating"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "cover_image"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "developer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "franchise_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "genre"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "platform"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "publisher"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "release_date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "screenshot"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "video"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "game"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/games"
+          parts: [
+            "games"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "offset"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "platform_id"
+                orig: "platform_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "platform"
+                orig: "platform"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/games/platform/{platformId}"
+          parts: [
+            "games"
+            "platform"
+            "{platform_id}"
+          ]
+          rename: {
+            param: {
+              platformId: "platform_id"
+            }
+          }
+          select: {
+            exist: [
+              "platform"
+              "platform_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "game_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/games/{gameId}"
+          parts: [
+            "games"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              gameId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "platform"
+      ]
+    ]
+  }
+
+
+
+}

@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "devteam@nexarda.com"
+      }
+      description: "The NEXARDA API provides access to a video game price comparison service, allowing users to find deals from over 90 approved retailers. It enables developers to integrate price checks for video games, consoles, and gaming gear directly into their applications. Most endpoints are free to use and don't require authentication."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.nexarda.com"
+        }
+      ]
+      termsOfService: "https://www.nexarda.com/"
+      title: "NEXARDA API"
+      version: "1.0.0"
+      "x-logo": {
+        url: "https://imgcdn1.nexarda.com/main/static/branding/logo.svg"
+      }
+    }
+  }
+}
+
+}
