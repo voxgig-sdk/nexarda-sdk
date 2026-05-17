@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/nexarda-sdk/core"
+	"github.com/voxgig-sdk/nexarda-sdk/go/core"
 )
 
 type LogFeature struct {

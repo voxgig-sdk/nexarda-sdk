@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/nexarda-sdk"
-	"github.com/voxgig-sdk/nexarda-sdk/core"
+	sdk "github.com/voxgig-sdk/nexarda-sdk/go"
+	"github.com/voxgig-sdk/nexarda-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nexarda-sdk/go/utility/struct"
 )
 
 func TestWidgetEntity(t *testing.T) {

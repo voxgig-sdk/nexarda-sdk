@@ -1,9 +1,15 @@
 {
   "existing": {
     "widget": {
-      "WIDGET00": {},
-      "WIDGET01": {},
-      "WIDGET02": {}
+      "WIDGET00": {
+        "id": "WIDGET00"
+      },
+      "WIDGET01": {
+        "id": "WIDGET01"
+      },
+      "WIDGET02": {
+        "id": "WIDGET02"
+      }
     }
   },
   "new": {

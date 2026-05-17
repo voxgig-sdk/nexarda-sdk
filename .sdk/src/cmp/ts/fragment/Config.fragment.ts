@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.nexarda.com',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

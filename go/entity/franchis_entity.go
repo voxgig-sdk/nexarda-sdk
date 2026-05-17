@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/nexarda-sdk/core"
+	"github.com/voxgig-sdk/nexarda-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nexarda-sdk/go/utility/struct"
 )
 
 type FranchisEntity struct {

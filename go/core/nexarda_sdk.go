@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nexarda-sdk/go/utility/struct"
 )
 
 type NexardaSDK struct {

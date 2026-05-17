@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/nexarda-sdk"
-	"github.com/voxgig-sdk/nexarda-sdk/core"
+	sdk "github.com/voxgig-sdk/nexarda-sdk/go"
+	"github.com/voxgig-sdk/nexarda-sdk/go/core"
 )
 
 func TestConsoleDirect(t *testing.T) {

@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/nexarda-sdk/core"
+	"github.com/voxgig-sdk/nexarda-sdk/go/core"
 )
 
 type BaseFeature struct {

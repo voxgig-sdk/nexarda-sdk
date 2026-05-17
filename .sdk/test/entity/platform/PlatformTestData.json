@@ -3,15 +3,18 @@
     "platform": {
       "PLATFORM00": {
         "data": {},
-        "success": false
+        "success": false,
+        "id": "PLATFORM00"
       },
       "PLATFORM01": {
         "data": {},
-        "success": false
+        "success": false,
+        "id": "PLATFORM01"
       },
       "PLATFORM02": {
         "data": {},
-        "success": false
+        "success": false,
+        "id": "PLATFORM02"
       }
     }
   },

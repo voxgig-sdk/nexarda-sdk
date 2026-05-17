@@ -1,10 +1,10 @@
 package voxgignexardasdk
 
 import (
-	"github.com/voxgig-sdk/nexarda-sdk/core"
-	"github.com/voxgig-sdk/nexarda-sdk/entity"
-	"github.com/voxgig-sdk/nexarda-sdk/feature"
-	_ "github.com/voxgig-sdk/nexarda-sdk/utility"
+	"github.com/voxgig-sdk/nexarda-sdk/go/core"
+	"github.com/voxgig-sdk/nexarda-sdk/go/entity"
+	"github.com/voxgig-sdk/nexarda-sdk/go/feature"
+	_ "github.com/voxgig-sdk/nexarda-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
