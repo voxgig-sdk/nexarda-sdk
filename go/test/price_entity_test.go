@@ -121,7 +121,6 @@ func priceBasicSetup(extra map[string]any) *entityTestSetup {
 		"NEXARDA_TEST_PRICE_ENTID": idmap,
 		"NEXARDA_TEST_LIVE":      "FALSE",
 		"NEXARDA_TEST_EXPLAIN":   "FALSE",
-		"NEXARDA_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["NEXARDA_TEST_PRICE_ENTID"])
@@ -132,7 +131,6 @@ func priceBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["NEXARDA_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["NEXARDA_APIKEY"],
 			},
 			extra,
 		})

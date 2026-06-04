@@ -94,7 +94,6 @@ function price_basic_setup(extra)
     ["NEXARDA_TEST_PRICE_ENTID"] = idmap,
     ["NEXARDA_TEST_LIVE"] = "FALSE",
     ["NEXARDA_TEST_EXPLAIN"] = "FALSE",
-    ["NEXARDA_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -106,7 +105,6 @@ function price_basic_setup(extra)
   if env["NEXARDA_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["NEXARDA_APIKEY"],
       },
       extra or {},
     })

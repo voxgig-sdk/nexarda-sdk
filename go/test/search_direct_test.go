@@ -99,14 +99,12 @@ func searchDirectSetup(mockres any) *searchDirectSetupResult {
 	env := envOverride(map[string]any{
 		"NEXARDA_TEST_SEARCH_ENTID": map[string]any{},
 		"NEXARDA_TEST_LIVE":    "FALSE",
-		"NEXARDA_APIKEY":       "NONE",
 	})
 
 	live := env["NEXARDA_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["NEXARDA_APIKEY"],
 		}
 		client := sdk.NewNexardaSDK(mergedOpts)
 

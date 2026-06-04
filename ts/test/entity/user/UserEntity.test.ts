@@ -121,7 +121,6 @@ function basicSetup(extra?: any) {
     'NEXARDA_TEST_USER_ENTID': idmap,
     'NEXARDA_TEST_LIVE': 'FALSE',
     'NEXARDA_TEST_EXPLAIN': 'FALSE',
-    'NEXARDA_APIKEY': 'NONE',
   })
 
   idmap = env['NEXARDA_TEST_USER_ENTID']
@@ -131,7 +130,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new NexardaSDK(merge([
       {
-        apikey: env.NEXARDA_APIKEY,
       },
       extra
     ]))

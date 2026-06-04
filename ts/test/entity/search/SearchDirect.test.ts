@@ -74,14 +74,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'NEXARDA_TEST_SEARCH_ENTID': {},
     'NEXARDA_TEST_LIVE': 'FALSE',
-    'NEXARDA_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.NEXARDA_TEST_LIVE
 
   if (live) {
     const client = new NexardaSDK({
-      apikey: env.NEXARDA_APIKEY,
     })
 
     let idmap: any = env['NEXARDA_TEST_SEARCH_ENTID']

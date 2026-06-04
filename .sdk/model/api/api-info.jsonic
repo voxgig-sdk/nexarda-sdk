@@ -20,8 +20,39 @@ main: {
       "x-logo": {
         url: "https://imgcdn1.nexarda.com/main/static/branding/logo.svg"
       }
+      tagline: "Compare video game prices across 90+ approved retailers in GBP, EUR, and USD"
+      homepage: "https://www.nexarda.com"
+      docs_url: "https://github.com/NEXARDA/NEXARDA/wiki"
+      license_short: "Free public API with usage restrictions; premium endpoints require an API key (contact devteam@nexarda.com)."
+      license_md: `- Most endpoints are free and public; some premium endpoints require an API key obtained by emailing \`devteam@nexarda.com\`.
+- Affiliate links inside retailer offers must not be altered or stripped.
+- Reselling or sublicensing API access is prohibited; copyrighted game data may not be commercialised.
+- Attribution to NEXARDA is optional but appreciated.`
+      about_md: `[NEXARDA](https://www.nexarda.com) is a video game price-comparison platform that aggregates real-time offers from over 90 approved retailers across multiple regions and currencies (GBP, EUR, USD). This SDK wraps its public HTTP API, hosted at \`https://api.nexarda.com\`, with companion documentation on the [project wiki](https://github.com/NEXARDA/NEXARDA/wiki).
+
+What you can pull from the API:
+
+- Game records with release dates, ratings, screenshots and other media.
+- Live pricing for games and gaming hardware from participating retailers.
+- Console and gaming-gear specifications and franchise / studio metadata.
+- Public user profile data such as avatars, wishlists and libraries.
+- Search across games, studios, franchises, users and consoles (e.g. \`GET /api/v3/search?type=games&q=Example+Game\`).
+- Embeddable widgets for integrating NEXARDA data into your own site.
+
+Most endpoints are open and CORS-enabled, so they can be called directly from the browser. Premium endpoints require an API key issued by the NEXARDA dev team on request.`
+      entity_desc: {
+        console: "Gaming console records with specifications and identifiers used across the catalogue."
+        franchis: "Game franchise metadata grouping related titles under a shared series."
+        game: "Core video game records including release dates, ratings, screenshots and other media."
+        platform: "Distribution platform identifiers (for example Steam or GOG) used to scope offers and game data."
+        price: "Real-time pricing data for games and gaming hardware sourced from 90+ approved retailers."
+        retailer: "Approved retailer entries that supply offers and affiliate links surfaced by the price comparison."
+        search: "Cross-cutting search over games, studios, franchises, users and consoles via `GET /api/v3/search?type=...&q=...`."
+        studio: "Developer and publisher records associated with games and franchises."
+        user: "Public NEXARDA user profiles including avatars, wishlists and libraries."
+        widget: "Embeddable website widgets that render NEXARDA data on third-party sites."
+      }
+      auth: false
     }
   }
-}
-
 }

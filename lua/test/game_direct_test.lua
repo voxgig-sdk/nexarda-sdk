@@ -117,14 +117,12 @@ function game_direct_setup(mockres)
   local env = runner.env_override({
     ["NEXARDA_TEST_GAME_ENTID"] = {},
     ["NEXARDA_TEST_LIVE"] = "FALSE",
-    ["NEXARDA_APIKEY"] = "NONE",
   })
 
   local live = env["NEXARDA_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["NEXARDA_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

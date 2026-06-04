@@ -15,9 +15,6 @@ module NexardaConfig
       },
       "options" => {
         "base" => "https://api.nexarda.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
