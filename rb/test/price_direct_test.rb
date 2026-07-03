@@ -76,12 +76,14 @@ def price_direct_setup(mockres)
   env = Runner.env_override({
     "NEXARDA_TEST_PRICE_ENTID" => {},
     "NEXARDA_TEST_LIVE" => "FALSE",
+    "NEXARDA_APIKEY" => "NONE",
   })
 
   live = env["NEXARDA_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["NEXARDA_APIKEY"],
     }
     client = NexardaSDK.new(merged_opts)
     return {

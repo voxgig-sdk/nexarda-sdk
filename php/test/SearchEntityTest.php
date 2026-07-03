@@ -85,6 +85,7 @@ function search_basic_setup($extra)
         "NEXARDA_TEST_SEARCH_ENTID" => $idmap,
         "NEXARDA_TEST_LIVE" => "FALSE",
         "NEXARDA_TEST_EXPLAIN" => "FALSE",
+        "NEXARDA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -96,6 +97,7 @@ function search_basic_setup($extra)
     if ($env["NEXARDA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["NEXARDA_APIKEY"],
             ],
             $extra ?? [],
         ]);

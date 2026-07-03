@@ -104,6 +104,7 @@ def _user_basic_setup(extra):
         "NEXARDA_TEST_USER_ENTID": idmap,
         "NEXARDA_TEST_LIVE": "FALSE",
         "NEXARDA_TEST_EXPLAIN": "FALSE",
+        "NEXARDA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -114,6 +115,7 @@ def _user_basic_setup(extra):
     if env.get("NEXARDA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("NEXARDA_APIKEY"),
             },
             extra or {},
         ])

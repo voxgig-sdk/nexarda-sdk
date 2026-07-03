@@ -1,23 +1,8 @@
 # Nexarda SDK
 
-Compare video game prices across 90+ approved retailers in GBP, EUR, and USD
+NEXARDA API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About NEXARDA API
-
-[NEXARDA](https://www.nexarda.com) is a video game price-comparison platform that aggregates real-time offers from over 90 approved retailers across multiple regions and currencies (GBP, EUR, USD). This SDK wraps its public HTTP API, hosted at `https://api.nexarda.com`, with companion documentation on the [project wiki](https://github.com/NEXARDA/NEXARDA/wiki).
-
-What you can pull from the API:
-
-- Game records with release dates, ratings, screenshots and other media.
-- Live pricing for games and gaming hardware from participating retailers.
-- Console and gaming-gear specifications and franchise / studio metadata.
-- Public user profile data such as avatars, wishlists and libraries.
-- Search across games, studios, franchises, users and consoles (e.g. `GET /api/v3/search?type=games&q=Example+Game`).
-- Embeddable widgets for integrating NEXARDA data into your own site.
-
-Most endpoints are open and CORS-enabled, so they can be called directly from the browser. Premium endpoints require an API key issued by the NEXARDA dev team on request.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install nexarda-sdk
 luarocks install nexarda-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { NexardaSDK } from 'nexarda'
 
-const client = new NexardaSDK({})
+const client = new NexardaSDK({
+  apikey: process.env.NEXARDA_APIKEY,
+})
 
 // List all consoles
 const consoles = await client.Console().list()
+console.log(consoles.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,16 +90,16 @@ The API exposes 10 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Console** | Gaming console records with specifications and identifiers used across the catalogue. | `/consoles` |
-| **Franchis** | Game franchise metadata grouping related titles under a shared series. | `/franchises` |
-| **Game** | Core video game records including release dates, ratings, screenshots and other media. | `/games` |
-| **Platform** | Distribution platform identifiers (for example Steam or GOG) used to scope offers and game data. | `/status` |
-| **Price** | Real-time pricing data for games and gaming hardware sourced from 90+ approved retailers. | `/games/{gameId}/prices` |
-| **Retailer** | Approved retailer entries that supply offers and affiliate links surfaced by the price comparison. | `/retailers` |
-| **Search** | Cross-cutting search over games, studios, franchises, users and consoles via `GET /api/v3/search?type=...&q=...`. | `/search` |
-| **Studio** | Developer and publisher records associated with games and franchises. | `/studios` |
-| **User** | Public NEXARDA user profiles including avatars, wishlists and libraries. | `/users/{userId}/library` |
-| **Widget** | Embeddable website widgets that render NEXARDA data on third-party sites. | `/widgets/button` |
+| **Console** |  | `/consoles` |
+| **Franchis** |  | `/franchises` |
+| **Game** |  | `/games` |
+| **Platform** |  | `/status` |
+| **Price** |  | `/games/{gameId}/prices` |
+| **Retailer** |  | `/retailers` |
+| **Search** |  | `/search` |
+| **Studio** |  | `/studios` |
+| **User** |  | `/users/{userId}/library` |
+| **Widget** |  | `/widgets/button` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -122,17 +109,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from nexarda_sdk import NexardaSDK
 
-client = NexardaSDK({})
+client = NexardaSDK({
+    "apikey": os.environ.get("NEXARDA_APIKEY"),
+})
 
 # List all consoles
-consoles, err = client.Console(None).list(None, None)
+consoles, err = client.Console().list()
+print(consoles)
 
 # Load a specific console
-console, err = client.Console(None).load(
-    {"id": "example_id"}, None
-)
+console, err = client.Console().load({"id": "example_id"})
+print(console)
 ```
 
 ### PHP
@@ -141,15 +131,17 @@ console, err = client.Console(None).load(
 <?php
 require_once 'nexarda_sdk.php';
 
-$client = new NexardaSDK([]);
+$client = new NexardaSDK([
+    "apikey" => getenv("NEXARDA_APIKEY"),
+]);
 
 // List all consoles
-[$consoles, $err] = $client->Console(null)->list(null, null);
+[$consoles, $err] = $client->Console()->list();
+print_r($consoles);
 
 // Load a specific console
-[$console, $err] = $client->Console(null)->load(
-    ["id" => "example_id"], null
-);
+[$console, $err] = $client->Console()->load(["id" => "example_id"]);
+print_r($console);
 ```
 
 ### Golang
@@ -157,10 +149,13 @@ $client = new NexardaSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/nexarda-sdk/go"
 
-client := sdk.NewNexardaSDK(map[string]any{})
+client := sdk.NewNexardaSDK(map[string]any{
+    "apikey": os.Getenv("NEXARDA_APIKEY"),
+})
 
 // List all consoles
 consoles, err := client.Console(nil).List(nil, nil)
+fmt.Println(consoles)
 ```
 
 ### Ruby
@@ -168,15 +163,17 @@ consoles, err := client.Console(nil).List(nil, nil)
 ```ruby
 require_relative "Nexarda_sdk"
 
-client = NexardaSDK.new({})
+client = NexardaSDK.new({
+  "apikey" => ENV["NEXARDA_APIKEY"],
+})
 
 # List all consoles
-consoles, err = client.Console(nil).list(nil, nil)
+consoles, err = client.Console().list
+puts consoles
 
 # Load a specific console
-console, err = client.Console(nil).load(
-  { "id" => "example_id" }, nil
-)
+console, err = client.Console().load({ "id" => "example_id" })
+puts console
 ```
 
 ### Lua
@@ -184,15 +181,17 @@ console, err = client.Console(nil).load(
 ```lua
 local sdk = require("nexarda_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("NEXARDA_APIKEY"),
+})
 
 -- List all consoles
-local consoles, err = client:Console(nil):list(nil, nil)
+local consoles, err = client:Console():list()
+print(consoles)
 
 -- Load a specific console
-local console, err = client:Console(nil):load(
-  { id = "example_id" }, nil
-)
+local console, err = client:Console():load({ id = "example_id" })
+print(console)
 ```
 
 ## Unit testing in offline mode
@@ -211,25 +210,21 @@ const result = await client.Console().load({ id: 'test01' })
 ### Python
 
 ```python
-client = NexardaSDK.test(None, None)
-result, err = client.Console(None).load(
-    {"id": "test01"}, None
-)
+client = NexardaSDK.test()
+result, err = client.Console().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = NexardaSDK::test(null, null);
-[$result, $err] = $client->Console(null)->load(
-    ["id" => "test01"], null
-);
+$client = NexardaSDK::test();
+[$result, $err] = $client->Console()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Console(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -238,19 +233,15 @@ result, err := client.Console(nil).Load(
 ### Ruby
 
 ```ruby
-client = NexardaSDK.test(nil, nil)
-result, err = client.Console(nil).load(
-  { "id" => "test01" }, nil
-)
+client = NexardaSDK.test
+result, err = client.Console().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Console(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Console():load({ id = "test01" })
 ```
 
 ## How it works
@@ -354,16 +345,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the NEXARDA API
-
-- Upstream: [https://www.nexarda.com](https://www.nexarda.com)
-- API docs: [https://github.com/NEXARDA/NEXARDA/wiki](https://github.com/NEXARDA/NEXARDA/wiki)
-
-- Most endpoints are free and public; some premium endpoints require an API key obtained by emailing `devteam@nexarda.com`.
-- Affiliate links inside retailer offers must not be altered or stripped.
-- Reselling or sublicensing API access is prohibited; copyrighted game data may not be commercialised.
-- Attribution to NEXARDA is optional but appreciated.
 
 ---
 
