@@ -10,7 +10,7 @@ The Python SDK for the Nexarda API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install nexarda-sdk
+pip install voxgig-sdk-nexarda
 ```
 
 Or install from source:

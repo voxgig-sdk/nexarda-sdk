@@ -10,7 +10,7 @@ The TypeScript SDK for the Nexarda API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install nexarda
+npm install @voxgig-sdk/nexarda
 ```
 ## Tutorial: your first API call
 

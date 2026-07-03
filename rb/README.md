@@ -10,13 +10,13 @@ The Ruby SDK for the Nexarda API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install nexarda-sdk
+gem install voxgig-sdk-nexarda
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "nexarda-sdk"
+gem "voxgig-sdk-nexarda"
 ```
 
 Then run:
