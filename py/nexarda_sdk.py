@@ -220,169 +220,69 @@ class NexardaSDK:
         }
 
 
-    @property
-    def console(self):
-        """Idiomatic facade: client.console.list() / client.console.load({"id": ...})."""
-        from entity.console_entity import ConsoleEntity
-        cached = getattr(self, "_console", None)
-        if cached is None:
-            cached = ConsoleEntity(self, None)
-            self._console = cached
-        return cached
-
-    def Console(self, data=None):
-        # Deprecated: use client.console instead.
+    def Console(self, data=None) -> "ConsoleEntity":
+        """Entity factory: client.Console().list({}) / client.Console().load({"id": ...})."""
         from entity.console_entity import ConsoleEntity
         return ConsoleEntity(self, data)
 
 
-    @property
-    def franchis(self):
-        """Idiomatic facade: client.franchis.list() / client.franchis.load({"id": ...})."""
-        from entity.franchis_entity import FranchisEntity
-        cached = getattr(self, "_franchis", None)
-        if cached is None:
-            cached = FranchisEntity(self, None)
-            self._franchis = cached
-        return cached
-
-    def Franchis(self, data=None):
-        # Deprecated: use client.franchis instead.
+    def Franchis(self, data=None) -> "FranchisEntity":
+        """Entity factory: client.Franchis().list({}) / client.Franchis().load({"id": ...})."""
         from entity.franchis_entity import FranchisEntity
         return FranchisEntity(self, data)
 
 
-    @property
-    def game(self):
-        """Idiomatic facade: client.game.list() / client.game.load({"id": ...})."""
-        from entity.game_entity import GameEntity
-        cached = getattr(self, "_game", None)
-        if cached is None:
-            cached = GameEntity(self, None)
-            self._game = cached
-        return cached
-
-    def Game(self, data=None):
-        # Deprecated: use client.game instead.
+    def Game(self, data=None) -> "GameEntity":
+        """Entity factory: client.Game().list({}) / client.Game().load({"id": ...})."""
         from entity.game_entity import GameEntity
         return GameEntity(self, data)
 
 
-    @property
-    def platform(self):
-        """Idiomatic facade: client.platform.list() / client.platform.load({"id": ...})."""
-        from entity.platform_entity import PlatformEntity
-        cached = getattr(self, "_platform", None)
-        if cached is None:
-            cached = PlatformEntity(self, None)
-            self._platform = cached
-        return cached
-
-    def Platform(self, data=None):
-        # Deprecated: use client.platform instead.
+    def Platform(self, data=None) -> "PlatformEntity":
+        """Entity factory: client.Platform().list({}) / client.Platform().load({"id": ...})."""
         from entity.platform_entity import PlatformEntity
         return PlatformEntity(self, data)
 
 
-    @property
-    def price(self):
-        """Idiomatic facade: client.price.list() / client.price.load({"id": ...})."""
-        from entity.price_entity import PriceEntity
-        cached = getattr(self, "_price", None)
-        if cached is None:
-            cached = PriceEntity(self, None)
-            self._price = cached
-        return cached
-
-    def Price(self, data=None):
-        # Deprecated: use client.price instead.
+    def Price(self, data=None) -> "PriceEntity":
+        """Entity factory: client.Price().list({}) / client.Price().load({"id": ...})."""
         from entity.price_entity import PriceEntity
         return PriceEntity(self, data)
 
 
-    @property
-    def retailer(self):
-        """Idiomatic facade: client.retailer.list() / client.retailer.load({"id": ...})."""
-        from entity.retailer_entity import RetailerEntity
-        cached = getattr(self, "_retailer", None)
-        if cached is None:
-            cached = RetailerEntity(self, None)
-            self._retailer = cached
-        return cached
-
-    def Retailer(self, data=None):
-        # Deprecated: use client.retailer instead.
+    def Retailer(self, data=None) -> "RetailerEntity":
+        """Entity factory: client.Retailer().list({}) / client.Retailer().load({"id": ...})."""
         from entity.retailer_entity import RetailerEntity
         return RetailerEntity(self, data)
 
 
-    @property
-    def search(self):
-        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
-        from entity.search_entity import SearchEntity
-        cached = getattr(self, "_search", None)
-        if cached is None:
-            cached = SearchEntity(self, None)
-            self._search = cached
-        return cached
-
-    def Search(self, data=None):
-        # Deprecated: use client.search instead.
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
-    @property
-    def studio(self):
-        """Idiomatic facade: client.studio.list() / client.studio.load({"id": ...})."""
-        from entity.studio_entity import StudioEntity
-        cached = getattr(self, "_studio", None)
-        if cached is None:
-            cached = StudioEntity(self, None)
-            self._studio = cached
-        return cached
-
-    def Studio(self, data=None):
-        # Deprecated: use client.studio instead.
+    def Studio(self, data=None) -> "StudioEntity":
+        """Entity factory: client.Studio().list({}) / client.Studio().load({"id": ...})."""
         from entity.studio_entity import StudioEntity
         return StudioEntity(self, data)
 
 
-    @property
-    def user(self):
-        """Idiomatic facade: client.user.list() / client.user.load({"id": ...})."""
-        from entity.user_entity import UserEntity
-        cached = getattr(self, "_user", None)
-        if cached is None:
-            cached = UserEntity(self, None)
-            self._user = cached
-        return cached
-
-    def User(self, data=None):
-        # Deprecated: use client.user instead.
+    def User(self, data=None) -> "UserEntity":
+        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 
 
-    @property
-    def widget(self):
-        """Idiomatic facade: client.widget.list() / client.widget.load({"id": ...})."""
-        from entity.widget_entity import WidgetEntity
-        cached = getattr(self, "_widget", None)
-        if cached is None:
-            cached = WidgetEntity(self, None)
-            self._widget = cached
-        return cached
-
-    def Widget(self, data=None):
-        # Deprecated: use client.widget instead.
+    def Widget(self, data=None) -> "WidgetEntity":
+        """Entity factory: client.Widget().list({}) / client.Widget().load({"id": ...})."""
         from entity.widget_entity import WidgetEntity
         return WidgetEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "NexardaSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -402,3 +302,18 @@ class NexardaSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.console_entity import ConsoleEntity
+    from entity.franchis_entity import FranchisEntity
+    from entity.game_entity import GameEntity
+    from entity.platform_entity import PlatformEntity
+    from entity.price_entity import PriceEntity
+    from entity.retailer_entity import RetailerEntity
+    from entity.search_entity import SearchEntity
+    from entity.studio_entity import StudioEntity
+    from entity.user_entity import UserEntity
+    from entity.widget_entity import WidgetEntity

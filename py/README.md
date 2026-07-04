@@ -34,24 +34,28 @@ client = NexardaSDK({
 })
 ```
 
-### 2. List consoles
+### 2. List console records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.console.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    consoles = client.Console().list({})
+    for console in consoles:
+        print(console)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a console
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.console.load({"id": "example_id"})
-    print(result)
+    console = client.Console().load({"id": "example_id"})
+    print(console)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -99,8 +103,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NexardaSDK.test()
 
-result = client.console.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+console = client.Console().load({"id": "test01"})
+# console contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -186,7 +191,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `Retailer` | `(data) -> RetailerEntity` | Create a Retailer entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Studio` | `(data) -> StudioEntity` | Create a Studio entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 | `Widget` | `(data) -> WidgetEntity` | Create a Widget entity instance. |
 
 ### Entity interface
@@ -404,7 +409,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.console`
+Create an instance: `console = client.Console()`
 
 #### Operations
 
@@ -430,20 +435,20 @@ Create an instance: `const console = client.console`
 
 #### Example: Load
 
-```ts
-const console = await client.console.load({ id: 'console_id' })
+```python
+console = client.Console().load({"id": "console_id"})
 ```
 
 #### Example: List
 
-```ts
-const consoles = await client.console.list()
+```python
+consoles = client.Console().list({})
 ```
 
 
 ### Franchis
 
-Create an instance: `const franchis = client.franchis`
+Create an instance: `franchis = client.Franchis()`
 
 #### Operations
 
@@ -467,20 +472,20 @@ Create an instance: `const franchis = client.franchis`
 
 #### Example: Load
 
-```ts
-const franchis = await client.franchis.load({ id: 'franchis_id' })
+```python
+franchis = client.Franchis().load({"id": "franchis_id"})
 ```
 
 #### Example: List
 
-```ts
-const franchiss = await client.franchis.list()
+```python
+franchiss = client.Franchis().list({})
 ```
 
 
 ### Game
 
-Create an instance: `const game = client.game`
+Create an instance: `game = client.Game()`
 
 #### Operations
 
@@ -511,20 +516,20 @@ Create an instance: `const game = client.game`
 
 #### Example: Load
 
-```ts
-const game = await client.game.load({ id: 'game_id' })
+```python
+game = client.Game().load({"id": "game_id"})
 ```
 
 #### Example: List
 
-```ts
-const games = await client.game.list()
+```python
+games = client.Game().list({})
 ```
 
 
 ### Platform
 
-Create an instance: `const platform = client.platform`
+Create an instance: `platform = client.Platform()`
 
 #### Operations
 
@@ -541,14 +546,14 @@ Create an instance: `const platform = client.platform`
 
 #### Example: Load
 
-```ts
-const platform = await client.platform.load({ id: 'platform_id' })
+```python
+platform = client.Platform().load({"id": "platform_id"})
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.price`
+Create an instance: `price = client.Price()`
 
 #### Operations
 
@@ -573,14 +578,14 @@ Create an instance: `const price = client.price`
 
 #### Example: List
 
-```ts
-const prices = await client.price.list()
+```python
+prices = client.Price().list({})
 ```
 
 
 ### Retailer
 
-Create an instance: `const retailer = client.retailer`
+Create an instance: `retailer = client.Retailer()`
 
 #### Operations
 
@@ -602,14 +607,14 @@ Create an instance: `const retailer = client.retailer`
 
 #### Example: List
 
-```ts
-const retailers = await client.retailer.list()
+```python
+retailers = client.Retailer().list({})
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search()`
 
 #### Operations
 
@@ -626,14 +631,14 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```python
+search = client.Search().load({"id": "search_id"})
 ```
 
 
 ### Studio
 
-Create an instance: `const studio = client.studio`
+Create an instance: `studio = client.Studio()`
 
 #### Operations
 
@@ -660,20 +665,20 @@ Create an instance: `const studio = client.studio`
 
 #### Example: Load
 
-```ts
-const studio = await client.studio.load({ id: 'studio_id' })
+```python
+studio = client.Studio().load({"id": "studio_id"})
 ```
 
 #### Example: List
 
-```ts
-const studios = await client.studio.list()
+```python
+studios = client.Studio().list({})
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User()`
 
 #### Operations
 
@@ -704,20 +709,20 @@ Create an instance: `const user = client.user`
 
 #### Example: Load
 
-```ts
-const user = await client.user.load({ id: 'user_id' })
+```python
+user = client.User().load({"id": "user_id"})
 ```
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```python
+users = client.User().list({})
 ```
 
 
 ### Widget
 
-Create an instance: `const widget = client.widget`
+Create an instance: `widget = client.Widget()`
 
 #### Operations
 
@@ -727,8 +732,8 @@ Create an instance: `const widget = client.widget`
 
 #### Example: Load
 
-```ts
-const widget = await client.widget.load({ id: 'widget_id' })
+```python
+widget = client.Widget().load({"id": "widget_id"})
 ```
 
 
@@ -802,7 +807,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-console = client.console
+console = client.Console()
 console.load({"id": "example_id"})
 
 # console.data_get() now returns the loaded console data

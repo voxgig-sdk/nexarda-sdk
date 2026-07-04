@@ -33,26 +33,26 @@ local client = sdk.new({
 })
 ```
 
-### 2. List consoles
+### 2. List console records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:console():list()
+local consoles, err = client:Console():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(consoles) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load a console
 
 ```lua
-local result, err = client:console():load({ id = "example_id" })
+local console, err = client:Console():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(console)
 ```
 
 
@@ -98,8 +98,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:console():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Console():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -187,7 +187,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Retailer` | `(data) -> RetailerEntity` | Create a Retailer entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Studio` | `(data) -> StudioEntity` | Create a Studio entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 | `Widget` | `(data) -> WidgetEntity` | Create a Widget entity instance. |
 
 ### Entity interface
@@ -210,17 +210,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local console, err = client:Console():load({ id = "example_id" })
+    if err then error(err) end
+    -- console is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -401,7 +406,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.console`
+Create an instance: `local console = client:Console(nil)`
 
 #### Operations
 
@@ -427,20 +432,20 @@ Create an instance: `const console = client.console`
 
 #### Example: Load
 
-```ts
-const console = await client.console.load({ id: 'console_id' })
+```lua
+local console, err = client:Console():load({ id = "console_id" })
 ```
 
 #### Example: List
 
-```ts
-const consoles = await client.console.list()
+```lua
+local consoles, err = client:Console():list()
 ```
 
 
 ### Franchis
 
-Create an instance: `const franchis = client.franchis`
+Create an instance: `local franchis = client:Franchis(nil)`
 
 #### Operations
 
@@ -464,20 +469,20 @@ Create an instance: `const franchis = client.franchis`
 
 #### Example: Load
 
-```ts
-const franchis = await client.franchis.load({ id: 'franchis_id' })
+```lua
+local franchis, err = client:Franchis():load({ id = "franchis_id" })
 ```
 
 #### Example: List
 
-```ts
-const franchiss = await client.franchis.list()
+```lua
+local franchiss, err = client:Franchis():list()
 ```
 
 
 ### Game
 
-Create an instance: `const game = client.game`
+Create an instance: `local game = client:Game(nil)`
 
 #### Operations
 
@@ -508,20 +513,20 @@ Create an instance: `const game = client.game`
 
 #### Example: Load
 
-```ts
-const game = await client.game.load({ id: 'game_id' })
+```lua
+local game, err = client:Game():load({ id = "game_id" })
 ```
 
 #### Example: List
 
-```ts
-const games = await client.game.list()
+```lua
+local games, err = client:Game():list()
 ```
 
 
 ### Platform
 
-Create an instance: `const platform = client.platform`
+Create an instance: `local platform = client:Platform(nil)`
 
 #### Operations
 
@@ -538,14 +543,14 @@ Create an instance: `const platform = client.platform`
 
 #### Example: Load
 
-```ts
-const platform = await client.platform.load({ id: 'platform_id' })
+```lua
+local platform, err = client:Platform():load({ id = "platform_id" })
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.price`
+Create an instance: `local price = client:Price(nil)`
 
 #### Operations
 
@@ -570,14 +575,14 @@ Create an instance: `const price = client.price`
 
 #### Example: List
 
-```ts
-const prices = await client.price.list()
+```lua
+local prices, err = client:Price():list()
 ```
 
 
 ### Retailer
 
-Create an instance: `const retailer = client.retailer`
+Create an instance: `local retailer = client:Retailer(nil)`
 
 #### Operations
 
@@ -599,14 +604,14 @@ Create an instance: `const retailer = client.retailer`
 
 #### Example: List
 
-```ts
-const retailers = await client.retailer.list()
+```lua
+local retailers, err = client:Retailer():list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `local search = client:Search(nil)`
 
 #### Operations
 
@@ -623,14 +628,14 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```lua
+local search, err = client:Search():load({ id = "search_id" })
 ```
 
 
 ### Studio
 
-Create an instance: `const studio = client.studio`
+Create an instance: `local studio = client:Studio(nil)`
 
 #### Operations
 
@@ -657,20 +662,20 @@ Create an instance: `const studio = client.studio`
 
 #### Example: Load
 
-```ts
-const studio = await client.studio.load({ id: 'studio_id' })
+```lua
+local studio, err = client:Studio():load({ id = "studio_id" })
 ```
 
 #### Example: List
 
-```ts
-const studios = await client.studio.list()
+```lua
+local studios, err = client:Studio():list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `local user = client:User(nil)`
 
 #### Operations
 
@@ -701,20 +706,20 @@ Create an instance: `const user = client.user`
 
 #### Example: Load
 
-```ts
-const user = await client.user.load({ id: 'user_id' })
+```lua
+local user, err = client:User():load({ id = "user_id" })
 ```
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```lua
+local users, err = client:User():list()
 ```
 
 
 ### Widget
 
-Create an instance: `const widget = client.widget`
+Create an instance: `local widget = client:Widget(nil)`
 
 #### Operations
 
@@ -724,8 +729,8 @@ Create an instance: `const widget = client.widget`
 
 #### Example: Load
 
-```ts
-const widget = await client.widget.load({ id: 'widget_id' })
+```lua
+local widget, err = client:Widget():load({ id = "widget_id" })
 ```
 
 
@@ -800,7 +805,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local console = client:console()
+local console = client:Console()
 console:load({ id = "example_id" })
 
 -- console:data_get() now returns the loaded console data

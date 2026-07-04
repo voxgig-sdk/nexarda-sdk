@@ -218,7 +218,7 @@ Alias for `NexardaSDK.test()`.
 ## ConsoleEntity
 
 ```ts
-const console = client.console
+const console = client.Console()
 ```
 
 ### Fields
@@ -243,7 +243,7 @@ const console = client.console
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.console.list()
+const results = await client.Console().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -251,7 +251,7 @@ const results = await client.console.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.console.load({ id: 'console_id' })
+const result = await client.Console().load({ id: 'console_id' })
 ```
 
 ### Common Methods
@@ -285,7 +285,7 @@ Return a copy of the entity options.
 ## FranchisEntity
 
 ```ts
-const franchis = client.franchis
+const franchis = client.Franchis()
 ```
 
 ### Fields
@@ -308,7 +308,7 @@ const franchis = client.franchis
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.franchis.list()
+const results = await client.Franchis().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -316,7 +316,7 @@ const results = await client.franchis.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.franchis.load({ id: 'franchis_id' })
+const result = await client.Franchis().load({ id: 'franchis_id' })
 ```
 
 ### Common Methods
@@ -350,7 +350,7 @@ Return a copy of the entity options.
 ## GameEntity
 
 ```ts
-const game = client.game
+const game = client.Game()
 ```
 
 ### Fields
@@ -380,7 +380,7 @@ const game = client.game
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.game.list()
+const results = await client.Game().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -388,7 +388,7 @@ const results = await client.game.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.game.load({ id: 'game_id' })
+const result = await client.Game().load({ id: 'game_id' })
 ```
 
 ### Common Methods
@@ -422,7 +422,7 @@ Return a copy of the entity options.
 ## PlatformEntity
 
 ```ts
-const platform = client.platform
+const platform = client.Platform()
 ```
 
 ### Fields
@@ -439,7 +439,7 @@ const platform = client.platform
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.platform.load({ id: 'platform_id' })
+const result = await client.Platform().load({ id: 'platform_id' })
 ```
 
 ### Common Methods
@@ -473,7 +473,7 @@ Return a copy of the entity options.
 ## PriceEntity
 
 ```ts
-const price = client.price
+const price = client.Price()
 ```
 
 ### Fields
@@ -498,7 +498,7 @@ const price = client.price
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.price.list()
+const results = await client.Price().list()
 ```
 
 ### Common Methods
@@ -532,7 +532,7 @@ Return a copy of the entity options.
 ## RetailerEntity
 
 ```ts
-const retailer = client.retailer
+const retailer = client.Retailer()
 ```
 
 ### Fields
@@ -554,7 +554,7 @@ const retailer = client.retailer
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.retailer.list()
+const results = await client.Retailer().list()
 ```
 
 ### Common Methods
@@ -588,7 +588,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.search
+const search = client.Search()
 ```
 
 ### Fields
@@ -605,7 +605,7 @@ const search = client.search
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.search.load({ id: 'search_id' })
+const result = await client.Search().load({ id: 'search_id' })
 ```
 
 ### Common Methods
@@ -639,7 +639,7 @@ Return a copy of the entity options.
 ## StudioEntity
 
 ```ts
-const studio = client.studio
+const studio = client.Studio()
 ```
 
 ### Fields
@@ -665,7 +665,7 @@ const studio = client.studio
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.studio.list()
+const results = await client.Studio().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -673,7 +673,7 @@ const results = await client.studio.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.studio.load({ id: 'studio_id' })
+const result = await client.Studio().load({ id: 'studio_id' })
 ```
 
 ### Common Methods
@@ -707,7 +707,7 @@ Return a copy of the entity options.
 ## UserEntity
 
 ```ts
-const user = client.user
+const user = client.User()
 ```
 
 ### Fields
@@ -737,7 +737,7 @@ const user = client.user
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.user.list()
+const results = await client.User().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -745,7 +745,7 @@ const results = await client.user.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.user.load({ id: 'user_id' })
+const result = await client.User().load({ id: 'user_id' })
 ```
 
 ### Common Methods
@@ -779,7 +779,7 @@ Return a copy of the entity options.
 ## WidgetEntity
 
 ```ts
-const widget = client.widget
+const widget = client.Widget()
 ```
 
 ### Operations
@@ -789,7 +789,7 @@ const widget = client.widget
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.widget.load({ id: 'widget_id' })
+const result = await client.Widget().load({ id: 'widget_id' })
 ```
 
 ### Common Methods

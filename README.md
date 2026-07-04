@@ -28,9 +28,11 @@ const client = new NexardaSDK({
   apikey: process.env.NEXARDA_APIKEY,
 })
 
-// List all consoles
-const consoles = await client.console.list()
-console.log(consoles.data)
+// List all consoles (returns Console[])
+const consoles = await client.Console().list()
+for (const console of consoles) {
+  console.log(console)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -97,12 +99,13 @@ client = NexardaSDK({
     "apikey": os.environ.get("NEXARDA_APIKEY"),
 })
 
-# List all consoles
-consoles = client.console.list()
-print(consoles)
+# List all consoles (returns a list, raises on error)
+consoles = client.Console().list({})
+for console in consoles:
+    print(console)
 
-# Load a specific console
-console = client.console.load({"id": "example_id"})
+# Load a specific console (returns the record, raises on error)
+console = client.Console().load({"id": "example_id"})
 print(console)
 ```
 
@@ -116,12 +119,12 @@ $client = new NexardaSDK([
     "apikey" => getenv("NEXARDA_APIKEY"),
 ]);
 
-// List all consoles (throws on error)
-$consoles = $client->console()->list();
+// List all consoles (returns an array; throws on error)
+$consoles = $client->Console()->list();
 print_r($consoles);
 
-// Load a specific console
-$console = $client->console()->load(["id" => "example_id"]);
+// Load a specific console (returns the bare record; throws on error)
+$console = $client->Console()->load(["id" => "example_id"]);
 print_r($console);
 ```
 
@@ -148,12 +151,12 @@ client = NexardaSDK.new({
   "apikey" => ENV["NEXARDA_APIKEY"],
 })
 
-# List all consoles
-consoles = client.console.list
+# List all consoles (returns an Array; raises on error)
+consoles = client.Console.list
 puts consoles
 
-# Load a specific console
-console = client.console.load({ "id" => "example_id" })
+# Load a specific console (returns the bare record; raises on error)
+console = client.Console.load({ "id" => "example_id" })
 puts console
 ```
 
@@ -167,11 +170,11 @@ local client = sdk.new({
 })
 
 -- List all consoles
-local consoles, err = client:console():list()
+local consoles, err = client:Console():list()
 print(consoles)
 
 -- Load a specific console
-local console, err = client:console():load({ id = "example_id" })
+local console, err = client:Console():load({ id = "example_id" })
 print(console)
 ```
 
@@ -184,22 +187,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = NexardaSDK.test()
-const result = await client.console.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const console = await client.Console().load({ id: 'test01' })
+// console is a bare Console populated with mock data
+console.log(console)
 ```
 
 ### Python
 
 ```python
 client = NexardaSDK.test()
-result = client.console.load({"id": "test01"})
+console = client.Console().load({"id": "test01"})
+print(console)
 ```
 
 ### PHP
 
 ```php
-$client = NexardaSDK::test();
-$result = $client->console()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = NexardaSDK::test([
+    "entity" => ["console" => ["test01" => ["id" => "test01"]]],
+]);
+$console = $client->Console()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -214,15 +222,18 @@ result, err := client.Console(nil).Load(
 ### Ruby
 
 ```ruby
-client = NexardaSDK.test
-result = client.console.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = NexardaSDK.test({
+  "entity" => { "console" => { "test01" => { "id" => "test01" } } },
+})
+console = client.Console.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:console():load({ id = "test01" })
+local result, err = client:Console():load({ id = "test01" })
 ```
 
 ## How it works
@@ -270,6 +281,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

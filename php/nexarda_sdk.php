@@ -233,10 +233,10 @@ class NexardaSDK
 
     private $_console = null;
 
-    // Idiomatic facade: $client->console()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Console() (PHP method
-    // names are case-insensitive).
-    public function console($data = null)
+    // Canonical facade: $client->Console()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->console()
+    // resolves here too.
+    public function Console($data = null)
     {
         require_once __DIR__ . '/entity/console_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class NexardaSDK
 
     private $_franchis = null;
 
-    // Idiomatic facade: $client->franchis()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Franchis() (PHP method
-    // names are case-insensitive).
-    public function franchis($data = null)
+    // Canonical facade: $client->Franchis()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->franchis()
+    // resolves here too.
+    public function Franchis($data = null)
     {
         require_once __DIR__ . '/entity/franchis_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class NexardaSDK
 
     private $_game = null;
 
-    // Idiomatic facade: $client->game()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Game() (PHP method
-    // names are case-insensitive).
-    public function game($data = null)
+    // Canonical facade: $client->Game()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->game()
+    // resolves here too.
+    public function Game($data = null)
     {
         require_once __DIR__ . '/entity/game_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class NexardaSDK
 
     private $_platform = null;
 
-    // Idiomatic facade: $client->platform()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Platform() (PHP method
-    // names are case-insensitive).
-    public function platform($data = null)
+    // Canonical facade: $client->Platform()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->platform()
+    // resolves here too.
+    public function Platform($data = null)
     {
         require_once __DIR__ . '/entity/platform_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class NexardaSDK
 
     private $_price = null;
 
-    // Idiomatic facade: $client->price()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Price() (PHP method
-    // names are case-insensitive).
-    public function price($data = null)
+    // Canonical facade: $client->Price()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->price()
+    // resolves here too.
+    public function Price($data = null)
     {
         require_once __DIR__ . '/entity/price_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class NexardaSDK
 
     private $_retailer = null;
 
-    // Idiomatic facade: $client->retailer()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Retailer() (PHP method
-    // names are case-insensitive).
-    public function retailer($data = null)
+    // Canonical facade: $client->Retailer()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->retailer()
+    // resolves here too.
+    public function Retailer($data = null)
     {
         require_once __DIR__ . '/entity/retailer_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class NexardaSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class NexardaSDK
 
     private $_studio = null;
 
-    // Idiomatic facade: $client->studio()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Studio() (PHP method
-    // names are case-insensitive).
-    public function studio($data = null)
+    // Canonical facade: $client->Studio()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->studio()
+    // resolves here too.
+    public function Studio($data = null)
     {
         require_once __DIR__ . '/entity/studio_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class NexardaSDK
 
     private $_user = null;
 
-    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias User() (PHP method
-    // names are case-insensitive).
-    public function user($data = null)
+    // Canonical facade: $client->User()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->user()
+    // resolves here too.
+    public function User($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class NexardaSDK
 
     private $_widget = null;
 
-    // Idiomatic facade: $client->widget()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Widget() (PHP method
-    // names are case-insensitive).
-    public function widget($data = null)
+    // Canonical facade: $client->Widget()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->widget()
+    // resolves here too.
+    public function Widget($data = null)
     {
         require_once __DIR__ . '/entity/widget_entity.php';
         if ($data === null) {

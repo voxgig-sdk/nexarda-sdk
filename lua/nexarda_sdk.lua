@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:console():list() / client:console():load({ id = ... })
-function NexardaSDK:console(data)
+-- Idiomatic facade: client:Console():list() / client:Console():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Console(data)
   local EntityMod = require("entity.console_entity")
   if data == nil then
     if self._console == nil then
@@ -256,15 +257,10 @@ function NexardaSDK:console(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:console() instead.
-function NexardaSDK:Console(data)
-  local EntityMod = require("entity.console_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:franchis():list() / client:franchis():load({ id = ... })
-function NexardaSDK:franchis(data)
+-- Idiomatic facade: client:Franchis():list() / client:Franchis():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Franchis(data)
   local EntityMod = require("entity.franchis_entity")
   if data == nil then
     if self._franchis == nil then
@@ -275,15 +271,10 @@ function NexardaSDK:franchis(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:franchis() instead.
-function NexardaSDK:Franchis(data)
-  local EntityMod = require("entity.franchis_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:game():list() / client:game():load({ id = ... })
-function NexardaSDK:game(data)
+-- Idiomatic facade: client:Game():list() / client:Game():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Game(data)
   local EntityMod = require("entity.game_entity")
   if data == nil then
     if self._game == nil then
@@ -294,15 +285,10 @@ function NexardaSDK:game(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:game() instead.
-function NexardaSDK:Game(data)
-  local EntityMod = require("entity.game_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:platform():list() / client:platform():load({ id = ... })
-function NexardaSDK:platform(data)
+-- Idiomatic facade: client:Platform():list() / client:Platform():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Platform(data)
   local EntityMod = require("entity.platform_entity")
   if data == nil then
     if self._platform == nil then
@@ -313,15 +299,10 @@ function NexardaSDK:platform(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:platform() instead.
-function NexardaSDK:Platform(data)
-  local EntityMod = require("entity.platform_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:price():list() / client:price():load({ id = ... })
-function NexardaSDK:price(data)
+-- Idiomatic facade: client:Price():list() / client:Price():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Price(data)
   local EntityMod = require("entity.price_entity")
   if data == nil then
     if self._price == nil then
@@ -332,15 +313,10 @@ function NexardaSDK:price(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:price() instead.
-function NexardaSDK:Price(data)
-  local EntityMod = require("entity.price_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:retailer():list() / client:retailer():load({ id = ... })
-function NexardaSDK:retailer(data)
+-- Idiomatic facade: client:Retailer():list() / client:Retailer():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Retailer(data)
   local EntityMod = require("entity.retailer_entity")
   if data == nil then
     if self._retailer == nil then
@@ -351,15 +327,10 @@ function NexardaSDK:retailer(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:retailer() instead.
-function NexardaSDK:Retailer(data)
-  local EntityMod = require("entity.retailer_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
-function NexardaSDK:search(data)
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   if data == nil then
     if self._search == nil then
@@ -370,15 +341,10 @@ function NexardaSDK:search(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:search() instead.
-function NexardaSDK:Search(data)
-  local EntityMod = require("entity.search_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:studio():list() / client:studio():load({ id = ... })
-function NexardaSDK:studio(data)
+-- Idiomatic facade: client:Studio():list() / client:Studio():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Studio(data)
   local EntityMod = require("entity.studio_entity")
   if data == nil then
     if self._studio == nil then
@@ -389,15 +355,10 @@ function NexardaSDK:studio(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:studio() instead.
-function NexardaSDK:Studio(data)
-  local EntityMod = require("entity.studio_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
-function NexardaSDK:user(data)
+-- Idiomatic facade: client:User():list() / client:User():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:User(data)
   local EntityMod = require("entity.user_entity")
   if data == nil then
     if self._user == nil then
@@ -408,15 +369,10 @@ function NexardaSDK:user(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:user() instead.
-function NexardaSDK:User(data)
-  local EntityMod = require("entity.user_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:widget():list() / client:widget():load({ id = ... })
-function NexardaSDK:widget(data)
+-- Idiomatic facade: client:Widget():list() / client:Widget():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NexardaSDK:Widget(data)
   local EntityMod = require("entity.widget_entity")
   if data == nil then
     if self._widget == nil then
@@ -424,12 +380,6 @@ function NexardaSDK:widget(data)
     end
     return self._widget
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:widget() instead.
-function NexardaSDK:Widget(data)
-  local EntityMod = require("entity.widget_entity")
   return EntityMod.new(self, data)
 end
 

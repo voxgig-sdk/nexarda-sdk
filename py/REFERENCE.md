@@ -117,7 +117,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ConsoleEntity
 
 ```python
-console = client.console
+console = client.Console()
 ```
 
 ### Fields
@@ -142,7 +142,9 @@ console = client.console
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.console.list({})
+results = client.Console().list({})
+for console in results:
+    print(console)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -150,7 +152,7 @@ results = client.console.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.console.load({"id": "console_id"})
+result = client.Console().load({"id": "console_id"})
 ```
 
 ### Common Methods
@@ -185,7 +187,7 @@ Return the entity name.
 ## FranchisEntity
 
 ```python
-franchis = client.franchis
+franchis = client.Franchis()
 ```
 
 ### Fields
@@ -208,7 +210,9 @@ franchis = client.franchis
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.franchis.list({})
+results = client.Franchis().list({})
+for franchis in results:
+    print(franchis)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -216,7 +220,7 @@ results = client.franchis.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.franchis.load({"id": "franchis_id"})
+result = client.Franchis().load({"id": "franchis_id"})
 ```
 
 ### Common Methods
@@ -251,7 +255,7 @@ Return the entity name.
 ## GameEntity
 
 ```python
-game = client.game
+game = client.Game()
 ```
 
 ### Fields
@@ -281,7 +285,9 @@ game = client.game
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.game.list({})
+results = client.Game().list({})
+for game in results:
+    print(game)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -289,7 +295,7 @@ results = client.game.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.game.load({"id": "game_id"})
+result = client.Game().load({"id": "game_id"})
 ```
 
 ### Common Methods
@@ -324,7 +330,7 @@ Return the entity name.
 ## PlatformEntity
 
 ```python
-platform = client.platform
+platform = client.Platform()
 ```
 
 ### Fields
@@ -341,7 +347,7 @@ platform = client.platform
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.platform.load({"id": "platform_id"})
+result = client.Platform().load({"id": "platform_id"})
 ```
 
 ### Common Methods
@@ -376,7 +382,7 @@ Return the entity name.
 ## PriceEntity
 
 ```python
-price = client.price
+price = client.Price()
 ```
 
 ### Fields
@@ -401,7 +407,9 @@ price = client.price
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.price.list({})
+results = client.Price().list({})
+for price in results:
+    print(price)
 ```
 
 ### Common Methods
@@ -436,7 +444,7 @@ Return the entity name.
 ## RetailerEntity
 
 ```python
-retailer = client.retailer
+retailer = client.Retailer()
 ```
 
 ### Fields
@@ -458,7 +466,9 @@ retailer = client.retailer
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.retailer.list({})
+results = client.Retailer().list({})
+for retailer in results:
+    print(retailer)
 ```
 
 ### Common Methods
@@ -493,7 +503,7 @@ Return the entity name.
 ## SearchEntity
 
 ```python
-search = client.search
+search = client.Search()
 ```
 
 ### Fields
@@ -510,7 +520,7 @@ search = client.search
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.search.load({"id": "search_id"})
+result = client.Search().load({"id": "search_id"})
 ```
 
 ### Common Methods
@@ -545,7 +555,7 @@ Return the entity name.
 ## StudioEntity
 
 ```python
-studio = client.studio
+studio = client.Studio()
 ```
 
 ### Fields
@@ -571,7 +581,9 @@ studio = client.studio
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.studio.list({})
+results = client.Studio().list({})
+for studio in results:
+    print(studio)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -579,7 +591,7 @@ results = client.studio.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.studio.load({"id": "studio_id"})
+result = client.Studio().load({"id": "studio_id"})
 ```
 
 ### Common Methods
@@ -614,7 +626,7 @@ Return the entity name.
 ## UserEntity
 
 ```python
-user = client.user
+user = client.User()
 ```
 
 ### Fields
@@ -644,7 +656,9 @@ user = client.user
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.user.list({})
+results = client.User().list({})
+for user in results:
+    print(user)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -652,7 +666,7 @@ results = client.user.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.user.load({"id": "user_id"})
+result = client.User().load({"id": "user_id"})
 ```
 
 ### Common Methods
@@ -687,7 +701,7 @@ Return the entity name.
 ## WidgetEntity
 
 ```python
-widget = client.widget
+widget = client.Widget()
 ```
 
 ### Operations
@@ -697,7 +711,7 @@ widget = client.widget
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.widget.load({"id": "widget_id"})
+result = client.Widget().load({"id": "widget_id"})
 ```
 
 ### Common Methods

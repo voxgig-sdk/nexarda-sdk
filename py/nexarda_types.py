@@ -4,255 +4,234 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Console:
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[list] = None
-    manufacturer: Optional[str] = None
-    name: Optional[str] = None
-    release_date: Optional[str] = None
-    specification: Optional[dict] = None
-    success: Optional[bool] = None
-    type: Optional[str] = None
+class Console(TypedDict, total=False):
+    data: dict
+    description: str
+    id: str
+    image: list
+    manufacturer: str
+    name: str
+    release_date: str
+    specification: dict
+    success: bool
+    type: str
 
 
-@dataclass
-class ConsoleLoadMatch:
+class ConsoleLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class ConsoleListMatch:
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    image: Optional[list] = None
-    manufacturer: Optional[str] = None
-    name: Optional[str] = None
-    release_date: Optional[str] = None
-    specification: Optional[dict] = None
-    success: Optional[bool] = None
-    type: Optional[str] = None
+class ConsoleListMatch(TypedDict, total=False):
+    data: dict
+    description: str
+    id: str
+    image: list
+    manufacturer: str
+    name: str
+    release_date: str
+    specification: dict
+    success: bool
+    type: str
 
 
-@dataclass
-class Franchis:
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    game: Optional[list] = None
-    id: Optional[str] = None
-    logo: Optional[str] = None
-    name: Optional[str] = None
-    success: Optional[bool] = None
-    total_game: Optional[int] = None
+class Franchis(TypedDict, total=False):
+    data: dict
+    description: str
+    game: list
+    id: str
+    logo: str
+    name: str
+    success: bool
+    total_game: int
 
 
-@dataclass
-class FranchisLoadMatch:
+class FranchisLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class FranchisListMatch:
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    game: Optional[list] = None
-    id: Optional[str] = None
-    logo: Optional[str] = None
-    name: Optional[str] = None
-    success: Optional[bool] = None
-    total_game: Optional[int] = None
+class FranchisListMatch(TypedDict, total=False):
+    data: dict
+    description: str
+    game: list
+    id: str
+    logo: str
+    name: str
+    success: bool
+    total_game: int
 
 
-@dataclass
-class Game:
-    age_rating: Optional[str] = None
-    cover_image: Optional[str] = None
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    developer: Optional[str] = None
-    franchise_id: Optional[str] = None
-    genre: Optional[list] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    platform: Optional[list] = None
-    publisher: Optional[str] = None
-    release_date: Optional[str] = None
-    screenshot: Optional[list] = None
-    success: Optional[bool] = None
-    video: Optional[list] = None
+class Game(TypedDict, total=False):
+    age_rating: str
+    cover_image: str
+    data: dict
+    description: str
+    developer: str
+    franchise_id: str
+    genre: list
+    id: str
+    name: str
+    platform: list
+    publisher: str
+    release_date: str
+    screenshot: list
+    success: bool
+    video: list
 
 
-@dataclass
-class GameLoadMatch:
+class GameLoadMatch(TypedDict):
     platform_id: str
     id: str
 
 
-@dataclass
-class GameListMatch:
-    age_rating: Optional[str] = None
-    cover_image: Optional[str] = None
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    developer: Optional[str] = None
-    franchise_id: Optional[str] = None
-    genre: Optional[list] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    platform: Optional[list] = None
-    publisher: Optional[str] = None
-    release_date: Optional[str] = None
-    screenshot: Optional[list] = None
-    success: Optional[bool] = None
-    video: Optional[list] = None
+class GameListMatch(TypedDict, total=False):
+    age_rating: str
+    cover_image: str
+    data: dict
+    description: str
+    developer: str
+    franchise_id: str
+    genre: list
+    id: str
+    name: str
+    platform: list
+    publisher: str
+    release_date: str
+    screenshot: list
+    success: bool
+    video: list
 
 
-@dataclass
-class Platform:
-    data: Optional[dict] = None
-    success: Optional[bool] = None
+class Platform(TypedDict, total=False):
+    data: dict
+    success: bool
 
 
-@dataclass
-class PlatformLoadMatch:
-    data: Optional[dict] = None
-    success: Optional[bool] = None
+class PlatformLoadMatch(TypedDict, total=False):
+    data: dict
+    success: bool
 
 
-@dataclass
-class Price:
-    affiliate_link: Optional[str] = None
-    currency: Optional[str] = None
-    discount: Optional[float] = None
-    in_stock: Optional[bool] = None
-    last_updated: Optional[str] = None
-    original_price: Optional[float] = None
-    price: Optional[float] = None
-    region: Optional[str] = None
-    retailer_id: Optional[str] = None
-    retailer_name: Optional[str] = None
+class Price(TypedDict, total=False):
+    affiliate_link: str
+    currency: str
+    discount: float
+    in_stock: bool
+    last_updated: str
+    original_price: float
+    price: float
+    region: str
+    retailer_id: str
+    retailer_name: str
 
 
-@dataclass
-class PriceListMatch:
+class PriceListMatch(TypedDict):
     game_id: str
     console_id: str
 
 
-@dataclass
-class Retailer:
-    approved: Optional[bool] = None
-    currency: Optional[list] = None
-    id: Optional[str] = None
-    logo: Optional[str] = None
-    name: Optional[str] = None
-    region: Optional[list] = None
-    website: Optional[str] = None
+class Retailer(TypedDict, total=False):
+    approved: bool
+    currency: list
+    id: str
+    logo: str
+    name: str
+    region: list
+    website: str
 
 
-@dataclass
-class RetailerListMatch:
-    approved: Optional[bool] = None
-    currency: Optional[list] = None
-    id: Optional[str] = None
-    logo: Optional[str] = None
-    name: Optional[str] = None
-    region: Optional[list] = None
-    website: Optional[str] = None
+class RetailerListMatch(TypedDict, total=False):
+    approved: bool
+    currency: list
+    id: str
+    logo: str
+    name: str
+    region: list
+    website: str
 
 
-@dataclass
-class Search:
-    data: Optional[dict] = None
-    success: Optional[bool] = None
+class Search(TypedDict, total=False):
+    data: dict
+    success: bool
 
 
-@dataclass
-class SearchLoadMatch:
-    data: Optional[dict] = None
-    success: Optional[bool] = None
+class SearchLoadMatch(TypedDict, total=False):
+    data: dict
+    success: bool
 
 
-@dataclass
-class Studio:
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    founding_year: Optional[int] = None
-    game: Optional[list] = None
-    id: Optional[str] = None
-    location: Optional[dict] = None
-    logo: Optional[str] = None
-    name: Optional[str] = None
-    success: Optional[bool] = None
-    type: Optional[str] = None
-    website: Optional[str] = None
+class Studio(TypedDict, total=False):
+    data: dict
+    description: str
+    founding_year: int
+    game: list
+    id: str
+    location: dict
+    logo: str
+    name: str
+    success: bool
+    type: str
+    website: str
 
 
-@dataclass
-class StudioLoadMatch:
+class StudioLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class StudioListMatch:
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    founding_year: Optional[int] = None
-    game: Optional[list] = None
-    id: Optional[str] = None
-    location: Optional[dict] = None
-    logo: Optional[str] = None
-    name: Optional[str] = None
-    success: Optional[bool] = None
-    type: Optional[str] = None
-    website: Optional[str] = None
+class StudioListMatch(TypedDict, total=False):
+    data: dict
+    description: str
+    founding_year: int
+    game: list
+    id: str
+    location: dict
+    logo: str
+    name: str
+    success: bool
+    type: str
+    website: str
 
 
-@dataclass
-class User:
-    age_rating: Optional[str] = None
-    cover_image: Optional[str] = None
-    data: Optional[dict] = None
-    description: Optional[str] = None
-    developer: Optional[str] = None
-    franchise_id: Optional[str] = None
-    genre: Optional[list] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    platform: Optional[list] = None
-    publisher: Optional[str] = None
-    release_date: Optional[str] = None
-    screenshot: Optional[list] = None
-    success: Optional[bool] = None
-    video: Optional[list] = None
+class User(TypedDict, total=False):
+    age_rating: str
+    cover_image: str
+    data: dict
+    description: str
+    developer: str
+    franchise_id: str
+    genre: list
+    id: str
+    name: str
+    platform: list
+    publisher: str
+    release_date: str
+    screenshot: list
+    success: bool
+    video: list
 
 
-@dataclass
-class UserLoadMatch:
+class UserLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class UserListMatch:
+class UserListMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Widget:
+class Widget(TypedDict):
     pass
 
 
-@dataclass
-class WidgetLoadMatch:
+class WidgetLoadMatch(TypedDict):
     pass
-

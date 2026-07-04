@@ -208,130 +208,70 @@ class NexardaSDK
   end
 
 
-  # Idiomatic facade: client.console.list / client.console.load({ "id" => ... })
-  def console
-    require_relative 'entity/console_entity'
-    @console ||= ConsoleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.console instead.
+  # Canonical facade: client.Console.list / client.Console.load({ "id" => ... })
   def Console(data = nil)
     require_relative 'entity/console_entity'
     ConsoleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.franchis.list / client.franchis.load({ "id" => ... })
-  def franchis
-    require_relative 'entity/franchis_entity'
-    @franchis ||= FranchisEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.franchis instead.
+  # Canonical facade: client.Franchis.list / client.Franchis.load({ "id" => ... })
   def Franchis(data = nil)
     require_relative 'entity/franchis_entity'
     FranchisEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.game.list / client.game.load({ "id" => ... })
-  def game
-    require_relative 'entity/game_entity'
-    @game ||= GameEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.game instead.
+  # Canonical facade: client.Game.list / client.Game.load({ "id" => ... })
   def Game(data = nil)
     require_relative 'entity/game_entity'
     GameEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.platform.list / client.platform.load({ "id" => ... })
-  def platform
-    require_relative 'entity/platform_entity'
-    @platform ||= PlatformEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.platform instead.
+  # Canonical facade: client.Platform.list / client.Platform.load({ "id" => ... })
   def Platform(data = nil)
     require_relative 'entity/platform_entity'
     PlatformEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.price.list / client.price.load({ "id" => ... })
-  def price
-    require_relative 'entity/price_entity'
-    @price ||= PriceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.price instead.
+  # Canonical facade: client.Price.list / client.Price.load({ "id" => ... })
   def Price(data = nil)
     require_relative 'entity/price_entity'
     PriceEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.retailer.list / client.retailer.load({ "id" => ... })
-  def retailer
-    require_relative 'entity/retailer_entity'
-    @retailer ||= RetailerEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.retailer instead.
+  # Canonical facade: client.Retailer.list / client.Retailer.load({ "id" => ... })
   def Retailer(data = nil)
     require_relative 'entity/retailer_entity'
     RetailerEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.studio.list / client.studio.load({ "id" => ... })
-  def studio
-    require_relative 'entity/studio_entity'
-    @studio ||= StudioEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.studio instead.
+  # Canonical facade: client.Studio.list / client.Studio.load({ "id" => ... })
   def Studio(data = nil)
     require_relative 'entity/studio_entity'
     StudioEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.user.list / client.user.load({ "id" => ... })
-  def user
-    require_relative 'entity/user_entity'
-    @user ||= UserEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.user instead.
+  # Canonical facade: client.User.list / client.User.load({ "id" => ... })
   def User(data = nil)
     require_relative 'entity/user_entity'
     UserEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.widget.list / client.widget.load({ "id" => ... })
-  def widget
-    require_relative 'entity/widget_entity'
-    @widget ||= WidgetEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.widget instead.
+  # Canonical facade: client.Widget.list / client.Widget.load({ "id" => ... })
   def Widget(data = nil)
     require_relative 'entity/widget_entity'
     WidgetEntity.new(self, data)

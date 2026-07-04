@@ -30,16 +30,14 @@ client = NexardaSDK.new({
 })
 ```
 
-### 2. List consoles
+### 2. List console records
 
 ```ruby
 begin
-  result = client.console.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Console records — iterate directly.
+  consoles = client.Console.list
+  consoles.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,8 +48,9 @@ end
 
 ```ruby
 begin
-  result = client.console.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Console record (raises on error).
+  console = client.Console.load({ "id" => "example_id" })
+  puts console
 rescue => err
   warn "load failed: #{err}"
 end
@@ -98,13 +97,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = NexardaSDK.test
+client = NexardaSDK.test({
+  "entity" => { "console" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.console.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+console = client.Console.load({ "id" => "test01" })
+puts console
 ```
 
 ### Use a custom fetch function
@@ -190,7 +193,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Retailer` | `(data) -> RetailerEntity` | Create a Retailer entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Studio` | `(data) -> StudioEntity` | Create a Studio entity instance. |
-| `User` | `(data) -> UserEntity` | Create a User entity instance. |
+| `User` | `(data) -> UserEntity` | Create an User entity instance. |
 | `Widget` | `(data) -> WidgetEntity` | Create a Widget entity instance. |
 
 ### Entity interface
@@ -407,7 +410,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.console`
+Create an instance: `console = client.Console`
 
 #### Operations
 
@@ -433,20 +436,22 @@ Create an instance: `const console = client.console`
 
 #### Example: Load
 
-```ts
-const console = await client.console.load({ id: 'console_id' })
+```ruby
+# load returns the bare Console record (raises on error).
+console = client.Console.load({ "id" => "console_id" })
 ```
 
 #### Example: List
 
-```ts
-const consoles = await client.console.list()
+```ruby
+# list returns an Array of Console records (raises on error).
+consoles = client.Console.list
 ```
 
 
 ### Franchis
 
-Create an instance: `const franchis = client.franchis`
+Create an instance: `franchis = client.Franchis`
 
 #### Operations
 
@@ -470,20 +475,22 @@ Create an instance: `const franchis = client.franchis`
 
 #### Example: Load
 
-```ts
-const franchis = await client.franchis.load({ id: 'franchis_id' })
+```ruby
+# load returns the bare Franchis record (raises on error).
+franchis = client.Franchis.load({ "id" => "franchis_id" })
 ```
 
 #### Example: List
 
-```ts
-const franchiss = await client.franchis.list()
+```ruby
+# list returns an Array of Franchis records (raises on error).
+franchiss = client.Franchis.list
 ```
 
 
 ### Game
 
-Create an instance: `const game = client.game`
+Create an instance: `game = client.Game`
 
 #### Operations
 
@@ -514,20 +521,22 @@ Create an instance: `const game = client.game`
 
 #### Example: Load
 
-```ts
-const game = await client.game.load({ id: 'game_id' })
+```ruby
+# load returns the bare Game record (raises on error).
+game = client.Game.load({ "id" => "game_id" })
 ```
 
 #### Example: List
 
-```ts
-const games = await client.game.list()
+```ruby
+# list returns an Array of Game records (raises on error).
+games = client.Game.list
 ```
 
 
 ### Platform
 
-Create an instance: `const platform = client.platform`
+Create an instance: `platform = client.Platform`
 
 #### Operations
 
@@ -544,14 +553,15 @@ Create an instance: `const platform = client.platform`
 
 #### Example: Load
 
-```ts
-const platform = await client.platform.load({ id: 'platform_id' })
+```ruby
+# load returns the bare Platform record (raises on error).
+platform = client.Platform.load({ "id" => "platform_id" })
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.price`
+Create an instance: `price = client.Price`
 
 #### Operations
 
@@ -576,14 +586,15 @@ Create an instance: `const price = client.price`
 
 #### Example: List
 
-```ts
-const prices = await client.price.list()
+```ruby
+# list returns an Array of Price records (raises on error).
+prices = client.Price.list
 ```
 
 
 ### Retailer
 
-Create an instance: `const retailer = client.retailer`
+Create an instance: `retailer = client.Retailer`
 
 #### Operations
 
@@ -605,14 +616,15 @@ Create an instance: `const retailer = client.retailer`
 
 #### Example: List
 
-```ts
-const retailers = await client.retailer.list()
+```ruby
+# list returns an Array of Retailer records (raises on error).
+retailers = client.Retailer.list
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -629,14 +641,15 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```ruby
+# load returns the bare Search record (raises on error).
+search = client.Search.load({ "id" => "search_id" })
 ```
 
 
 ### Studio
 
-Create an instance: `const studio = client.studio`
+Create an instance: `studio = client.Studio`
 
 #### Operations
 
@@ -663,20 +676,22 @@ Create an instance: `const studio = client.studio`
 
 #### Example: Load
 
-```ts
-const studio = await client.studio.load({ id: 'studio_id' })
+```ruby
+# load returns the bare Studio record (raises on error).
+studio = client.Studio.load({ "id" => "studio_id" })
 ```
 
 #### Example: List
 
-```ts
-const studios = await client.studio.list()
+```ruby
+# list returns an Array of Studio records (raises on error).
+studios = client.Studio.list
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `user = client.User`
 
 #### Operations
 
@@ -707,20 +722,22 @@ Create an instance: `const user = client.user`
 
 #### Example: Load
 
-```ts
-const user = await client.user.load({ id: 'user_id' })
+```ruby
+# load returns the bare User record (raises on error).
+user = client.User.load({ "id" => "user_id" })
 ```
 
 #### Example: List
 
-```ts
-const users = await client.user.list()
+```ruby
+# list returns an Array of User records (raises on error).
+users = client.User.list
 ```
 
 
 ### Widget
 
-Create an instance: `const widget = client.widget`
+Create an instance: `widget = client.Widget`
 
 #### Operations
 
@@ -730,8 +747,9 @@ Create an instance: `const widget = client.widget`
 
 #### Example: Load
 
-```ts
-const widget = await client.widget.load({ id: 'widget_id' })
+```ruby
+# load returns the bare Widget record (raises on error).
+widget = client.Widget.load({ "id" => "widget_id" })
 ```
 
 
@@ -806,7 +824,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-console = client.console
+console = client.Console
 console.load({ "id" => "example_id" })
 
 # console.data_get now returns the loaded console data

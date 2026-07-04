@@ -30,25 +30,28 @@ const client = new NexardaSDK({
 })
 ```
 
-### 2. List consoles
+### 2. List console records
+
+`list()` resolves to an array of Console objects — iterate it directly:
 
 ```ts
-const result = await client.console.list()
+const consoles = await client.Console().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const console of consoles) {
+  console.log(console)
 }
 ```
 
 ### 3. Load a console
 
-```ts
-const result = await client.console.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const console = await client.Console().load({ id: 'example_id' })
+  console.log(console)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -66,6 +69,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -94,9 +100,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NexardaSDK.test()
 
-const result = await client.console.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const console = await client.Console().load({ id: 'test01' })
+// console is a bare entity populated with mock response data
+console.log(console)
 ```
 
 You can also use the instance method:
@@ -111,7 +117,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.console
+const entity = client.Console()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -201,7 +207,7 @@ new NexardaSDK(options?: {
 | `Retailer(data?)` | `RetailerEntity` | Create a Retailer entity instance. |
 | `Search(data?)` | `SearchEntity` | Create a Search entity instance. |
 | `Studio(data?)` | `StudioEntity` | Create a Studio entity instance. |
-| `User(data?)` | `UserEntity` | Create a User entity instance. |
+| `User(data?)` | `UserEntity` | Create an User entity instance. |
 | `Widget(data?)` | `WidgetEntity` | Create a Widget entity instance. |
 | `tester(testopts?, sdkopts?)` | `NexardaSDK` | Create a test-mode client instance. |
 
@@ -219,29 +225,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): NexardaSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -450,7 +457,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.console`
+Create an instance: `const console = client.Console()`
 
 #### Operations
 
@@ -477,19 +484,19 @@ Create an instance: `const console = client.console`
 #### Example: Load
 
 ```ts
-const console = await client.console.load({ id: 'console_id' })
+const console = await client.Console().load({ id: 'console_id' })
 ```
 
 #### Example: List
 
 ```ts
-const consoles = await client.console.list()
+const consoles = await client.Console().list()
 ```
 
 
 ### Franchis
 
-Create an instance: `const franchis = client.franchis`
+Create an instance: `const franchis = client.Franchis()`
 
 #### Operations
 
@@ -514,19 +521,19 @@ Create an instance: `const franchis = client.franchis`
 #### Example: Load
 
 ```ts
-const franchis = await client.franchis.load({ id: 'franchis_id' })
+const franchis = await client.Franchis().load({ id: 'franchis_id' })
 ```
 
 #### Example: List
 
 ```ts
-const franchiss = await client.franchis.list()
+const franchiss = await client.Franchis().list()
 ```
 
 
 ### Game
 
-Create an instance: `const game = client.game`
+Create an instance: `const game = client.Game()`
 
 #### Operations
 
@@ -558,19 +565,19 @@ Create an instance: `const game = client.game`
 #### Example: Load
 
 ```ts
-const game = await client.game.load({ id: 'game_id' })
+const game = await client.Game().load({ id: 'game_id' })
 ```
 
 #### Example: List
 
 ```ts
-const games = await client.game.list()
+const games = await client.Game().list()
 ```
 
 
 ### Platform
 
-Create an instance: `const platform = client.platform`
+Create an instance: `const platform = client.Platform()`
 
 #### Operations
 
@@ -588,13 +595,13 @@ Create an instance: `const platform = client.platform`
 #### Example: Load
 
 ```ts
-const platform = await client.platform.load({ id: 'platform_id' })
+const platform = await client.Platform().load({ id: 'platform_id' })
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.price`
+Create an instance: `const price = client.Price()`
 
 #### Operations
 
@@ -620,13 +627,13 @@ Create an instance: `const price = client.price`
 #### Example: List
 
 ```ts
-const prices = await client.price.list()
+const prices = await client.Price().list()
 ```
 
 
 ### Retailer
 
-Create an instance: `const retailer = client.retailer`
+Create an instance: `const retailer = client.Retailer()`
 
 #### Operations
 
@@ -649,13 +656,13 @@ Create an instance: `const retailer = client.retailer`
 #### Example: List
 
 ```ts
-const retailers = await client.retailer.list()
+const retailers = await client.Retailer().list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `const search = client.Search()`
 
 #### Operations
 
@@ -673,13 +680,13 @@ Create an instance: `const search = client.search`
 #### Example: Load
 
 ```ts
-const search = await client.search.load({ id: 'search_id' })
+const search = await client.Search().load({ id: 'search_id' })
 ```
 
 
 ### Studio
 
-Create an instance: `const studio = client.studio`
+Create an instance: `const studio = client.Studio()`
 
 #### Operations
 
@@ -707,19 +714,19 @@ Create an instance: `const studio = client.studio`
 #### Example: Load
 
 ```ts
-const studio = await client.studio.load({ id: 'studio_id' })
+const studio = await client.Studio().load({ id: 'studio_id' })
 ```
 
 #### Example: List
 
 ```ts
-const studios = await client.studio.list()
+const studios = await client.Studio().list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.user`
+Create an instance: `const user = client.User()`
 
 #### Operations
 
@@ -751,19 +758,19 @@ Create an instance: `const user = client.user`
 #### Example: Load
 
 ```ts
-const user = await client.user.load({ id: 'user_id' })
+const user = await client.User().load({ id: 'user_id' })
 ```
 
 #### Example: List
 
 ```ts
-const users = await client.user.list()
+const users = await client.User().list()
 ```
 
 
 ### Widget
 
-Create an instance: `const widget = client.widget`
+Create an instance: `const widget = client.Widget()`
 
 #### Operations
 
@@ -774,7 +781,7 @@ Create an instance: `const widget = client.widget`
 #### Example: Load
 
 ```ts
-const widget = await client.widget.load({ id: 'widget_id' })
+const widget = await client.Widget().load({ id: 'widget_id' })
 ```
 
 
@@ -845,7 +852,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const console = client.console
+const console = client.Console()
 await console.load({ id: "example_id" })
 
 // console.data() now returns the loaded console data
