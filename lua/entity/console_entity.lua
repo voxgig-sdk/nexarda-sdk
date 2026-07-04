@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ConsoleLoadMatch
+---@param ctrl? table
+---@return Console
+---@return string? err
 function ConsoleEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ConsoleListMatch
+---@param ctrl? table
+---@return Console[]
+---@return string? err
 function ConsoleEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

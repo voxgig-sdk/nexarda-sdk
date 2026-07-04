@@ -45,6 +45,7 @@ class FranchisEntity
     end
   end
 
+  # @return [Franchis, Hash] the current Franchis data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class FranchisEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Franchis fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Franchis.
+  #
+  # @param reqmatch [FranchisLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Franchis, Hash] the loaded Franchis; raises NexardaError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class FranchisEntity
 
 
   
+  # List Franchis items matching the given filter.
+  #
+  # @param reqmatch [FranchisListMatch, Hash, nil] match filter (any subset of Franchis fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Franchis>, Array] the matching Franchis items; raises NexardaError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

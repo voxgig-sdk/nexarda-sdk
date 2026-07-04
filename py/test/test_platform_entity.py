@@ -49,8 +49,7 @@ class TestPlatformEntity:
         # LOAD
         platform_ref01_ent = client.Platform(None)
         platform_ref01_match_dt0 = {}
-        platform_ref01_data_dt0_loaded, err = platform_ref01_ent.load(platform_ref01_match_dt0, None)
-        assert err is None
+        platform_ref01_data_dt0_loaded = platform_ref01_ent.load(platform_ref01_match_dt0, None)
         assert platform_ref01_data_dt0_loaded is not None
 
 

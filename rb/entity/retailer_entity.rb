@@ -45,6 +45,7 @@ class RetailerEntity
     end
   end
 
+  # @return [Retailer, Hash] the current Retailer data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class RetailerEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Retailer fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class RetailerEntity
   
 
   
+  # List Retailer items matching the given filter.
+  #
+  # @param reqmatch [RetailerListMatch, Hash, nil] match filter (any subset of Retailer fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Retailer>, Array] the matching Retailer items; raises NexardaError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

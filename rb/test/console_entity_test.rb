@@ -43,16 +43,14 @@ class ConsoleEntityTest < Minitest::Test
     console_ref01_ent = client.Console(nil)
     console_ref01_match = {}
 
-    console_ref01_list_result, err = console_ref01_ent.list(console_ref01_match, nil)
-    assert_nil err
+    console_ref01_list_result = console_ref01_ent.list(console_ref01_match, nil)
     assert console_ref01_list_result.is_a?(Array)
 
     # LOAD
     console_ref01_match_dt0 = {
       "id" => console_ref01_data["id"],
     }
-    console_ref01_data_dt0_loaded, err = console_ref01_ent.load(console_ref01_match_dt0, nil)
-    assert_nil err
+    console_ref01_data_dt0_loaded = console_ref01_ent.load(console_ref01_match_dt0, nil)
     console_ref01_data_dt0_load_result = Helpers.to_map(console_ref01_data_dt0_loaded)
     assert !console_ref01_data_dt0_load_result.nil?
     assert_equal console_ref01_data_dt0_load_result["id"], console_ref01_data["id"]

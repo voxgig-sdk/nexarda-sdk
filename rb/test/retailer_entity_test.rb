@@ -43,8 +43,7 @@ class RetailerEntityTest < Minitest::Test
     retailer_ref01_ent = client.Retailer(nil)
     retailer_ref01_match = {}
 
-    retailer_ref01_list_result, err = retailer_ref01_ent.list(retailer_ref01_match, nil)
-    assert_nil err
+    retailer_ref01_list_result = retailer_ref01_ent.list(retailer_ref01_match, nil)
     assert retailer_ref01_list_result.is_a?(Array)
 
   end

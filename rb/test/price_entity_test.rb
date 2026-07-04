@@ -45,8 +45,7 @@ class PriceEntityTest < Minitest::Test
       "console_id" => setup[:idmap]["console01"],
     }
 
-    price_ref01_list_result, err = price_ref01_ent.list(price_ref01_match, nil)
-    assert_nil err
+    price_ref01_list_result = price_ref01_ent.list(price_ref01_match, nil)
     assert price_ref01_list_result.is_a?(Array)
 
   end

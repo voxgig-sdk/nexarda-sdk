@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch WidgetLoadMatch
+---@param ctrl? table
+---@return Widget
+---@return string? err
 function WidgetEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch StudioLoadMatch
+---@param ctrl? table
+---@return Studio
+---@return string? err
 function StudioEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch StudioListMatch
+---@param ctrl? table
+---@return Studio[]
+---@return string? err
 function StudioEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

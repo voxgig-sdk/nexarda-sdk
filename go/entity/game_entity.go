@@ -85,6 +85,27 @@ func (e *GameEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Game; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *GameEntity) DataTyped(data ...Game) Game {
+	if len(data) > 0 {
+		return typedFrom[Game](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Game](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Game (all fields
+// optional at the wire level).
+func (e *GameEntity) MatchTyped(match ...Game) Game {
+	if len(match) > 0 {
+		return typedFrom[Game](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Game](e.Match())
+}
+
 
 func (e *GameEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *GameEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, er
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// GameLoadMatch and returns an Game. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *GameEntity) LoadTyped(reqmatch GameLoadMatch, ctrl map[string]any) (Game, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Game{}, err
+	}
+	return typedFrom[Game](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *GameEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, er
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// GameListMatch and returns []Game. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *GameEntity) ListTyped(reqmatch GameListMatch, ctrl map[string]any) ([]Game, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Game](res), nil
 }
 
 

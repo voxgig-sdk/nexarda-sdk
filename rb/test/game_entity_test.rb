@@ -43,16 +43,14 @@ class GameEntityTest < Minitest::Test
     game_ref01_ent = client.Game(nil)
     game_ref01_match = {}
 
-    game_ref01_list_result, err = game_ref01_ent.list(game_ref01_match, nil)
-    assert_nil err
+    game_ref01_list_result = game_ref01_ent.list(game_ref01_match, nil)
     assert game_ref01_list_result.is_a?(Array)
 
     # LOAD
     game_ref01_match_dt0 = {
       "id" => game_ref01_data["id"],
     }
-    game_ref01_data_dt0_loaded, err = game_ref01_ent.load(game_ref01_match_dt0, nil)
-    assert_nil err
+    game_ref01_data_dt0_loaded = game_ref01_ent.load(game_ref01_match_dt0, nil)
     game_ref01_data_dt0_load_result = Helpers.to_map(game_ref01_data_dt0_loaded)
     assert !game_ref01_data_dt0_load_result.nil?
     assert_equal game_ref01_data_dt0_load_result["id"], game_ref01_data["id"]

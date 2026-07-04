@@ -52,8 +52,7 @@ class TestPriceEntity:
             "console_id": setup["idmap"]["console01"],
         }
 
-        price_ref01_list_result, err = price_ref01_ent.list(price_ref01_match, None)
-        assert err is None
+        price_ref01_list_result = price_ref01_ent.list(price_ref01_match, None)
         assert isinstance(price_ref01_list_result, list)
 
 

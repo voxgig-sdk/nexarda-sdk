@@ -245,51 +245,81 @@ func (sdk *NexardaSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// Console returns a Console entity bound to this client.
+// Idiomatic usage: client.Console(nil).List(nil, nil) or
+// client.Console(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Console(data map[string]any) NexardaEntity {
 	return NewConsoleEntityFunc(sdk, data)
 }
 
 
+// Franchis returns a Franchis entity bound to this client.
+// Idiomatic usage: client.Franchis(nil).List(nil, nil) or
+// client.Franchis(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Franchis(data map[string]any) NexardaEntity {
 	return NewFranchisEntityFunc(sdk, data)
 }
 
 
+// Game returns a Game entity bound to this client.
+// Idiomatic usage: client.Game(nil).List(nil, nil) or
+// client.Game(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Game(data map[string]any) NexardaEntity {
 	return NewGameEntityFunc(sdk, data)
 }
 
 
+// Platform returns a Platform entity bound to this client.
+// Idiomatic usage: client.Platform(nil).List(nil, nil) or
+// client.Platform(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Platform(data map[string]any) NexardaEntity {
 	return NewPlatformEntityFunc(sdk, data)
 }
 
 
+// Price returns a Price entity bound to this client.
+// Idiomatic usage: client.Price(nil).List(nil, nil) or
+// client.Price(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Price(data map[string]any) NexardaEntity {
 	return NewPriceEntityFunc(sdk, data)
 }
 
 
+// Retailer returns a Retailer entity bound to this client.
+// Idiomatic usage: client.Retailer(nil).List(nil, nil) or
+// client.Retailer(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Retailer(data map[string]any) NexardaEntity {
 	return NewRetailerEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Search(data map[string]any) NexardaEntity {
 	return NewSearchEntityFunc(sdk, data)
 }
 
 
+// Studio returns a Studio entity bound to this client.
+// Idiomatic usage: client.Studio(nil).List(nil, nil) or
+// client.Studio(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Studio(data map[string]any) NexardaEntity {
 	return NewStudioEntityFunc(sdk, data)
 }
 
 
+// User returns a User entity bound to this client.
+// Idiomatic usage: client.User(nil).List(nil, nil) or
+// client.User(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) User(data map[string]any) NexardaEntity {
 	return NewUserEntityFunc(sdk, data)
 }
 
 
+// Widget returns a Widget entity bound to this client.
+// Idiomatic usage: client.Widget(nil).List(nil, nil) or
+// client.Widget(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NexardaSDK) Widget(data map[string]any) NexardaEntity {
 	return NewWidgetEntityFunc(sdk, data)
 }

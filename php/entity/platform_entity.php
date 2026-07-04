@@ -55,6 +55,9 @@ class PlatformEntity
         return new PlatformEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Platform|array $args Platform data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class PlatformEntity
         }
     }
 
+    /**
+     * @return Platform|array The current Platform data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Platform fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class PlatformEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Platform fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class PlatformEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Platform.
+     *
+     * @param PlatformLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed PlatformLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Platform|array The loaded Platform as an assoc-array at the
+     *   SDK boundary; throws NexardaError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -117,7 +138,7 @@ class PlatformEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

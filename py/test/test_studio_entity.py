@@ -50,16 +50,14 @@ class TestStudioEntity:
         studio_ref01_ent = client.Studio(None)
         studio_ref01_match = {}
 
-        studio_ref01_list_result, err = studio_ref01_ent.list(studio_ref01_match, None)
-        assert err is None
+        studio_ref01_list_result = studio_ref01_ent.list(studio_ref01_match, None)
         assert isinstance(studio_ref01_list_result, list)
 
         # LOAD
         studio_ref01_match_dt0 = {
             "id": studio_ref01_data["id"],
         }
-        studio_ref01_data_dt0_loaded, err = studio_ref01_ent.load(studio_ref01_match_dt0, None)
-        assert err is None
+        studio_ref01_data_dt0_loaded = studio_ref01_ent.load(studio_ref01_match_dt0, None)
         studio_ref01_data_dt0_load_result = helpers.to_map(studio_ref01_data_dt0_loaded)
         assert studio_ref01_data_dt0_load_result is not None
         assert studio_ref01_data_dt0_load_result["id"] == studio_ref01_data["id"]

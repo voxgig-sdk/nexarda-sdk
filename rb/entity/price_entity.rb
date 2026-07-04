@@ -45,6 +45,7 @@ class PriceEntity
     end
   end
 
+  # @return [Price, Hash] the current Price data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class PriceEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Price fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class PriceEntity
   
 
   
+  # List Price items matching the given filter.
+  #
+  # @param reqmatch [PriceListMatch, Hash, nil] match filter (any subset of Price fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Price>, Array] the matching Price items; raises NexardaError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

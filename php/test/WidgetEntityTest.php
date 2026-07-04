@@ -49,8 +49,7 @@ class WidgetEntityTest extends TestCase
         // LOAD
         $widget_ref01_ent = $client->Widget(null);
         $widget_ref01_match_dt0 = [];
-        [$widget_ref01_data_dt0_loaded, $err] = $widget_ref01_ent->load($widget_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $widget_ref01_data_dt0_loaded = $widget_ref01_ent->load($widget_ref01_match_dt0, null);
         $this->assertNotNull($widget_ref01_data_dt0_loaded);
 
     }

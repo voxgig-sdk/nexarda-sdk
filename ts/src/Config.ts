@@ -210,7 +210,8 @@ class Config {
                     "name": "id",
                     "orig": "console_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -357,7 +358,8 @@ class Config {
                     "name": "id",
                     "orig": "franchise_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -563,7 +565,8 @@ class Config {
                     "name": "platform_id",
                     "orig": "platform_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -611,7 +614,8 @@ class Config {
                     "name": "id",
                     "orig": "game_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -784,7 +788,8 @@ class Config {
                     "name": "game_id",
                     "orig": "game_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -842,7 +847,8 @@ class Config {
                     "name": "console_id",
                     "orig": "console_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -1201,7 +1207,8 @@ class Config {
                     "name": "id",
                     "orig": "studio_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1359,7 +1366,8 @@ class Config {
                     "name": "id",
                     "orig": "user_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1397,7 +1405,8 @@ class Config {
                     "name": "id",
                     "orig": "user_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1442,7 +1451,8 @@ class Config {
                     "name": "id",
                     "orig": "user_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

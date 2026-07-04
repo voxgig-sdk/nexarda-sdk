@@ -50,16 +50,14 @@ class TestFranchisEntity:
         franchis_ref01_ent = client.Franchis(None)
         franchis_ref01_match = {}
 
-        franchis_ref01_list_result, err = franchis_ref01_ent.list(franchis_ref01_match, None)
-        assert err is None
+        franchis_ref01_list_result = franchis_ref01_ent.list(franchis_ref01_match, None)
         assert isinstance(franchis_ref01_list_result, list)
 
         # LOAD
         franchis_ref01_match_dt0 = {
             "id": franchis_ref01_data["id"],
         }
-        franchis_ref01_data_dt0_loaded, err = franchis_ref01_ent.load(franchis_ref01_match_dt0, None)
-        assert err is None
+        franchis_ref01_data_dt0_loaded = franchis_ref01_ent.load(franchis_ref01_match_dt0, None)
         franchis_ref01_data_dt0_load_result = helpers.to_map(franchis_ref01_data_dt0_loaded)
         assert franchis_ref01_data_dt0_load_result is not None
         assert franchis_ref01_data_dt0_load_result["id"] == franchis_ref01_data["id"]

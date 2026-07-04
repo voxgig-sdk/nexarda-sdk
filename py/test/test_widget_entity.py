@@ -49,8 +49,7 @@ class TestWidgetEntity:
         # LOAD
         widget_ref01_ent = client.Widget(None)
         widget_ref01_match_dt0 = {}
-        widget_ref01_data_dt0_loaded, err = widget_ref01_ent.load(widget_ref01_match_dt0, None)
-        assert err is None
+        widget_ref01_data_dt0_loaded = widget_ref01_ent.load(widget_ref01_match_dt0, None)
         assert widget_ref01_data_dt0_loaded is not None
 
 

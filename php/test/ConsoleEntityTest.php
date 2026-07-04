@@ -50,16 +50,14 @@ class ConsoleEntityTest extends TestCase
         $console_ref01_ent = $client->Console(null);
         $console_ref01_match = [];
 
-        [$console_ref01_list_result, $err] = $console_ref01_ent->list($console_ref01_match, null);
-        $this->assertNull($err);
+        $console_ref01_list_result = $console_ref01_ent->list($console_ref01_match, null);
         $this->assertIsArray($console_ref01_list_result);
 
         // LOAD
         $console_ref01_match_dt0 = [
             "id" => $console_ref01_data["id"],
         ];
-        [$console_ref01_data_dt0_loaded, $err] = $console_ref01_ent->load($console_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $console_ref01_data_dt0_loaded = $console_ref01_ent->load($console_ref01_match_dt0, null);
         $console_ref01_data_dt0_load_result = Helpers::to_map($console_ref01_data_dt0_loaded);
         $this->assertNotNull($console_ref01_data_dt0_load_result);
         $this->assertEquals($console_ref01_data_dt0_load_result["id"], $console_ref01_data["id"]);

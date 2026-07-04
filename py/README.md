@@ -9,11 +9,9 @@ The Python SDK for the Nexarda API — an entity-oriented client following Pytho
 
 
 ## Install
-```bash
-pip install voxgig-sdk-nexarda
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nexarda-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -39,23 +37,23 @@ client = NexardaSDK({
 ### 2. List consoles
 
 ```python
-result, err = client.Console().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.console.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
 ### 3. Load a console
 
 ```python
-result, err = client.Console().load({"id": "example_id"})
-if err:
-    raise Exception(err)
-print(result)
+try:
+    result = client.console.load({"id": "example_id"})
+    print(result)
+except Exception as err:
+    print(f"load failed: {err}")
 ```
 
 
@@ -66,29 +64,28 @@ print(result)
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -102,7 +99,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NexardaSDK.test()
 
-result, err = client.Nexarda().load({"id": "test01"})
+result = client.console.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -179,8 +176,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Console` | `(data) -> ConsoleEntity` | Create a Console entity instance. |
 | `Franchis` | `(data) -> FranchisEntity` | Create a Franchis entity instance. |
 | `Game` | `(data) -> GameEntity` | Create a Game entity instance. |
@@ -198,11 +195,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -212,8 +209,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -403,7 +404,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.Console()`
+Create an instance: `const console = client.console`
 
 #### Operations
 
@@ -430,19 +431,19 @@ Create an instance: `const console = client.Console()`
 #### Example: Load
 
 ```ts
-const console = await client.Console().load({ id: 'console_id' })
+const console = await client.console.load({ id: 'console_id' })
 ```
 
 #### Example: List
 
 ```ts
-const consoles = await client.Console().list()
+const consoles = await client.console.list()
 ```
 
 
 ### Franchis
 
-Create an instance: `const franchis = client.Franchis()`
+Create an instance: `const franchis = client.franchis`
 
 #### Operations
 
@@ -467,19 +468,19 @@ Create an instance: `const franchis = client.Franchis()`
 #### Example: Load
 
 ```ts
-const franchis = await client.Franchis().load({ id: 'franchis_id' })
+const franchis = await client.franchis.load({ id: 'franchis_id' })
 ```
 
 #### Example: List
 
 ```ts
-const franchiss = await client.Franchis().list()
+const franchiss = await client.franchis.list()
 ```
 
 
 ### Game
 
-Create an instance: `const game = client.Game()`
+Create an instance: `const game = client.game`
 
 #### Operations
 
@@ -511,19 +512,19 @@ Create an instance: `const game = client.Game()`
 #### Example: Load
 
 ```ts
-const game = await client.Game().load({ id: 'game_id' })
+const game = await client.game.load({ id: 'game_id' })
 ```
 
 #### Example: List
 
 ```ts
-const games = await client.Game().list()
+const games = await client.game.list()
 ```
 
 
 ### Platform
 
-Create an instance: `const platform = client.Platform()`
+Create an instance: `const platform = client.platform`
 
 #### Operations
 
@@ -541,13 +542,13 @@ Create an instance: `const platform = client.Platform()`
 #### Example: Load
 
 ```ts
-const platform = await client.Platform().load({ id: 'platform_id' })
+const platform = await client.platform.load({ id: 'platform_id' })
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.Price()`
+Create an instance: `const price = client.price`
 
 #### Operations
 
@@ -573,13 +574,13 @@ Create an instance: `const price = client.Price()`
 #### Example: List
 
 ```ts
-const prices = await client.Price().list()
+const prices = await client.price.list()
 ```
 
 
 ### Retailer
 
-Create an instance: `const retailer = client.Retailer()`
+Create an instance: `const retailer = client.retailer`
 
 #### Operations
 
@@ -602,13 +603,13 @@ Create an instance: `const retailer = client.Retailer()`
 #### Example: List
 
 ```ts
-const retailers = await client.Retailer().list()
+const retailers = await client.retailer.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -626,13 +627,13 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
 ### Studio
 
-Create an instance: `const studio = client.Studio()`
+Create an instance: `const studio = client.studio`
 
 #### Operations
 
@@ -660,19 +661,19 @@ Create an instance: `const studio = client.Studio()`
 #### Example: Load
 
 ```ts
-const studio = await client.Studio().load({ id: 'studio_id' })
+const studio = await client.studio.load({ id: 'studio_id' })
 ```
 
 #### Example: List
 
 ```ts
-const studios = await client.Studio().list()
+const studios = await client.studio.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -704,19 +705,19 @@ Create an instance: `const user = client.User()`
 #### Example: Load
 
 ```ts
-const user = await client.User().load({ id: 'user_id' })
+const user = await client.user.load({ id: 'user_id' })
 ```
 
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
 ### Widget
 
-Create an instance: `const widget = client.Widget()`
+Create an instance: `const widget = client.widget`
 
 #### Operations
 
@@ -727,7 +728,7 @@ Create an instance: `const widget = client.Widget()`
 #### Example: Load
 
 ```ts
-const widget = await client.Widget().load({ id: 'widget_id' })
+const widget = await client.widget.load({ id: 'widget_id' })
 ```
 
 
@@ -801,11 +802,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+console = client.console
+console.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# console.data_get() now returns the loaded console data
+# console.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

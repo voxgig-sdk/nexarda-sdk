@@ -9,12 +9,9 @@ The Lua SDK for the Nexarda API — an entity-oriented client using Lua conventi
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-nexarda
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nexarda-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -39,7 +36,7 @@ local client = sdk.new({
 ### 2. List consoles
 
 ```lua
-local result, err = client:Console():list()
+local result, err = client:console():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +50,7 @@ end
 ### 3. Load a console
 
 ```lua
-local result, err = client:Console():load({ id = "example_id" })
+local result, err = client:console():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +98,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Nexarda():load({ id = "test01" })
+local result, err = client:console():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -404,7 +401,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.Console()`
+Create an instance: `const console = client.console`
 
 #### Operations
 
@@ -431,19 +428,19 @@ Create an instance: `const console = client.Console()`
 #### Example: Load
 
 ```ts
-const console = await client.Console().load({ id: 'console_id' })
+const console = await client.console.load({ id: 'console_id' })
 ```
 
 #### Example: List
 
 ```ts
-const consoles = await client.Console().list()
+const consoles = await client.console.list()
 ```
 
 
 ### Franchis
 
-Create an instance: `const franchis = client.Franchis()`
+Create an instance: `const franchis = client.franchis`
 
 #### Operations
 
@@ -468,19 +465,19 @@ Create an instance: `const franchis = client.Franchis()`
 #### Example: Load
 
 ```ts
-const franchis = await client.Franchis().load({ id: 'franchis_id' })
+const franchis = await client.franchis.load({ id: 'franchis_id' })
 ```
 
 #### Example: List
 
 ```ts
-const franchiss = await client.Franchis().list()
+const franchiss = await client.franchis.list()
 ```
 
 
 ### Game
 
-Create an instance: `const game = client.Game()`
+Create an instance: `const game = client.game`
 
 #### Operations
 
@@ -512,19 +509,19 @@ Create an instance: `const game = client.Game()`
 #### Example: Load
 
 ```ts
-const game = await client.Game().load({ id: 'game_id' })
+const game = await client.game.load({ id: 'game_id' })
 ```
 
 #### Example: List
 
 ```ts
-const games = await client.Game().list()
+const games = await client.game.list()
 ```
 
 
 ### Platform
 
-Create an instance: `const platform = client.Platform()`
+Create an instance: `const platform = client.platform`
 
 #### Operations
 
@@ -542,13 +539,13 @@ Create an instance: `const platform = client.Platform()`
 #### Example: Load
 
 ```ts
-const platform = await client.Platform().load({ id: 'platform_id' })
+const platform = await client.platform.load({ id: 'platform_id' })
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.Price()`
+Create an instance: `const price = client.price`
 
 #### Operations
 
@@ -574,13 +571,13 @@ Create an instance: `const price = client.Price()`
 #### Example: List
 
 ```ts
-const prices = await client.Price().list()
+const prices = await client.price.list()
 ```
 
 
 ### Retailer
 
-Create an instance: `const retailer = client.Retailer()`
+Create an instance: `const retailer = client.retailer`
 
 #### Operations
 
@@ -603,13 +600,13 @@ Create an instance: `const retailer = client.Retailer()`
 #### Example: List
 
 ```ts
-const retailers = await client.Retailer().list()
+const retailers = await client.retailer.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -627,13 +624,13 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
 ### Studio
 
-Create an instance: `const studio = client.Studio()`
+Create an instance: `const studio = client.studio`
 
 #### Operations
 
@@ -661,19 +658,19 @@ Create an instance: `const studio = client.Studio()`
 #### Example: Load
 
 ```ts
-const studio = await client.Studio().load({ id: 'studio_id' })
+const studio = await client.studio.load({ id: 'studio_id' })
 ```
 
 #### Example: List
 
 ```ts
-const studios = await client.Studio().list()
+const studios = await client.studio.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -705,19 +702,19 @@ Create an instance: `const user = client.User()`
 #### Example: Load
 
 ```ts
-const user = await client.User().load({ id: 'user_id' })
+const user = await client.user.load({ id: 'user_id' })
 ```
 
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
 ### Widget
 
-Create an instance: `const widget = client.Widget()`
+Create an instance: `const widget = client.widget`
 
 #### Operations
 
@@ -728,7 +725,7 @@ Create an instance: `const widget = client.Widget()`
 #### Example: Load
 
 ```ts
-const widget = await client.Widget().load({ id: 'widget_id' })
+const widget = await client.widget.load({ id: 'widget_id' })
 ```
 
 
@@ -803,11 +800,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local console = client:console()
+console:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- console:data_get() now returns the loaded console data
+-- console:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

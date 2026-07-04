@@ -244,60 +244,190 @@ end
 
 
 
+-- Idiomatic facade: client:console():list() / client:console():load({ id = ... })
+function NexardaSDK:console(data)
+  local EntityMod = require("entity.console_entity")
+  if data == nil then
+    if self._console == nil then
+      self._console = EntityMod.new(self, nil)
+    end
+    return self._console
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:console() instead.
 function NexardaSDK:Console(data)
   local EntityMod = require("entity.console_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:franchis():list() / client:franchis():load({ id = ... })
+function NexardaSDK:franchis(data)
+  local EntityMod = require("entity.franchis_entity")
+  if data == nil then
+    if self._franchis == nil then
+      self._franchis = EntityMod.new(self, nil)
+    end
+    return self._franchis
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:franchis() instead.
 function NexardaSDK:Franchis(data)
   local EntityMod = require("entity.franchis_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:game():list() / client:game():load({ id = ... })
+function NexardaSDK:game(data)
+  local EntityMod = require("entity.game_entity")
+  if data == nil then
+    if self._game == nil then
+      self._game = EntityMod.new(self, nil)
+    end
+    return self._game
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:game() instead.
 function NexardaSDK:Game(data)
   local EntityMod = require("entity.game_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:platform():list() / client:platform():load({ id = ... })
+function NexardaSDK:platform(data)
+  local EntityMod = require("entity.platform_entity")
+  if data == nil then
+    if self._platform == nil then
+      self._platform = EntityMod.new(self, nil)
+    end
+    return self._platform
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:platform() instead.
 function NexardaSDK:Platform(data)
   local EntityMod = require("entity.platform_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:price():list() / client:price():load({ id = ... })
+function NexardaSDK:price(data)
+  local EntityMod = require("entity.price_entity")
+  if data == nil then
+    if self._price == nil then
+      self._price = EntityMod.new(self, nil)
+    end
+    return self._price
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:price() instead.
 function NexardaSDK:Price(data)
   local EntityMod = require("entity.price_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:retailer():list() / client:retailer():load({ id = ... })
+function NexardaSDK:retailer(data)
+  local EntityMod = require("entity.retailer_entity")
+  if data == nil then
+    if self._retailer == nil then
+      self._retailer = EntityMod.new(self, nil)
+    end
+    return self._retailer
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:retailer() instead.
 function NexardaSDK:Retailer(data)
   local EntityMod = require("entity.retailer_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function NexardaSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function NexardaSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:studio():list() / client:studio():load({ id = ... })
+function NexardaSDK:studio(data)
+  local EntityMod = require("entity.studio_entity")
+  if data == nil then
+    if self._studio == nil then
+      self._studio = EntityMod.new(self, nil)
+    end
+    return self._studio
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:studio() instead.
 function NexardaSDK:Studio(data)
   local EntityMod = require("entity.studio_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:user():list() / client:user():load({ id = ... })
+function NexardaSDK:user(data)
+  local EntityMod = require("entity.user_entity")
+  if data == nil then
+    if self._user == nil then
+      self._user = EntityMod.new(self, nil)
+    end
+    return self._user
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:user() instead.
 function NexardaSDK:User(data)
   local EntityMod = require("entity.user_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:widget():list() / client:widget():load({ id = ... })
+function NexardaSDK:widget(data)
+  local EntityMod = require("entity.widget_entity")
+  if data == nil then
+    if self._widget == nil then
+      self._widget = EntityMod.new(self, nil)
+    end
+    return self._widget
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:widget() instead.
 function NexardaSDK:Widget(data)
   local EntityMod = require("entity.widget_entity")
   return EntityMod.new(self, data)

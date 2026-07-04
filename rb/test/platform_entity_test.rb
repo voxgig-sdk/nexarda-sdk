@@ -42,8 +42,7 @@ class PlatformEntityTest < Minitest::Test
     # LOAD
     platform_ref01_ent = client.Platform(nil)
     platform_ref01_match_dt0 = {}
-    platform_ref01_data_dt0_loaded, err = platform_ref01_ent.load(platform_ref01_match_dt0, nil)
-    assert_nil err
+    platform_ref01_data_dt0_loaded = platform_ref01_ent.load(platform_ref01_match_dt0, nil)
     assert !platform_ref01_data_dt0_loaded.nil?
 
   end

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Platform,
+  PlatformLoadMatch,
+} from '../NexardaTypes'
 
 // TODO: needs Entity superclass
-class PlatformEntity extends NexardaEntityBase {
+class PlatformEntity extends NexardaEntityBase<Platform> {
 
   constructor(client: NexardaSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class PlatformEntity extends NexardaEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PlatformLoadMatch, ctrl?: Control): Promise<Platform> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class PlatformEntity extends NexardaEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Platform> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -103,7 +103,7 @@ class NexardaSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class NexardaSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class NexardaSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,87 +216,197 @@ class NexardaSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Console($data = null)
+    private $_console = null;
+
+    // Idiomatic facade: $client->console()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Console() (PHP method
+    // names are case-insensitive).
+    public function console($data = null)
     {
         require_once __DIR__ . '/entity/console_entity.php';
+        if ($data === null) {
+            if ($this->_console === null) {
+                $this->_console = new ConsoleEntity($this, null);
+            }
+            return $this->_console;
+        }
         return new ConsoleEntity($this, $data);
     }
 
 
-    public function Franchis($data = null)
+    private $_franchis = null;
+
+    // Idiomatic facade: $client->franchis()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Franchis() (PHP method
+    // names are case-insensitive).
+    public function franchis($data = null)
     {
         require_once __DIR__ . '/entity/franchis_entity.php';
+        if ($data === null) {
+            if ($this->_franchis === null) {
+                $this->_franchis = new FranchisEntity($this, null);
+            }
+            return $this->_franchis;
+        }
         return new FranchisEntity($this, $data);
     }
 
 
-    public function Game($data = null)
+    private $_game = null;
+
+    // Idiomatic facade: $client->game()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Game() (PHP method
+    // names are case-insensitive).
+    public function game($data = null)
     {
         require_once __DIR__ . '/entity/game_entity.php';
+        if ($data === null) {
+            if ($this->_game === null) {
+                $this->_game = new GameEntity($this, null);
+            }
+            return $this->_game;
+        }
         return new GameEntity($this, $data);
     }
 
 
-    public function Platform($data = null)
+    private $_platform = null;
+
+    // Idiomatic facade: $client->platform()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Platform() (PHP method
+    // names are case-insensitive).
+    public function platform($data = null)
     {
         require_once __DIR__ . '/entity/platform_entity.php';
+        if ($data === null) {
+            if ($this->_platform === null) {
+                $this->_platform = new PlatformEntity($this, null);
+            }
+            return $this->_platform;
+        }
         return new PlatformEntity($this, $data);
     }
 
 
-    public function Price($data = null)
+    private $_price = null;
+
+    // Idiomatic facade: $client->price()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Price() (PHP method
+    // names are case-insensitive).
+    public function price($data = null)
     {
         require_once __DIR__ . '/entity/price_entity.php';
+        if ($data === null) {
+            if ($this->_price === null) {
+                $this->_price = new PriceEntity($this, null);
+            }
+            return $this->_price;
+        }
         return new PriceEntity($this, $data);
     }
 
 
-    public function Retailer($data = null)
+    private $_retailer = null;
+
+    // Idiomatic facade: $client->retailer()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Retailer() (PHP method
+    // names are case-insensitive).
+    public function retailer($data = null)
     {
         require_once __DIR__ . '/entity/retailer_entity.php';
+        if ($data === null) {
+            if ($this->_retailer === null) {
+                $this->_retailer = new RetailerEntity($this, null);
+            }
+            return $this->_retailer;
+        }
         return new RetailerEntity($this, $data);
     }
 
 
-    public function Search($data = null)
+    private $_search = null;
+
+    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Search() (PHP method
+    // names are case-insensitive).
+    public function search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
+        if ($data === null) {
+            if ($this->_search === null) {
+                $this->_search = new SearchEntity($this, null);
+            }
+            return $this->_search;
+        }
         return new SearchEntity($this, $data);
     }
 
 
-    public function Studio($data = null)
+    private $_studio = null;
+
+    // Idiomatic facade: $client->studio()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Studio() (PHP method
+    // names are case-insensitive).
+    public function studio($data = null)
     {
         require_once __DIR__ . '/entity/studio_entity.php';
+        if ($data === null) {
+            if ($this->_studio === null) {
+                $this->_studio = new StudioEntity($this, null);
+            }
+            return $this->_studio;
+        }
         return new StudioEntity($this, $data);
     }
 
 
-    public function User($data = null)
+    private $_user = null;
+
+    // Idiomatic facade: $client->user()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias User() (PHP method
+    // names are case-insensitive).
+    public function user($data = null)
     {
         require_once __DIR__ . '/entity/user_entity.php';
+        if ($data === null) {
+            if ($this->_user === null) {
+                $this->_user = new UserEntity($this, null);
+            }
+            return $this->_user;
+        }
         return new UserEntity($this, $data);
     }
 
 
-    public function Widget($data = null)
+    private $_widget = null;
+
+    // Idiomatic facade: $client->widget()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Widget() (PHP method
+    // names are case-insensitive).
+    public function widget($data = null)
     {
         require_once __DIR__ . '/entity/widget_entity.php';
+        if ($data === null) {
+            if ($this->_widget === null) {
+                $this->_widget = new WidgetEntity($this, null);
+            }
+            return $this->_widget;
+        }
         return new WidgetEntity($this, $data);
     }
 

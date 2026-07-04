@@ -49,8 +49,7 @@ class PlatformEntityTest extends TestCase
         // LOAD
         $platform_ref01_ent = $client->Platform(null);
         $platform_ref01_match_dt0 = [];
-        [$platform_ref01_data_dt0_loaded, $err] = $platform_ref01_ent->load($platform_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $platform_ref01_data_dt0_loaded = $platform_ref01_ent->load($platform_ref01_match_dt0, null);
         $this->assertNotNull($platform_ref01_data_dt0_loaded);
 
     }

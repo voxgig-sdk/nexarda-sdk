@@ -9,21 +9,10 @@ The Ruby SDK for the Nexarda API — an entity-oriented client using idiomatic R
 
 
 ## Install
-```bash
-gem install voxgig-sdk-nexarda
-```
+This package is not yet published to RubyGems. Install it from the
+GitHub release tag (`rb/vX.Y.Z`):
 
-Or add to your `Gemfile`:
-
-```ruby
-gem "voxgig-sdk-nexarda"
-```
-
-Then run:
-
-```bash
-bundle install
-```
+- Releases: [https://github.com/voxgig-sdk/nexarda-sdk/releases](https://github.com/voxgig-sdk/nexarda-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -44,23 +33,28 @@ client = NexardaSDK.new({
 ### 2. List consoles
 
 ```ruby
-result, err = client.Console().list
-raise err if err
-
-if result.is_a?(Array)
-  result.each do |item|
-    d = item.data_get
-    puts "#{d["id"]} #{d["name"]}"
+begin
+  result = client.console.list
+  if result.is_a?(Array)
+    result.each do |item|
+      d = item.data_get
+      puts "#{d["id"]} #{d["name"]}"
+    end
   end
+rescue => err
+  warn "list failed: #{err}"
 end
 ```
 
 ### 3. Load a console
 
 ```ruby
-result, err = client.Console().load({ "id" => "example_id" })
-raise err if err
-puts result
+begin
+  result = client.console.load({ "id" => "example_id" })
+  puts result
+rescue => err
+  warn "load failed: #{err}"
+end
 ```
 
 
@@ -71,32 +65,35 @@ puts result
 For endpoints not covered by entity methods:
 
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },
 })
-raise err if err
 
 if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
+else
+  warn result["err"]
 end
 ```
 
 ### Prepare a request without sending it
 
 ```ruby
-fetchdef, err = client.prepare({
-  "path" => "/api/resource/{id}",
-  "method" => "DELETE",
-  "params" => { "id" => "example" },
-})
-raise err if err
-
-puts fetchdef["url"]
-puts fetchdef["method"]
-puts fetchdef["headers"]
+begin
+  fetchdef = client.prepare({
+    "path" => "/api/resource/{id}",
+    "method" => "DELETE",
+    "params" => { "id" => "example" },
+  })
+  puts fetchdef["url"]
+  puts fetchdef["method"]
+  puts fetchdef["headers"]
+rescue => err
+  warn "prepare failed: #{err}"
+end
 ```
 
 ### Use test mode
@@ -106,7 +103,7 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = NexardaSDK.test
 
-result, err = client.Nexarda().load({ "id" => "test01" })
+result = client.console.load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -183,8 +180,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | --- | --- | --- |
 | `options_map` | `() -> Hash` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> [Hash, err]` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> [Hash, err]` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Console` | `(data) -> ConsoleEntity` | Create a Console entity instance. |
 | `Franchis` | `(data) -> FranchisEntity` | Create a Franchis entity instance. |
 | `Game` | `(data) -> GameEntity` | Create a Game entity instance. |
@@ -202,11 +199,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> [any, err]` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> [any, err]` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> [any, err]` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> [any, err]` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> [any, err]` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -216,8 +213,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[any, err]`. The first value is a
-`Hash` with these keys:
+Entity operations return the result data directly. On failure they
+raise a `NexardaError` (a `StandardError` subclass), so wrap
+calls in `begin`/`rescue` where you need to handle errors.
+
+The `direct` escape hatch is the exception: it never raises and instead
+returns a result `Hash` with these keys:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -225,8 +226,7 @@ Entity operations return `[any, err]`. The first value is a
 | `status` | `Integer` | HTTP status code. |
 | `headers` | `Hash` | Response headers. |
 | `data` | `any` | Parsed JSON response body. |
-
-On error, `ok` is `false` and `err` contains the error value.
+| `err` | `Error` | Present when `ok` is `false`. |
 
 ### Entities
 
@@ -407,7 +407,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.Console()`
+Create an instance: `const console = client.console`
 
 #### Operations
 
@@ -434,19 +434,19 @@ Create an instance: `const console = client.Console()`
 #### Example: Load
 
 ```ts
-const console = await client.Console().load({ id: 'console_id' })
+const console = await client.console.load({ id: 'console_id' })
 ```
 
 #### Example: List
 
 ```ts
-const consoles = await client.Console().list()
+const consoles = await client.console.list()
 ```
 
 
 ### Franchis
 
-Create an instance: `const franchis = client.Franchis()`
+Create an instance: `const franchis = client.franchis`
 
 #### Operations
 
@@ -471,19 +471,19 @@ Create an instance: `const franchis = client.Franchis()`
 #### Example: Load
 
 ```ts
-const franchis = await client.Franchis().load({ id: 'franchis_id' })
+const franchis = await client.franchis.load({ id: 'franchis_id' })
 ```
 
 #### Example: List
 
 ```ts
-const franchiss = await client.Franchis().list()
+const franchiss = await client.franchis.list()
 ```
 
 
 ### Game
 
-Create an instance: `const game = client.Game()`
+Create an instance: `const game = client.game`
 
 #### Operations
 
@@ -515,19 +515,19 @@ Create an instance: `const game = client.Game()`
 #### Example: Load
 
 ```ts
-const game = await client.Game().load({ id: 'game_id' })
+const game = await client.game.load({ id: 'game_id' })
 ```
 
 #### Example: List
 
 ```ts
-const games = await client.Game().list()
+const games = await client.game.list()
 ```
 
 
 ### Platform
 
-Create an instance: `const platform = client.Platform()`
+Create an instance: `const platform = client.platform`
 
 #### Operations
 
@@ -545,13 +545,13 @@ Create an instance: `const platform = client.Platform()`
 #### Example: Load
 
 ```ts
-const platform = await client.Platform().load({ id: 'platform_id' })
+const platform = await client.platform.load({ id: 'platform_id' })
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.Price()`
+Create an instance: `const price = client.price`
 
 #### Operations
 
@@ -577,13 +577,13 @@ Create an instance: `const price = client.Price()`
 #### Example: List
 
 ```ts
-const prices = await client.Price().list()
+const prices = await client.price.list()
 ```
 
 
 ### Retailer
 
-Create an instance: `const retailer = client.Retailer()`
+Create an instance: `const retailer = client.retailer`
 
 #### Operations
 
@@ -606,13 +606,13 @@ Create an instance: `const retailer = client.Retailer()`
 #### Example: List
 
 ```ts
-const retailers = await client.Retailer().list()
+const retailers = await client.retailer.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -630,13 +630,13 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
 ### Studio
 
-Create an instance: `const studio = client.Studio()`
+Create an instance: `const studio = client.studio`
 
 #### Operations
 
@@ -664,19 +664,19 @@ Create an instance: `const studio = client.Studio()`
 #### Example: Load
 
 ```ts
-const studio = await client.Studio().load({ id: 'studio_id' })
+const studio = await client.studio.load({ id: 'studio_id' })
 ```
 
 #### Example: List
 
 ```ts
-const studios = await client.Studio().list()
+const studios = await client.studio.list()
 ```
 
 
 ### User
 
-Create an instance: `const user = client.User()`
+Create an instance: `const user = client.user`
 
 #### Operations
 
@@ -708,19 +708,19 @@ Create an instance: `const user = client.User()`
 #### Example: Load
 
 ```ts
-const user = await client.User().load({ id: 'user_id' })
+const user = await client.user.load({ id: 'user_id' })
 ```
 
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.user.list()
 ```
 
 
 ### Widget
 
-Create an instance: `const widget = client.Widget()`
+Create an instance: `const widget = client.widget`
 
 #### Operations
 
@@ -731,7 +731,7 @@ Create an instance: `const widget = client.Widget()`
 #### Example: Load
 
 ```ts
-const widget = await client.Widget().load({ id: 'widget_id' })
+const widget = await client.widget.load({ id: 'widget_id' })
 ```
 
 
@@ -806,11 +806,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-moon = client.Moon
-moon.load({ "planet_id" => "earth", "id" => "luna" })
+console = client.console
+console.load({ "id" => "example_id" })
 
-# moon.data_get now returns the loaded moon data
-# moon.match_get returns the last match criteria
+# console.data_get now returns the loaded console data
+# console.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

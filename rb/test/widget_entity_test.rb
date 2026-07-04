@@ -42,8 +42,7 @@ class WidgetEntityTest < Minitest::Test
     # LOAD
     widget_ref01_ent = client.Widget(nil)
     widget_ref01_match_dt0 = {}
-    widget_ref01_data_dt0_loaded, err = widget_ref01_ent.load(widget_ref01_match_dt0, nil)
-    assert_nil err
+    widget_ref01_data_dt0_loaded = widget_ref01_ent.load(widget_ref01_match_dt0, nil)
     assert !widget_ref01_data_dt0_loaded.nil?
 
   end

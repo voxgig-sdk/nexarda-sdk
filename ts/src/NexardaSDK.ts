@@ -11,6 +11,8 @@ import { StudioEntity } from './entity/StudioEntity'
 import { UserEntity } from './entity/UserEntity'
 import { WidgetEntity } from './entity/WidgetEntity'
 
+export type * from './NexardaTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -211,60 +213,140 @@ class NexardaSDK {
 
 
 
+  _console?: ConsoleEntity
+
+  // Idiomatic facade: `client.console.list()` / `client.console.load({ id })`.
+  get console(): ConsoleEntity {
+    return (this._console ??= new ConsoleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.console` instead. */
   Console(data?: any) {
     const self = this
     return new ConsoleEntity(self,data)
   }
 
 
+  _franchis?: FranchisEntity
+
+  // Idiomatic facade: `client.franchis.list()` / `client.franchis.load({ id })`.
+  get franchis(): FranchisEntity {
+    return (this._franchis ??= new FranchisEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.franchis` instead. */
   Franchis(data?: any) {
     const self = this
     return new FranchisEntity(self,data)
   }
 
 
+  _game?: GameEntity
+
+  // Idiomatic facade: `client.game.list()` / `client.game.load({ id })`.
+  get game(): GameEntity {
+    return (this._game ??= new GameEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.game` instead. */
   Game(data?: any) {
     const self = this
     return new GameEntity(self,data)
   }
 
 
+  _platform?: PlatformEntity
+
+  // Idiomatic facade: `client.platform.list()` / `client.platform.load({ id })`.
+  get platform(): PlatformEntity {
+    return (this._platform ??= new PlatformEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.platform` instead. */
   Platform(data?: any) {
     const self = this
     return new PlatformEntity(self,data)
   }
 
 
+  _price?: PriceEntity
+
+  // Idiomatic facade: `client.price.list()` / `client.price.load({ id })`.
+  get price(): PriceEntity {
+    return (this._price ??= new PriceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.price` instead. */
   Price(data?: any) {
     const self = this
     return new PriceEntity(self,data)
   }
 
 
+  _retailer?: RetailerEntity
+
+  // Idiomatic facade: `client.retailer.list()` / `client.retailer.load({ id })`.
+  get retailer(): RetailerEntity {
+    return (this._retailer ??= new RetailerEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.retailer` instead. */
   Retailer(data?: any) {
     const self = this
     return new RetailerEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)
   }
 
 
+  _studio?: StudioEntity
+
+  // Idiomatic facade: `client.studio.list()` / `client.studio.load({ id })`.
+  get studio(): StudioEntity {
+    return (this._studio ??= new StudioEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.studio` instead. */
   Studio(data?: any) {
     const self = this
     return new StudioEntity(self,data)
   }
 
 
+  _user?: UserEntity
+
+  // Idiomatic facade: `client.user.list()` / `client.user.load({ id })`.
+  get user(): UserEntity {
+    return (this._user ??= new UserEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.user` instead. */
   User(data?: any) {
     const self = this
     return new UserEntity(self,data)
   }
 
 
+  _widget?: WidgetEntity
+
+  // Idiomatic facade: `client.widget.list()` / `client.widget.load({ id })`.
+  get widget(): WidgetEntity {
+    return (this._widget ??= new WidgetEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.widget` instead. */
   Widget(data?: any) {
     const self = this
     return new WidgetEntity(self,data)

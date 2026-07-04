@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch FranchisLoadMatch
+---@param ctrl? table
+---@return Franchis
+---@return string? err
 function FranchisEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch FranchisListMatch
+---@param ctrl? table
+---@return Franchis[]
+---@return string? err
 function FranchisEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

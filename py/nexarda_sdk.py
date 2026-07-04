@@ -144,16 +144,23 @@ class NexardaSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class NexardaSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,60 +212,170 @@ class NexardaSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def console(self):
+        """Idiomatic facade: client.console.list() / client.console.load({"id": ...})."""
+        from entity.console_entity import ConsoleEntity
+        cached = getattr(self, "_console", None)
+        if cached is None:
+            cached = ConsoleEntity(self, None)
+            self._console = cached
+        return cached
 
     def Console(self, data=None):
+        # Deprecated: use client.console instead.
         from entity.console_entity import ConsoleEntity
         return ConsoleEntity(self, data)
 
 
+    @property
+    def franchis(self):
+        """Idiomatic facade: client.franchis.list() / client.franchis.load({"id": ...})."""
+        from entity.franchis_entity import FranchisEntity
+        cached = getattr(self, "_franchis", None)
+        if cached is None:
+            cached = FranchisEntity(self, None)
+            self._franchis = cached
+        return cached
+
     def Franchis(self, data=None):
+        # Deprecated: use client.franchis instead.
         from entity.franchis_entity import FranchisEntity
         return FranchisEntity(self, data)
 
 
+    @property
+    def game(self):
+        """Idiomatic facade: client.game.list() / client.game.load({"id": ...})."""
+        from entity.game_entity import GameEntity
+        cached = getattr(self, "_game", None)
+        if cached is None:
+            cached = GameEntity(self, None)
+            self._game = cached
+        return cached
+
     def Game(self, data=None):
+        # Deprecated: use client.game instead.
         from entity.game_entity import GameEntity
         return GameEntity(self, data)
 
 
+    @property
+    def platform(self):
+        """Idiomatic facade: client.platform.list() / client.platform.load({"id": ...})."""
+        from entity.platform_entity import PlatformEntity
+        cached = getattr(self, "_platform", None)
+        if cached is None:
+            cached = PlatformEntity(self, None)
+            self._platform = cached
+        return cached
+
     def Platform(self, data=None):
+        # Deprecated: use client.platform instead.
         from entity.platform_entity import PlatformEntity
         return PlatformEntity(self, data)
 
 
+    @property
+    def price(self):
+        """Idiomatic facade: client.price.list() / client.price.load({"id": ...})."""
+        from entity.price_entity import PriceEntity
+        cached = getattr(self, "_price", None)
+        if cached is None:
+            cached = PriceEntity(self, None)
+            self._price = cached
+        return cached
+
     def Price(self, data=None):
+        # Deprecated: use client.price instead.
         from entity.price_entity import PriceEntity
         return PriceEntity(self, data)
 
 
+    @property
+    def retailer(self):
+        """Idiomatic facade: client.retailer.list() / client.retailer.load({"id": ...})."""
+        from entity.retailer_entity import RetailerEntity
+        cached = getattr(self, "_retailer", None)
+        if cached is None:
+            cached = RetailerEntity(self, None)
+            self._retailer = cached
+        return cached
+
     def Retailer(self, data=None):
+        # Deprecated: use client.retailer instead.
         from entity.retailer_entity import RetailerEntity
         return RetailerEntity(self, data)
 
 
+    @property
+    def search(self):
+        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
+        from entity.search_entity import SearchEntity
+        cached = getattr(self, "_search", None)
+        if cached is None:
+            cached = SearchEntity(self, None)
+            self._search = cached
+        return cached
+
     def Search(self, data=None):
+        # Deprecated: use client.search instead.
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
+    @property
+    def studio(self):
+        """Idiomatic facade: client.studio.list() / client.studio.load({"id": ...})."""
+        from entity.studio_entity import StudioEntity
+        cached = getattr(self, "_studio", None)
+        if cached is None:
+            cached = StudioEntity(self, None)
+            self._studio = cached
+        return cached
+
     def Studio(self, data=None):
+        # Deprecated: use client.studio instead.
         from entity.studio_entity import StudioEntity
         return StudioEntity(self, data)
 
 
+    @property
+    def user(self):
+        """Idiomatic facade: client.user.list() / client.user.load({"id": ...})."""
+        from entity.user_entity import UserEntity
+        cached = getattr(self, "_user", None)
+        if cached is None:
+            cached = UserEntity(self, None)
+            self._user = cached
+        return cached
+
     def User(self, data=None):
+        # Deprecated: use client.user instead.
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 
 
+    @property
+    def widget(self):
+        """Idiomatic facade: client.widget.list() / client.widget.load({"id": ...})."""
+        from entity.widget_entity import WidgetEntity
+        cached = getattr(self, "_widget", None)
+        if cached is None:
+            cached = WidgetEntity(self, None)
+            self._widget = cached
+        return cached
+
     def Widget(self, data=None):
+        # Deprecated: use client.widget instead.
         from entity.widget_entity import WidgetEntity
         return WidgetEntity(self, data)
 

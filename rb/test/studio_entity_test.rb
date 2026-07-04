@@ -43,16 +43,14 @@ class StudioEntityTest < Minitest::Test
     studio_ref01_ent = client.Studio(nil)
     studio_ref01_match = {}
 
-    studio_ref01_list_result, err = studio_ref01_ent.list(studio_ref01_match, nil)
-    assert_nil err
+    studio_ref01_list_result = studio_ref01_ent.list(studio_ref01_match, nil)
     assert studio_ref01_list_result.is_a?(Array)
 
     # LOAD
     studio_ref01_match_dt0 = {
       "id" => studio_ref01_data["id"],
     }
-    studio_ref01_data_dt0_loaded, err = studio_ref01_ent.load(studio_ref01_match_dt0, nil)
-    assert_nil err
+    studio_ref01_data_dt0_loaded = studio_ref01_ent.load(studio_ref01_match_dt0, nil)
     studio_ref01_data_dt0_load_result = Helpers.to_map(studio_ref01_data_dt0_loaded)
     assert !studio_ref01_data_dt0_load_result.nil?
     assert_equal studio_ref01_data_dt0_load_result["id"], studio_ref01_data["id"]

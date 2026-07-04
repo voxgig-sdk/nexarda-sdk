@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PlatformLoadMatch
+---@param ctrl? table
+---@return Platform
+---@return string? err
 function PlatformEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

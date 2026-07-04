@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RetailerListMatch
+---@param ctrl? table
+---@return Retailer[]
+---@return string? err
 function RetailerEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

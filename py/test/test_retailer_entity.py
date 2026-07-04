@@ -50,8 +50,7 @@ class TestRetailerEntity:
         retailer_ref01_ent = client.Retailer(None)
         retailer_ref01_match = {}
 
-        retailer_ref01_list_result, err = retailer_ref01_ent.list(retailer_ref01_match, None)
-        assert err is None
+        retailer_ref01_list_result = retailer_ref01_ent.list(retailer_ref01_match, None)
         assert isinstance(retailer_ref01_list_result, list)
 
 

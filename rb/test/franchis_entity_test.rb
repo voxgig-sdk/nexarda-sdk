@@ -43,16 +43,14 @@ class FranchisEntityTest < Minitest::Test
     franchis_ref01_ent = client.Franchis(nil)
     franchis_ref01_match = {}
 
-    franchis_ref01_list_result, err = franchis_ref01_ent.list(franchis_ref01_match, nil)
-    assert_nil err
+    franchis_ref01_list_result = franchis_ref01_ent.list(franchis_ref01_match, nil)
     assert franchis_ref01_list_result.is_a?(Array)
 
     # LOAD
     franchis_ref01_match_dt0 = {
       "id" => franchis_ref01_data["id"],
     }
-    franchis_ref01_data_dt0_loaded, err = franchis_ref01_ent.load(franchis_ref01_match_dt0, nil)
-    assert_nil err
+    franchis_ref01_data_dt0_loaded = franchis_ref01_ent.load(franchis_ref01_match_dt0, nil)
     franchis_ref01_data_dt0_load_result = Helpers.to_map(franchis_ref01_data_dt0_loaded)
     assert !franchis_ref01_data_dt0_load_result.nil?
     assert_equal franchis_ref01_data_dt0_load_result["id"], franchis_ref01_data["id"]

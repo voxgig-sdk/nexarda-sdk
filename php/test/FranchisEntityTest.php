@@ -50,16 +50,14 @@ class FranchisEntityTest extends TestCase
         $franchis_ref01_ent = $client->Franchis(null);
         $franchis_ref01_match = [];
 
-        [$franchis_ref01_list_result, $err] = $franchis_ref01_ent->list($franchis_ref01_match, null);
-        $this->assertNull($err);
+        $franchis_ref01_list_result = $franchis_ref01_ent->list($franchis_ref01_match, null);
         $this->assertIsArray($franchis_ref01_list_result);
 
         // LOAD
         $franchis_ref01_match_dt0 = [
             "id" => $franchis_ref01_data["id"],
         ];
-        [$franchis_ref01_data_dt0_loaded, $err] = $franchis_ref01_ent->load($franchis_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $franchis_ref01_data_dt0_loaded = $franchis_ref01_ent->load($franchis_ref01_match_dt0, null);
         $franchis_ref01_data_dt0_load_result = Helpers::to_map($franchis_ref01_data_dt0_loaded);
         $this->assertNotNull($franchis_ref01_data_dt0_load_result);
         $this->assertEquals($franchis_ref01_data_dt0_load_result["id"], $franchis_ref01_data["id"]);

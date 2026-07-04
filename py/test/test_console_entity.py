@@ -50,16 +50,14 @@ class TestConsoleEntity:
         console_ref01_ent = client.Console(None)
         console_ref01_match = {}
 
-        console_ref01_list_result, err = console_ref01_ent.list(console_ref01_match, None)
-        assert err is None
+        console_ref01_list_result = console_ref01_ent.list(console_ref01_match, None)
         assert isinstance(console_ref01_list_result, list)
 
         # LOAD
         console_ref01_match_dt0 = {
             "id": console_ref01_data["id"],
         }
-        console_ref01_data_dt0_loaded, err = console_ref01_ent.load(console_ref01_match_dt0, None)
-        assert err is None
+        console_ref01_data_dt0_loaded = console_ref01_ent.load(console_ref01_match_dt0, None)
         console_ref01_data_dt0_load_result = helpers.to_map(console_ref01_data_dt0_loaded)
         assert console_ref01_data_dt0_load_result is not None
         assert console_ref01_data_dt0_load_result["id"] == console_ref01_data["id"]

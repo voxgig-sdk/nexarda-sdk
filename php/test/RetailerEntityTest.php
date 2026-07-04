@@ -50,8 +50,7 @@ class RetailerEntityTest extends TestCase
         $retailer_ref01_ent = $client->Retailer(null);
         $retailer_ref01_match = [];
 
-        [$retailer_ref01_list_result, $err] = $retailer_ref01_ent->list($retailer_ref01_match, null);
-        $this->assertNull($err);
+        $retailer_ref01_list_result = $retailer_ref01_ent->list($retailer_ref01_match, null);
         $this->assertIsArray($retailer_ref01_list_result);
 
     }

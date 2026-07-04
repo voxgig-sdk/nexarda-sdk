@@ -50,16 +50,14 @@ class TestGameEntity:
         game_ref01_ent = client.Game(None)
         game_ref01_match = {}
 
-        game_ref01_list_result, err = game_ref01_ent.list(game_ref01_match, None)
-        assert err is None
+        game_ref01_list_result = game_ref01_ent.list(game_ref01_match, None)
         assert isinstance(game_ref01_list_result, list)
 
         # LOAD
         game_ref01_match_dt0 = {
             "id": game_ref01_data["id"],
         }
-        game_ref01_data_dt0_loaded, err = game_ref01_ent.load(game_ref01_match_dt0, None)
-        assert err is None
+        game_ref01_data_dt0_loaded = game_ref01_ent.load(game_ref01_match_dt0, None)
         game_ref01_data_dt0_load_result = helpers.to_map(game_ref01_data_dt0_loaded)
         assert game_ref01_data_dt0_load_result is not None
         assert game_ref01_data_dt0_load_result["id"] == game_ref01_data["id"]

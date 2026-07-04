@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Nexarda_types'
+
 
 class NexardaSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class NexardaSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class NexardaSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue NexardaError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = NexardaHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class NexardaSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,70 +198,140 @@ class NexardaSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.console.list / client.console.load({ "id" => ... })
+  def console
+    require_relative 'entity/console_entity'
+    @console ||= ConsoleEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.console instead.
   def Console(data = nil)
     require_relative 'entity/console_entity'
     ConsoleEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.franchis.list / client.franchis.load({ "id" => ... })
+  def franchis
+    require_relative 'entity/franchis_entity'
+    @franchis ||= FranchisEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.franchis instead.
   def Franchis(data = nil)
     require_relative 'entity/franchis_entity'
     FranchisEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.game.list / client.game.load({ "id" => ... })
+  def game
+    require_relative 'entity/game_entity'
+    @game ||= GameEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.game instead.
   def Game(data = nil)
     require_relative 'entity/game_entity'
     GameEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.platform.list / client.platform.load({ "id" => ... })
+  def platform
+    require_relative 'entity/platform_entity'
+    @platform ||= PlatformEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.platform instead.
   def Platform(data = nil)
     require_relative 'entity/platform_entity'
     PlatformEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.price.list / client.price.load({ "id" => ... })
+  def price
+    require_relative 'entity/price_entity'
+    @price ||= PriceEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.price instead.
   def Price(data = nil)
     require_relative 'entity/price_entity'
     PriceEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.retailer.list / client.retailer.load({ "id" => ... })
+  def retailer
+    require_relative 'entity/retailer_entity'
+    @retailer ||= RetailerEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.retailer instead.
   def Retailer(data = nil)
     require_relative 'entity/retailer_entity'
     RetailerEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
+  def search
+    require_relative 'entity/search_entity'
+    @search ||= SearchEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.search instead.
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.studio.list / client.studio.load({ "id" => ... })
+  def studio
+    require_relative 'entity/studio_entity'
+    @studio ||= StudioEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.studio instead.
   def Studio(data = nil)
     require_relative 'entity/studio_entity'
     StudioEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.user.list / client.user.load({ "id" => ... })
+  def user
+    require_relative 'entity/user_entity'
+    @user ||= UserEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.user instead.
   def User(data = nil)
     require_relative 'entity/user_entity'
     UserEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.widget.list / client.widget.load({ "id" => ... })
+  def widget
+    require_relative 'entity/widget_entity'
+    @widget ||= WidgetEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.widget instead.
   def Widget(data = nil)
     require_relative 'entity/widget_entity'
     WidgetEntity.new(self, data)

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch PriceListMatch
+---@param ctrl? table
+---@return Price[]
+---@return string? err
 function PriceEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

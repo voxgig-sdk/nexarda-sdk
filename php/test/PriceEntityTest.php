@@ -52,8 +52,7 @@ class PriceEntityTest extends TestCase
             "console_id" => $setup["idmap"]["console01"],
         ];
 
-        [$price_ref01_list_result, $err] = $price_ref01_ent->list($price_ref01_match, null);
-        $this->assertNull($err);
+        $price_ref01_list_result = $price_ref01_ent->list($price_ref01_match, null);
         $this->assertIsArray($price_ref01_list_result);
 
     }

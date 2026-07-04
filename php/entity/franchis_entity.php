@@ -55,6 +55,9 @@ class FranchisEntity
         return new FranchisEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Franchis|array $args Franchis data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class FranchisEntity
         }
     }
 
+    /**
+     * @return Franchis|array The current Franchis data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Franchis fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class FranchisEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Franchis fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class FranchisEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Franchis.
+     *
+     * @param FranchisLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed FranchisLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Franchis|array The loaded Franchis as an assoc-array at the
+     *   SDK boundary; throws NexardaError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class FranchisEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Franchis items matching the given filter.
+     *
+     * @param FranchisListMatch|array|null $reqmatch Match filter (any subset
+     *   of Franchis fields) as an assoc-array; FranchisListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Franchis[]|array A list of Franchis items as assoc-arrays at
+     *   the SDK boundary; throws NexardaError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class FranchisEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

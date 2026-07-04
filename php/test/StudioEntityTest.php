@@ -50,16 +50,14 @@ class StudioEntityTest extends TestCase
         $studio_ref01_ent = $client->Studio(null);
         $studio_ref01_match = [];
 
-        [$studio_ref01_list_result, $err] = $studio_ref01_ent->list($studio_ref01_match, null);
-        $this->assertNull($err);
+        $studio_ref01_list_result = $studio_ref01_ent->list($studio_ref01_match, null);
         $this->assertIsArray($studio_ref01_list_result);
 
         // LOAD
         $studio_ref01_match_dt0 = [
             "id" => $studio_ref01_data["id"],
         ];
-        [$studio_ref01_data_dt0_loaded, $err] = $studio_ref01_ent->load($studio_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $studio_ref01_data_dt0_loaded = $studio_ref01_ent->load($studio_ref01_match_dt0, null);
         $studio_ref01_data_dt0_load_result = Helpers::to_map($studio_ref01_data_dt0_loaded);
         $this->assertNotNull($studio_ref01_data_dt0_load_result);
         $this->assertEquals($studio_ref01_data_dt0_load_result["id"], $studio_ref01_data["id"]);
