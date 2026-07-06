@@ -65,8 +65,13 @@ class StudioEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: StudioLoadMatch, ctrl=None) -> Studio:
+    def load(self, reqmatch=None, ctrl=None) -> Studio:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Studio().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class StudioEntity:
 
 
     
-    def list(self, reqmatch: StudioListMatch, ctrl=None) -> list[Studio]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Studio]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Studio().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

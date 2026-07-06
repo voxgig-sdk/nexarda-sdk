@@ -4,6 +4,11 @@
 
 The Python SDK for the Nexarda API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Console()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,7 +46,7 @@ error — iterate it directly.
 
 ```python
 try:
-    consoles = client.Console().list({})
+    consoles = client.Console().list()
     for console in consoles:
         print(console)
 except Exception as err:
@@ -58,6 +63,34 @@ try:
     print(console)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    consoles = client.Console().list()
+    print(consoles)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -78,7 +111,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -104,7 +140,7 @@ Create a mock client for unit testing — no server required:
 client = NexardaSDK.test()
 
 # Entity ops return the bare record and raise on error.
-console = client.Console().load({"id": "test01"})
+console = client.Console().list()
 # console contains the mock response record
 ```
 
@@ -202,9 +238,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -415,23 +448,23 @@ Create an instance: `console = client.Console()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ARRAY`` |  |
-| `manufacturer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `specification` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
+| `data` | `dict` |  |
+| `description` | `str` |  |
+| `id` | `str` |  |
+| `image` | `list` |  |
+| `manufacturer` | `str` |  |
+| `name` | `str` |  |
+| `release_date` | `str` |  |
+| `specification` | `dict` |  |
+| `success` | `bool` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -442,7 +475,7 @@ console = client.Console().load({"id": "console_id"})
 #### Example: List
 
 ```python
-consoles = client.Console().list({})
+consoles = client.Console().list()
 ```
 
 
@@ -454,21 +487,21 @@ Create an instance: `franchis = client.Franchis()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `total_game` | ``$INTEGER`` |  |
+| `data` | `dict` |  |
+| `description` | `str` |  |
+| `game` | `list` |  |
+| `id` | `str` |  |
+| `logo` | `str` |  |
+| `name` | `str` |  |
+| `success` | `bool` |  |
+| `total_game` | `int` |  |
 
 #### Example: Load
 
@@ -479,7 +512,7 @@ franchis = client.Franchis().load({"id": "franchis_id"})
 #### Example: List
 
 ```python
-franchiss = client.Franchis().list({})
+franchiss = client.Franchis().list()
 ```
 
 
@@ -491,28 +524,28 @@ Create an instance: `game = client.Game()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `str` |  |
+| `cover_image` | `str` |  |
+| `data` | `dict` |  |
+| `description` | `str` |  |
+| `developer` | `str` |  |
+| `franchise_id` | `str` |  |
+| `genre` | `list` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `platform` | `list` |  |
+| `publisher` | `str` |  |
+| `release_date` | `str` |  |
+| `screenshot` | `list` |  |
+| `success` | `bool` |  |
+| `video` | `list` |  |
 
 #### Example: Load
 
@@ -523,7 +556,7 @@ game = client.Game().load({"id": "game_id"})
 #### Example: List
 
 ```python
-games = client.Game().list({})
+games = client.Game().list()
 ```
 
 
@@ -541,13 +574,13 @@ Create an instance: `platform = client.Platform()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `dict` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```python
-platform = client.Platform().load({"id": "platform_id"})
+platform = client.Platform().load()
 ```
 
 
@@ -559,27 +592,27 @@ Create an instance: `price = client.Price()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `discount` | ``$NUMBER`` |  |
-| `in_stock` | ``$BOOLEAN`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `original_price` | ``$NUMBER`` |  |
-| `price` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `retailer_id` | ``$STRING`` |  |
-| `retailer_name` | ``$STRING`` |  |
+| `affiliate_link` | `str` |  |
+| `currency` | `str` |  |
+| `discount` | `float` |  |
+| `in_stock` | `bool` |  |
+| `last_updated` | `str` |  |
+| `original_price` | `float` |  |
+| `price` | `float` |  |
+| `region` | `str` |  |
+| `retailer_id` | `str` |  |
+| `retailer_name` | `str` |  |
 
 #### Example: List
 
 ```python
-prices = client.Price().list({})
+prices = client.Price().list()
 ```
 
 
@@ -591,24 +624,24 @@ Create an instance: `retailer = client.Retailer()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` |  |
-| `currency` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$ARRAY`` |  |
-| `website` | ``$STRING`` |  |
+| `approved` | `bool` |  |
+| `currency` | `list` |  |
+| `id` | `str` |  |
+| `logo` | `str` |  |
+| `name` | `str` |  |
+| `region` | `list` |  |
+| `website` | `str` |  |
 
 #### Example: List
 
 ```python
-retailers = client.Retailer().list({})
+retailers = client.Retailer().list()
 ```
 
 
@@ -626,13 +659,13 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `dict` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```python
-search = client.Search().load({"id": "search_id"})
+search = client.Search().load()
 ```
 
 
@@ -644,24 +677,24 @@ Create an instance: `studio = client.Studio()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `founding_year` | ``$INTEGER`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
+| `data` | `dict` |  |
+| `description` | `str` |  |
+| `founding_year` | `int` |  |
+| `game` | `list` |  |
+| `id` | `str` |  |
+| `location` | `dict` |  |
+| `logo` | `str` |  |
+| `name` | `str` |  |
+| `success` | `bool` |  |
+| `type` | `str` |  |
+| `website` | `str` |  |
 
 #### Example: Load
 
@@ -672,7 +705,7 @@ studio = client.Studio().load({"id": "studio_id"})
 #### Example: List
 
 ```python
-studios = client.Studio().list({})
+studios = client.Studio().list()
 ```
 
 
@@ -684,28 +717,28 @@ Create an instance: `user = client.User()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `str` |  |
+| `cover_image` | `str` |  |
+| `data` | `dict` |  |
+| `description` | `str` |  |
+| `developer` | `str` |  |
+| `franchise_id` | `str` |  |
+| `genre` | `list` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `platform` | `list` |  |
+| `publisher` | `str` |  |
+| `release_date` | `str` |  |
+| `screenshot` | `list` |  |
+| `success` | `bool` |  |
+| `video` | `list` |  |
 
 #### Example: Load
 
@@ -716,7 +749,7 @@ user = client.User().load({"id": "user_id"})
 #### Example: List
 
 ```python
-users = client.User().list({})
+users = client.User().list()
 ```
 
 
@@ -733,16 +766,20 @@ Create an instance: `widget = client.Widget()`
 #### Example: Load
 
 ```python
-widget = client.Widget().load({"id": "widget_id"})
+widget = client.Widget().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -759,8 +796,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -803,14 +841,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 console = client.Console()
-console.load({"id": "example_id"})
+console.list()
 
-# console.data_get() now returns the loaded console data
+# console.data_get() now returns the console data from the last list
 # console.match_get() returns the last match criteria
 ```
 

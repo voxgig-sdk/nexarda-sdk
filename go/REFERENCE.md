@@ -134,16 +134,16 @@ console := client.Console(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `manufacturer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `specification` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image` | `[]any` | No |  |
+| `manufacturer` | `string` | No |  |
+| `name` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `specification` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -197,14 +197,14 @@ franchis := client.Franchis(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_game` | ``$INTEGER`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `game` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `total_game` | `int` | No |  |
 
 ### Operations
 
@@ -258,21 +258,21 @@ game := client.Game(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `string` | No |  |
+| `cover_image` | `string` | No |  |
+| `data` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `developer` | `string` | No |  |
+| `franchise_id` | `string` | No |  |
+| `genre` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `platform` | `[]any` | No |  |
+| `publisher` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `screenshot` | `[]any` | No |  |
+| `success` | `bool` | No |  |
+| `video` | `[]any` | No |  |
 
 ### Operations
 
@@ -326,8 +326,8 @@ platform := client.Platform(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -336,7 +336,7 @@ platform := client.Platform(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Platform(nil).Load(map[string]any{"id": "platform_id"}, nil)
+result, err := client.Platform(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -373,16 +373,16 @@ price := client.Price(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `discount` | ``$NUMBER`` | No |  |
-| `in_stock` | ``$BOOLEAN`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `original_price` | ``$NUMBER`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `retailer_id` | ``$STRING`` | No |  |
-| `retailer_name` | ``$STRING`` | No |  |
+| `affiliate_link` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `discount` | `float64` | No |  |
+| `in_stock` | `bool` | No |  |
+| `last_updated` | `string` | No |  |
+| `original_price` | `float64` | No |  |
+| `price` | `float64` | No |  |
+| `region` | `string` | No |  |
+| `retailer_id` | `string` | No |  |
+| `retailer_name` | `string` | No |  |
 
 ### Operations
 
@@ -428,13 +428,13 @@ retailer := client.Retailer(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` | No |  |
-| `currency` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$ARRAY`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `approved` | `bool` | No |  |
+| `currency` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `region` | `[]any` | No |  |
+| `website` | `string` | No |  |
 
 ### Operations
 
@@ -480,8 +480,8 @@ search := client.Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -490,7 +490,7 @@ search := client.Search(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+result, err := client.Search(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -527,17 +527,17 @@ studio := client.Studio(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `founding_year` | ``$INTEGER`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `founding_year` | `int` | No |  |
+| `game` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `location` | `map[string]any` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `type` | `string` | No |  |
+| `website` | `string` | No |  |
 
 ### Operations
 
@@ -591,21 +591,21 @@ user := client.User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `string` | No |  |
+| `cover_image` | `string` | No |  |
+| `data` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `developer` | `string` | No |  |
+| `franchise_id` | `string` | No |  |
+| `genre` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `platform` | `[]any` | No |  |
+| `publisher` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `screenshot` | `[]any` | No |  |
+| `success` | `bool` | No |  |
+| `video` | `[]any` | No |  |
 
 ### Operations
 
@@ -662,7 +662,7 @@ widget := client.Widget(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Widget(nil).Load(map[string]any{"id": "widget_id"}, nil)
+result, err := client.Widget(nil).Load(nil, nil)
 ```
 
 ### Common Methods

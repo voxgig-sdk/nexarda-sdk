@@ -221,61 +221,61 @@ class NexardaSDK:
 
 
     def Console(self, data=None) -> "ConsoleEntity":
-        """Entity factory: client.Console().list({}) / client.Console().load({"id": ...})."""
+        """Entity factory: client.Console().list() / client.Console().load({"id": ...})."""
         from entity.console_entity import ConsoleEntity
         return ConsoleEntity(self, data)
 
 
     def Franchis(self, data=None) -> "FranchisEntity":
-        """Entity factory: client.Franchis().list({}) / client.Franchis().load({"id": ...})."""
+        """Entity factory: client.Franchis().list() / client.Franchis().load({"id": ...})."""
         from entity.franchis_entity import FranchisEntity
         return FranchisEntity(self, data)
 
 
     def Game(self, data=None) -> "GameEntity":
-        """Entity factory: client.Game().list({}) / client.Game().load({"id": ...})."""
+        """Entity factory: client.Game().list() / client.Game().load({"id": ...})."""
         from entity.game_entity import GameEntity
         return GameEntity(self, data)
 
 
     def Platform(self, data=None) -> "PlatformEntity":
-        """Entity factory: client.Platform().list({}) / client.Platform().load({"id": ...})."""
+        """Entity factory: client.Platform().list() / client.Platform().load({"id": ...})."""
         from entity.platform_entity import PlatformEntity
         return PlatformEntity(self, data)
 
 
     def Price(self, data=None) -> "PriceEntity":
-        """Entity factory: client.Price().list({}) / client.Price().load({"id": ...})."""
+        """Entity factory: client.Price().list() / client.Price().load({"id": ...})."""
         from entity.price_entity import PriceEntity
         return PriceEntity(self, data)
 
 
     def Retailer(self, data=None) -> "RetailerEntity":
-        """Entity factory: client.Retailer().list({}) / client.Retailer().load({"id": ...})."""
+        """Entity factory: client.Retailer().list() / client.Retailer().load({"id": ...})."""
         from entity.retailer_entity import RetailerEntity
         return RetailerEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
     def Studio(self, data=None) -> "StudioEntity":
-        """Entity factory: client.Studio().list({}) / client.Studio().load({"id": ...})."""
+        """Entity factory: client.Studio().list() / client.Studio().load({"id": ...})."""
         from entity.studio_entity import StudioEntity
         return StudioEntity(self, data)
 
 
     def User(self, data=None) -> "UserEntity":
-        """Entity factory: client.User().list({}) / client.User().load({"id": ...})."""
+        """Entity factory: client.User().list() / client.User().load({"id": ...})."""
         from entity.user_entity import UserEntity
         return UserEntity(self, data)
 
 
     def Widget(self, data=None) -> "WidgetEntity":
-        """Entity factory: client.Widget().list({}) / client.Widget().load({"id": ...})."""
+        """Entity factory: client.Widget().list() / client.Widget().load({"id": ...})."""
         from entity.widget_entity import WidgetEntity
         return WidgetEntity(self, data)
 

@@ -4,6 +4,8 @@
 
 The Lua SDK for the Nexarda API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Console()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -43,7 +45,7 @@ local consoles, err = client:Console():list()
 if err then error(err) end
 
 for _, item in ipairs(consoles) do
-  print(item["id"], item["name"])
+  print(item["id"], item["description"])
 end
 ```
 
@@ -53,6 +55,28 @@ end
 local console, err = client:Console():load({ id = "example_id" })
 if err then error(err) end
 print(console)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local consoles, err = client:Console():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -98,8 +122,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Console():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Console():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -198,9 +222,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -215,7 +236,7 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
@@ -419,16 +440,16 @@ Create an instance: `local console = client:Console(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ARRAY`` |  |
-| `manufacturer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `specification` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
+| `data` | `table` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image` | `table` |  |
+| `manufacturer` | `string` |  |
+| `name` | `string` |  |
+| `release_date` | `string` |  |
+| `specification` | `table` |  |
+| `success` | `boolean` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -458,14 +479,14 @@ Create an instance: `local franchis = client:Franchis(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `total_game` | ``$INTEGER`` |  |
+| `data` | `table` |  |
+| `description` | `string` |  |
+| `game` | `table` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `boolean` |  |
+| `total_game` | `number` |  |
 
 #### Example: Load
 
@@ -495,21 +516,21 @@ Create an instance: `local game = client:Game(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `table` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `table` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `table` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `table` |  |
+| `success` | `boolean` |  |
+| `video` | `table` |  |
 
 #### Example: Load
 
@@ -538,13 +559,13 @@ Create an instance: `local platform = client:Platform(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `table` |  |
+| `success` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local platform, err = client:Platform():load({ id = "platform_id" })
+local platform, err = client:Platform():load()
 ```
 
 
@@ -562,16 +583,16 @@ Create an instance: `local price = client:Price(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `discount` | ``$NUMBER`` |  |
-| `in_stock` | ``$BOOLEAN`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `original_price` | ``$NUMBER`` |  |
-| `price` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `retailer_id` | ``$STRING`` |  |
-| `retailer_name` | ``$STRING`` |  |
+| `affiliate_link` | `string` |  |
+| `currency` | `string` |  |
+| `discount` | `number` |  |
+| `in_stock` | `boolean` |  |
+| `last_updated` | `string` |  |
+| `original_price` | `number` |  |
+| `price` | `number` |  |
+| `region` | `string` |  |
+| `retailer_id` | `string` |  |
+| `retailer_name` | `string` |  |
 
 #### Example: List
 
@@ -594,13 +615,13 @@ Create an instance: `local retailer = client:Retailer(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` |  |
-| `currency` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$ARRAY`` |  |
-| `website` | ``$STRING`` |  |
+| `approved` | `boolean` |  |
+| `currency` | `table` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `region` | `table` |  |
+| `website` | `string` |  |
 
 #### Example: List
 
@@ -623,13 +644,13 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `table` |  |
+| `success` | `boolean` |  |
 
 #### Example: Load
 
 ```lua
-local search, err = client:Search():load({ id = "search_id" })
+local search, err = client:Search():load()
 ```
 
 
@@ -648,17 +669,17 @@ Create an instance: `local studio = client:Studio(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `founding_year` | ``$INTEGER`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
+| `data` | `table` |  |
+| `description` | `string` |  |
+| `founding_year` | `number` |  |
+| `game` | `table` |  |
+| `id` | `string` |  |
+| `location` | `table` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `boolean` |  |
+| `type` | `string` |  |
+| `website` | `string` |  |
 
 #### Example: Load
 
@@ -688,21 +709,21 @@ Create an instance: `local user = client:User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `table` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `table` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `table` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `table` |  |
+| `success` | `boolean` |  |
+| `video` | `table` |  |
 
 #### Example: Load
 
@@ -730,16 +751,20 @@ Create an instance: `local widget = client:Widget(nil)`
 #### Example: Load
 
 ```lua
-local widget, err = client:Widget():load({ id = "widget_id" })
+local widget, err = client:Widget():load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -756,8 +781,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -801,14 +827,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local console = client:Console()
-console:load({ id = "example_id" })
+console:list()
 
--- console:data_get() now returns the loaded console data
+-- console:data_get() now returns the console data from the last list
 -- console:match_get() returns the last match criteria
 ```
 

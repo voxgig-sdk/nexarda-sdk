@@ -4,6 +4,8 @@
 
 The Golang SDK for the Nexarda API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Console(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -61,12 +63,41 @@ func main() {
     }
 
     // Load a single console — the value is the loaded record.
-    console, err := client.Console(nil).Load(map[string]any{"id": "example_id"}, nil)
+    console, err := client.Console(nil).Load(map[string]any{"id": "example"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(console)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+consoles, err := client.Console(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = consoles
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -116,13 +147,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-console, err := client.Console(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+console, err := client.Console(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(console) // the loaded mock data
+fmt.Println(console) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -220,9 +251,6 @@ All entities implement the `NexardaEntity` interface.
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -235,16 +263,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    console, err := client.Console(nil).Load(map[string]any{"id": "example_id"}, nil)
+    console, err := client.Console(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // console is the loaded record
+    // console is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -441,16 +469,16 @@ Create an instance: `console := client.Console(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ARRAY`` |  |
-| `manufacturer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `specification` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
+| `data` | `map[string]any` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image` | `[]any` |  |
+| `manufacturer` | `string` |  |
+| `name` | `string` |  |
+| `release_date` | `string` |  |
+| `specification` | `map[string]any` |  |
+| `success` | `bool` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -488,14 +516,14 @@ Create an instance: `franchis := client.Franchis(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `total_game` | ``$INTEGER`` |  |
+| `data` | `map[string]any` |  |
+| `description` | `string` |  |
+| `game` | `[]any` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `bool` |  |
+| `total_game` | `int` |  |
 
 #### Example: Load
 
@@ -533,21 +561,21 @@ Create an instance: `game := client.Game(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `map[string]any` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `[]any` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `[]any` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `[]any` |  |
+| `success` | `bool` |  |
+| `video` | `[]any` |  |
 
 #### Example: Load
 
@@ -584,13 +612,13 @@ Create an instance: `platform := client.Platform(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `map[string]any` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```go
-platform, err := client.Platform(nil).Load(map[string]any{"id": "platform_id"}, nil)
+platform, err := client.Platform(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -612,16 +640,16 @@ Create an instance: `price := client.Price(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `discount` | ``$NUMBER`` |  |
-| `in_stock` | ``$BOOLEAN`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `original_price` | ``$NUMBER`` |  |
-| `price` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `retailer_id` | ``$STRING`` |  |
-| `retailer_name` | ``$STRING`` |  |
+| `affiliate_link` | `string` |  |
+| `currency` | `string` |  |
+| `discount` | `float64` |  |
+| `in_stock` | `bool` |  |
+| `last_updated` | `string` |  |
+| `original_price` | `float64` |  |
+| `price` | `float64` |  |
+| `region` | `string` |  |
+| `retailer_id` | `string` |  |
+| `retailer_name` | `string` |  |
 
 #### Example: List
 
@@ -648,13 +676,13 @@ Create an instance: `retailer := client.Retailer(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` |  |
-| `currency` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$ARRAY`` |  |
-| `website` | ``$STRING`` |  |
+| `approved` | `bool` |  |
+| `currency` | `[]any` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `region` | `[]any` |  |
+| `website` | `string` |  |
 
 #### Example: List
 
@@ -681,13 +709,13 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `map[string]any` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```go
-search, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+search, err := client.Search(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -710,17 +738,17 @@ Create an instance: `studio := client.Studio(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `founding_year` | ``$INTEGER`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
+| `data` | `map[string]any` |  |
+| `description` | `string` |  |
+| `founding_year` | `int` |  |
+| `game` | `[]any` |  |
+| `id` | `string` |  |
+| `location` | `map[string]any` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `bool` |  |
+| `type` | `string` |  |
+| `website` | `string` |  |
 
 #### Example: Load
 
@@ -758,21 +786,21 @@ Create an instance: `user := client.User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `map[string]any` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `[]any` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `[]any` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `[]any` |  |
+| `success` | `bool` |  |
+| `video` | `[]any` |  |
 
 #### Example: Load
 
@@ -808,7 +836,7 @@ Create an instance: `widget := client.Widget(nil)`
 #### Example: Load
 
 ```go
-widget, err := client.Widget(nil).Load(map[string]any{"id": "widget_id"}, nil)
+widget, err := client.Widget(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -816,12 +844,16 @@ fmt.Println(widget) // the loaded record
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -838,9 +870,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -881,14 +913,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 console := client.Console(nil)
-console.Load(map[string]any{"id": "example_id"}, nil)
+console.List(nil, nil)
 
-// console.Data() now returns the loaded console data
+// console.Data() now returns the console data from the last list
 // console.Match() returns the last match criteria
 ```
 

@@ -8,7 +8,7 @@ Complete API reference for the Nexarda Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'nexarda_sdk'
+require_relative 'Nexarda_sdk'
 
 client = NexardaSDK.new(options)
 ```
@@ -130,25 +130,25 @@ console = client.Console
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `manufacturer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `specification` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `id` | `String` | No |  |
+| `image` | `Array` | No |  |
+| `manufacturer` | `String` | No |  |
+| `name` | `String` | No |  |
+| `release_date` | `String` | No |  |
+| `specification` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Console.list(nil)
+results = client.Console.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -199,23 +199,23 @@ franchis = client.Franchis
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_game` | ``$INTEGER`` | No |  |
+| `data` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `game` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `logo` | `String` | No |  |
+| `name` | `String` | No |  |
+| `success` | `Boolean` | No |  |
+| `total_game` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Franchis.list(nil)
+results = client.Franchis.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -266,30 +266,30 @@ game = client.Game
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `String` | No |  |
+| `cover_image` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `developer` | `String` | No |  |
+| `franchise_id` | `String` | No |  |
+| `genre` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `platform` | `Array` | No |  |
+| `publisher` | `String` | No |  |
+| `release_date` | `String` | No |  |
+| `screenshot` | `Array` | No |  |
+| `success` | `Boolean` | No |  |
+| `video` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Game.list(nil)
+results = client.Game.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -340,8 +340,8 @@ platform = client.Platform
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -350,7 +350,7 @@ platform = client.Platform
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Platform.load({ "id" => "platform_id" })
+result = client.Platform.load()
 ```
 
 ### Common Methods
@@ -393,25 +393,25 @@ price = client.Price
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `discount` | ``$NUMBER`` | No |  |
-| `in_stock` | ``$BOOLEAN`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `original_price` | ``$NUMBER`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `retailer_id` | ``$STRING`` | No |  |
-| `retailer_name` | ``$STRING`` | No |  |
+| `affiliate_link` | `String` | No |  |
+| `currency` | `String` | No |  |
+| `discount` | `Float` | No |  |
+| `in_stock` | `Boolean` | No |  |
+| `last_updated` | `String` | No |  |
+| `original_price` | `Float` | No |  |
+| `price` | `Float` | No |  |
+| `region` | `String` | No |  |
+| `retailer_id` | `String` | No |  |
+| `retailer_name` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Price.list(nil)
+results = client.Price.list
 ```
 
 ### Common Methods
@@ -454,22 +454,22 @@ retailer = client.Retailer
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` | No |  |
-| `currency` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$ARRAY`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `approved` | `Boolean` | No |  |
+| `currency` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `logo` | `String` | No |  |
+| `name` | `String` | No |  |
+| `region` | `Array` | No |  |
+| `website` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Retailer.list(nil)
+results = client.Retailer.list
 ```
 
 ### Common Methods
@@ -512,8 +512,8 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -522,7 +522,7 @@ search = client.Search
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Search.load({ "id" => "search_id" })
+result = client.Search.load()
 ```
 
 ### Common Methods
@@ -565,26 +565,26 @@ studio = client.Studio
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `founding_year` | ``$INTEGER`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `data` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `founding_year` | `Integer` | No |  |
+| `game` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `location` | `Hash` | No |  |
+| `logo` | `String` | No |  |
+| `name` | `String` | No |  |
+| `success` | `Boolean` | No |  |
+| `type` | `String` | No |  |
+| `website` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Studio.list(nil)
+results = client.Studio.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -635,30 +635,30 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `String` | No |  |
+| `cover_image` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `developer` | `String` | No |  |
+| `franchise_id` | `String` | No |  |
+| `genre` | `Array` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `platform` | `Array` | No |  |
+| `publisher` | `String` | No |  |
+| `release_date` | `String` | No |  |
+| `screenshot` | `Array` | No |  |
+| `success` | `Boolean` | No |  |
+| `video` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.User.list(nil)
+results = client.User.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -712,7 +712,7 @@ widget = client.Widget
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Widget.load({ "id" => "widget_id" })
+result = client.Widget.load()
 ```
 
 ### Common Methods

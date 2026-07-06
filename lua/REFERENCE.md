@@ -127,16 +127,16 @@ local console = client:Console(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `manufacturer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `specification` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `table` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image` | `table` | No |  |
+| `manufacturer` | `string` | No |  |
+| `name` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `specification` | `table` | No |  |
+| `success` | `boolean` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -196,14 +196,14 @@ local franchis = client:Franchis(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_game` | ``$INTEGER`` | No |  |
+| `data` | `table` | No |  |
+| `description` | `string` | No |  |
+| `game` | `table` | No |  |
+| `id` | `string` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `total_game` | `number` | No |  |
 
 ### Operations
 
@@ -263,21 +263,21 @@ local game = client:Game(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `string` | No |  |
+| `cover_image` | `string` | No |  |
+| `data` | `table` | No |  |
+| `description` | `string` | No |  |
+| `developer` | `string` | No |  |
+| `franchise_id` | `string` | No |  |
+| `genre` | `table` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `platform` | `table` | No |  |
+| `publisher` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `screenshot` | `table` | No |  |
+| `success` | `boolean` | No |  |
+| `video` | `table` | No |  |
 
 ### Operations
 
@@ -337,8 +337,8 @@ local platform = client:Platform(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -347,7 +347,7 @@ local platform = client:Platform(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Platform():load({ id = "platform_id" })
+local result, err = client:Platform():load()
 ```
 
 ### Common Methods
@@ -390,16 +390,16 @@ local price = client:Price(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `discount` | ``$NUMBER`` | No |  |
-| `in_stock` | ``$BOOLEAN`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `original_price` | ``$NUMBER`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `retailer_id` | ``$STRING`` | No |  |
-| `retailer_name` | ``$STRING`` | No |  |
+| `affiliate_link` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `discount` | `number` | No |  |
+| `in_stock` | `boolean` | No |  |
+| `last_updated` | `string` | No |  |
+| `original_price` | `number` | No |  |
+| `price` | `number` | No |  |
+| `region` | `string` | No |  |
+| `retailer_id` | `string` | No |  |
+| `retailer_name` | `string` | No |  |
 
 ### Operations
 
@@ -451,13 +451,13 @@ local retailer = client:Retailer(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` | No |  |
-| `currency` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$ARRAY`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `approved` | `boolean` | No |  |
+| `currency` | `table` | No |  |
+| `id` | `string` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `region` | `table` | No |  |
+| `website` | `string` | No |  |
 
 ### Operations
 
@@ -509,8 +509,8 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -519,7 +519,7 @@ local search = client:Search(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Search():load({ id = "search_id" })
+local result, err = client:Search():load()
 ```
 
 ### Common Methods
@@ -562,17 +562,17 @@ local studio = client:Studio(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `founding_year` | ``$INTEGER`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `data` | `table` | No |  |
+| `description` | `string` | No |  |
+| `founding_year` | `number` | No |  |
+| `game` | `table` | No |  |
+| `id` | `string` | No |  |
+| `location` | `table` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `type` | `string` | No |  |
+| `website` | `string` | No |  |
 
 ### Operations
 
@@ -632,21 +632,21 @@ local user = client:User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `string` | No |  |
+| `cover_image` | `string` | No |  |
+| `data` | `table` | No |  |
+| `description` | `string` | No |  |
+| `developer` | `string` | No |  |
+| `franchise_id` | `string` | No |  |
+| `genre` | `table` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `platform` | `table` | No |  |
+| `publisher` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `screenshot` | `table` | No |  |
+| `success` | `boolean` | No |  |
+| `video` | `table` | No |  |
 
 ### Operations
 
@@ -709,7 +709,7 @@ local widget = client:Widget(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Widget():load({ id = "widget_id" })
+local result, err = client:Widget():load()
 ```
 
 ### Common Methods

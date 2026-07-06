@@ -66,8 +66,12 @@ class RetailerEntity:
     
 
     
-    def list(self, reqmatch: RetailerListMatch, ctrl=None) -> list[Retailer]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Retailer]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Retailer().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

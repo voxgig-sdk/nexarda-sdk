@@ -62,7 +62,7 @@ ConsoleLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Console#list (any subset of Console fields).
+# Request payload for Console#list.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -153,7 +153,7 @@ FranchisLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Franchis#list (any subset of Franchis fields).
+# Request payload for Franchis#list.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -268,7 +268,7 @@ GameLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Game#list (any subset of Game fields).
+# Request payload for Game#list.
 #
 # @!attribute [rw] age_rating
 #   @return [String, nil]
@@ -346,7 +346,7 @@ Platform = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Platform#load (any subset of Platform fields).
+# Request payload for Platform#load.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -450,7 +450,7 @@ Retailer = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Retailer#list (any subset of Retailer fields).
+# Request payload for Retailer#list.
 #
 # @!attribute [rw] approved
 #   @return [Boolean, nil]
@@ -496,7 +496,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#load (any subset of Search fields).
+# Request payload for Search#load.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -567,7 +567,7 @@ StudioLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Studio#list (any subset of Studio fields).
+# Request payload for Studio#list.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -703,7 +703,7 @@ UserListMatch = Struct.new(
 class Widget
 end
 
-# Match filter for Widget#load (any subset of Widget fields).
+# Request payload for Widget#load.
 class WidgetLoadMatch
 end
 

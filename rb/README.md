@@ -4,6 +4,8 @@
 
 The Ruby SDK for the Nexarda API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Console` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,7 +39,7 @@ begin
   # list returns an Array of Console records — iterate directly.
   consoles = client.Console.list
   consoles.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["id"]} #{item["data"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -54,6 +56,33 @@ begin
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  consoles = client.Console.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -74,7 +103,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -105,8 +136,8 @@ client = NexardaSDK.test({
   "entity" => { "console" => { "test01" => { "id" => "test01" } } },
 })
 
-# load returns the bare mock record (raises on error).
-console = client.Console.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+console = client.Console.list()
 puts console
 ```
 
@@ -203,10 +234,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -423,16 +451,16 @@ Create an instance: `console = client.Console`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ARRAY`` |  |
-| `manufacturer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `specification` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
+| `data` | `Hash` |  |
+| `description` | `String` |  |
+| `id` | `String` |  |
+| `image` | `Array` |  |
+| `manufacturer` | `String` |  |
+| `name` | `String` |  |
+| `release_date` | `String` |  |
+| `specification` | `Hash` |  |
+| `success` | `Boolean` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -464,14 +492,14 @@ Create an instance: `franchis = client.Franchis`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `total_game` | ``$INTEGER`` |  |
+| `data` | `Hash` |  |
+| `description` | `String` |  |
+| `game` | `Array` |  |
+| `id` | `String` |  |
+| `logo` | `String` |  |
+| `name` | `String` |  |
+| `success` | `Boolean` |  |
+| `total_game` | `Integer` |  |
 
 #### Example: Load
 
@@ -503,21 +531,21 @@ Create an instance: `game = client.Game`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `String` |  |
+| `cover_image` | `String` |  |
+| `data` | `Hash` |  |
+| `description` | `String` |  |
+| `developer` | `String` |  |
+| `franchise_id` | `String` |  |
+| `genre` | `Array` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
+| `platform` | `Array` |  |
+| `publisher` | `String` |  |
+| `release_date` | `String` |  |
+| `screenshot` | `Array` |  |
+| `success` | `Boolean` |  |
+| `video` | `Array` |  |
 
 #### Example: Load
 
@@ -548,14 +576,14 @@ Create an instance: `platform = client.Platform`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `Hash` |  |
+| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Platform record (raises on error).
-platform = client.Platform.load({ "id" => "platform_id" })
+platform = client.Platform.load()
 ```
 
 
@@ -573,16 +601,16 @@ Create an instance: `price = client.Price`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `discount` | ``$NUMBER`` |  |
-| `in_stock` | ``$BOOLEAN`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `original_price` | ``$NUMBER`` |  |
-| `price` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `retailer_id` | ``$STRING`` |  |
-| `retailer_name` | ``$STRING`` |  |
+| `affiliate_link` | `String` |  |
+| `currency` | `String` |  |
+| `discount` | `Float` |  |
+| `in_stock` | `Boolean` |  |
+| `last_updated` | `String` |  |
+| `original_price` | `Float` |  |
+| `price` | `Float` |  |
+| `region` | `String` |  |
+| `retailer_id` | `String` |  |
+| `retailer_name` | `String` |  |
 
 #### Example: List
 
@@ -606,13 +634,13 @@ Create an instance: `retailer = client.Retailer`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` |  |
-| `currency` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$ARRAY`` |  |
-| `website` | ``$STRING`` |  |
+| `approved` | `Boolean` |  |
+| `currency` | `Array` |  |
+| `id` | `String` |  |
+| `logo` | `String` |  |
+| `name` | `String` |  |
+| `region` | `Array` |  |
+| `website` | `String` |  |
 
 #### Example: List
 
@@ -636,14 +664,14 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `Hash` |  |
+| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Search record (raises on error).
-search = client.Search.load({ "id" => "search_id" })
+search = client.Search.load()
 ```
 
 
@@ -662,17 +690,17 @@ Create an instance: `studio = client.Studio`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `founding_year` | ``$INTEGER`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
+| `data` | `Hash` |  |
+| `description` | `String` |  |
+| `founding_year` | `Integer` |  |
+| `game` | `Array` |  |
+| `id` | `String` |  |
+| `location` | `Hash` |  |
+| `logo` | `String` |  |
+| `name` | `String` |  |
+| `success` | `Boolean` |  |
+| `type` | `String` |  |
+| `website` | `String` |  |
 
 #### Example: Load
 
@@ -704,21 +732,21 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `String` |  |
+| `cover_image` | `String` |  |
+| `data` | `Hash` |  |
+| `description` | `String` |  |
+| `developer` | `String` |  |
+| `franchise_id` | `String` |  |
+| `genre` | `Array` |  |
+| `id` | `String` |  |
+| `name` | `String` |  |
+| `platform` | `Array` |  |
+| `publisher` | `String` |  |
+| `release_date` | `String` |  |
+| `screenshot` | `Array` |  |
+| `success` | `Boolean` |  |
+| `video` | `Array` |  |
 
 #### Example: Load
 
@@ -749,16 +777,20 @@ Create an instance: `widget = client.Widget`
 
 ```ruby
 # load returns the bare Widget record (raises on error).
-widget = client.Widget.load({ "id" => "widget_id" })
+widget = client.Widget.load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -775,8 +807,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -820,14 +853,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 console = client.Console
-console.load({ "id" => "example_id" })
+console.list()
 
-# console.data_get now returns the loaded console data
+# console.data_get now returns the console data from the last list
 # console.match_get returns the last match criteria
 ```
 

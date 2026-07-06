@@ -65,8 +65,13 @@ class GameEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: GameLoadMatch, ctrl=None) -> Game:
+    def load(self, reqmatch=None, ctrl=None) -> Game:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Game().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class GameEntity:
 
 
     
-    def list(self, reqmatch: GameListMatch, ctrl=None) -> list[Game]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Game]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Game().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

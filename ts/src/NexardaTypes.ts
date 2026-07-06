@@ -22,7 +22,18 @@ export interface ConsoleLoadMatch {
   id: string
 }
 
-export type ConsoleListMatch = Partial<Console>
+export interface ConsoleListMatch {
+  data?: Record<string, any>
+  description?: string
+  id?: string
+  image?: any[]
+  manufacturer?: string
+  name?: string
+  release_date?: string
+  specification?: Record<string, any>
+  success?: boolean
+  type?: string
+}
 
 export interface Franchis {
   data?: Record<string, any>
@@ -39,7 +50,16 @@ export interface FranchisLoadMatch {
   id: string
 }
 
-export type FranchisListMatch = Partial<Franchis>
+export interface FranchisListMatch {
+  data?: Record<string, any>
+  description?: string
+  game?: any[]
+  id?: string
+  logo?: string
+  name?: string
+  success?: boolean
+  total_game?: number
+}
 
 export interface Game {
   age_rating?: string
@@ -64,14 +84,33 @@ export interface GameLoadMatch {
   id: string
 }
 
-export type GameListMatch = Partial<Game>
+export interface GameListMatch {
+  age_rating?: string
+  cover_image?: string
+  data?: Record<string, any>
+  description?: string
+  developer?: string
+  franchise_id?: string
+  genre?: any[]
+  id?: string
+  name?: string
+  platform?: any[]
+  publisher?: string
+  release_date?: string
+  screenshot?: any[]
+  success?: boolean
+  video?: any[]
+}
 
 export interface Platform {
   data?: Record<string, any>
   success?: boolean
 }
 
-export type PlatformLoadMatch = Partial<Platform>
+export interface PlatformLoadMatch {
+  data?: Record<string, any>
+  success?: boolean
+}
 
 export interface Price {
   affiliate_link?: string
@@ -101,14 +140,25 @@ export interface Retailer {
   website?: string
 }
 
-export type RetailerListMatch = Partial<Retailer>
+export interface RetailerListMatch {
+  approved?: boolean
+  currency?: any[]
+  id?: string
+  logo?: string
+  name?: string
+  region?: any[]
+  website?: string
+}
 
 export interface Search {
   data?: Record<string, any>
   success?: boolean
 }
 
-export type SearchLoadMatch = Partial<Search>
+export interface SearchLoadMatch {
+  data?: Record<string, any>
+  success?: boolean
+}
 
 export interface Studio {
   data?: Record<string, any>
@@ -128,7 +178,19 @@ export interface StudioLoadMatch {
   id: string
 }
 
-export type StudioListMatch = Partial<Studio>
+export interface StudioListMatch {
+  data?: Record<string, any>
+  description?: string
+  founding_year?: number
+  game?: any[]
+  id?: string
+  location?: Record<string, any>
+  logo?: string
+  name?: string
+  success?: boolean
+  type?: string
+  website?: string
+}
 
 export interface User {
   age_rating?: string
@@ -159,5 +221,6 @@ export interface UserListMatch {
 export interface Widget {
 }
 
-export type WidgetLoadMatch = Partial<Widget>
+export interface WidgetLoadMatch {
+}
 

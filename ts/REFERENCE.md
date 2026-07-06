@@ -225,16 +225,16 @@ const console = client.Console()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `manufacturer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `specification` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `image` | `any[]` | No |  |
+| `manufacturer` | `string` | No |  |
+| `name` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `specification` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -292,14 +292,14 @@ const franchis = client.Franchis()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_game` | ``$INTEGER`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `description` | `string` | No |  |
+| `game` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `total_game` | `number` | No |  |
 
 ### Operations
 
@@ -357,21 +357,21 @@ const game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `string` | No |  |
+| `cover_image` | `string` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `description` | `string` | No |  |
+| `developer` | `string` | No |  |
+| `franchise_id` | `string` | No |  |
+| `genre` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `platform` | `any[]` | No |  |
+| `publisher` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `screenshot` | `any[]` | No |  |
+| `success` | `boolean` | No |  |
+| `video` | `any[]` | No |  |
 
 ### Operations
 
@@ -429,8 +429,8 @@ const platform = client.Platform()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -439,7 +439,7 @@ const platform = client.Platform()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Platform().load({ id: 'platform_id' })
+const result = await client.Platform().load()
 ```
 
 ### Common Methods
@@ -480,16 +480,16 @@ const price = client.Price()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `discount` | ``$NUMBER`` | No |  |
-| `in_stock` | ``$BOOLEAN`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `original_price` | ``$NUMBER`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `retailer_id` | ``$STRING`` | No |  |
-| `retailer_name` | ``$STRING`` | No |  |
+| `affiliate_link` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `discount` | `number` | No |  |
+| `in_stock` | `boolean` | No |  |
+| `last_updated` | `string` | No |  |
+| `original_price` | `number` | No |  |
+| `price` | `number` | No |  |
+| `region` | `string` | No |  |
+| `retailer_id` | `string` | No |  |
+| `retailer_name` | `string` | No |  |
 
 ### Operations
 
@@ -539,13 +539,13 @@ const retailer = client.Retailer()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` | No |  |
-| `currency` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$ARRAY`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `approved` | `boolean` | No |  |
+| `currency` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `region` | `any[]` | No |  |
+| `website` | `string` | No |  |
 
 ### Operations
 
@@ -595,8 +595,8 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -605,7 +605,7 @@ const search = client.Search()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Search().load({ id: 'search_id' })
+const result = await client.Search().load()
 ```
 
 ### Common Methods
@@ -646,17 +646,17 @@ const studio = client.Studio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `founding_year` | ``$INTEGER`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `description` | `string` | No |  |
+| `founding_year` | `number` | No |  |
+| `game` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `location` | `Record<string, any>` | No |  |
+| `logo` | `string` | No |  |
+| `name` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `type` | `string` | No |  |
+| `website` | `string` | No |  |
 
 ### Operations
 
@@ -714,21 +714,21 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `string` | No |  |
+| `cover_image` | `string` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `description` | `string` | No |  |
+| `developer` | `string` | No |  |
+| `franchise_id` | `string` | No |  |
+| `genre` | `any[]` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `platform` | `any[]` | No |  |
+| `publisher` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `screenshot` | `any[]` | No |  |
+| `success` | `boolean` | No |  |
+| `video` | `any[]` | No |  |
 
 ### Operations
 
@@ -789,7 +789,7 @@ const widget = client.Widget()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Widget().load({ id: 'widget_id' })
+const result = await client.Widget().load()
 ```
 
 ### Common Methods

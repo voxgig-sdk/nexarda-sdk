@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the Nexarda API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Console()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -56,6 +61,35 @@ try {
 ```
 
 
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const consoles = await client.Console().list()
+  console.log(consoles)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
+}
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -100,7 +134,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NexardaSDK.test()
 
-const console = await client.Console().load({ id: 'test01' })
+const console = await client.Console().list()
 // console is a bare entity populated with mock response data
 console.log(console)
 ```
@@ -119,12 +153,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Console()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -227,11 +261,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): NexardaSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -241,10 +272,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -470,16 +500,16 @@ Create an instance: `const console = client.Console()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ARRAY`` |  |
-| `manufacturer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `specification` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
+| `data` | `Record<string, any>` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image` | `any[]` |  |
+| `manufacturer` | `string` |  |
+| `name` | `string` |  |
+| `release_date` | `string` |  |
+| `specification` | `Record<string, any>` |  |
+| `success` | `boolean` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -509,14 +539,14 @@ Create an instance: `const franchis = client.Franchis()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `total_game` | ``$INTEGER`` |  |
+| `data` | `Record<string, any>` |  |
+| `description` | `string` |  |
+| `game` | `any[]` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `boolean` |  |
+| `total_game` | `number` |  |
 
 #### Example: Load
 
@@ -546,21 +576,21 @@ Create an instance: `const game = client.Game()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `Record<string, any>` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `any[]` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `any[]` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `any[]` |  |
+| `success` | `boolean` |  |
+| `video` | `any[]` |  |
 
 #### Example: Load
 
@@ -589,13 +619,13 @@ Create an instance: `const platform = client.Platform()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `Record<string, any>` |  |
+| `success` | `boolean` |  |
 
 #### Example: Load
 
 ```ts
-const platform = await client.Platform().load({ id: 'platform_id' })
+const platform = await client.Platform().load()
 ```
 
 
@@ -613,16 +643,16 @@ Create an instance: `const price = client.Price()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `discount` | ``$NUMBER`` |  |
-| `in_stock` | ``$BOOLEAN`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `original_price` | ``$NUMBER`` |  |
-| `price` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `retailer_id` | ``$STRING`` |  |
-| `retailer_name` | ``$STRING`` |  |
+| `affiliate_link` | `string` |  |
+| `currency` | `string` |  |
+| `discount` | `number` |  |
+| `in_stock` | `boolean` |  |
+| `last_updated` | `string` |  |
+| `original_price` | `number` |  |
+| `price` | `number` |  |
+| `region` | `string` |  |
+| `retailer_id` | `string` |  |
+| `retailer_name` | `string` |  |
 
 #### Example: List
 
@@ -645,13 +675,13 @@ Create an instance: `const retailer = client.Retailer()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` |  |
-| `currency` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$ARRAY`` |  |
-| `website` | ``$STRING`` |  |
+| `approved` | `boolean` |  |
+| `currency` | `any[]` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `region` | `any[]` |  |
+| `website` | `string` |  |
 
 #### Example: List
 
@@ -674,13 +704,13 @@ Create an instance: `const search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `Record<string, any>` |  |
+| `success` | `boolean` |  |
 
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.Search().load()
 ```
 
 
@@ -699,17 +729,17 @@ Create an instance: `const studio = client.Studio()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `founding_year` | ``$INTEGER`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
+| `data` | `Record<string, any>` |  |
+| `description` | `string` |  |
+| `founding_year` | `number` |  |
+| `game` | `any[]` |  |
+| `id` | `string` |  |
+| `location` | `Record<string, any>` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `boolean` |  |
+| `type` | `string` |  |
+| `website` | `string` |  |
 
 #### Example: Load
 
@@ -739,21 +769,21 @@ Create an instance: `const user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `Record<string, any>` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `any[]` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `any[]` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `any[]` |  |
+| `success` | `boolean` |  |
+| `video` | `any[]` |  |
 
 #### Example: Load
 
@@ -781,16 +811,20 @@ Create an instance: `const widget = client.Widget()`
 #### Example: Load
 
 ```ts
-const widget = await client.Widget().load({ id: 'widget_id' })
+const widget = await client.Widget().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -807,11 +841,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -847,16 +879,16 @@ import { NexardaSDK } from '@voxgig-sdk/nexarda'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const console = client.Console()
-await console.load({ id: "example_id" })
+await console.list()
 
-// console.data() now returns the loaded console data
-// console.match() returns { id: "example_id" }
+// console.data() now returns the console data from the last `list`
+// console.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -27,8 +27,7 @@ type ConsoleLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// ConsoleListMatch mirrors the console fields as an all-optional match
-// filter (Go analog of Partial<Console>).
+// ConsoleListMatch is the typed request payload for Console.ListTyped.
 type ConsoleListMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -59,8 +58,7 @@ type FranchisLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// FranchisListMatch mirrors the franchis fields as an all-optional match
-// filter (Go analog of Partial<Franchis>).
+// FranchisListMatch is the typed request payload for Franchis.ListTyped.
 type FranchisListMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -97,8 +95,7 @@ type GameLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// GameListMatch mirrors the game fields as an all-optional match
-// filter (Go analog of Partial<Game>).
+// GameListMatch is the typed request payload for Game.ListTyped.
 type GameListMatch struct {
 	AgeRating *string `json:"age_rating,omitempty"`
 	CoverImage *string `json:"cover_image,omitempty"`
@@ -123,8 +120,7 @@ type Platform struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// PlatformLoadMatch mirrors the platform fields as an all-optional match
-// filter (Go analog of Partial<Platform>).
+// PlatformLoadMatch is the typed request payload for Platform.LoadTyped.
 type PlatformLoadMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -161,8 +157,7 @@ type Retailer struct {
 	Website *string `json:"website,omitempty"`
 }
 
-// RetailerListMatch mirrors the retailer fields as an all-optional match
-// filter (Go analog of Partial<Retailer>).
+// RetailerListMatch is the typed request payload for Retailer.ListTyped.
 type RetailerListMatch struct {
 	Approved *bool `json:"approved,omitempty"`
 	Currency *[]any `json:"currency,omitempty"`
@@ -179,8 +174,7 @@ type Search struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// SearchLoadMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchLoadMatch is the typed request payload for Search.LoadTyped.
 type SearchLoadMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -206,8 +200,7 @@ type StudioLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// StudioListMatch mirrors the studio fields as an all-optional match
-// filter (Go analog of Partial<Studio>).
+// StudioListMatch is the typed request payload for Studio.ListTyped.
 type StudioListMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -255,8 +248,7 @@ type UserListMatch struct {
 type Widget struct {
 }
 
-// WidgetLoadMatch mirrors the widget fields as an all-optional match
-// filter (Go analog of Partial<Widget>).
+// WidgetLoadMatch is the typed request payload for Widget.LoadTyped.
 type WidgetLoadMatch struct {
 }
 

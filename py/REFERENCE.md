@@ -124,25 +124,25 @@ console = client.Console()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `manufacturer` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `specification` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `data` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `image` | `list` | No |  |
+| `manufacturer` | `str` | No |  |
+| `name` | `str` | No |  |
+| `release_date` | `str` | No |  |
+| `specification` | `dict` | No |  |
+| `success` | `bool` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Console().list({})
+results = client.Console().list()
 for console in results:
     print(console)
 ```
@@ -194,23 +194,23 @@ franchis = client.Franchis()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_game` | ``$INTEGER`` | No |  |
+| `data` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `game` | `list` | No |  |
+| `id` | `str` | No |  |
+| `logo` | `str` | No |  |
+| `name` | `str` | No |  |
+| `success` | `bool` | No |  |
+| `total_game` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Franchis().list({})
+results = client.Franchis().list()
 for franchis in results:
     print(franchis)
 ```
@@ -262,30 +262,30 @@ game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `str` | No |  |
+| `cover_image` | `str` | No |  |
+| `data` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `developer` | `str` | No |  |
+| `franchise_id` | `str` | No |  |
+| `genre` | `list` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `platform` | `list` | No |  |
+| `publisher` | `str` | No |  |
+| `release_date` | `str` | No |  |
+| `screenshot` | `list` | No |  |
+| `success` | `bool` | No |  |
+| `video` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Game().list({})
+results = client.Game().list()
 for game in results:
     print(game)
 ```
@@ -337,8 +337,8 @@ platform = client.Platform()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -347,7 +347,7 @@ platform = client.Platform()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Platform().load({"id": "platform_id"})
+result = client.Platform().load()
 ```
 
 ### Common Methods
@@ -389,25 +389,25 @@ price = client.Price()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `discount` | ``$NUMBER`` | No |  |
-| `in_stock` | ``$BOOLEAN`` | No |  |
-| `last_updated` | ``$STRING`` | No |  |
-| `original_price` | ``$NUMBER`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `region` | ``$STRING`` | No |  |
-| `retailer_id` | ``$STRING`` | No |  |
-| `retailer_name` | ``$STRING`` | No |  |
+| `affiliate_link` | `str` | No |  |
+| `currency` | `str` | No |  |
+| `discount` | `float` | No |  |
+| `in_stock` | `bool` | No |  |
+| `last_updated` | `str` | No |  |
+| `original_price` | `float` | No |  |
+| `price` | `float` | No |  |
+| `region` | `str` | No |  |
+| `retailer_id` | `str` | No |  |
+| `retailer_name` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Price().list({})
+results = client.Price().list()
 for price in results:
     print(price)
 ```
@@ -451,22 +451,22 @@ retailer = client.Retailer()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` | No |  |
-| `currency` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `region` | ``$ARRAY`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `approved` | `bool` | No |  |
+| `currency` | `list` | No |  |
+| `id` | `str` | No |  |
+| `logo` | `str` | No |  |
+| `name` | `str` | No |  |
+| `region` | `list` | No |  |
+| `website` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Retailer().list({})
+results = client.Retailer().list()
 for retailer in results:
     print(retailer)
 ```
@@ -510,8 +510,8 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -520,7 +520,7 @@ search = client.Search()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Search().load({"id": "search_id"})
+result = client.Search().load()
 ```
 
 ### Common Methods
@@ -562,26 +562,26 @@ studio = client.Studio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `founding_year` | ``$INTEGER`` | No |  |
-| `game` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `logo` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `data` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `founding_year` | `int` | No |  |
+| `game` | `list` | No |  |
+| `id` | `str` | No |  |
+| `location` | `dict` | No |  |
+| `logo` | `str` | No |  |
+| `name` | `str` | No |  |
+| `success` | `bool` | No |  |
+| `type` | `str` | No |  |
+| `website` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Studio().list({})
+results = client.Studio().list()
 for studio in results:
     print(studio)
 ```
@@ -633,30 +633,30 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | ``$STRING`` | No |  |
-| `cover_image` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `franchise_id` | ``$STRING`` | No |  |
-| `genre` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `platform` | ``$ARRAY`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `video` | ``$ARRAY`` | No |  |
+| `age_rating` | `str` | No |  |
+| `cover_image` | `str` | No |  |
+| `data` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `developer` | `str` | No |  |
+| `franchise_id` | `str` | No |  |
+| `genre` | `list` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `platform` | `list` | No |  |
+| `publisher` | `str` | No |  |
+| `release_date` | `str` | No |  |
+| `screenshot` | `list` | No |  |
+| `success` | `bool` | No |  |
+| `video` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.User().list({})
+results = client.User().list()
 for user in results:
     print(user)
 ```
@@ -711,7 +711,7 @@ widget = client.Widget()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Widget().load({"id": "widget_id"})
+result = client.Widget().load()
 ```
 
 ### Common Methods

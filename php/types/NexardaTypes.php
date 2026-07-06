@@ -33,7 +33,7 @@ class ConsoleLoadMatch
     public string $id;
 }
 
-/** Match filter for Console#list (any subset of Console fields). */
+/** Request payload for Console#list. */
 class ConsoleListMatch
 {
     public ?array $data = null;
@@ -67,7 +67,7 @@ class FranchisLoadMatch
     public string $id;
 }
 
-/** Match filter for Franchis#list (any subset of Franchis fields). */
+/** Request payload for Franchis#list. */
 class FranchisListMatch
 {
     public ?array $data = null;
@@ -107,7 +107,7 @@ class GameLoadMatch
     public string $id;
 }
 
-/** Match filter for Game#list (any subset of Game fields). */
+/** Request payload for Game#list. */
 class GameListMatch
 {
     public ?string $age_rating = null;
@@ -134,7 +134,7 @@ class Platform
     public ?bool $success = null;
 }
 
-/** Match filter for Platform#load (any subset of Platform fields). */
+/** Request payload for Platform#load. */
 class PlatformLoadMatch
 {
     public ?array $data = null;
@@ -175,7 +175,7 @@ class Retailer
     public ?string $website = null;
 }
 
-/** Match filter for Retailer#list (any subset of Retailer fields). */
+/** Request payload for Retailer#list. */
 class RetailerListMatch
 {
     public ?bool $approved = null;
@@ -194,7 +194,7 @@ class Search
     public ?bool $success = null;
 }
 
-/** Match filter for Search#load (any subset of Search fields). */
+/** Request payload for Search#load. */
 class SearchLoadMatch
 {
     public ?array $data = null;
@@ -223,7 +223,7 @@ class StudioLoadMatch
     public string $id;
 }
 
-/** Match filter for Studio#list (any subset of Studio fields). */
+/** Request payload for Studio#list. */
 class StudioListMatch
 {
     public ?array $data = null;
@@ -276,7 +276,7 @@ class Widget
 {
 }
 
-/** Match filter for Widget#load (any subset of Widget fields). */
+/** Request payload for Widget#load. */
 class WidgetLoadMatch
 {
 }

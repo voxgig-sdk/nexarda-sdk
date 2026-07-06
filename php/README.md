@@ -4,6 +4,8 @@
 
 The PHP SDK for the Nexarda API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Console()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,7 +40,7 @@ try {
     // list() returns an array of Console records — iterate directly.
     $consoles = $client->Console()->list();
     foreach ($consoles as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["id"] . " " . $item["data"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -54,6 +56,37 @@ try {
     print_r($console);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $consoles = $client->Console()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -77,7 +110,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -106,8 +142,8 @@ $client = NexardaSDK::test([
     "entity" => ["console" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
-$console = $client->Console()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$console = $client->Console()->list();
 print_r($console);
 ```
 
@@ -207,10 +243,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -428,16 +461,16 @@ Create an instance: `$console = $client->Console();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ARRAY`` |  |
-| `manufacturer` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `specification` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
+| `data` | `array` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `image` | `array` |  |
+| `manufacturer` | `string` |  |
+| `name` | `string` |  |
+| `release_date` | `string` |  |
+| `specification` | `array` |  |
+| `success` | `bool` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -469,14 +502,14 @@ Create an instance: `$franchis = $client->Franchis();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `total_game` | ``$INTEGER`` |  |
+| `data` | `array` |  |
+| `description` | `string` |  |
+| `game` | `array` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `bool` |  |
+| `total_game` | `int` |  |
 
 #### Example: Load
 
@@ -508,21 +541,21 @@ Create an instance: `$game = $client->Game();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `array` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `array` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `array` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `array` |  |
+| `success` | `bool` |  |
+| `video` | `array` |  |
 
 #### Example: Load
 
@@ -553,14 +586,14 @@ Create an instance: `$platform = $client->Platform();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `array` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Platform record (throws on error).
-$platform = $client->Platform()->load(["id" => "platform_id"]);
+$platform = $client->Platform()->load();
 ```
 
 
@@ -578,16 +611,16 @@ Create an instance: `$price = $client->Price();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `discount` | ``$NUMBER`` |  |
-| `in_stock` | ``$BOOLEAN`` |  |
-| `last_updated` | ``$STRING`` |  |
-| `original_price` | ``$NUMBER`` |  |
-| `price` | ``$NUMBER`` |  |
-| `region` | ``$STRING`` |  |
-| `retailer_id` | ``$STRING`` |  |
-| `retailer_name` | ``$STRING`` |  |
+| `affiliate_link` | `string` |  |
+| `currency` | `string` |  |
+| `discount` | `float` |  |
+| `in_stock` | `bool` |  |
+| `last_updated` | `string` |  |
+| `original_price` | `float` |  |
+| `price` | `float` |  |
+| `region` | `string` |  |
+| `retailer_id` | `string` |  |
+| `retailer_name` | `string` |  |
 
 #### Example: List
 
@@ -611,13 +644,13 @@ Create an instance: `$retailer = $client->Retailer();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | ``$BOOLEAN`` |  |
-| `currency` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `region` | ``$ARRAY`` |  |
-| `website` | ``$STRING`` |  |
+| `approved` | `bool` |  |
+| `currency` | `array` |  |
+| `id` | `string` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `region` | `array` |  |
+| `website` | `string` |  |
 
 #### Example: List
 
@@ -641,14 +674,14 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `success` | ``$BOOLEAN`` |  |
+| `data` | `array` |  |
+| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Search record (throws on error).
-$search = $client->Search()->load(["id" => "search_id"]);
+$search = $client->Search()->load();
 ```
 
 
@@ -667,17 +700,17 @@ Create an instance: `$studio = $client->Studio();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `founding_year` | ``$INTEGER`` |  |
-| `game` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$OBJECT`` |  |
-| `logo` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `type` | ``$STRING`` |  |
-| `website` | ``$STRING`` |  |
+| `data` | `array` |  |
+| `description` | `string` |  |
+| `founding_year` | `int` |  |
+| `game` | `array` |  |
+| `id` | `string` |  |
+| `location` | `array` |  |
+| `logo` | `string` |  |
+| `name` | `string` |  |
+| `success` | `bool` |  |
+| `type` | `string` |  |
+| `website` | `string` |  |
 
 #### Example: Load
 
@@ -709,21 +742,21 @@ Create an instance: `$user = $client->User();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | ``$STRING`` |  |
-| `cover_image` | ``$STRING`` |  |
-| `data` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `developer` | ``$STRING`` |  |
-| `franchise_id` | ``$STRING`` |  |
-| `genre` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `platform` | ``$ARRAY`` |  |
-| `publisher` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `screenshot` | ``$ARRAY`` |  |
-| `success` | ``$BOOLEAN`` |  |
-| `video` | ``$ARRAY`` |  |
+| `age_rating` | `string` |  |
+| `cover_image` | `string` |  |
+| `data` | `array` |  |
+| `description` | `string` |  |
+| `developer` | `string` |  |
+| `franchise_id` | `string` |  |
+| `genre` | `array` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `platform` | `array` |  |
+| `publisher` | `string` |  |
+| `release_date` | `string` |  |
+| `screenshot` | `array` |  |
+| `success` | `bool` |  |
+| `video` | `array` |  |
 
 #### Example: Load
 
@@ -754,16 +787,20 @@ Create an instance: `$widget = $client->Widget();`
 
 ```php
 // load() returns the bare Widget record (throws on error).
-$widget = $client->Widget()->load(["id" => "widget_id"]);
+$widget = $client->Widget()->load();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -780,8 +817,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -825,15 +863,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $console = $client->Console();
-$console->load(["id" => "example_id"]);
+$console->list();
 
-// $console->dataGet() now returns the loaded console data
-// $console->matchGet() returns the last match criteria
+// $console->data_get() now returns the console data from the last list
+// $console->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
