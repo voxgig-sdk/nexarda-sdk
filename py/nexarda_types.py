@@ -90,7 +90,7 @@ class Game(TypedDict, total=False):
     video: list
 
 
-class GameLoadMatch(TypedDict):
+class GameLoadMatch(TypedDict, total=False):
     platform_id: str
     id: str
 
@@ -136,7 +136,7 @@ class Price(TypedDict, total=False):
     retailer_name: str
 
 
-class PriceListMatch(TypedDict):
+class PriceListMatch(TypedDict, total=False):
     game_id: str
     console_id: str
 

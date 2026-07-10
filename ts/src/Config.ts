@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.nexarda.com',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

@@ -63,7 +63,7 @@ func main() {
     }
 
     // Load a single console — the value is the loaded record.
-    console, err := client.Console(nil).Load(map[string]any{"id": "example"}, nil)
+    console, err := client.Console(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }

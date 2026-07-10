@@ -80,8 +80,8 @@ export interface Game {
 }
 
 export interface GameLoadMatch {
-  platform_id: string
-  id: string
+  platform_id?: string
+  id?: string
 }
 
 export interface GameListMatch {
@@ -126,8 +126,8 @@ export interface Price {
 }
 
 export interface PriceListMatch {
-  game_id: string
-  console_id: string
+  game_id?: string
+  console_id?: string
 }
 
 export interface Retailer {

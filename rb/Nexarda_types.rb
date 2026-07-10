@@ -258,10 +258,10 @@ Game = Struct.new(
 # Request payload for Game#load.
 #
 # @!attribute [rw] platform_id
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] id
-#   @return [String]
+#   @return [String, nil]
 GameLoadMatch = Struct.new(
   :platform_id,
   :id,
@@ -407,10 +407,10 @@ Price = Struct.new(
 # Request payload for Price#list.
 #
 # @!attribute [rw] game_id
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] console_id
-#   @return [String]
+#   @return [String, nil]
 PriceListMatch = Struct.new(
   :game_id,
   :console_id,
