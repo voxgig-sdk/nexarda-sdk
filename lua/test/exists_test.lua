@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Nexarda SDK exists test
 
 local sdk = require("nexarda_sdk")
 
