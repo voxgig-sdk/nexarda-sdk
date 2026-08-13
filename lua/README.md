@@ -64,7 +64,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local consoles, err = client:Console():list()
+local studios, err = client:Studio():list()
 if err then error(err) end
 ```
 
@@ -122,7 +122,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Console():list()
+local result, err = client:Studio():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -254,15 +254,13 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `manufacturer` |  |
 | `name` |  |
-| `release_date` |  |
-| `specification` |  |
-| `success` |  |
+| `releaseDate` |  |
+| `specifications` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -273,14 +271,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `game` |  |
+| `games` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
-| `total_game` |  |
+| `totalGames` |  |
 
 Operations: List, Load.
 
@@ -290,21 +286,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `videos` |  |
 
 Operations: List, Load.
 
@@ -314,8 +308,11 @@ API path: `/games`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `api` |  |
+| `priceUpdates` |  |
+| `status` |  |
+| `timestamp` |  |
+| `website` |  |
 
 Operations: Load.
 
@@ -325,16 +322,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `affiliate_link` |  |
+| `affiliateLink` |  |
 | `currency` |  |
 | `discount` |  |
-| `in_stock` |  |
-| `last_updated` |  |
-| `original_price` |  |
+| `inStock` |  |
+| `lastUpdated` |  |
+| `originalPrice` |  |
 | `price` |  |
 | `region` |  |
-| `retailer_id` |  |
-| `retailer_name` |  |
+| `retailerId` |  |
+| `retailerName` |  |
 
 Operations: List.
 
@@ -345,11 +342,11 @@ API path: `/games/{gameId}/prices`
 | Field | Description |
 | --- | --- |
 | `approved` |  |
-| `currency` |  |
+| `currencies` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `region` |  |
+| `regions` |  |
 | `website` |  |
 
 Operations: List.
@@ -360,8 +357,9 @@ API path: `/retailers`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `consoles` |  |
+| `games` |  |
+| `totalResults` |  |
 
 Operations: Load.
 
@@ -371,15 +369,13 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `founding_year` |  |
-| `game` |  |
+| `foundingYear` |  |
+| `games` |  |
 | `id` |  |
 | `location` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
 | `type` |  |
 | `website` |  |
 
@@ -391,21 +387,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `avatar` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
+| `joinDate` |  |
+| `libraryCount` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `username` |  |
+| `videos` |  |
+| `wishlistCount` |  |
 
 Operations: List, Load.
 
@@ -440,15 +439,13 @@ Create an instance: `local console = client:Console(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `image` | `table` |  |
+| `images` | `table` |  |
 | `manufacturer` | `string` |  |
 | `name` | `string` |  |
-| `release_date` | `string` |  |
-| `specification` | `table` |  |
-| `success` | `boolean` |  |
+| `releaseDate` | `string` |  |
+| `specifications` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -479,14 +476,12 @@ Create an instance: `local franchis = client:Franchis(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
 | `description` | `string` |  |
-| `game` | `table` |  |
+| `games` | `table` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `boolean` |  |
-| `total_game` | `number` |  |
+| `totalGames` | `number` |  |
 
 #### Example: Load
 
@@ -516,21 +511,19 @@ Create an instance: `local game = client:Game(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `table` |  |
+| `ageRating` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `table` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `table` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `platform` | `table` |  |
+| `platforms` | `table` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `table` |  |
-| `success` | `boolean` |  |
-| `video` | `table` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `table` |  |
+| `videos` | `table` |  |
 
 #### Example: Load
 
@@ -559,8 +552,11 @@ Create an instance: `local platform = client:Platform(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `success` | `boolean` |  |
+| `api` | `table` |  |
+| `priceUpdates` | `table` |  |
+| `status` | `string` |  |
+| `timestamp` | `string` |  |
+| `website` | `table` |  |
 
 #### Example: Load
 
@@ -583,16 +579,16 @@ Create an instance: `local price = client:Price(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | `string` |  |
+| `affiliateLink` | `string` |  |
 | `currency` | `string` |  |
 | `discount` | `number` |  |
-| `in_stock` | `boolean` |  |
-| `last_updated` | `string` |  |
-| `original_price` | `number` |  |
+| `inStock` | `boolean` |  |
+| `lastUpdated` | `string` |  |
+| `originalPrice` | `number` |  |
 | `price` | `number` |  |
 | `region` | `string` |  |
-| `retailer_id` | `string` |  |
-| `retailer_name` | `string` |  |
+| `retailerId` | `string` |  |
+| `retailerName` | `string` |  |
 
 #### Example: List
 
@@ -616,11 +612,11 @@ Create an instance: `local retailer = client:Retailer(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `approved` | `boolean` |  |
-| `currency` | `table` |  |
+| `currencies` | `table` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `region` | `table` |  |
+| `regions` | `table` |  |
 | `website` | `string` |  |
 
 #### Example: List
@@ -644,8 +640,9 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `success` | `boolean` |  |
+| `consoles` | `table` |  |
+| `games` | `table` |  |
+| `totalResults` | `number` |  |
 
 #### Example: Load
 
@@ -669,15 +666,13 @@ Create an instance: `local studio = client:Studio(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
 | `description` | `string` |  |
-| `founding_year` | `number` |  |
-| `game` | `table` |  |
+| `foundingYear` | `number` |  |
+| `games` | `table` |  |
 | `id` | `string` |  |
 | `location` | `table` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `boolean` |  |
 | `type` | `string` |  |
 | `website` | `string` |  |
 
@@ -709,21 +704,24 @@ Create an instance: `local user = client:User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `table` |  |
+| `ageRating` | `string` |  |
+| `avatar` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `table` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `table` |  |
 | `id` | `string` |  |
+| `joinDate` | `string` |  |
+| `libraryCount` | `number` |  |
 | `name` | `string` |  |
-| `platform` | `table` |  |
+| `platforms` | `table` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `table` |  |
-| `success` | `boolean` |  |
-| `video` | `table` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `table` |  |
+| `username` | `string` |  |
+| `videos` | `table` |  |
+| `wishlistCount` | `number` |  |
 
 #### Example: Load
 
@@ -831,11 +829,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local console = client:Console()
-console:list()
+local studio = client:Studio()
+studio:list()
 
--- console:data_get() now returns the console data from the last list
--- console:match_get() returns the last match criteria
+-- studio:data_get() now returns the studio data from the last list
+-- studio:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

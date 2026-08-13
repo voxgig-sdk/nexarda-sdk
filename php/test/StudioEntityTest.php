@@ -97,7 +97,7 @@ class StudioEntityTest extends TestCase
             "id" => $studio_ref01_data["id"],
         ];
         $studio_ref01_data_dt0_loaded = $studio_ref01_ent->load($studio_ref01_match_dt0, null);
-        $studio_ref01_data_dt0_load_result = Helpers::to_map($studio_ref01_data_dt0_loaded);
+        $studio_ref01_data_dt0_load_result = Helpers::to_map(is_object($studio_ref01_data_dt0_loaded) && method_exists($studio_ref01_data_dt0_loaded, 'data_get') ? $studio_ref01_data_dt0_loaded->data_get() : $studio_ref01_data_dt0_loaded);
         $this->assertNotNull($studio_ref01_data_dt0_load_result);
         $this->assertEquals($studio_ref01_data_dt0_load_result["id"], $studio_ref01_data["id"]);
 

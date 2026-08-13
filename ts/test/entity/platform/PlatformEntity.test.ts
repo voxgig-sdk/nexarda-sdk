@@ -62,7 +62,7 @@ describe('PlatformEntity', async () => {
     // LOAD
     const platform_ref01_ent = client.Platform()
     const platform_ref01_match_dt0: any = {}
-    const platform_ref01_data_dt0 = await platform_ref01_ent.load(platform_ref01_match_dt0)
+    const platform_ref01_data_dt0 = (await platform_ref01_ent.load(platform_ref01_match_dt0)).data()
     assert(null != platform_ref01_data_dt0)
 
 

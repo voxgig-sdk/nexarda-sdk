@@ -64,13 +64,13 @@ describe('UserEntity', async () => {
     const user_ref01_match: any = {}
     user_ref01_match['user_id'] = setup.idmap['user01']
 
-    const user_ref01_list = await user_ref01_ent.list(user_ref01_match)
+    const user_ref01_list = (await user_ref01_ent.list(user_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const user_ref01_match_dt0: any = {}
     user_ref01_match_dt0.id = user_ref01_data.id
-    const user_ref01_data_dt0 = await user_ref01_ent.load(user_ref01_match_dt0)
+    const user_ref01_data_dt0 = (await user_ref01_ent.load(user_ref01_match_dt0)).data()
     assert(user_ref01_data_dt0.id === user_ref01_data.id)
 
 

@@ -64,7 +64,7 @@ describe('PriceEntity', async () => {
     const price_ref01_match: any = {}
     price_ref01_match['console_id'] = setup.idmap['console01']
 
-    const price_ref01_list = await price_ref01_ent.list(price_ref01_match)
+    const price_ref01_list = (await price_ref01_ent.list(price_ref01_match)).map((e: any) => e.data())
 
 
   })

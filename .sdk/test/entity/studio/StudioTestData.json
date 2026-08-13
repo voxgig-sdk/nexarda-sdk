@@ -2,59 +2,51 @@
   "existing": {
     "studio": {
       "STUDIO00": {
-        "data": {},
-        "description": "s6f",
-        "founding_year": "s70",
-        "game": [],
+        "description": "s5a",
+        "foundingYear": "s5b",
+        "games": [],
         "id": "STUDIO00",
         "location": {},
-        "logo": "s74",
-        "name": "s75",
-        "success": true,
-        "type": "s77",
-        "website": "s78"
+        "logo": "s5f",
+        "name": "s60",
+        "type": "s61",
+        "website": "s62"
       },
       "STUDIO01": {
-        "data": {},
-        "description": "sdd",
-        "founding_year": "sde",
-        "game": [],
+        "description": "sb4",
+        "foundingYear": "sb5",
+        "games": [],
         "id": "STUDIO01",
         "location": {},
-        "logo": "se2",
-        "name": "se3",
-        "success": true,
-        "type": "se5",
-        "website": "se6"
+        "logo": "sb9",
+        "name": "sba",
+        "type": "sbb",
+        "website": "sbc"
       },
       "STUDIO02": {
-        "data": {},
-        "description": "s14b",
-        "founding_year": "s14c",
-        "game": [],
+        "description": "s10e",
+        "foundingYear": "s10f",
+        "games": [],
         "id": "STUDIO02",
         "location": {},
-        "logo": "s150",
-        "name": "s151",
-        "success": true,
-        "type": "s153",
-        "website": "s154"
+        "logo": "s113",
+        "name": "s114",
+        "type": "s115",
+        "website": "s116"
       }
     }
   },
   "new": {
     "studio": {
       "studio_ref01": {
-        "data": {},
-        "description": "s1b9",
-        "founding_year": "s1ba",
-        "game": [],
+        "description": "s168",
+        "foundingYear": "s169",
+        "games": [],
         "location": {},
-        "logo": "s1be",
-        "name": "s1bf",
-        "success": true,
-        "type": "s1c1",
-        "website": "s1c2"
+        "logo": "s16d",
+        "name": "s16e",
+        "type": "s16f",
+        "website": "s170"
       }
     }
   }

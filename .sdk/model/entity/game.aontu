@@ -6,19 +6,14 @@ main: kit: entity: game: {
 
   fields: [
     {
-      name: "age_rating"
+      name: "ageRating"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "cover_image"
+      name: "coverImage"
       req: false
       type: "`$STRING`"
-    }
-    {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "description"
@@ -31,12 +26,12 @@ main: kit: entity: game: {
       type: "`$STRING`"
     }
     {
-      name: "franchise_id"
+      name: "franchiseId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "genre"
+      name: "genres"
       req: false
       type: "`$ARRAY`"
     }
@@ -51,7 +46,7 @@ main: kit: entity: game: {
       type: "`$STRING`"
     }
     {
-      name: "platform"
+      name: "platforms"
       req: false
       type: "`$ARRAY`"
     }
@@ -61,22 +56,17 @@ main: kit: entity: game: {
       type: "`$STRING`"
     }
     {
-      name: "release_date"
+      name: "releaseDate"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "screenshot"
+      name: "screenshots"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
-    }
-    {
-      name: "video"
+      name: "videos"
       req: false
       type: "`$ARRAY`"
     }
@@ -175,7 +165,7 @@ main: kit: entity: game: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -208,7 +198,7 @@ main: kit: entity: game: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

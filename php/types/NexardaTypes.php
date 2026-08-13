@@ -15,15 +15,13 @@ declare(strict_types=1);
 /** Console entity data model. */
 class Console
 {
-    public ?array $data = null;
     public ?string $description = null;
     public ?string $id = null;
-    public ?array $image = null;
+    public ?array $images = null;
     public ?string $manufacturer = null;
     public ?string $name = null;
-    public ?string $release_date = null;
-    public ?array $specification = null;
-    public ?bool $success = null;
+    public ?string $releaseDate = null;
+    public ?array $specifications = null;
     public ?string $type = null;
 }
 
@@ -36,29 +34,25 @@ class ConsoleLoadMatch
 /** Request payload for Console#list. */
 class ConsoleListMatch
 {
-    public ?array $data = null;
     public ?string $description = null;
     public ?string $id = null;
-    public ?array $image = null;
+    public ?array $images = null;
     public ?string $manufacturer = null;
     public ?string $name = null;
-    public ?string $release_date = null;
-    public ?array $specification = null;
-    public ?bool $success = null;
+    public ?string $releaseDate = null;
+    public ?array $specifications = null;
     public ?string $type = null;
 }
 
 /** Franchis entity data model. */
 class Franchis
 {
-    public ?array $data = null;
     public ?string $description = null;
-    public ?array $game = null;
+    public ?array $games = null;
     public ?string $id = null;
     public ?string $logo = null;
     public ?string $name = null;
-    public ?bool $success = null;
-    public ?int $total_game = null;
+    public ?int $totalGames = null;
 }
 
 /** Request payload for Franchis#load. */
@@ -70,34 +64,30 @@ class FranchisLoadMatch
 /** Request payload for Franchis#list. */
 class FranchisListMatch
 {
-    public ?array $data = null;
     public ?string $description = null;
-    public ?array $game = null;
+    public ?array $games = null;
     public ?string $id = null;
     public ?string $logo = null;
     public ?string $name = null;
-    public ?bool $success = null;
-    public ?int $total_game = null;
+    public ?int $totalGames = null;
 }
 
 /** Game entity data model. */
 class Game
 {
-    public ?string $age_rating = null;
-    public ?string $cover_image = null;
-    public ?array $data = null;
+    public ?string $ageRating = null;
+    public ?string $coverImage = null;
     public ?string $description = null;
     public ?string $developer = null;
-    public ?string $franchise_id = null;
-    public ?array $genre = null;
+    public ?string $franchiseId = null;
+    public ?array $genres = null;
     public ?string $id = null;
     public ?string $name = null;
-    public ?array $platform = null;
+    public ?array $platforms = null;
     public ?string $publisher = null;
-    public ?string $release_date = null;
-    public ?array $screenshot = null;
-    public ?bool $success = null;
-    public ?array $video = null;
+    public ?string $releaseDate = null;
+    public ?array $screenshots = null;
+    public ?array $videos = null;
 }
 
 /** Request payload for Game#load. */
@@ -110,50 +100,54 @@ class GameLoadMatch
 /** Request payload for Game#list. */
 class GameListMatch
 {
-    public ?string $age_rating = null;
-    public ?string $cover_image = null;
-    public ?array $data = null;
+    public ?string $ageRating = null;
+    public ?string $coverImage = null;
     public ?string $description = null;
     public ?string $developer = null;
-    public ?string $franchise_id = null;
-    public ?array $genre = null;
+    public ?string $franchiseId = null;
+    public ?array $genres = null;
     public ?string $id = null;
     public ?string $name = null;
-    public ?array $platform = null;
+    public ?array $platforms = null;
     public ?string $publisher = null;
-    public ?string $release_date = null;
-    public ?array $screenshot = null;
-    public ?bool $success = null;
-    public ?array $video = null;
+    public ?string $releaseDate = null;
+    public ?array $screenshots = null;
+    public ?array $videos = null;
 }
 
 /** Platform entity data model. */
 class Platform
 {
-    public ?array $data = null;
-    public ?bool $success = null;
+    public ?array $api = null;
+    public ?array $priceUpdates = null;
+    public ?string $status = null;
+    public ?string $timestamp = null;
+    public ?array $website = null;
 }
 
 /** Request payload for Platform#load. */
 class PlatformLoadMatch
 {
-    public ?array $data = null;
-    public ?bool $success = null;
+    public ?array $api = null;
+    public ?array $priceUpdates = null;
+    public ?string $status = null;
+    public ?string $timestamp = null;
+    public ?array $website = null;
 }
 
 /** Price entity data model. */
 class Price
 {
-    public ?string $affiliate_link = null;
+    public ?string $affiliateLink = null;
     public ?string $currency = null;
     public ?float $discount = null;
-    public ?bool $in_stock = null;
-    public ?string $last_updated = null;
-    public ?float $original_price = null;
+    public ?bool $inStock = null;
+    public ?string $lastUpdated = null;
+    public ?float $originalPrice = null;
     public ?float $price = null;
     public ?string $region = null;
-    public ?string $retailer_id = null;
-    public ?string $retailer_name = null;
+    public ?string $retailerId = null;
+    public ?string $retailerName = null;
 }
 
 /** Request payload for Price#list. */
@@ -167,11 +161,11 @@ class PriceListMatch
 class Retailer
 {
     public ?bool $approved = null;
-    public ?array $currency = null;
+    public ?array $currencies = null;
     public ?string $id = null;
     public ?string $logo = null;
     public ?string $name = null;
-    public ?array $region = null;
+    public ?array $regions = null;
     public ?string $website = null;
 }
 
@@ -179,40 +173,40 @@ class Retailer
 class RetailerListMatch
 {
     public ?bool $approved = null;
-    public ?array $currency = null;
+    public ?array $currencies = null;
     public ?string $id = null;
     public ?string $logo = null;
     public ?string $name = null;
-    public ?array $region = null;
+    public ?array $regions = null;
     public ?string $website = null;
 }
 
 /** Search entity data model. */
 class Search
 {
-    public ?array $data = null;
-    public ?bool $success = null;
+    public ?array $consoles = null;
+    public ?array $games = null;
+    public ?int $totalResults = null;
 }
 
 /** Request payload for Search#load. */
 class SearchLoadMatch
 {
-    public ?array $data = null;
-    public ?bool $success = null;
+    public ?array $consoles = null;
+    public ?array $games = null;
+    public ?int $totalResults = null;
 }
 
 /** Studio entity data model. */
 class Studio
 {
-    public ?array $data = null;
     public ?string $description = null;
-    public ?int $founding_year = null;
-    public ?array $game = null;
+    public ?int $foundingYear = null;
+    public ?array $games = null;
     public ?string $id = null;
     public ?array $location = null;
     public ?string $logo = null;
     public ?string $name = null;
-    public ?bool $success = null;
     public ?string $type = null;
     public ?string $website = null;
 }
@@ -226,15 +220,13 @@ class StudioLoadMatch
 /** Request payload for Studio#list. */
 class StudioListMatch
 {
-    public ?array $data = null;
     public ?string $description = null;
-    public ?int $founding_year = null;
-    public ?array $game = null;
+    public ?int $foundingYear = null;
+    public ?array $games = null;
     public ?string $id = null;
     public ?array $location = null;
     public ?string $logo = null;
     public ?string $name = null;
-    public ?bool $success = null;
     public ?string $type = null;
     public ?string $website = null;
 }
@@ -242,21 +234,24 @@ class StudioListMatch
 /** User entity data model. */
 class User
 {
-    public ?string $age_rating = null;
-    public ?string $cover_image = null;
-    public ?array $data = null;
+    public ?string $ageRating = null;
+    public ?string $avatar = null;
+    public ?string $coverImage = null;
     public ?string $description = null;
     public ?string $developer = null;
-    public ?string $franchise_id = null;
-    public ?array $genre = null;
+    public ?string $franchiseId = null;
+    public ?array $genres = null;
     public ?string $id = null;
+    public ?string $joinDate = null;
+    public ?int $libraryCount = null;
     public ?string $name = null;
-    public ?array $platform = null;
+    public ?array $platforms = null;
     public ?string $publisher = null;
-    public ?string $release_date = null;
-    public ?array $screenshot = null;
-    public ?bool $success = null;
-    public ?array $video = null;
+    public ?string $releaseDate = null;
+    public ?array $screenshots = null;
+    public ?string $username = null;
+    public ?array $videos = null;
+    public ?int $wishlistCount = null;
 }
 
 /** Request payload for User#load. */

@@ -37,7 +37,7 @@ class GameEntity extends NexardaEntityBase<Game> {
 
 
 
-  async load(this: any, reqmatch?: GameLoadMatch, ctrl?: Control): Promise<Game> {
+  async load(this: any, reqmatch?: GameLoadMatch, ctrl?: Control): Promise<GameEntity> {
 
     const utility = this._utility
 
@@ -128,7 +128,15 @@ class GameEntity extends NexardaEntityBase<Game> {
         }
       }
 
-      return done(ctx)
+      const out = done(ctx)
+
+      // An operation resolves to the ENTITY, not the raw data — the record
+      // has just been absorbed into this instance and is reached through
+      // data(). `done` still runs: it completes the pipeline and raises on
+      // failure, and when throwing is disabled it hands back the error
+      // payload, which passes through unchanged. See AGENTS.md "Entity
+      // operations return ENTITIES".
+      return (ctx.result && ctx.result.ok) ? this : out
     }
     catch (err: any) {
 
@@ -150,7 +158,7 @@ class GameEntity extends NexardaEntityBase<Game> {
 
 
 
-  async list(this: any, reqmatch?: GameListMatch, ctrl?: Control): Promise<Game[]> {
+  async list(this: any, reqmatch?: GameListMatch, ctrl?: Control): Promise<GameEntity[]> {
 
     const utility = this._utility
 

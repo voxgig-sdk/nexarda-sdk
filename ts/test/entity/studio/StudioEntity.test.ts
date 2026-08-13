@@ -63,13 +63,13 @@ describe('StudioEntity', async () => {
     const studio_ref01_ent = client.Studio()
     const studio_ref01_match: any = {}
 
-    const studio_ref01_list = await studio_ref01_ent.list(studio_ref01_match)
+    const studio_ref01_list = (await studio_ref01_ent.list(studio_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const studio_ref01_match_dt0: any = {}
     studio_ref01_match_dt0.id = studio_ref01_data.id
-    const studio_ref01_data_dt0 = await studio_ref01_ent.load(studio_ref01_match_dt0)
+    const studio_ref01_data_dt0 = (await studio_ref01_ent.load(studio_ref01_match_dt0)).data()
     assert(studio_ref01_data_dt0.id === studio_ref01_data.id)
 
 

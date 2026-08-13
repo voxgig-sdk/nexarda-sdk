@@ -40,7 +40,7 @@ try {
     // list() returns an array of Console records — iterate directly.
     $consoles = $client->Console()->list();
     foreach ($consoles as $item) {
-        echo $item["id"] . " " . $item["data"] . "\n";
+        echo $item["id"] . " " . $item["description"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -51,7 +51,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Console record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Console record (throws on error).
     $console = $client->Console()->load(["id" => "example_id"]);
     print_r($console);
 } catch (\Throwable $err) {
@@ -67,7 +67,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $consoles = $client->Console()->list();
+    $studios = $client->Studio()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -139,12 +139,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = NexardaSDK::test([
-    "entity" => ["console" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["studio" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$console = $client->Console()->list();
-print_r($console);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$studio = $client->Studio()->list();
+print_r($studio);
 ```
 
 ### Use a custom fetch function
@@ -253,7 +254,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -275,15 +276,13 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `manufacturer` |  |
 | `name` |  |
-| `release_date` |  |
-| `specification` |  |
-| `success` |  |
+| `releaseDate` |  |
+| `specifications` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -294,14 +293,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `game` |  |
+| `games` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
-| `total_game` |  |
+| `totalGames` |  |
 
 Operations: List, Load.
 
@@ -311,21 +308,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `videos` |  |
 
 Operations: List, Load.
 
@@ -335,8 +330,11 @@ API path: `/games`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `api` |  |
+| `priceUpdates` |  |
+| `status` |  |
+| `timestamp` |  |
+| `website` |  |
 
 Operations: Load.
 
@@ -346,16 +344,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `affiliate_link` |  |
+| `affiliateLink` |  |
 | `currency` |  |
 | `discount` |  |
-| `in_stock` |  |
-| `last_updated` |  |
-| `original_price` |  |
+| `inStock` |  |
+| `lastUpdated` |  |
+| `originalPrice` |  |
 | `price` |  |
 | `region` |  |
-| `retailer_id` |  |
-| `retailer_name` |  |
+| `retailerId` |  |
+| `retailerName` |  |
 
 Operations: List.
 
@@ -366,11 +364,11 @@ API path: `/games/{gameId}/prices`
 | Field | Description |
 | --- | --- |
 | `approved` |  |
-| `currency` |  |
+| `currencies` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `region` |  |
+| `regions` |  |
 | `website` |  |
 
 Operations: List.
@@ -381,8 +379,9 @@ API path: `/retailers`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `consoles` |  |
+| `games` |  |
+| `totalResults` |  |
 
 Operations: Load.
 
@@ -392,15 +391,13 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `founding_year` |  |
-| `game` |  |
+| `foundingYear` |  |
+| `games` |  |
 | `id` |  |
 | `location` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
 | `type` |  |
 | `website` |  |
 
@@ -412,21 +409,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `avatar` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
+| `joinDate` |  |
+| `libraryCount` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `username` |  |
+| `videos` |  |
+| `wishlistCount` |  |
 
 Operations: List, Load.
 
@@ -461,21 +461,19 @@ Create an instance: `$console = $client->Console();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `image` | `array` |  |
+| `images` | `array` |  |
 | `manufacturer` | `string` |  |
 | `name` | `string` |  |
-| `release_date` | `string` |  |
-| `specification` | `array` |  |
-| `success` | `bool` |  |
+| `releaseDate` | `string` |  |
+| `specifications` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Console record (throws on error).
+// load() returns the ENTITY — call data_get() for the Console record (throws on error).
 $console = $client->Console()->load(["id" => "console_id"]);
 ```
 
@@ -502,19 +500,17 @@ Create an instance: `$franchis = $client->Franchis();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
 | `description` | `string` |  |
-| `game` | `array` |  |
+| `games` | `array` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `bool` |  |
-| `total_game` | `int` |  |
+| `totalGames` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Franchis record (throws on error).
+// load() returns the ENTITY — call data_get() for the Franchis record (throws on error).
 $franchis = $client->Franchis()->load(["id" => "franchis_id"]);
 ```
 
@@ -541,26 +537,24 @@ Create an instance: `$game = $client->Game();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `array` |  |
+| `ageRating` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `array` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `array` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `platform` | `array` |  |
+| `platforms` | `array` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `array` |  |
-| `success` | `bool` |  |
-| `video` | `array` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `array` |  |
+| `videos` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Game record (throws on error).
+// load() returns the ENTITY — call data_get() for the Game record (throws on error).
 $game = $client->Game()->load(["id" => "game_id"]);
 ```
 
@@ -586,13 +580,16 @@ Create an instance: `$platform = $client->Platform();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
-| `success` | `bool` |  |
+| `api` | `array` |  |
+| `priceUpdates` | `array` |  |
+| `status` | `string` |  |
+| `timestamp` | `string` |  |
+| `website` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Platform record (throws on error).
+// load() returns the ENTITY — call data_get() for the Platform record (throws on error).
 $platform = $client->Platform()->load();
 ```
 
@@ -611,16 +608,16 @@ Create an instance: `$price = $client->Price();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | `string` |  |
+| `affiliateLink` | `string` |  |
 | `currency` | `string` |  |
 | `discount` | `float` |  |
-| `in_stock` | `bool` |  |
-| `last_updated` | `string` |  |
-| `original_price` | `float` |  |
+| `inStock` | `bool` |  |
+| `lastUpdated` | `string` |  |
+| `originalPrice` | `float` |  |
 | `price` | `float` |  |
 | `region` | `string` |  |
-| `retailer_id` | `string` |  |
-| `retailer_name` | `string` |  |
+| `retailerId` | `string` |  |
+| `retailerName` | `string` |  |
 
 #### Example: List
 
@@ -645,11 +642,11 @@ Create an instance: `$retailer = $client->Retailer();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `approved` | `bool` |  |
-| `currency` | `array` |  |
+| `currencies` | `array` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `region` | `array` |  |
+| `regions` | `array` |  |
 | `website` | `string` |  |
 
 #### Example: List
@@ -674,13 +671,14 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
-| `success` | `bool` |  |
+| `consoles` | `array` |  |
+| `games` | `array` |  |
+| `totalResults` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Search record (throws on error).
+// load() returns the ENTITY — call data_get() for the Search record (throws on error).
 $search = $client->Search()->load();
 ```
 
@@ -700,22 +698,20 @@ Create an instance: `$studio = $client->Studio();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
 | `description` | `string` |  |
-| `founding_year` | `int` |  |
-| `game` | `array` |  |
+| `foundingYear` | `int` |  |
+| `games` | `array` |  |
 | `id` | `string` |  |
 | `location` | `array` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `bool` |  |
 | `type` | `string` |  |
 | `website` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Studio record (throws on error).
+// load() returns the ENTITY — call data_get() for the Studio record (throws on error).
 $studio = $client->Studio()->load(["id" => "studio_id"]);
 ```
 
@@ -742,26 +738,29 @@ Create an instance: `$user = $client->User();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `array` |  |
+| `ageRating` | `string` |  |
+| `avatar` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `array` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `array` |  |
 | `id` | `string` |  |
+| `joinDate` | `string` |  |
+| `libraryCount` | `int` |  |
 | `name` | `string` |  |
-| `platform` | `array` |  |
+| `platforms` | `array` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `array` |  |
-| `success` | `bool` |  |
-| `video` | `array` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `array` |  |
+| `username` | `string` |  |
+| `videos` | `array` |  |
+| `wishlistCount` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare User record (throws on error).
+// load() returns the ENTITY — call data_get() for the User record (throws on error).
 $user = $client->User()->load(["id" => "user_id"]);
 ```
 
@@ -786,7 +785,7 @@ Create an instance: `$widget = $client->Widget();`
 #### Example: Load
 
 ```php
-// load() returns the bare Widget record (throws on error).
+// load() returns the ENTITY — call data_get() for the Widget record (throws on error).
 $widget = $client->Widget()->load();
 ```
 
@@ -867,11 +866,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$console = $client->Console();
-$console->list();
+$studio = $client->Studio();
+$studio->list();
 
-// $console->data_get() now returns the console data from the last list
-// $console->match_get() returns the last match criteria
+// $studio->data_get() now returns the studio data from the last list
+// $studio->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

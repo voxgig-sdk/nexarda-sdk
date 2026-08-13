@@ -37,7 +37,7 @@ class PriceEntity extends NexardaEntityBase<Price> {
 
 
 
-  async list(this: any, reqmatch?: PriceListMatch, ctrl?: Control): Promise<Price[]> {
+  async list(this: any, reqmatch?: PriceListMatch, ctrl?: Control): Promise<PriceEntity[]> {
 
     const utility = this._utility
 

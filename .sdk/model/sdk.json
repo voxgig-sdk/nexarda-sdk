@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "console": {
           "active": true,
@@ -25,12 +30,6 @@
             "field": {}
           },
           "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
             {
               "active": true,
               "name": "description",
@@ -45,7 +44,7 @@
             },
             {
               "active": true,
-              "name": "image",
+              "name": "images",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -63,21 +62,15 @@
             },
             {
               "active": true,
-              "name": "release_date",
+              "name": "releaseDate",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "specification",
+              "name": "specifications",
               "req": false,
               "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
             },
             {
               "active": true,
@@ -111,6 +104,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/consoles",
                   "parts": [
@@ -123,7 +117,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -146,6 +140,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/consoles/{consoleId}",
                   "parts": [
@@ -164,7 +159,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -182,19 +177,13 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "description",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "game",
+              "name": "games",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -218,13 +207,7 @@
             },
             {
               "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "total_game",
+              "name": "totalGames",
               "req": false,
               "type": "`$INTEGER`"
             }
@@ -254,6 +237,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/franchises",
                   "parts": [
@@ -266,7 +250,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -289,6 +273,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/franchises/{franchiseId}",
                   "parts": [
@@ -307,7 +292,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -325,21 +310,15 @@
           "fields": [
             {
               "active": true,
-              "name": "age_rating",
+              "name": "ageRating",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "cover_image",
+              "name": "coverImage",
               "req": false,
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "type": "`$OBJECT`"
             },
             {
               "active": true,
@@ -355,13 +334,13 @@
             },
             {
               "active": true,
-              "name": "franchise_id",
+              "name": "franchiseId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "genre",
+              "name": "genres",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -379,7 +358,7 @@
             },
             {
               "active": true,
-              "name": "platform",
+              "name": "platforms",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -391,25 +370,19 @@
             },
             {
               "active": true,
-              "name": "release_date",
+              "name": "releaseDate",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "screenshot",
+              "name": "screenshots",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
-            },
-            {
-              "active": true,
-              "name": "video",
+              "name": "videos",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -448,6 +421,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/games",
                   "parts": [
@@ -494,6 +468,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/games/platform/{platformId}",
                   "parts": [
@@ -514,7 +489,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -531,6 +506,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/games/{gameId}",
                   "parts": [
@@ -549,7 +525,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -571,15 +547,33 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "api",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "success",
+              "name": "priceUpdates",
               "req": false,
-              "type": "`$BOOLEAN`"
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "status",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "timestamp",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "website",
+              "req": false,
+              "type": "`$OBJECT`"
             }
           ],
           "name": "platform",
@@ -591,6 +585,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/status",
                   "parts": [
@@ -599,7 +594,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -617,7 +612,7 @@
           "fields": [
             {
               "active": true,
-              "name": "affiliate_link",
+              "name": "affiliateLink",
               "req": false,
               "type": "`$STRING`"
             },
@@ -635,19 +630,19 @@
             },
             {
               "active": true,
-              "name": "in_stock",
+              "name": "inStock",
               "req": false,
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
-              "name": "last_updated",
+              "name": "lastUpdated",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "original_price",
+              "name": "originalPrice",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -665,13 +660,13 @@
             },
             {
               "active": true,
-              "name": "retailer_id",
+              "name": "retailerId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "retailer_name",
+              "name": "retailerName",
               "req": false,
               "type": "`$STRING`"
             }
@@ -715,6 +710,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/games/{gameId}/prices",
                   "parts": [
@@ -736,7 +732,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -764,6 +760,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/consoles/{consoleId}/prices",
                   "parts": [
@@ -784,7 +781,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -815,7 +812,7 @@
             },
             {
               "active": true,
-              "name": "currency",
+              "name": "currencies",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -839,7 +836,7 @@
             },
             {
               "active": true,
-              "name": "region",
+              "name": "regions",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -863,6 +860,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/retailers",
                   "parts": [
@@ -871,7 +869,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -889,15 +887,21 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
+              "name": "consoles",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "success",
+              "name": "games",
               "req": false,
-              "type": "`$BOOLEAN`"
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "totalResults",
+              "req": false,
+              "type": "`$INTEGER`"
             }
           ],
           "name": "search",
@@ -938,6 +942,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/search",
                   "parts": [
@@ -952,7 +957,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -970,25 +975,19 @@
           "fields": [
             {
               "active": true,
-              "name": "data",
-              "req": false,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
               "name": "description",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "founding_year",
+              "name": "foundingYear",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "game",
+              "name": "games",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1015,12 +1014,6 @@
               "name": "name",
               "req": false,
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
             },
             {
               "active": true,
@@ -1068,6 +1061,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/studios",
                   "parts": [
@@ -1081,7 +1075,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1104,6 +1098,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/studios/{studioId}",
                   "parts": [
@@ -1122,7 +1117,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1140,21 +1135,21 @@
           "fields": [
             {
               "active": true,
-              "name": "age_rating",
+              "name": "ageRating",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "cover_image",
+              "name": "avatar",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "data",
+              "name": "coverImage",
               "req": false,
-              "type": "`$OBJECT`"
+              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -1170,13 +1165,13 @@
             },
             {
               "active": true,
-              "name": "franchise_id",
+              "name": "franchiseId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "genre",
+              "name": "genres",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1188,13 +1183,25 @@
             },
             {
               "active": true,
+              "name": "joinDate",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "libraryCount",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
               "name": "name",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "platform",
+              "name": "platforms",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1206,27 +1213,33 @@
             },
             {
               "active": true,
-              "name": "release_date",
+              "name": "releaseDate",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "screenshot",
+              "name": "screenshots",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "success",
+              "name": "username",
               "req": false,
-              "type": "`$BOOLEAN`"
+              "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "video",
+              "name": "videos",
               "req": false,
               "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "wishlistCount",
+              "req": false,
+              "type": "`$INTEGER`"
             }
           ],
           "id": {
@@ -1253,6 +1266,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/users/{userId}/library",
                   "parts": [
@@ -1273,7 +1287,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 },
                 {
@@ -1290,6 +1304,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/users/{userId}/wishlist",
                   "parts": [
@@ -1310,7 +1325,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1333,6 +1348,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/users/{userId}",
                   "parts": [
@@ -1351,7 +1367,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.data`"
                   }
                 }
               ]
@@ -1396,6 +1412,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/widgets/button",
                   "parts": [
@@ -1437,6 +1454,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/widgets/product-card",
                   "parts": [
@@ -1973,18 +1991,41 @@
         }
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2006,22 +2047,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -2060,21 +2119,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -2113,12 +2190,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -2130,10 +2212,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2155,22 +2250,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2192,13 +2305,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2210,10 +2328,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2235,13 +2366,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2258,10 +2394,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2283,13 +2432,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -2312,10 +2466,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "nexarda"
+            "goversion": "",
+            "name": "nexarda",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2337,9 +2504,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

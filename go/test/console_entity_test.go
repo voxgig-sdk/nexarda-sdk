@@ -128,7 +128,7 @@ func TestConsoleEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		consoleRef01DataDt0LoadResult := core.ToMapAny(consoleRef01DataDt0Loaded)
+		consoleRef01DataDt0LoadResult := core.ToMapAny(entityData(consoleRef01DataDt0Loaded))
 		if consoleRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

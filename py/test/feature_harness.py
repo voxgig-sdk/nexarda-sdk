@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import NexardaControl
-from core.error import NexardaError
-from core.result import NexardaResult
-from core.spec import NexardaSpec
+from nexarda_sdk.config import make_config
+from nexarda_sdk.features import _make_feature
+from nexarda_sdk.core.control import NexardaControl
+from nexarda_sdk.core.error import NexardaError
+from nexarda_sdk.core.result import NexardaResult
+from nexarda_sdk.core.spec import NexardaSpec
 
 
 # True when this SDK was generated with the named feature.

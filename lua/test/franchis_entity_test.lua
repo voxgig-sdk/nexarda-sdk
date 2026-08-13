@@ -97,7 +97,7 @@ describe("FranchisEntity", function()
     }
     local franchis_ref01_data_dt0_loaded, err = franchis_ref01_ent:load(franchis_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local franchis_ref01_data_dt0_load_result = helpers.to_map(franchis_ref01_data_dt0_loaded)
+    local franchis_ref01_data_dt0_load_result = helpers.to_map(type(franchis_ref01_data_dt0_loaded) == 'table' and franchis_ref01_data_dt0_loaded.data_get and franchis_ref01_data_dt0_loaded:data_get() or franchis_ref01_data_dt0_loaded)
     assert.is_not_nil(franchis_ref01_data_dt0_load_result)
     assert.are.equal(franchis_ref01_data_dt0_load_result["id"], franchis_ref01_data["id"])
 

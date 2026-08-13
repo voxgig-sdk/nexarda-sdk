@@ -127,15 +127,13 @@ local console = client:Console(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `image` | `table` | No |  |
+| `images` | `table` | No |  |
 | `manufacturer` | `string` | No |  |
 | `name` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `specification` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `releaseDate` | `string` | No |  |
+| `specifications` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -196,14 +194,12 @@ local franchis = client:Franchis(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
 | `description` | `string` | No |  |
-| `game` | `table` | No |  |
+| `games` | `table` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `boolean` | No |  |
-| `total_game` | `number` | No |  |
+| `totalGames` | `number` | No |  |
 
 ### Operations
 
@@ -263,21 +259,19 @@ local game = client:Game(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `table` | No |  |
+| `ageRating` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `table` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `table` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `table` | No |  |
+| `platforms` | `table` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `table` | No |  |
-| `success` | `boolean` | No |  |
-| `video` | `table` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `table` | No |  |
+| `videos` | `table` | No |  |
 
 ### Operations
 
@@ -337,8 +331,11 @@ local platform = client:Platform(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `api` | `table` | No |  |
+| `priceUpdates` | `table` | No |  |
+| `status` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `website` | `table` | No |  |
 
 ### Operations
 
@@ -390,16 +387,16 @@ local price = client:Price(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | `string` | No |  |
+| `affiliateLink` | `string` | No |  |
 | `currency` | `string` | No |  |
 | `discount` | `number` | No |  |
-| `in_stock` | `boolean` | No |  |
-| `last_updated` | `string` | No |  |
-| `original_price` | `number` | No |  |
+| `inStock` | `boolean` | No |  |
+| `lastUpdated` | `string` | No |  |
+| `originalPrice` | `number` | No |  |
 | `price` | `number` | No |  |
 | `region` | `string` | No |  |
-| `retailer_id` | `string` | No |  |
-| `retailer_name` | `string` | No |  |
+| `retailerId` | `string` | No |  |
+| `retailerName` | `string` | No |  |
 
 ### Operations
 
@@ -452,11 +449,11 @@ local retailer = client:Retailer(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `approved` | `boolean` | No |  |
-| `currency` | `table` | No |  |
+| `currencies` | `table` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `region` | `table` | No |  |
+| `regions` | `table` | No |  |
 | `website` | `string` | No |  |
 
 ### Operations
@@ -509,8 +506,9 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `consoles` | `table` | No |  |
+| `games` | `table` | No |  |
+| `totalResults` | `number` | No |  |
 
 ### Operations
 
@@ -562,15 +560,13 @@ local studio = client:Studio(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
 | `description` | `string` | No |  |
-| `founding_year` | `number` | No |  |
-| `game` | `table` | No |  |
+| `foundingYear` | `number` | No |  |
+| `games` | `table` | No |  |
 | `id` | `string` | No |  |
 | `location` | `table` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `boolean` | No |  |
 | `type` | `string` | No |  |
 | `website` | `string` | No |  |
 
@@ -632,21 +628,24 @@ local user = client:User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `table` | No |  |
+| `ageRating` | `string` | No |  |
+| `avatar` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `table` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `table` | No |  |
 | `id` | `string` | No |  |
+| `joinDate` | `string` | No |  |
+| `libraryCount` | `number` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `table` | No |  |
+| `platforms` | `table` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `table` | No |  |
-| `success` | `boolean` | No |  |
-| `video` | `table` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `table` | No |  |
+| `username` | `string` | No |  |
+| `videos` | `table` | No |  |
+| `wishlistCount` | `number` | No |  |
 
 ### Operations
 

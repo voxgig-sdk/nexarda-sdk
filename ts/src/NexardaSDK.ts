@@ -155,8 +155,29 @@ class NexardaSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('NexardaSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -217,73 +238,147 @@ class NexardaSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('NexardaSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('NexardaSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Console().list()` / `client.Console().load({ id })`.
-  Console(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Console(entopts?: Record<string, any>) {
     const self = this
-    return new ConsoleEntity(self,data)
+    return new ConsoleEntity(self, entopts)
   }
 
 
   // Entity access: `client.Franchis().list()` / `client.Franchis().load({ id })`.
-  Franchis(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Franchis(entopts?: Record<string, any>) {
     const self = this
-    return new FranchisEntity(self,data)
+    return new FranchisEntity(self, entopts)
   }
 
 
   // Entity access: `client.Game().list()` / `client.Game().load({ id })`.
-  Game(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Game(entopts?: Record<string, any>) {
     const self = this
-    return new GameEntity(self,data)
+    return new GameEntity(self, entopts)
   }
 
 
   // Entity access: `client.Platform().list()` / `client.Platform().load({ id })`.
-  Platform(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Platform(entopts?: Record<string, any>) {
     const self = this
-    return new PlatformEntity(self,data)
+    return new PlatformEntity(self, entopts)
   }
 
 
   // Entity access: `client.Price().list()` / `client.Price().load({ id })`.
-  Price(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Price(entopts?: Record<string, any>) {
     const self = this
-    return new PriceEntity(self,data)
+    return new PriceEntity(self, entopts)
   }
 
 
   // Entity access: `client.Retailer().list()` / `client.Retailer().load({ id })`.
-  Retailer(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Retailer(entopts?: Record<string, any>) {
     const self = this
-    return new RetailerEntity(self,data)
+    return new RetailerEntity(self, entopts)
   }
 
 
   // Entity access: `client.Search().list()` / `client.Search().load({ id })`.
-  Search(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Search(entopts?: Record<string, any>) {
     const self = this
-    return new SearchEntity(self,data)
+    return new SearchEntity(self, entopts)
   }
 
 
   // Entity access: `client.Studio().list()` / `client.Studio().load({ id })`.
-  Studio(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Studio(entopts?: Record<string, any>) {
     const self = this
-    return new StudioEntity(self,data)
+    return new StudioEntity(self, entopts)
   }
 
 
   // Entity access: `client.User().list()` / `client.User().load({ id })`.
-  User(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  User(entopts?: Record<string, any>) {
     const self = this
-    return new UserEntity(self,data)
+    return new UserEntity(self, entopts)
   }
 
 
   // Entity access: `client.Widget().list()` / `client.Widget().load({ id })`.
-  Widget(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Widget(entopts?: Record<string, any>) {
     const self = this
-    return new WidgetEntity(self,data)
+    return new WidgetEntity(self, entopts)
   }
 
 

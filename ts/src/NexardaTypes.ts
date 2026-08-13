@@ -6,15 +6,13 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Console {
-  data?: Record<string, any>
   description?: string
   id?: string
-  image?: any[]
+  images?: any[]
   manufacturer?: string
   name?: string
-  release_date?: string
-  specification?: Record<string, any>
-  success?: boolean
+  releaseDate?: string
+  specifications?: Record<string, any>
   type?: string
 }
 
@@ -23,27 +21,23 @@ export interface ConsoleLoadMatch {
 }
 
 export interface ConsoleListMatch {
-  data?: Record<string, any>
   description?: string
   id?: string
-  image?: any[]
+  images?: any[]
   manufacturer?: string
   name?: string
-  release_date?: string
-  specification?: Record<string, any>
-  success?: boolean
+  releaseDate?: string
+  specifications?: Record<string, any>
   type?: string
 }
 
 export interface Franchis {
-  data?: Record<string, any>
   description?: string
-  game?: any[]
+  games?: any[]
   id?: string
   logo?: string
   name?: string
-  success?: boolean
-  total_game?: number
+  totalGames?: number
 }
 
 export interface FranchisLoadMatch {
@@ -51,32 +45,28 @@ export interface FranchisLoadMatch {
 }
 
 export interface FranchisListMatch {
-  data?: Record<string, any>
   description?: string
-  game?: any[]
+  games?: any[]
   id?: string
   logo?: string
   name?: string
-  success?: boolean
-  total_game?: number
+  totalGames?: number
 }
 
 export interface Game {
-  age_rating?: string
-  cover_image?: string
-  data?: Record<string, any>
+  ageRating?: string
+  coverImage?: string
   description?: string
   developer?: string
-  franchise_id?: string
-  genre?: any[]
+  franchiseId?: string
+  genres?: any[]
   id?: string
   name?: string
-  platform?: any[]
+  platforms?: any[]
   publisher?: string
-  release_date?: string
-  screenshot?: any[]
-  success?: boolean
-  video?: any[]
+  releaseDate?: string
+  screenshots?: any[]
+  videos?: any[]
 }
 
 export interface GameLoadMatch {
@@ -85,44 +75,48 @@ export interface GameLoadMatch {
 }
 
 export interface GameListMatch {
-  age_rating?: string
-  cover_image?: string
-  data?: Record<string, any>
+  ageRating?: string
+  coverImage?: string
   description?: string
   developer?: string
-  franchise_id?: string
-  genre?: any[]
+  franchiseId?: string
+  genres?: any[]
   id?: string
   name?: string
-  platform?: any[]
+  platforms?: any[]
   publisher?: string
-  release_date?: string
-  screenshot?: any[]
-  success?: boolean
-  video?: any[]
+  releaseDate?: string
+  screenshots?: any[]
+  videos?: any[]
 }
 
 export interface Platform {
-  data?: Record<string, any>
-  success?: boolean
+  api?: Record<string, any>
+  priceUpdates?: Record<string, any>
+  status?: string
+  timestamp?: string
+  website?: Record<string, any>
 }
 
 export interface PlatformLoadMatch {
-  data?: Record<string, any>
-  success?: boolean
+  api?: Record<string, any>
+  priceUpdates?: Record<string, any>
+  status?: string
+  timestamp?: string
+  website?: Record<string, any>
 }
 
 export interface Price {
-  affiliate_link?: string
+  affiliateLink?: string
   currency?: string
   discount?: number
-  in_stock?: boolean
-  last_updated?: string
-  original_price?: number
+  inStock?: boolean
+  lastUpdated?: string
+  originalPrice?: number
   price?: number
   region?: string
-  retailer_id?: string
-  retailer_name?: string
+  retailerId?: string
+  retailerName?: string
 }
 
 export interface PriceListMatch {
@@ -132,44 +126,44 @@ export interface PriceListMatch {
 
 export interface Retailer {
   approved?: boolean
-  currency?: any[]
+  currencies?: any[]
   id?: string
   logo?: string
   name?: string
-  region?: any[]
+  regions?: any[]
   website?: string
 }
 
 export interface RetailerListMatch {
   approved?: boolean
-  currency?: any[]
+  currencies?: any[]
   id?: string
   logo?: string
   name?: string
-  region?: any[]
+  regions?: any[]
   website?: string
 }
 
 export interface Search {
-  data?: Record<string, any>
-  success?: boolean
+  consoles?: any[]
+  games?: any[]
+  totalResults?: number
 }
 
 export interface SearchLoadMatch {
-  data?: Record<string, any>
-  success?: boolean
+  consoles?: any[]
+  games?: any[]
+  totalResults?: number
 }
 
 export interface Studio {
-  data?: Record<string, any>
   description?: string
-  founding_year?: number
-  game?: any[]
+  foundingYear?: number
+  games?: any[]
   id?: string
   location?: Record<string, any>
   logo?: string
   name?: string
-  success?: boolean
   type?: string
   website?: string
 }
@@ -179,35 +173,36 @@ export interface StudioLoadMatch {
 }
 
 export interface StudioListMatch {
-  data?: Record<string, any>
   description?: string
-  founding_year?: number
-  game?: any[]
+  foundingYear?: number
+  games?: any[]
   id?: string
   location?: Record<string, any>
   logo?: string
   name?: string
-  success?: boolean
   type?: string
   website?: string
 }
 
 export interface User {
-  age_rating?: string
-  cover_image?: string
-  data?: Record<string, any>
+  ageRating?: string
+  avatar?: string
+  coverImage?: string
   description?: string
   developer?: string
-  franchise_id?: string
-  genre?: any[]
+  franchiseId?: string
+  genres?: any[]
   id?: string
+  joinDate?: string
+  libraryCount?: number
   name?: string
-  platform?: any[]
+  platforms?: any[]
   publisher?: string
-  release_date?: string
-  screenshot?: any[]
-  success?: boolean
-  video?: any[]
+  releaseDate?: string
+  screenshots?: any[]
+  username?: string
+  videos?: any[]
+  wishlistCount?: number
 }
 
 export interface UserLoadMatch {
@@ -216,11 +211,23 @@ export interface UserLoadMatch {
 
 export interface UserListMatch {
   id: string
+
+  // Selects a custom action instead of the plain list:
+  //   'library' | 'wishlist'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Widget {
 }
 
 export interface WidgetLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'button' | 'product_card'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 

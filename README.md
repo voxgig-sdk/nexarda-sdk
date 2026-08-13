@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = NexardaSDK.test()
-const consoles = await client.Console().list()
-// consoles is an array of bare Console records populated with mock data
-console.log(consoles)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = NexardaSDK.test({
+  entity: {
+    studio: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const studios = await client.Studio().list()
+// studios is an array of Studio entities, populated with mock data
+// — call studios[0].data() for the record itself
+console.log(studios)
 ```
 
 ### Python
 
 ```python
 client = NexardaSDK.test()
-consoles = client.Console().list()
-print(consoles)
+studios = client.Studio().list()
+print(studios)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(consoles)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = NexardaSDK::test([
-    "entity" => ["console" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["studio" => ["test01" => ["id" => "test01"]]],
 ]);
-$consoles = $client->Console()->list();
+$studios = $client->Studio()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Console(nil).List(
+result, err := client.Studio(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Console(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = NexardaSDK.test({
-  "entity" => { "console" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "studio" => { "test01" => { "id" => "test01" } } },
 })
-consoles = client.Console.list()
+studios = client.Studio.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Console():list()
+local results, err = client:Studio():list()
 ```
 
 ## Packages
@@ -112,10 +121,10 @@ const client = new NexardaSDK({
   apikey: process.env.NEXARDA_APIKEY,
 })
 
-// List all consoles (returns Console[])
-const consoles = await client.Console().list()
-for (const console of consoles) {
-  console.log(console)
+// List all consoles (returns ConsoleEntity[] — .data() for the record)
+const console_s = await client.Console().list()
+for (const console_ of console_s) {
+  console.log(console_)
 }
 ```
 
@@ -207,7 +216,7 @@ $client = new NexardaSDK([
 $consoles = $client->Console()->list();
 print_r($consoles);
 
-// Load a specific console (returns the bare record; throws on error)
+// Load a specific console (returns the ENTITY; call data_get() for the record; throws on error)
 $console = $client->Console()->load(["id" => "example_id"]);
 print_r($console);
 ```
@@ -242,7 +251,7 @@ client = NexardaSDK.new({
 consoles = client.Console.list
 puts consoles
 
-# Load a specific console (returns the bare record; raises on error)
+# Load a specific console (returns the ENTITY; call data_get for the record)
 console = client.Console.load({ "id" => "example_id" })
 puts console
 ```
@@ -381,6 +390,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.nexarda.com](https://api.nexarda.com)
 

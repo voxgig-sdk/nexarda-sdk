@@ -7,112 +7,106 @@
 -- edit by hand.
 
 ---@class Console
----@field data? table
 ---@field description? string
 ---@field id? string
----@field image? table
+---@field images? table
 ---@field manufacturer? string
 ---@field name? string
----@field release_date? string
----@field specification? table
----@field success? boolean
+---@field releaseDate? string
+---@field specifications? table
 ---@field type? string
 
 ---@class ConsoleLoadMatch
 ---@field id string
 
 ---@class ConsoleListMatch
----@field data? table
 ---@field description? string
 ---@field id? string
----@field image? table
+---@field images? table
 ---@field manufacturer? string
 ---@field name? string
----@field release_date? string
----@field specification? table
----@field success? boolean
+---@field releaseDate? string
+---@field specifications? table
 ---@field type? string
 
 ---@class Franchis
----@field data? table
 ---@field description? string
----@field game? table
+---@field games? table
 ---@field id? string
 ---@field logo? string
 ---@field name? string
----@field success? boolean
----@field total_game? number
+---@field totalGames? number
 
 ---@class FranchisLoadMatch
 ---@field id string
 
 ---@class FranchisListMatch
----@field data? table
 ---@field description? string
----@field game? table
+---@field games? table
 ---@field id? string
 ---@field logo? string
 ---@field name? string
----@field success? boolean
----@field total_game? number
+---@field totalGames? number
 
 ---@class Game
----@field age_rating? string
----@field cover_image? string
----@field data? table
+---@field ageRating? string
+---@field coverImage? string
 ---@field description? string
 ---@field developer? string
----@field franchise_id? string
----@field genre? table
+---@field franchiseId? string
+---@field genres? table
 ---@field id? string
 ---@field name? string
----@field platform? table
+---@field platforms? table
 ---@field publisher? string
----@field release_date? string
----@field screenshot? table
----@field success? boolean
----@field video? table
+---@field releaseDate? string
+---@field screenshots? table
+---@field videos? table
 
 ---@class GameLoadMatch
 ---@field platform_id? string
 ---@field id? string
 
 ---@class GameListMatch
----@field age_rating? string
----@field cover_image? string
----@field data? table
+---@field ageRating? string
+---@field coverImage? string
 ---@field description? string
 ---@field developer? string
----@field franchise_id? string
----@field genre? table
+---@field franchiseId? string
+---@field genres? table
 ---@field id? string
 ---@field name? string
----@field platform? table
+---@field platforms? table
 ---@field publisher? string
----@field release_date? string
----@field screenshot? table
----@field success? boolean
----@field video? table
+---@field releaseDate? string
+---@field screenshots? table
+---@field videos? table
 
 ---@class Platform
----@field data? table
----@field success? boolean
+---@field api? table
+---@field priceUpdates? table
+---@field status? string
+---@field timestamp? string
+---@field website? table
 
 ---@class PlatformLoadMatch
----@field data? table
----@field success? boolean
+---@field api? table
+---@field priceUpdates? table
+---@field status? string
+---@field timestamp? string
+---@field website? table
 
 ---@class Price
----@field affiliate_link? string
+---@field affiliateLink? string
 ---@field currency? string
 ---@field discount? number
----@field in_stock? boolean
----@field last_updated? string
----@field original_price? number
+---@field inStock? boolean
+---@field lastUpdated? string
+---@field originalPrice? number
 ---@field price? number
 ---@field region? string
----@field retailer_id? string
----@field retailer_name? string
+---@field retailerId? string
+---@field retailerName? string
 
 ---@class PriceListMatch
 ---@field game_id? string
@@ -120,40 +114,40 @@
 
 ---@class Retailer
 ---@field approved? boolean
----@field currency? table
+---@field currencies? table
 ---@field id? string
 ---@field logo? string
 ---@field name? string
----@field region? table
+---@field regions? table
 ---@field website? string
 
 ---@class RetailerListMatch
 ---@field approved? boolean
----@field currency? table
+---@field currencies? table
 ---@field id? string
 ---@field logo? string
 ---@field name? string
----@field region? table
+---@field regions? table
 ---@field website? string
 
 ---@class Search
----@field data? table
----@field success? boolean
+---@field consoles? table
+---@field games? table
+---@field totalResults? number
 
 ---@class SearchLoadMatch
----@field data? table
----@field success? boolean
+---@field consoles? table
+---@field games? table
+---@field totalResults? number
 
 ---@class Studio
----@field data? table
 ---@field description? string
----@field founding_year? number
----@field game? table
+---@field foundingYear? number
+---@field games? table
 ---@field id? string
 ---@field location? table
 ---@field logo? string
 ---@field name? string
----@field success? boolean
 ---@field type? string
 ---@field website? string
 
@@ -161,34 +155,35 @@
 ---@field id string
 
 ---@class StudioListMatch
----@field data? table
 ---@field description? string
----@field founding_year? number
----@field game? table
+---@field foundingYear? number
+---@field games? table
 ---@field id? string
 ---@field location? table
 ---@field logo? string
 ---@field name? string
----@field success? boolean
 ---@field type? string
 ---@field website? string
 
 ---@class User
----@field age_rating? string
----@field cover_image? string
----@field data? table
+---@field ageRating? string
+---@field avatar? string
+---@field coverImage? string
 ---@field description? string
 ---@field developer? string
----@field franchise_id? string
----@field genre? table
+---@field franchiseId? string
+---@field genres? table
 ---@field id? string
+---@field joinDate? string
+---@field libraryCount? number
 ---@field name? string
----@field platform? table
+---@field platforms? table
 ---@field publisher? string
----@field release_date? string
----@field screenshot? table
----@field success? boolean
----@field video? table
+---@field releaseDate? string
+---@field screenshots? table
+---@field username? string
+---@field videos? table
+---@field wishlistCount? number
 
 ---@class UserLoadMatch
 ---@field id string

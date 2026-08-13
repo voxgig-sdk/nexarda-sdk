@@ -6,22 +6,17 @@ main: kit: entity: studio: {
 
   fields: [
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "description"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "founding_year"
+      name: "foundingYear"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "game"
+      name: "games"
       req: false
       type: "`$ARRAY`"
     }
@@ -44,11 +39,6 @@ main: kit: entity: studio: {
       name: "name"
       req: false
       type: "`$STRING`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
     }
     {
       name: "type"
@@ -105,7 +95,7 @@ main: kit: entity: studio: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -143,7 +133,7 @@ main: kit: entity: studio: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

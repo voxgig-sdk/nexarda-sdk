@@ -6,19 +6,19 @@ main: kit: entity: user: {
 
   fields: [
     {
-      name: "age_rating"
+      name: "ageRating"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "cover_image"
+      name: "avatar"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "data"
+      name: "coverImage"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
     {
       name: "description"
@@ -31,12 +31,12 @@ main: kit: entity: user: {
       type: "`$STRING`"
     }
     {
-      name: "franchise_id"
+      name: "franchiseId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "genre"
+      name: "genres"
       req: false
       type: "`$ARRAY`"
     }
@@ -46,12 +46,22 @@ main: kit: entity: user: {
       type: "`$STRING`"
     }
     {
+      name: "joinDate"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "libraryCount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
       name: "name"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "platform"
+      name: "platforms"
       req: false
       type: "`$ARRAY`"
     }
@@ -61,24 +71,29 @@ main: kit: entity: user: {
       type: "`$STRING`"
     }
     {
-      name: "release_date"
+      name: "releaseDate"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "screenshot"
+      name: "screenshots"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "success"
+      name: "username"
       req: false
-      type: "`$BOOLEAN`"
+      type: "`$STRING`"
     }
     {
-      name: "video"
+      name: "videos"
       req: false
       type: "`$ARRAY`"
+    }
+    {
+      name: "wishlistCount"
+      req: false
+      type: "`$INTEGER`"
     }
   ]
 
@@ -124,7 +139,7 @@ main: kit: entity: user: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -159,7 +174,7 @@ main: kit: entity: user: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -197,7 +212,7 @@ main: kit: entity: user: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

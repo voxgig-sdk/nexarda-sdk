@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Nexarda SDK exists test
 
 import pytest
 from nexarda_sdk import NexardaSDK

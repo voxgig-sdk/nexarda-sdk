@@ -6,14 +6,29 @@ main: kit: entity: platform: {
 
   fields: [
     {
-      name: "data"
+      name: "api"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "success"
+      name: "priceUpdates"
       req: false
-      type: "`$BOOLEAN`"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "website"
+      req: false
+      type: "`$OBJECT`"
     }
   ]
 
@@ -30,7 +45,7 @@ main: kit: entity: platform: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ NexardaUtility.registrar = ->(u) {
   u.prepare_params = NexardaUtilities::PrepareParams
   u.prepare_path = NexardaUtilities::PreparePath
   u.prepare_query = NexardaUtilities::PrepareQuery
+  u.graphql_body = NexardaUtilities::GraphqlBody
+  u.graphql_errors = NexardaUtilities::GraphqlErrors
   u.result_basic = NexardaUtilities::ResultBasic
   u.result_body = NexardaUtilities::ResultBody
   u.result_headers = NexardaUtilities::ResultHeaders

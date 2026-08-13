@@ -63,13 +63,13 @@ describe('GameEntity', async () => {
     const game_ref01_ent = client.Game()
     const game_ref01_match: any = {}
 
-    const game_ref01_list = await game_ref01_ent.list(game_ref01_match)
+    const game_ref01_list = (await game_ref01_ent.list(game_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const game_ref01_match_dt0: any = {}
     game_ref01_match_dt0.id = game_ref01_data.id
-    const game_ref01_data_dt0 = await game_ref01_ent.load(game_ref01_match_dt0)
+    const game_ref01_data_dt0 = (await game_ref01_ent.load(game_ref01_match_dt0)).data()
     assert(game_ref01_data_dt0.id === game_ref01_data.id)
 
 

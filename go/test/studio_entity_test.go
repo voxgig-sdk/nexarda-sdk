@@ -128,7 +128,7 @@ func TestStudioEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		studioRef01DataDt0LoadResult := core.ToMapAny(studioRef01DataDt0Loaded)
+		studioRef01DataDt0LoadResult := core.ToMapAny(entityData(studioRef01DataDt0Loaded))
 		if studioRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

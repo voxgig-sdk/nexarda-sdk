@@ -129,15 +129,13 @@ $console = $client->Console();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `image` | `array` | No |  |
+| `images` | `array` | No |  |
 | `manufacturer` | `string` | No |  |
 | `name` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `specification` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `releaseDate` | `string` | No |  |
+| `specifications` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -198,14 +196,12 @@ $franchis = $client->Franchis();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
 | `description` | `string` | No |  |
-| `game` | `array` | No |  |
+| `games` | `array` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `bool` | No |  |
-| `total_game` | `int` | No |  |
+| `totalGames` | `int` | No |  |
 
 ### Operations
 
@@ -265,21 +261,19 @@ $game = $client->Game();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `array` | No |  |
+| `ageRating` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `array` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `array` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `array` | No |  |
+| `platforms` | `array` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `array` | No |  |
-| `success` | `bool` | No |  |
-| `video` | `array` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `array` | No |  |
+| `videos` | `array` | No |  |
 
 ### Operations
 
@@ -339,8 +333,11 @@ $platform = $client->Platform();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `api` | `array` | No |  |
+| `priceUpdates` | `array` | No |  |
+| `status` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `website` | `array` | No |  |
 
 ### Operations
 
@@ -392,16 +389,16 @@ $price = $client->Price();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | `string` | No |  |
+| `affiliateLink` | `string` | No |  |
 | `currency` | `string` | No |  |
 | `discount` | `float` | No |  |
-| `in_stock` | `bool` | No |  |
-| `last_updated` | `string` | No |  |
-| `original_price` | `float` | No |  |
+| `inStock` | `bool` | No |  |
+| `lastUpdated` | `string` | No |  |
+| `originalPrice` | `float` | No |  |
 | `price` | `float` | No |  |
 | `region` | `string` | No |  |
-| `retailer_id` | `string` | No |  |
-| `retailer_name` | `string` | No |  |
+| `retailerId` | `string` | No |  |
+| `retailerName` | `string` | No |  |
 
 ### Operations
 
@@ -454,11 +451,11 @@ $retailer = $client->Retailer();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `approved` | `bool` | No |  |
-| `currency` | `array` | No |  |
+| `currencies` | `array` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `region` | `array` | No |  |
+| `regions` | `array` | No |  |
 | `website` | `string` | No |  |
 
 ### Operations
@@ -511,8 +508,9 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `consoles` | `array` | No |  |
+| `games` | `array` | No |  |
+| `totalResults` | `int` | No |  |
 
 ### Operations
 
@@ -564,15 +562,13 @@ $studio = $client->Studio();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
 | `description` | `string` | No |  |
-| `founding_year` | `int` | No |  |
-| `game` | `array` | No |  |
+| `foundingYear` | `int` | No |  |
+| `games` | `array` | No |  |
 | `id` | `string` | No |  |
 | `location` | `array` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `bool` | No |  |
 | `type` | `string` | No |  |
 | `website` | `string` | No |  |
 
@@ -634,21 +630,24 @@ $user = $client->User();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `array` | No |  |
+| `ageRating` | `string` | No |  |
+| `avatar` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `array` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `array` | No |  |
 | `id` | `string` | No |  |
+| `joinDate` | `string` | No |  |
+| `libraryCount` | `int` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `array` | No |  |
+| `platforms` | `array` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `array` | No |  |
-| `success` | `bool` | No |  |
-| `video` | `array` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `array` | No |  |
+| `username` | `string` | No |  |
+| `videos` | `array` | No |  |
+| `wishlistCount` | `int` | No |  |
 
 ### Operations
 

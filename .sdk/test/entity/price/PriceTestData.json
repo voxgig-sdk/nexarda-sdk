@@ -2,44 +2,44 @@
   "existing": {
     "price": {
       "PRICE00": {
-        "affiliate_link": "s64",
+        "affiliateLink": "s64",
         "currency": "s65",
         "discount": 102,
-        "in_stock": false,
-        "last_updated": "s68",
-        "original_price": 105,
+        "inStock": false,
+        "lastUpdated": "s68",
+        "originalPrice": 105,
         "price": 106,
         "region": "s6b",
-        "retailer_id": "RETAILER01",
-        "retailer_name": "s6d",
+        "retailerId": "s6c",
+        "retailerName": "s6d",
         "game_id": "GAME01",
         "console_id": "CONSOLE01"
       },
       "PRICE01": {
-        "affiliate_link": "sc8",
+        "affiliateLink": "sc8",
         "currency": "sc9",
         "discount": 202,
-        "in_stock": false,
-        "last_updated": "scc",
-        "original_price": 205,
+        "inStock": false,
+        "lastUpdated": "scc",
+        "originalPrice": 205,
         "price": 206,
         "region": "scf",
-        "retailer_id": "RETAILER01",
-        "retailer_name": "sd1",
+        "retailerId": "sd0",
+        "retailerName": "sd1",
         "game_id": "GAME01",
         "console_id": "CONSOLE01"
       },
       "PRICE02": {
-        "affiliate_link": "s12c",
+        "affiliateLink": "s12c",
         "currency": "s12d",
         "discount": 302,
-        "in_stock": false,
-        "last_updated": "s130",
-        "original_price": 305,
+        "inStock": false,
+        "lastUpdated": "s130",
+        "originalPrice": 305,
         "price": 306,
         "region": "s133",
-        "retailer_id": "RETAILER01",
-        "retailer_name": "s135",
+        "retailerId": "s134",
+        "retailerName": "s135",
         "game_id": "GAME01",
         "console_id": "CONSOLE01"
       }
@@ -48,16 +48,16 @@
   "new": {
     "price": {
       "price_ref01": {
-        "affiliate_link": "s190",
+        "affiliateLink": "s190",
         "currency": "s191",
         "discount": 402,
-        "in_stock": false,
-        "last_updated": "s194",
-        "original_price": 405,
+        "inStock": false,
+        "lastUpdated": "s194",
+        "originalPrice": 405,
         "price": 406,
         "region": "s197",
-        "retailer_id": "RETAILER01",
-        "retailer_name": "s199"
+        "retailerId": "s198",
+        "retailerName": "s199"
       }
     }
   }

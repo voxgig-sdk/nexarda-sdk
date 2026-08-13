@@ -6,11 +6,6 @@ main: kit: entity: console: {
 
   fields: [
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "description"
       req: false
       type: "`$STRING`"
@@ -21,7 +16,7 @@ main: kit: entity: console: {
       type: "`$STRING`"
     }
     {
-      name: "image"
+      name: "images"
       req: false
       type: "`$ARRAY`"
     }
@@ -36,19 +31,14 @@ main: kit: entity: console: {
       type: "`$STRING`"
     }
     {
-      name: "release_date"
+      name: "releaseDate"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "specification"
+      name: "specifications"
       req: false
       type: "`$OBJECT`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
     }
     {
       name: "type"
@@ -92,7 +82,7 @@ main: kit: entity: console: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -130,7 +120,7 @@ main: kit: entity: console: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

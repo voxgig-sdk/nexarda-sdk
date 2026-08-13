@@ -124,15 +124,13 @@ console = client.Console()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
 | `description` | `str` | No |  |
 | `id` | `str` | No |  |
-| `image` | `list` | No |  |
+| `images` | `list` | No |  |
 | `manufacturer` | `str` | No |  |
 | `name` | `str` | No |  |
-| `release_date` | `str` | No |  |
-| `specification` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `releaseDate` | `str` | No |  |
+| `specifications` | `dict` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -194,14 +192,12 @@ franchis = client.Franchis()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
 | `description` | `str` | No |  |
-| `game` | `list` | No |  |
+| `games` | `list` | No |  |
 | `id` | `str` | No |  |
 | `logo` | `str` | No |  |
 | `name` | `str` | No |  |
-| `success` | `bool` | No |  |
-| `total_game` | `int` | No |  |
+| `totalGames` | `int` | No |  |
 
 ### Operations
 
@@ -262,21 +258,19 @@ game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `str` | No |  |
-| `cover_image` | `str` | No |  |
-| `data` | `dict` | No |  |
+| `ageRating` | `str` | No |  |
+| `coverImage` | `str` | No |  |
 | `description` | `str` | No |  |
 | `developer` | `str` | No |  |
-| `franchise_id` | `str` | No |  |
-| `genre` | `list` | No |  |
+| `franchiseId` | `str` | No |  |
+| `genres` | `list` | No |  |
 | `id` | `str` | No |  |
 | `name` | `str` | No |  |
-| `platform` | `list` | No |  |
+| `platforms` | `list` | No |  |
 | `publisher` | `str` | No |  |
-| `release_date` | `str` | No |  |
-| `screenshot` | `list` | No |  |
-| `success` | `bool` | No |  |
-| `video` | `list` | No |  |
+| `releaseDate` | `str` | No |  |
+| `screenshots` | `list` | No |  |
+| `videos` | `list` | No |  |
 
 ### Operations
 
@@ -337,8 +331,11 @@ platform = client.Platform()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `api` | `dict` | No |  |
+| `priceUpdates` | `dict` | No |  |
+| `status` | `str` | No |  |
+| `timestamp` | `str` | No |  |
+| `website` | `dict` | No |  |
 
 ### Operations
 
@@ -389,16 +386,16 @@ price = client.Price()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | `str` | No |  |
+| `affiliateLink` | `str` | No |  |
 | `currency` | `str` | No |  |
 | `discount` | `float` | No |  |
-| `in_stock` | `bool` | No |  |
-| `last_updated` | `str` | No |  |
-| `original_price` | `float` | No |  |
+| `inStock` | `bool` | No |  |
+| `lastUpdated` | `str` | No |  |
+| `originalPrice` | `float` | No |  |
 | `price` | `float` | No |  |
 | `region` | `str` | No |  |
-| `retailer_id` | `str` | No |  |
-| `retailer_name` | `str` | No |  |
+| `retailerId` | `str` | No |  |
+| `retailerName` | `str` | No |  |
 
 ### Operations
 
@@ -452,11 +449,11 @@ retailer = client.Retailer()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `approved` | `bool` | No |  |
-| `currency` | `list` | No |  |
+| `currencies` | `list` | No |  |
 | `id` | `str` | No |  |
 | `logo` | `str` | No |  |
 | `name` | `str` | No |  |
-| `region` | `list` | No |  |
+| `regions` | `list` | No |  |
 | `website` | `str` | No |  |
 
 ### Operations
@@ -510,8 +507,9 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `consoles` | `list` | No |  |
+| `games` | `list` | No |  |
+| `totalResults` | `int` | No |  |
 
 ### Operations
 
@@ -562,15 +560,13 @@ studio = client.Studio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
 | `description` | `str` | No |  |
-| `founding_year` | `int` | No |  |
-| `game` | `list` | No |  |
+| `foundingYear` | `int` | No |  |
+| `games` | `list` | No |  |
 | `id` | `str` | No |  |
 | `location` | `dict` | No |  |
 | `logo` | `str` | No |  |
 | `name` | `str` | No |  |
-| `success` | `bool` | No |  |
 | `type` | `str` | No |  |
 | `website` | `str` | No |  |
 
@@ -633,21 +629,24 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `str` | No |  |
-| `cover_image` | `str` | No |  |
-| `data` | `dict` | No |  |
+| `ageRating` | `str` | No |  |
+| `avatar` | `str` | No |  |
+| `coverImage` | `str` | No |  |
 | `description` | `str` | No |  |
 | `developer` | `str` | No |  |
-| `franchise_id` | `str` | No |  |
-| `genre` | `list` | No |  |
+| `franchiseId` | `str` | No |  |
+| `genres` | `list` | No |  |
 | `id` | `str` | No |  |
+| `joinDate` | `str` | No |  |
+| `libraryCount` | `int` | No |  |
 | `name` | `str` | No |  |
-| `platform` | `list` | No |  |
+| `platforms` | `list` | No |  |
 | `publisher` | `str` | No |  |
-| `release_date` | `str` | No |  |
-| `screenshot` | `list` | No |  |
-| `success` | `bool` | No |  |
-| `video` | `list` | No |  |
+| `releaseDate` | `str` | No |  |
+| `screenshots` | `list` | No |  |
+| `username` | `str` | No |  |
+| `videos` | `list` | No |  |
+| `wishlistCount` | `int` | No |  |
 
 ### Operations
 
@@ -656,7 +655,7 @@ user = client.User()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.User().list()
+results = client.User().list({"id": "example_id"})
 for user in results:
     print(user)
 ```

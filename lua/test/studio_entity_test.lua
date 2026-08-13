@@ -97,7 +97,7 @@ describe("StudioEntity", function()
     }
     local studio_ref01_data_dt0_loaded, err = studio_ref01_ent:load(studio_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local studio_ref01_data_dt0_load_result = helpers.to_map(studio_ref01_data_dt0_loaded)
+    local studio_ref01_data_dt0_load_result = helpers.to_map(type(studio_ref01_data_dt0_loaded) == 'table' and studio_ref01_data_dt0_loaded.data_get and studio_ref01_data_dt0_loaded:data_get() or studio_ref01_data_dt0_loaded)
     assert.is_not_nil(studio_ref01_data_dt0_load_result)
     assert.are.equal(studio_ref01_data_dt0_load_result["id"], studio_ref01_data["id"])
 

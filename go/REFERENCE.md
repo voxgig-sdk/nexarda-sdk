@@ -135,15 +135,13 @@ fmt.Println(console.GetName()) // "console"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `image` | `[]any` | No |  |
+| `images` | `[]any` | No |  |
 | `manufacturer` | `string` | No |  |
 | `name` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `specification` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `releaseDate` | `string` | No |  |
+| `specifications` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -207,14 +205,12 @@ fmt.Println(franchis.GetName()) // "franchis"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
 | `description` | `string` | No |  |
-| `game` | `[]any` | No |  |
+| `games` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `bool` | No |  |
-| `total_game` | `int` | No |  |
+| `totalGames` | `int` | No |  |
 
 ### Operations
 
@@ -277,21 +273,19 @@ fmt.Println(game.GetName()) // "game"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `map[string]any` | No |  |
+| `ageRating` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `[]any` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `[]any` | No |  |
+| `platforms` | `[]any` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `[]any` | No |  |
-| `success` | `bool` | No |  |
-| `video` | `[]any` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `[]any` | No |  |
+| `videos` | `[]any` | No |  |
 
 ### Operations
 
@@ -354,8 +348,11 @@ fmt.Println(platform.GetName()) // "platform"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `api` | `map[string]any` | No |  |
+| `priceUpdates` | `map[string]any` | No |  |
+| `status` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `website` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -406,16 +403,16 @@ fmt.Println(price.GetName()) // "price"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | `string` | No |  |
+| `affiliateLink` | `string` | No |  |
 | `currency` | `string` | No |  |
 | `discount` | `float64` | No |  |
-| `in_stock` | `bool` | No |  |
-| `last_updated` | `string` | No |  |
-| `original_price` | `float64` | No |  |
+| `inStock` | `bool` | No |  |
+| `lastUpdated` | `string` | No |  |
+| `originalPrice` | `float64` | No |  |
 | `price` | `float64` | No |  |
 | `region` | `string` | No |  |
-| `retailer_id` | `string` | No |  |
-| `retailer_name` | `string` | No |  |
+| `retailerId` | `string` | No |  |
+| `retailerName` | `string` | No |  |
 
 ### Operations
 
@@ -467,11 +464,11 @@ fmt.Println(retailer.GetName()) // "retailer"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `approved` | `bool` | No |  |
-| `currency` | `[]any` | No |  |
+| `currencies` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `region` | `[]any` | No |  |
+| `regions` | `[]any` | No |  |
 | `website` | `string` | No |  |
 
 ### Operations
@@ -523,8 +520,9 @@ fmt.Println(search.GetName()) // "search"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `consoles` | `[]any` | No |  |
+| `games` | `[]any` | No |  |
+| `totalResults` | `int` | No |  |
 
 ### Operations
 
@@ -575,15 +573,13 @@ fmt.Println(studio.GetName()) // "studio"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
 | `description` | `string` | No |  |
-| `founding_year` | `int` | No |  |
-| `game` | `[]any` | No |  |
+| `foundingYear` | `int` | No |  |
+| `games` | `[]any` | No |  |
 | `id` | `string` | No |  |
 | `location` | `map[string]any` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `bool` | No |  |
 | `type` | `string` | No |  |
 | `website` | `string` | No |  |
 
@@ -648,21 +644,24 @@ fmt.Println(user.GetName()) // "user"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `map[string]any` | No |  |
+| `ageRating` | `string` | No |  |
+| `avatar` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `[]any` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `[]any` | No |  |
 | `id` | `string` | No |  |
+| `joinDate` | `string` | No |  |
+| `libraryCount` | `int` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `[]any` | No |  |
+| `platforms` | `[]any` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `[]any` | No |  |
-| `success` | `bool` | No |  |
-| `video` | `[]any` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `[]any` | No |  |
+| `username` | `string` | No |  |
+| `videos` | `[]any` | No |  |
+| `wishlistCount` | `int` | No |  |
 
 ### Operations
 

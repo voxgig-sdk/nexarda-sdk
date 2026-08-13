@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from nexarda_sdk.utility.voxgig_struct import voxgig_struct as vs
 from nexarda_sdk import NexardaSDK
-from core import helpers
+from nexarda_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -42,7 +42,7 @@ class TestConsoleEntity:
         assert len(seen) == 3
 
         # Inbound: streaming active -> yields each item from the feature.
-        from config import make_config
+        from nexarda_sdk.config import make_config
         cfg = make_config()
         if isinstance(cfg.get("feature"), dict) and "streaming" in cfg["feature"]:
             sdk = NexardaSDK.test(
@@ -92,7 +92,7 @@ class TestConsoleEntity:
             "id": console_ref01_data["id"],
         }
         console_ref01_data_dt0_loaded = console_ref01_ent.load(console_ref01_match_dt0, None)
-        console_ref01_data_dt0_load_result = helpers.to_map(console_ref01_data_dt0_loaded)
+        console_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(console_ref01_data_dt0_loaded))
         assert console_ref01_data_dt0_load_result is not None
         assert console_ref01_data_dt0_load_result["id"] == console_ref01_data["id"]
 

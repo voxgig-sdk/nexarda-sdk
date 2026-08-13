@@ -97,7 +97,7 @@ describe("ConsoleEntity", function()
     }
     local console_ref01_data_dt0_loaded, err = console_ref01_ent:load(console_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local console_ref01_data_dt0_load_result = helpers.to_map(console_ref01_data_dt0_loaded)
+    local console_ref01_data_dt0_load_result = helpers.to_map(type(console_ref01_data_dt0_loaded) == 'table' and console_ref01_data_dt0_loaded.data_get and console_ref01_data_dt0_loaded:data_get() or console_ref01_data_dt0_loaded)
     assert.is_not_nil(console_ref01_data_dt0_load_result)
     assert.are.equal(console_ref01_data_dt0_load_result["id"], console_ref01_data["id"])
 

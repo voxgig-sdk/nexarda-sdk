@@ -10,16 +10,13 @@
 
 # Console entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] description
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image
+# @!attribute [rw] images
 #   @return [Array, nil]
 #
 # @!attribute [rw] manufacturer
@@ -28,27 +25,22 @@
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] release_date
+# @!attribute [rw] releaseDate
 #   @return [String, nil]
 #
-# @!attribute [rw] specification
+# @!attribute [rw] specifications
 #   @return [Hash, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 Console = Struct.new(
-  :data,
   :description,
   :id,
-  :image,
+  :images,
   :manufacturer,
   :name,
-  :release_date,
-  :specification,
-  :success,
+  :releaseDate,
+  :specifications,
   :type,
   keyword_init: true
 )
@@ -64,16 +56,13 @@ ConsoleLoadMatch = Struct.new(
 
 # Request payload for Console#list.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] description
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] image
+# @!attribute [rw] images
 #   @return [Array, nil]
 #
 # @!attribute [rw] manufacturer
@@ -82,40 +71,32 @@ ConsoleLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] release_date
+# @!attribute [rw] releaseDate
 #   @return [String, nil]
 #
-# @!attribute [rw] specification
+# @!attribute [rw] specifications
 #   @return [Hash, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 ConsoleListMatch = Struct.new(
-  :data,
   :description,
   :id,
-  :image,
+  :images,
   :manufacturer,
   :name,
-  :release_date,
-  :specification,
-  :success,
+  :releaseDate,
+  :specifications,
   :type,
   keyword_init: true
 )
 
 # Franchis entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] game
+# @!attribute [rw] games
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -127,20 +108,15 @@ ConsoleListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] total_game
+# @!attribute [rw] totalGames
 #   @return [Integer, nil]
 Franchis = Struct.new(
-  :data,
   :description,
-  :game,
+  :games,
   :id,
   :logo,
   :name,
-  :success,
-  :total_game,
+  :totalGames,
   keyword_init: true
 )
 
@@ -155,13 +131,10 @@ FranchisLoadMatch = Struct.new(
 
 # Request payload for Franchis#list.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] game
+# @!attribute [rw] games
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -173,33 +146,25 @@ FranchisLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] total_game
+# @!attribute [rw] totalGames
 #   @return [Integer, nil]
 FranchisListMatch = Struct.new(
-  :data,
   :description,
-  :game,
+  :games,
   :id,
   :logo,
   :name,
-  :success,
-  :total_game,
+  :totalGames,
   keyword_init: true
 )
 
 # Game entity data model.
 #
-# @!attribute [rw] age_rating
+# @!attribute [rw] ageRating
 #   @return [String, nil]
 #
-# @!attribute [rw] cover_image
+# @!attribute [rw] coverImage
 #   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -207,10 +172,10 @@ FranchisListMatch = Struct.new(
 # @!attribute [rw] developer
 #   @return [String, nil]
 #
-# @!attribute [rw] franchise_id
+# @!attribute [rw] franchiseId
 #   @return [String, nil]
 #
-# @!attribute [rw] genre
+# @!attribute [rw] genres
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -219,39 +184,34 @@ FranchisListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] platform
+# @!attribute [rw] platforms
 #   @return [Array, nil]
 #
 # @!attribute [rw] publisher
 #   @return [String, nil]
 #
-# @!attribute [rw] release_date
+# @!attribute [rw] releaseDate
 #   @return [String, nil]
 #
-# @!attribute [rw] screenshot
+# @!attribute [rw] screenshots
 #   @return [Array, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] video
+# @!attribute [rw] videos
 #   @return [Array, nil]
 Game = Struct.new(
-  :age_rating,
-  :cover_image,
-  :data,
+  :ageRating,
+  :coverImage,
   :description,
   :developer,
-  :franchise_id,
-  :genre,
+  :franchiseId,
+  :genres,
   :id,
   :name,
-  :platform,
+  :platforms,
   :publisher,
-  :release_date,
-  :screenshot,
-  :success,
-  :video,
+  :releaseDate,
+  :screenshots,
+  :videos,
   keyword_init: true
 )
 
@@ -270,14 +230,11 @@ GameLoadMatch = Struct.new(
 
 # Request payload for Game#list.
 #
-# @!attribute [rw] age_rating
+# @!attribute [rw] ageRating
 #   @return [String, nil]
 #
-# @!attribute [rw] cover_image
+# @!attribute [rw] coverImage
 #   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -285,10 +242,10 @@ GameLoadMatch = Struct.new(
 # @!attribute [rw] developer
 #   @return [String, nil]
 #
-# @!attribute [rw] franchise_id
+# @!attribute [rw] franchiseId
 #   @return [String, nil]
 #
-# @!attribute [rw] genre
+# @!attribute [rw] genres
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -297,71 +254,90 @@ GameLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] platform
+# @!attribute [rw] platforms
 #   @return [Array, nil]
 #
 # @!attribute [rw] publisher
 #   @return [String, nil]
 #
-# @!attribute [rw] release_date
+# @!attribute [rw] releaseDate
 #   @return [String, nil]
 #
-# @!attribute [rw] screenshot
+# @!attribute [rw] screenshots
 #   @return [Array, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] video
+# @!attribute [rw] videos
 #   @return [Array, nil]
 GameListMatch = Struct.new(
-  :age_rating,
-  :cover_image,
-  :data,
+  :ageRating,
+  :coverImage,
   :description,
   :developer,
-  :franchise_id,
-  :genre,
+  :franchiseId,
+  :genres,
   :id,
   :name,
-  :platform,
+  :platforms,
   :publisher,
-  :release_date,
-  :screenshot,
-  :success,
-  :video,
+  :releaseDate,
+  :screenshots,
+  :videos,
   keyword_init: true
 )
 
 # Platform entity data model.
 #
-# @!attribute [rw] data
+# @!attribute [rw] api
 #   @return [Hash, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] priceUpdates
+#   @return [Hash, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] timestamp
+#   @return [String, nil]
+#
+# @!attribute [rw] website
+#   @return [Hash, nil]
 Platform = Struct.new(
-  :data,
-  :success,
+  :api,
+  :priceUpdates,
+  :status,
+  :timestamp,
+  :website,
   keyword_init: true
 )
 
 # Request payload for Platform#load.
 #
-# @!attribute [rw] data
+# @!attribute [rw] api
 #   @return [Hash, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] priceUpdates
+#   @return [Hash, nil]
+#
+# @!attribute [rw] status
+#   @return [String, nil]
+#
+# @!attribute [rw] timestamp
+#   @return [String, nil]
+#
+# @!attribute [rw] website
+#   @return [Hash, nil]
 PlatformLoadMatch = Struct.new(
-  :data,
-  :success,
+  :api,
+  :priceUpdates,
+  :status,
+  :timestamp,
+  :website,
   keyword_init: true
 )
 
 # Price entity data model.
 #
-# @!attribute [rw] affiliate_link
+# @!attribute [rw] affiliateLink
 #   @return [String, nil]
 #
 # @!attribute [rw] currency
@@ -370,13 +346,13 @@ PlatformLoadMatch = Struct.new(
 # @!attribute [rw] discount
 #   @return [Float, nil]
 #
-# @!attribute [rw] in_stock
+# @!attribute [rw] inStock
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] last_updated
+# @!attribute [rw] lastUpdated
 #   @return [String, nil]
 #
-# @!attribute [rw] original_price
+# @!attribute [rw] originalPrice
 #   @return [Float, nil]
 #
 # @!attribute [rw] price
@@ -385,22 +361,22 @@ PlatformLoadMatch = Struct.new(
 # @!attribute [rw] region
 #   @return [String, nil]
 #
-# @!attribute [rw] retailer_id
+# @!attribute [rw] retailerId
 #   @return [String, nil]
 #
-# @!attribute [rw] retailer_name
+# @!attribute [rw] retailerName
 #   @return [String, nil]
 Price = Struct.new(
-  :affiliate_link,
+  :affiliateLink,
   :currency,
   :discount,
-  :in_stock,
-  :last_updated,
-  :original_price,
+  :inStock,
+  :lastUpdated,
+  :originalPrice,
   :price,
   :region,
-  :retailer_id,
-  :retailer_name,
+  :retailerId,
+  :retailerName,
   keyword_init: true
 )
 
@@ -422,7 +398,7 @@ PriceListMatch = Struct.new(
 # @!attribute [rw] approved
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] currency
+# @!attribute [rw] currencies
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -434,18 +410,18 @@ PriceListMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] region
+# @!attribute [rw] regions
 #   @return [Array, nil]
 #
 # @!attribute [rw] website
 #   @return [String, nil]
 Retailer = Struct.new(
   :approved,
-  :currency,
+  :currencies,
   :id,
   :logo,
   :name,
-  :region,
+  :regions,
   :website,
   keyword_init: true
 )
@@ -455,7 +431,7 @@ Retailer = Struct.new(
 # @!attribute [rw] approved
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] currency
+# @!attribute [rw] currencies
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -467,60 +443,65 @@ Retailer = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] region
+# @!attribute [rw] regions
 #   @return [Array, nil]
 #
 # @!attribute [rw] website
 #   @return [String, nil]
 RetailerListMatch = Struct.new(
   :approved,
-  :currency,
+  :currencies,
   :id,
   :logo,
   :name,
-  :region,
+  :regions,
   :website,
   keyword_init: true
 )
 
 # Search entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] consoles
+#   @return [Array, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] games
+#   @return [Array, nil]
+#
+# @!attribute [rw] totalResults
+#   @return [Integer, nil]
 Search = Struct.new(
-  :data,
-  :success,
+  :consoles,
+  :games,
+  :totalResults,
   keyword_init: true
 )
 
 # Request payload for Search#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] consoles
+#   @return [Array, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] games
+#   @return [Array, nil]
+#
+# @!attribute [rw] totalResults
+#   @return [Integer, nil]
 SearchLoadMatch = Struct.new(
-  :data,
-  :success,
+  :consoles,
+  :games,
+  :totalResults,
   keyword_init: true
 )
 
 # Studio entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] founding_year
+# @!attribute [rw] foundingYear
 #   @return [Integer, nil]
 #
-# @!attribute [rw] game
+# @!attribute [rw] games
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -535,24 +516,19 @@ SearchLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
 # @!attribute [rw] type
 #   @return [String, nil]
 #
 # @!attribute [rw] website
 #   @return [String, nil]
 Studio = Struct.new(
-  :data,
   :description,
-  :founding_year,
-  :game,
+  :foundingYear,
+  :games,
   :id,
   :location,
   :logo,
   :name,
-  :success,
   :type,
   :website,
   keyword_init: true
@@ -569,16 +545,13 @@ StudioLoadMatch = Struct.new(
 
 # Request payload for Studio#list.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] founding_year
+# @!attribute [rw] foundingYear
 #   @return [Integer, nil]
 #
-# @!attribute [rw] game
+# @!attribute [rw] games
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
@@ -593,24 +566,19 @@ StudioLoadMatch = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
 # @!attribute [rw] type
 #   @return [String, nil]
 #
 # @!attribute [rw] website
 #   @return [String, nil]
 StudioListMatch = Struct.new(
-  :data,
   :description,
-  :founding_year,
-  :game,
+  :foundingYear,
+  :games,
   :id,
   :location,
   :logo,
   :name,
-  :success,
   :type,
   :website,
   keyword_init: true
@@ -618,14 +586,14 @@ StudioListMatch = Struct.new(
 
 # User entity data model.
 #
-# @!attribute [rw] age_rating
+# @!attribute [rw] ageRating
 #   @return [String, nil]
 #
-# @!attribute [rw] cover_image
+# @!attribute [rw] avatar
 #   @return [String, nil]
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] coverImage
+#   @return [String, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -633,51 +601,63 @@ StudioListMatch = Struct.new(
 # @!attribute [rw] developer
 #   @return [String, nil]
 #
-# @!attribute [rw] franchise_id
+# @!attribute [rw] franchiseId
 #   @return [String, nil]
 #
-# @!attribute [rw] genre
+# @!attribute [rw] genres
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
+# @!attribute [rw] joinDate
+#   @return [String, nil]
+#
+# @!attribute [rw] libraryCount
+#   @return [Integer, nil]
+#
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] platform
+# @!attribute [rw] platforms
 #   @return [Array, nil]
 #
 # @!attribute [rw] publisher
 #   @return [String, nil]
 #
-# @!attribute [rw] release_date
+# @!attribute [rw] releaseDate
 #   @return [String, nil]
 #
-# @!attribute [rw] screenshot
+# @!attribute [rw] screenshots
 #   @return [Array, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] username
+#   @return [String, nil]
 #
-# @!attribute [rw] video
+# @!attribute [rw] videos
 #   @return [Array, nil]
+#
+# @!attribute [rw] wishlistCount
+#   @return [Integer, nil]
 User = Struct.new(
-  :age_rating,
-  :cover_image,
-  :data,
+  :ageRating,
+  :avatar,
+  :coverImage,
   :description,
   :developer,
-  :franchise_id,
-  :genre,
+  :franchiseId,
+  :genres,
   :id,
+  :joinDate,
+  :libraryCount,
   :name,
-  :platform,
+  :platforms,
   :publisher,
-  :release_date,
-  :screenshot,
-  :success,
-  :video,
+  :releaseDate,
+  :screenshots,
+  :username,
+  :videos,
+  :wishlistCount,
   keyword_init: true
 )
 

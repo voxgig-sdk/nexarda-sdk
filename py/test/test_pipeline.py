@@ -16,11 +16,11 @@
 import pytest
 
 from nexarda_sdk import NexardaSDK
-from core.error import NexardaError
-from core.result import NexardaResult
-from core.response import NexardaResponse
-from core.spec import NexardaSpec
-from feature.base_feature import NexardaBaseFeature
+from nexarda_sdk.core.error import NexardaError
+from nexarda_sdk.core.result import NexardaResult
+from nexarda_sdk.core.response import NexardaResponse
+from nexarda_sdk.core.spec import NexardaSpec
+from nexarda_sdk.feature.base_feature import NexardaBaseFeature
 
 
 def _client():

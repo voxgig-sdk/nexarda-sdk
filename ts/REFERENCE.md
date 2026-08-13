@@ -218,22 +218,20 @@ Alias for `NexardaSDK.test()`.
 ## ConsoleEntity
 
 ```ts
-const console = client.Console()
+const console_ = client.Console()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `image` | `any[]` | No |  |
+| `images` | `any[]` | No |  |
 | `manufacturer` | `string` | No |  |
 | `name` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `specification` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
+| `releaseDate` | `string` | No |  |
+| `specifications` | `Record<string, any>` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -292,14 +290,12 @@ const franchis = client.Franchis()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
 | `description` | `string` | No |  |
-| `game` | `any[]` | No |  |
+| `games` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `boolean` | No |  |
-| `total_game` | `number` | No |  |
+| `totalGames` | `number` | No |  |
 
 ### Operations
 
@@ -357,21 +353,19 @@ const game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `Record<string, any>` | No |  |
+| `ageRating` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `any[]` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `any[]` | No |  |
+| `platforms` | `any[]` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `any[]` | No |  |
-| `success` | `boolean` | No |  |
-| `video` | `any[]` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `any[]` | No |  |
+| `videos` | `any[]` | No |  |
 
 ### Operations
 
@@ -429,8 +423,11 @@ const platform = client.Platform()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
+| `api` | `Record<string, any>` | No |  |
+| `priceUpdates` | `Record<string, any>` | No |  |
+| `status` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `website` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -480,16 +477,16 @@ const price = client.Price()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | `string` | No |  |
+| `affiliateLink` | `string` | No |  |
 | `currency` | `string` | No |  |
 | `discount` | `number` | No |  |
-| `in_stock` | `boolean` | No |  |
-| `last_updated` | `string` | No |  |
-| `original_price` | `number` | No |  |
+| `inStock` | `boolean` | No |  |
+| `lastUpdated` | `string` | No |  |
+| `originalPrice` | `number` | No |  |
 | `price` | `number` | No |  |
 | `region` | `string` | No |  |
-| `retailer_id` | `string` | No |  |
-| `retailer_name` | `string` | No |  |
+| `retailerId` | `string` | No |  |
+| `retailerName` | `string` | No |  |
 
 ### Operations
 
@@ -540,11 +537,11 @@ const retailer = client.Retailer()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `approved` | `boolean` | No |  |
-| `currency` | `any[]` | No |  |
+| `currencies` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `region` | `any[]` | No |  |
+| `regions` | `any[]` | No |  |
 | `website` | `string` | No |  |
 
 ### Operations
@@ -595,8 +592,9 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
-| `success` | `boolean` | No |  |
+| `consoles` | `any[]` | No |  |
+| `games` | `any[]` | No |  |
+| `totalResults` | `number` | No |  |
 
 ### Operations
 
@@ -646,15 +644,13 @@ const studio = client.Studio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
 | `description` | `string` | No |  |
-| `founding_year` | `number` | No |  |
-| `game` | `any[]` | No |  |
+| `foundingYear` | `number` | No |  |
+| `games` | `any[]` | No |  |
 | `id` | `string` | No |  |
 | `location` | `Record<string, any>` | No |  |
 | `logo` | `string` | No |  |
 | `name` | `string` | No |  |
-| `success` | `boolean` | No |  |
 | `type` | `string` | No |  |
 | `website` | `string` | No |  |
 
@@ -714,21 +710,45 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `string` | No |  |
-| `cover_image` | `string` | No |  |
-| `data` | `Record<string, any>` | No |  |
+| `ageRating` | `string` | No |  |
+| `avatar` | `string` | No |  |
+| `coverImage` | `string` | No |  |
 | `description` | `string` | No |  |
 | `developer` | `string` | No |  |
-| `franchise_id` | `string` | No |  |
-| `genre` | `any[]` | No |  |
+| `franchiseId` | `string` | No |  |
+| `genres` | `any[]` | No |  |
 | `id` | `string` | No |  |
+| `joinDate` | `string` | No |  |
+| `libraryCount` | `number` | No |  |
 | `name` | `string` | No |  |
-| `platform` | `any[]` | No |  |
+| `platforms` | `any[]` | No |  |
 | `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshot` | `any[]` | No |  |
-| `success` | `boolean` | No |  |
-| `video` | `any[]` | No |  |
+| `releaseDate` | `string` | No |  |
+| `screenshots` | `any[]` | No |  |
+| `username` | `string` | No |  |
+| `videos` | `any[]` | No |  |
+| `wishlistCount` | `number` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `library` | `/users/{userId}/library` | `client.User().list({ $action: 'library', ... })` |
+| `wishlist` | `/users/{userId}/wishlist` | `client.User().list({ $action: 'wishlist', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+User record — check the API definition for its shape.
+
+```ts
+const result = await client.User().list({
+  $action: 'library',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -737,7 +757,7 @@ const user = client.User()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.User().list()
+const results = await client.User().list({ id: "example_id" })
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -780,6 +800,27 @@ Return a copy of the entity options.
 
 ```ts
 const widget = client.Widget()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `button` | `/widgets/button` | `client.Widget().load({ $action: 'button', ... })` |
+| `product_card` | `/widgets/product-card` | `client.Widget().load({ $action: 'product_card', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Widget record — check the API definition for its shape.
+
+```ts
+const result = await client.Widget().load({
+  $action: 'button',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations

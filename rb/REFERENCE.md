@@ -130,15 +130,13 @@ console = client.Console
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
 | `description` | `String` | No |  |
 | `id` | `String` | No |  |
-| `image` | `Array` | No |  |
+| `images` | `Array` | No |  |
 | `manufacturer` | `String` | No |  |
 | `name` | `String` | No |  |
-| `release_date` | `String` | No |  |
-| `specification` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `releaseDate` | `String` | No |  |
+| `specifications` | `Hash` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -199,14 +197,12 @@ franchis = client.Franchis
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
 | `description` | `String` | No |  |
-| `game` | `Array` | No |  |
+| `games` | `Array` | No |  |
 | `id` | `String` | No |  |
 | `logo` | `String` | No |  |
 | `name` | `String` | No |  |
-| `success` | `Boolean` | No |  |
-| `total_game` | `Integer` | No |  |
+| `totalGames` | `Integer` | No |  |
 
 ### Operations
 
@@ -266,21 +262,19 @@ game = client.Game
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `String` | No |  |
-| `cover_image` | `String` | No |  |
-| `data` | `Hash` | No |  |
+| `ageRating` | `String` | No |  |
+| `coverImage` | `String` | No |  |
 | `description` | `String` | No |  |
 | `developer` | `String` | No |  |
-| `franchise_id` | `String` | No |  |
-| `genre` | `Array` | No |  |
+| `franchiseId` | `String` | No |  |
+| `genres` | `Array` | No |  |
 | `id` | `String` | No |  |
 | `name` | `String` | No |  |
-| `platform` | `Array` | No |  |
+| `platforms` | `Array` | No |  |
 | `publisher` | `String` | No |  |
-| `release_date` | `String` | No |  |
-| `screenshot` | `Array` | No |  |
-| `success` | `Boolean` | No |  |
-| `video` | `Array` | No |  |
+| `releaseDate` | `String` | No |  |
+| `screenshots` | `Array` | No |  |
+| `videos` | `Array` | No |  |
 
 ### Operations
 
@@ -340,8 +334,11 @@ platform = client.Platform
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `api` | `Hash` | No |  |
+| `priceUpdates` | `Hash` | No |  |
+| `status` | `String` | No |  |
+| `timestamp` | `String` | No |  |
+| `website` | `Hash` | No |  |
 
 ### Operations
 
@@ -393,16 +390,16 @@ price = client.Price
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliate_link` | `String` | No |  |
+| `affiliateLink` | `String` | No |  |
 | `currency` | `String` | No |  |
 | `discount` | `Float` | No |  |
-| `in_stock` | `Boolean` | No |  |
-| `last_updated` | `String` | No |  |
-| `original_price` | `Float` | No |  |
+| `inStock` | `Boolean` | No |  |
+| `lastUpdated` | `String` | No |  |
+| `originalPrice` | `Float` | No |  |
 | `price` | `Float` | No |  |
 | `region` | `String` | No |  |
-| `retailer_id` | `String` | No |  |
-| `retailer_name` | `String` | No |  |
+| `retailerId` | `String` | No |  |
+| `retailerName` | `String` | No |  |
 
 ### Operations
 
@@ -455,11 +452,11 @@ retailer = client.Retailer
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `approved` | `Boolean` | No |  |
-| `currency` | `Array` | No |  |
+| `currencies` | `Array` | No |  |
 | `id` | `String` | No |  |
 | `logo` | `String` | No |  |
 | `name` | `String` | No |  |
-| `region` | `Array` | No |  |
+| `regions` | `Array` | No |  |
 | `website` | `String` | No |  |
 
 ### Operations
@@ -512,8 +509,9 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `consoles` | `Array` | No |  |
+| `games` | `Array` | No |  |
+| `totalResults` | `Integer` | No |  |
 
 ### Operations
 
@@ -565,15 +563,13 @@ studio = client.Studio
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
 | `description` | `String` | No |  |
-| `founding_year` | `Integer` | No |  |
-| `game` | `Array` | No |  |
+| `foundingYear` | `Integer` | No |  |
+| `games` | `Array` | No |  |
 | `id` | `String` | No |  |
 | `location` | `Hash` | No |  |
 | `logo` | `String` | No |  |
 | `name` | `String` | No |  |
-| `success` | `Boolean` | No |  |
 | `type` | `String` | No |  |
 | `website` | `String` | No |  |
 
@@ -635,21 +631,24 @@ user = client.User
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_rating` | `String` | No |  |
-| `cover_image` | `String` | No |  |
-| `data` | `Hash` | No |  |
+| `ageRating` | `String` | No |  |
+| `avatar` | `String` | No |  |
+| `coverImage` | `String` | No |  |
 | `description` | `String` | No |  |
 | `developer` | `String` | No |  |
-| `franchise_id` | `String` | No |  |
-| `genre` | `Array` | No |  |
+| `franchiseId` | `String` | No |  |
+| `genres` | `Array` | No |  |
 | `id` | `String` | No |  |
+| `joinDate` | `String` | No |  |
+| `libraryCount` | `Integer` | No |  |
 | `name` | `String` | No |  |
-| `platform` | `Array` | No |  |
+| `platforms` | `Array` | No |  |
 | `publisher` | `String` | No |  |
-| `release_date` | `String` | No |  |
-| `screenshot` | `Array` | No |  |
-| `success` | `Boolean` | No |  |
-| `video` | `Array` | No |  |
+| `releaseDate` | `String` | No |  |
+| `screenshots` | `Array` | No |  |
+| `username` | `String` | No |  |
+| `videos` | `Array` | No |  |
+| `wishlistCount` | `Integer` | No |  |
 
 ### Operations
 

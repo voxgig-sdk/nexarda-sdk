@@ -3,29 +3,29 @@
     "retailer": {
       "RETAILER00": {
         "approved": true,
-        "currency": [],
+        "currencies": [],
         "id": "RETAILER00",
         "logo": "s49",
         "name": "s4a",
-        "region": [],
+        "regions": [],
         "website": "s4c"
       },
       "RETAILER01": {
         "approved": true,
-        "currency": [],
+        "currencies": [],
         "id": "RETAILER01",
         "logo": "s8f",
         "name": "s90",
-        "region": [],
+        "regions": [],
         "website": "s92"
       },
       "RETAILER02": {
         "approved": true,
-        "currency": [],
+        "currencies": [],
         "id": "RETAILER02",
         "logo": "sd5",
         "name": "sd6",
-        "region": [],
+        "regions": [],
         "website": "sd8"
       }
     }
@@ -34,10 +34,10 @@
     "retailer": {
       "retailer_ref01": {
         "approved": true,
-        "currency": [],
+        "currencies": [],
         "logo": "s11b",
         "name": "s11c",
-        "region": [],
+        "regions": [],
         "website": "s11e"
       }
     }

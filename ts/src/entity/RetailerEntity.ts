@@ -37,7 +37,7 @@ class RetailerEntity extends NexardaEntityBase<Retailer> {
 
 
 
-  async list(this: any, reqmatch?: RetailerListMatch, ctrl?: Control): Promise<Retailer[]> {
+  async list(this: any, reqmatch?: RetailerListMatch, ctrl?: Control): Promise<RetailerEntity[]> {
 
     const utility = this._utility
 

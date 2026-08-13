@@ -39,7 +39,7 @@ begin
   # list returns an Array of Console records — iterate directly.
   consoles = client.Console.list
   consoles.each do |item|
-    puts "#{item["id"]} #{item["data"]}"
+    puts "#{item["id"]} #{item["description"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -50,7 +50,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Console record (raises on error).
+  # load returns the ENTITY — call data_get for the Console record (raises on error).
   console = client.Console.load({ "id" => "example_id" })
   puts console
 rescue => err
@@ -65,7 +65,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  consoles = client.Console.list()
+  studios = client.Studio.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -133,12 +133,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = NexardaSDK.test({
-  "entity" => { "console" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "studio" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-console = client.Console.list()
-puts console
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+studio = client.Studio.list()
+puts studio
 ```
 
 ### Use a custom fetch function
@@ -265,15 +266,13 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `manufacturer` |  |
 | `name` |  |
-| `release_date` |  |
-| `specification` |  |
-| `success` |  |
+| `releaseDate` |  |
+| `specifications` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -284,14 +283,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `game` |  |
+| `games` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
-| `total_game` |  |
+| `totalGames` |  |
 
 Operations: List, Load.
 
@@ -301,21 +298,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `videos` |  |
 
 Operations: List, Load.
 
@@ -325,8 +320,11 @@ API path: `/games`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `api` |  |
+| `priceUpdates` |  |
+| `status` |  |
+| `timestamp` |  |
+| `website` |  |
 
 Operations: Load.
 
@@ -336,16 +334,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `affiliate_link` |  |
+| `affiliateLink` |  |
 | `currency` |  |
 | `discount` |  |
-| `in_stock` |  |
-| `last_updated` |  |
-| `original_price` |  |
+| `inStock` |  |
+| `lastUpdated` |  |
+| `originalPrice` |  |
 | `price` |  |
 | `region` |  |
-| `retailer_id` |  |
-| `retailer_name` |  |
+| `retailerId` |  |
+| `retailerName` |  |
 
 Operations: List.
 
@@ -356,11 +354,11 @@ API path: `/games/{gameId}/prices`
 | Field | Description |
 | --- | --- |
 | `approved` |  |
-| `currency` |  |
+| `currencies` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `region` |  |
+| `regions` |  |
 | `website` |  |
 
 Operations: List.
@@ -371,8 +369,9 @@ API path: `/retailers`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `consoles` |  |
+| `games` |  |
+| `totalResults` |  |
 
 Operations: Load.
 
@@ -382,15 +381,13 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `founding_year` |  |
-| `game` |  |
+| `foundingYear` |  |
+| `games` |  |
 | `id` |  |
 | `location` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
 | `type` |  |
 | `website` |  |
 
@@ -402,21 +399,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `avatar` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
+| `joinDate` |  |
+| `libraryCount` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `username` |  |
+| `videos` |  |
+| `wishlistCount` |  |
 
 Operations: List, Load.
 
@@ -451,21 +451,19 @@ Create an instance: `console = client.Console`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
 | `description` | `String` |  |
 | `id` | `String` |  |
-| `image` | `Array` |  |
+| `images` | `Array` |  |
 | `manufacturer` | `String` |  |
 | `name` | `String` |  |
-| `release_date` | `String` |  |
-| `specification` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `releaseDate` | `String` |  |
+| `specifications` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Console record (raises on error).
+# load returns the ENTITY — call data_get for the Console record (raises on error).
 console = client.Console.load({ "id" => "console_id" })
 ```
 
@@ -492,19 +490,17 @@ Create an instance: `franchis = client.Franchis`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
 | `description` | `String` |  |
-| `game` | `Array` |  |
+| `games` | `Array` |  |
 | `id` | `String` |  |
 | `logo` | `String` |  |
 | `name` | `String` |  |
-| `success` | `Boolean` |  |
-| `total_game` | `Integer` |  |
+| `totalGames` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Franchis record (raises on error).
+# load returns the ENTITY — call data_get for the Franchis record (raises on error).
 franchis = client.Franchis.load({ "id" => "franchis_id" })
 ```
 
@@ -531,26 +527,24 @@ Create an instance: `game = client.Game`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `String` |  |
-| `cover_image` | `String` |  |
-| `data` | `Hash` |  |
+| `ageRating` | `String` |  |
+| `coverImage` | `String` |  |
 | `description` | `String` |  |
 | `developer` | `String` |  |
-| `franchise_id` | `String` |  |
-| `genre` | `Array` |  |
+| `franchiseId` | `String` |  |
+| `genres` | `Array` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
-| `platform` | `Array` |  |
+| `platforms` | `Array` |  |
 | `publisher` | `String` |  |
-| `release_date` | `String` |  |
-| `screenshot` | `Array` |  |
-| `success` | `Boolean` |  |
-| `video` | `Array` |  |
+| `releaseDate` | `String` |  |
+| `screenshots` | `Array` |  |
+| `videos` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Game record (raises on error).
+# load returns the ENTITY — call data_get for the Game record (raises on error).
 game = client.Game.load({ "id" => "game_id" })
 ```
 
@@ -576,13 +570,16 @@ Create an instance: `platform = client.Platform`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `api` | `Hash` |  |
+| `priceUpdates` | `Hash` |  |
+| `status` | `String` |  |
+| `timestamp` | `String` |  |
+| `website` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Platform record (raises on error).
+# load returns the ENTITY — call data_get for the Platform record (raises on error).
 platform = client.Platform.load()
 ```
 
@@ -601,16 +598,16 @@ Create an instance: `price = client.Price`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | `String` |  |
+| `affiliateLink` | `String` |  |
 | `currency` | `String` |  |
 | `discount` | `Float` |  |
-| `in_stock` | `Boolean` |  |
-| `last_updated` | `String` |  |
-| `original_price` | `Float` |  |
+| `inStock` | `Boolean` |  |
+| `lastUpdated` | `String` |  |
+| `originalPrice` | `Float` |  |
 | `price` | `Float` |  |
 | `region` | `String` |  |
-| `retailer_id` | `String` |  |
-| `retailer_name` | `String` |  |
+| `retailerId` | `String` |  |
+| `retailerName` | `String` |  |
 
 #### Example: List
 
@@ -635,11 +632,11 @@ Create an instance: `retailer = client.Retailer`
 | Field | Type | Description |
 | --- | --- | --- |
 | `approved` | `Boolean` |  |
-| `currency` | `Array` |  |
+| `currencies` | `Array` |  |
 | `id` | `String` |  |
 | `logo` | `String` |  |
 | `name` | `String` |  |
-| `region` | `Array` |  |
+| `regions` | `Array` |  |
 | `website` | `String` |  |
 
 #### Example: List
@@ -664,13 +661,14 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `consoles` | `Array` |  |
+| `games` | `Array` |  |
+| `totalResults` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Search record (raises on error).
+# load returns the ENTITY — call data_get for the Search record (raises on error).
 search = client.Search.load()
 ```
 
@@ -690,22 +688,20 @@ Create an instance: `studio = client.Studio`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
 | `description` | `String` |  |
-| `founding_year` | `Integer` |  |
-| `game` | `Array` |  |
+| `foundingYear` | `Integer` |  |
+| `games` | `Array` |  |
 | `id` | `String` |  |
 | `location` | `Hash` |  |
 | `logo` | `String` |  |
 | `name` | `String` |  |
-| `success` | `Boolean` |  |
 | `type` | `String` |  |
 | `website` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Studio record (raises on error).
+# load returns the ENTITY — call data_get for the Studio record (raises on error).
 studio = client.Studio.load({ "id" => "studio_id" })
 ```
 
@@ -732,26 +728,29 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `String` |  |
-| `cover_image` | `String` |  |
-| `data` | `Hash` |  |
+| `ageRating` | `String` |  |
+| `avatar` | `String` |  |
+| `coverImage` | `String` |  |
 | `description` | `String` |  |
 | `developer` | `String` |  |
-| `franchise_id` | `String` |  |
-| `genre` | `Array` |  |
+| `franchiseId` | `String` |  |
+| `genres` | `Array` |  |
 | `id` | `String` |  |
+| `joinDate` | `String` |  |
+| `libraryCount` | `Integer` |  |
 | `name` | `String` |  |
-| `platform` | `Array` |  |
+| `platforms` | `Array` |  |
 | `publisher` | `String` |  |
-| `release_date` | `String` |  |
-| `screenshot` | `Array` |  |
-| `success` | `Boolean` |  |
-| `video` | `Array` |  |
+| `releaseDate` | `String` |  |
+| `screenshots` | `Array` |  |
+| `username` | `String` |  |
+| `videos` | `Array` |  |
+| `wishlistCount` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare User record (raises on error).
+# load returns the ENTITY — call data_get for the User record (raises on error).
 user = client.User.load({ "id" => "user_id" })
 ```
 
@@ -776,7 +775,7 @@ Create an instance: `widget = client.Widget`
 #### Example: Load
 
 ```ruby
-# load returns the bare Widget record (raises on error).
+# load returns the ENTITY — call data_get for the Widget record (raises on error).
 widget = client.Widget.load()
 ```
 
@@ -857,11 +856,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-console = client.Console
-console.list()
+studio = client.Studio
+studio.list()
 
-# console.data_get now returns the console data from the last list
-# console.match_get returns the last match criteria
+# studio.data_get now returns the studio data from the last list
+# studio.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

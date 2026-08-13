@@ -63,13 +63,13 @@ describe('ConsoleEntity', async () => {
     const console_ref01_ent = client.Console()
     const console_ref01_match: any = {}
 
-    const console_ref01_list = await console_ref01_ent.list(console_ref01_match)
+    const console_ref01_list = (await console_ref01_ent.list(console_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const console_ref01_match_dt0: any = {}
     console_ref01_match_dt0.id = console_ref01_data.id
-    const console_ref01_data_dt0 = await console_ref01_ent.load(console_ref01_match_dt0)
+    const console_ref01_data_dt0 = (await console_ref01_ent.load(console_ref01_match_dt0)).data()
     assert(console_ref01_data_dt0.id === console_ref01_data.id)
 
 

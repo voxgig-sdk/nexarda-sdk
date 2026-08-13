@@ -63,13 +63,13 @@ describe('FranchisEntity', async () => {
     const franchis_ref01_ent = client.Franchis()
     const franchis_ref01_match: any = {}
 
-    const franchis_ref01_list = await franchis_ref01_ent.list(franchis_ref01_match)
+    const franchis_ref01_list = (await franchis_ref01_ent.list(franchis_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const franchis_ref01_match_dt0: any = {}
     franchis_ref01_match_dt0.id = franchis_ref01_data.id
-    const franchis_ref01_data_dt0 = await franchis_ref01_ent.load(franchis_ref01_match_dt0)
+    const franchis_ref01_data_dt0 = (await franchis_ref01_ent.load(franchis_ref01_match_dt0)).data()
     assert(franchis_ref01_data_dt0.id === franchis_ref01_data.id)
 
 

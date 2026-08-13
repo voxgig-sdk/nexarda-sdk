@@ -2,18 +2,27 @@
   "existing": {
     "platform": {
       "PLATFORM00": {
-        "data": {},
-        "success": false,
+        "api": {},
+        "priceUpdates": {},
+        "status": "s34",
+        "timestamp": "s35",
+        "website": {},
         "id": "PLATFORM00"
       },
       "PLATFORM01": {
-        "data": {},
-        "success": false,
+        "api": {},
+        "priceUpdates": {},
+        "status": "s66",
+        "timestamp": "s67",
+        "website": {},
         "id": "PLATFORM01"
       },
       "PLATFORM02": {
-        "data": {},
-        "success": false,
+        "api": {},
+        "priceUpdates": {},
+        "status": "s98",
+        "timestamp": "s99",
+        "website": {},
         "id": "PLATFORM02"
       }
     }
@@ -21,8 +30,11 @@
   "new": {
     "platform": {
       "platform_ref01": {
-        "data": {},
-        "success": false
+        "api": {},
+        "priceUpdates": {},
+        "status": "sca",
+        "timestamp": "scb",
+        "website": {}
       }
     }
   }

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ NexardaUtility::setRegistrar(function (NexardaUtility $u): void {
     $u->prepare_params = [NexardaPrepareParams::class, 'call'];
     $u->prepare_path = [NexardaPreparePath::class, 'call'];
     $u->prepare_query = [NexardaPrepareQuery::class, 'call'];
+    $u->graphql_body = [NexardaGraphql::class, 'body'];
+    $u->graphql_errors = [NexardaGraphql::class, 'errors'];
     $u->result_basic = [NexardaResultBasic::class, 'call'];
     $u->result_body = [NexardaResultBody::class, 'call'];
     $u->result_headers = [NexardaResultHeaders::class, 'call'];

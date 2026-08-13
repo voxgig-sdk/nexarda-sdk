@@ -97,7 +97,7 @@ class ConsoleEntityTest extends TestCase
             "id" => $console_ref01_data["id"],
         ];
         $console_ref01_data_dt0_loaded = $console_ref01_ent->load($console_ref01_match_dt0, null);
-        $console_ref01_data_dt0_load_result = Helpers::to_map($console_ref01_data_dt0_loaded);
+        $console_ref01_data_dt0_load_result = Helpers::to_map(is_object($console_ref01_data_dt0_loaded) && method_exists($console_ref01_data_dt0_loaded, 'data_get') ? $console_ref01_data_dt0_loaded->data_get() : $console_ref01_data_dt0_loaded);
         $this->assertNotNull($console_ref01_data_dt0_load_result);
         $this->assertEquals($console_ref01_data_dt0_load_result["id"], $console_ref01_data["id"]);
 

@@ -97,7 +97,7 @@ class FranchisEntityTest extends TestCase
             "id" => $franchis_ref01_data["id"],
         ];
         $franchis_ref01_data_dt0_loaded = $franchis_ref01_ent->load($franchis_ref01_match_dt0, null);
-        $franchis_ref01_data_dt0_load_result = Helpers::to_map($franchis_ref01_data_dt0_loaded);
+        $franchis_ref01_data_dt0_load_result = Helpers::to_map(is_object($franchis_ref01_data_dt0_loaded) && method_exists($franchis_ref01_data_dt0_loaded, 'data_get') ? $franchis_ref01_data_dt0_loaded->data_get() : $franchis_ref01_data_dt0_loaded);
         $this->assertNotNull($franchis_ref01_data_dt0_load_result);
         $this->assertEquals($franchis_ref01_data_dt0_load_result["id"], $franchis_ref01_data["id"]);
 

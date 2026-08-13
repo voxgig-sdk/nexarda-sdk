@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Nexarda',
   }
 
 
@@ -87,73 +87,59 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
-        },
-        {
-          "active": true,
           "name": "description",
           "req": false,
           "type": "`$STRING`",
-          "index$": 1
+          "index$": 0
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$STRING`",
-          "index$": 2
+          "index$": 1
         },
         {
           "active": true,
-          "name": "image",
+          "name": "images",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "manufacturer",
           "req": false,
           "type": "`$STRING`",
-          "index$": 4
+          "index$": 3
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "releaseDate",
+          "req": false,
+          "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "release_date",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 6
-        },
-        {
-          "active": true,
-          "name": "specification",
+          "name": "specifications",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 7
-        },
-        {
-          "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 8
+          "index$": 6
         },
         {
           "active": true,
           "name": "type",
           "req": false,
           "type": "`$STRING`",
-          "index$": 9
+          "index$": 7
         }
       ],
       "name": "console",
@@ -177,6 +163,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/consoles",
               "parts": [
@@ -189,7 +176,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -215,6 +202,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/consoles/{consoleId}",
               "parts": [
@@ -233,7 +221,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -249,59 +237,45 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "description",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "description",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
-        },
-        {
-          "active": true,
-          "name": "game",
+          "name": "games",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 2
+          "index$": 1
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$STRING`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "logo",
           "req": false,
           "type": "`$STRING`",
-          "index$": 4
+          "index$": 3
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 5
+          "index$": 4
         },
         {
           "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 6
-        },
-        {
-          "active": true,
-          "name": "total_game",
+          "name": "totalGames",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 7
+          "index$": 5
         }
       ],
       "name": "franchis",
@@ -325,6 +299,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/franchises",
               "parts": [
@@ -337,7 +312,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -363,6 +338,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/franchises/{franchiseId}",
               "parts": [
@@ -381,7 +357,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -397,108 +373,94 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "age_rating",
+          "name": "ageRating",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "cover_image",
+          "name": "coverImage",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "data",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 2
-        },
-        {
-          "active": true,
           "name": "description",
           "req": false,
           "type": "`$STRING`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "developer",
           "req": false,
           "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "franchiseId",
+          "req": false,
+          "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "franchise_id",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
-        },
-        {
-          "active": true,
-          "name": "genre",
+          "name": "genres",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 6
+          "index$": 5
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$STRING`",
-          "index$": 7
+          "index$": 6
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 8
+          "index$": 7
         },
         {
           "active": true,
-          "name": "platform",
+          "name": "platforms",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 9
+          "index$": 8
         },
         {
           "active": true,
           "name": "publisher",
           "req": false,
           "type": "`$STRING`",
+          "index$": 9
+        },
+        {
+          "active": true,
+          "name": "releaseDate",
+          "req": false,
+          "type": "`$STRING`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "release_date",
+          "name": "screenshots",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$ARRAY`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "screenshot",
+          "name": "videos",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 12
-        },
-        {
-          "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 13
-        },
-        {
-          "active": true,
-          "name": "video",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 14
         }
       ],
       "name": "game",
@@ -531,6 +493,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/games",
               "parts": [
@@ -580,6 +543,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/games/platform/{platformId}",
               "parts": [
@@ -600,7 +564,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             },
@@ -619,6 +583,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/games/{gameId}",
               "parts": [
@@ -637,7 +602,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 1
             }
@@ -657,17 +622,38 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "api",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "success",
+          "name": "priceUpdates",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$OBJECT`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "status",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "timestamp",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "website",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 4
         }
       ],
       "name": "platform",
@@ -679,6 +665,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/status",
               "parts": [
@@ -687,7 +674,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -703,7 +690,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "affiliate_link",
+          "name": "affiliateLink",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -724,21 +711,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "in_stock",
+          "name": "inStock",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "last_updated",
+          "name": "lastUpdated",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "original_price",
+          "name": "originalPrice",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 5
@@ -759,14 +746,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "retailer_id",
+          "name": "retailerId",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "retailer_name",
+          "name": "retailerName",
           "req": false,
           "type": "`$STRING`",
           "index$": 9
@@ -812,6 +799,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/games/{gameId}/prices",
               "parts": [
@@ -833,7 +821,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             },
@@ -863,6 +851,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/consoles/{consoleId}/prices",
               "parts": [
@@ -883,7 +872,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 1
             }
@@ -913,7 +902,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "currency",
+          "name": "currencies",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -941,7 +930,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "region",
+          "name": "regions",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 5
@@ -963,6 +952,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/retailers",
               "parts": [
@@ -971,7 +961,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -987,17 +977,24 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "consoles",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "success",
+          "name": "games",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$ARRAY`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "totalResults",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 2
         }
       ],
       "name": "search",
@@ -1038,6 +1035,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/search",
               "parts": [
@@ -1052,7 +1050,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -1068,80 +1066,66 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "description",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "description",
+          "name": "foundingYear",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "founding_year",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
-        },
-        {
-          "active": true,
-          "name": "game",
+          "name": "games",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$STRING`",
-          "index$": 4
+          "index$": 3
         },
         {
           "active": true,
           "name": "location",
           "req": false,
           "type": "`$OBJECT`",
-          "index$": 5
+          "index$": 4
         },
         {
           "active": true,
           "name": "logo",
           "req": false,
           "type": "`$STRING`",
-          "index$": 6
+          "index$": 5
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 7
-        },
-        {
-          "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 8
+          "index$": 6
         },
         {
           "active": true,
           "name": "type",
           "req": false,
           "type": "`$STRING`",
-          "index$": 9
+          "index$": 7
         },
         {
           "active": true,
           "name": "website",
           "req": false,
           "type": "`$STRING`",
-          "index$": 10
+          "index$": 8
         }
       ],
       "name": "studio",
@@ -1173,6 +1157,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/studios",
               "parts": [
@@ -1186,7 +1171,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -1212,6 +1197,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/studios/{studioId}",
               "parts": [
@@ -1230,7 +1216,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -1246,23 +1232,23 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "age_rating",
+          "name": "ageRating",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "cover_image",
+          "name": "avatar",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "data",
+          "name": "coverImage",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 2
         },
         {
@@ -1281,14 +1267,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "franchise_id",
+          "name": "franchiseId",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "genre",
+          "name": "genres",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 6
@@ -1302,52 +1288,73 @@ class Config {
         },
         {
           "active": true,
-          "name": "name",
+          "name": "joinDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "platform",
+          "name": "libraryCount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "publisher",
+          "name": "name",
           "req": false,
           "type": "`$STRING`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "release_date",
+          "name": "platforms",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$ARRAY`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "screenshot",
+          "name": "publisher",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$STRING`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "success",
+          "name": "releaseDate",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$STRING`",
           "index$": 13
         },
         {
           "active": true,
-          "name": "video",
+          "name": "screenshots",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 14
+        },
+        {
+          "active": true,
+          "name": "username",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 15
+        },
+        {
+          "active": true,
+          "name": "videos",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 16
+        },
+        {
+          "active": true,
+          "name": "wishlistCount",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 17
         }
       ],
       "name": "user",
@@ -1371,6 +1378,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/users/{userId}/library",
               "parts": [
@@ -1391,7 +1399,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             },
@@ -1410,6 +1418,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/users/{userId}/wishlist",
               "parts": [
@@ -1430,7 +1439,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 1
             }
@@ -1456,6 +1465,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/users/{userId}",
               "parts": [
@@ -1474,7 +1484,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -1517,6 +1527,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/widgets/button",
               "parts": [
@@ -1559,6 +1570,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/widgets/product-card",
               "parts": [

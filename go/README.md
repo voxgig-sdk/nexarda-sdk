@@ -78,12 +78,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-consoles, err := client.Console(nil).List(nil, nil)
+studios, err := client.Studio(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = consoles
+_ = studios
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -147,13 +147,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-console, err := client.Console(nil).List(
+studio, err := client.Studio(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(console) // the returned mock data
+fmt.Println(studio) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -283,15 +283,13 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
 | `"description"` |  |
 | `"id"` |  |
-| `"image"` |  |
+| `"images"` |  |
 | `"manufacturer"` |  |
 | `"name"` |  |
-| `"release_date"` |  |
-| `"specification"` |  |
-| `"success"` |  |
+| `"releaseDate"` |  |
+| `"specifications"` |  |
 | `"type"` |  |
 
 Operations: List, Load.
@@ -302,14 +300,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
 | `"description"` |  |
-| `"game"` |  |
+| `"games"` |  |
 | `"id"` |  |
 | `"logo"` |  |
 | `"name"` |  |
-| `"success"` |  |
-| `"total_game"` |  |
+| `"totalGames"` |  |
 
 Operations: List, Load.
 
@@ -319,21 +315,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `"age_rating"` |  |
-| `"cover_image"` |  |
-| `"data"` |  |
+| `"ageRating"` |  |
+| `"coverImage"` |  |
 | `"description"` |  |
 | `"developer"` |  |
-| `"franchise_id"` |  |
-| `"genre"` |  |
+| `"franchiseId"` |  |
+| `"genres"` |  |
 | `"id"` |  |
 | `"name"` |  |
-| `"platform"` |  |
+| `"platforms"` |  |
 | `"publisher"` |  |
-| `"release_date"` |  |
-| `"screenshot"` |  |
-| `"success"` |  |
-| `"video"` |  |
+| `"releaseDate"` |  |
+| `"screenshots"` |  |
+| `"videos"` |  |
 
 Operations: List, Load.
 
@@ -343,8 +337,11 @@ API path: `/games`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"success"` |  |
+| `"api"` |  |
+| `"priceUpdates"` |  |
+| `"status"` |  |
+| `"timestamp"` |  |
+| `"website"` |  |
 
 Operations: Load.
 
@@ -354,16 +351,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `"affiliate_link"` |  |
+| `"affiliateLink"` |  |
 | `"currency"` |  |
 | `"discount"` |  |
-| `"in_stock"` |  |
-| `"last_updated"` |  |
-| `"original_price"` |  |
+| `"inStock"` |  |
+| `"lastUpdated"` |  |
+| `"originalPrice"` |  |
 | `"price"` |  |
 | `"region"` |  |
-| `"retailer_id"` |  |
-| `"retailer_name"` |  |
+| `"retailerId"` |  |
+| `"retailerName"` |  |
 
 Operations: List.
 
@@ -374,11 +371,11 @@ API path: `/games/{gameId}/prices`
 | Field | Description |
 | --- | --- |
 | `"approved"` |  |
-| `"currency"` |  |
+| `"currencies"` |  |
 | `"id"` |  |
 | `"logo"` |  |
 | `"name"` |  |
-| `"region"` |  |
+| `"regions"` |  |
 | `"website"` |  |
 
 Operations: List.
@@ -389,8 +386,9 @@ API path: `/retailers`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"success"` |  |
+| `"consoles"` |  |
+| `"games"` |  |
+| `"totalResults"` |  |
 
 Operations: Load.
 
@@ -400,15 +398,13 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
 | `"description"` |  |
-| `"founding_year"` |  |
-| `"game"` |  |
+| `"foundingYear"` |  |
+| `"games"` |  |
 | `"id"` |  |
 | `"location"` |  |
 | `"logo"` |  |
 | `"name"` |  |
-| `"success"` |  |
 | `"type"` |  |
 | `"website"` |  |
 
@@ -420,21 +416,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `"age_rating"` |  |
-| `"cover_image"` |  |
-| `"data"` |  |
+| `"ageRating"` |  |
+| `"avatar"` |  |
+| `"coverImage"` |  |
 | `"description"` |  |
 | `"developer"` |  |
-| `"franchise_id"` |  |
-| `"genre"` |  |
+| `"franchiseId"` |  |
+| `"genres"` |  |
 | `"id"` |  |
+| `"joinDate"` |  |
+| `"libraryCount"` |  |
 | `"name"` |  |
-| `"platform"` |  |
+| `"platforms"` |  |
 | `"publisher"` |  |
-| `"release_date"` |  |
-| `"screenshot"` |  |
-| `"success"` |  |
-| `"video"` |  |
+| `"releaseDate"` |  |
+| `"screenshots"` |  |
+| `"username"` |  |
+| `"videos"` |  |
+| `"wishlistCount"` |  |
 
 Operations: List, Load.
 
@@ -469,15 +468,13 @@ Create an instance: `console := client.Console(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `image` | `[]any` |  |
+| `images` | `[]any` |  |
 | `manufacturer` | `string` |  |
 | `name` | `string` |  |
-| `release_date` | `string` |  |
-| `specification` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `releaseDate` | `string` |  |
+| `specifications` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -516,14 +513,12 @@ Create an instance: `franchis := client.Franchis(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
 | `description` | `string` |  |
-| `game` | `[]any` |  |
+| `games` | `[]any` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `bool` |  |
-| `total_game` | `int` |  |
+| `totalGames` | `int` |  |
 
 #### Example: Load
 
@@ -561,21 +556,19 @@ Create an instance: `game := client.Game(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `map[string]any` |  |
+| `ageRating` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `[]any` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `[]any` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `platform` | `[]any` |  |
+| `platforms` | `[]any` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `[]any` |  |
-| `success` | `bool` |  |
-| `video` | `[]any` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `[]any` |  |
+| `videos` | `[]any` |  |
 
 #### Example: Load
 
@@ -612,8 +605,11 @@ Create an instance: `platform := client.Platform(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `api` | `map[string]any` |  |
+| `priceUpdates` | `map[string]any` |  |
+| `status` | `string` |  |
+| `timestamp` | `string` |  |
+| `website` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -640,16 +636,16 @@ Create an instance: `price := client.Price(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | `string` |  |
+| `affiliateLink` | `string` |  |
 | `currency` | `string` |  |
 | `discount` | `float64` |  |
-| `in_stock` | `bool` |  |
-| `last_updated` | `string` |  |
-| `original_price` | `float64` |  |
+| `inStock` | `bool` |  |
+| `lastUpdated` | `string` |  |
+| `originalPrice` | `float64` |  |
 | `price` | `float64` |  |
 | `region` | `string` |  |
-| `retailer_id` | `string` |  |
-| `retailer_name` | `string` |  |
+| `retailerId` | `string` |  |
+| `retailerName` | `string` |  |
 
 #### Example: List
 
@@ -677,11 +673,11 @@ Create an instance: `retailer := client.Retailer(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `approved` | `bool` |  |
-| `currency` | `[]any` |  |
+| `currencies` | `[]any` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `region` | `[]any` |  |
+| `regions` | `[]any` |  |
 | `website` | `string` |  |
 
 #### Example: List
@@ -709,8 +705,9 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `consoles` | `[]any` |  |
+| `games` | `[]any` |  |
+| `totalResults` | `int` |  |
 
 #### Example: Load
 
@@ -738,15 +735,13 @@ Create an instance: `studio := client.Studio(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
 | `description` | `string` |  |
-| `founding_year` | `int` |  |
-| `game` | `[]any` |  |
+| `foundingYear` | `int` |  |
+| `games` | `[]any` |  |
 | `id` | `string` |  |
 | `location` | `map[string]any` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `bool` |  |
 | `type` | `string` |  |
 | `website` | `string` |  |
 
@@ -786,21 +781,24 @@ Create an instance: `user := client.User(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `map[string]any` |  |
+| `ageRating` | `string` |  |
+| `avatar` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `[]any` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `[]any` |  |
 | `id` | `string` |  |
+| `joinDate` | `string` |  |
+| `libraryCount` | `int` |  |
 | `name` | `string` |  |
-| `platform` | `[]any` |  |
+| `platforms` | `[]any` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `[]any` |  |
-| `success` | `bool` |  |
-| `video` | `[]any` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `[]any` |  |
+| `username` | `string` |  |
+| `videos` | `[]any` |  |
+| `wishlistCount` | `int` |  |
 
 #### Example: Load
 
@@ -917,11 +915,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-console := client.Console(nil)
-console.List(nil, nil)
+studio := client.Studio(nil)
+studio.List(nil, nil)
 
-// console.Data() now returns the console data from the last list
-// console.Match() returns the last match criteria
+// studio.Data() now returns the studio data from the last list
+// studio.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

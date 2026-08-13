@@ -55,7 +55,7 @@ except Exception as err:
 
 ### 3. Load a console
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -72,8 +72,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    consoles = client.Console().list()
-    print(consoles)
+    studios = client.Studio().list()
+    print(studios)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -139,9 +139,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NexardaSDK.test()
 
-# Entity ops return the bare record and raise on error.
-console = client.Console().list()
-# console contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+studio = client.Studio().list()
+# studio contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -247,7 +248,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -269,15 +270,13 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `manufacturer` |  |
 | `name` |  |
-| `release_date` |  |
-| `specification` |  |
-| `success` |  |
+| `releaseDate` |  |
+| `specifications` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -288,14 +287,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `game` |  |
+| `games` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
-| `total_game` |  |
+| `totalGames` |  |
 
 Operations: List, Load.
 
@@ -305,21 +302,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `videos` |  |
 
 Operations: List, Load.
 
@@ -329,8 +324,11 @@ API path: `/games`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `api` |  |
+| `priceUpdates` |  |
+| `status` |  |
+| `timestamp` |  |
+| `website` |  |
 
 Operations: Load.
 
@@ -340,16 +338,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `affiliate_link` |  |
+| `affiliateLink` |  |
 | `currency` |  |
 | `discount` |  |
-| `in_stock` |  |
-| `last_updated` |  |
-| `original_price` |  |
+| `inStock` |  |
+| `lastUpdated` |  |
+| `originalPrice` |  |
 | `price` |  |
 | `region` |  |
-| `retailer_id` |  |
-| `retailer_name` |  |
+| `retailerId` |  |
+| `retailerName` |  |
 
 Operations: List.
 
@@ -360,11 +358,11 @@ API path: `/games/{gameId}/prices`
 | Field | Description |
 | --- | --- |
 | `approved` |  |
-| `currency` |  |
+| `currencies` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `region` |  |
+| `regions` |  |
 | `website` |  |
 
 Operations: List.
@@ -375,8 +373,9 @@ API path: `/retailers`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `consoles` |  |
+| `games` |  |
+| `totalResults` |  |
 
 Operations: Load.
 
@@ -386,15 +385,13 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `founding_year` |  |
-| `game` |  |
+| `foundingYear` |  |
+| `games` |  |
 | `id` |  |
 | `location` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
 | `type` |  |
 | `website` |  |
 
@@ -406,21 +403,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `avatar` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
+| `joinDate` |  |
+| `libraryCount` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `username` |  |
+| `videos` |  |
+| `wishlistCount` |  |
 
 Operations: List, Load.
 
@@ -455,15 +455,13 @@ Create an instance: `console = client.Console()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
 | `description` | `str` |  |
 | `id` | `str` |  |
-| `image` | `list` |  |
+| `images` | `list` |  |
 | `manufacturer` | `str` |  |
 | `name` | `str` |  |
-| `release_date` | `str` |  |
-| `specification` | `dict` |  |
-| `success` | `bool` |  |
+| `releaseDate` | `str` |  |
+| `specifications` | `dict` |  |
 | `type` | `str` |  |
 
 #### Example: Load
@@ -494,14 +492,12 @@ Create an instance: `franchis = client.Franchis()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
 | `description` | `str` |  |
-| `game` | `list` |  |
+| `games` | `list` |  |
 | `id` | `str` |  |
 | `logo` | `str` |  |
 | `name` | `str` |  |
-| `success` | `bool` |  |
-| `total_game` | `int` |  |
+| `totalGames` | `int` |  |
 
 #### Example: Load
 
@@ -531,21 +527,19 @@ Create an instance: `game = client.Game()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `str` |  |
-| `cover_image` | `str` |  |
-| `data` | `dict` |  |
+| `ageRating` | `str` |  |
+| `coverImage` | `str` |  |
 | `description` | `str` |  |
 | `developer` | `str` |  |
-| `franchise_id` | `str` |  |
-| `genre` | `list` |  |
+| `franchiseId` | `str` |  |
+| `genres` | `list` |  |
 | `id` | `str` |  |
 | `name` | `str` |  |
-| `platform` | `list` |  |
+| `platforms` | `list` |  |
 | `publisher` | `str` |  |
-| `release_date` | `str` |  |
-| `screenshot` | `list` |  |
-| `success` | `bool` |  |
-| `video` | `list` |  |
+| `releaseDate` | `str` |  |
+| `screenshots` | `list` |  |
+| `videos` | `list` |  |
 
 #### Example: Load
 
@@ -574,8 +568,11 @@ Create an instance: `platform = client.Platform()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `success` | `bool` |  |
+| `api` | `dict` |  |
+| `priceUpdates` | `dict` |  |
+| `status` | `str` |  |
+| `timestamp` | `str` |  |
+| `website` | `dict` |  |
 
 #### Example: Load
 
@@ -598,16 +595,16 @@ Create an instance: `price = client.Price()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | `str` |  |
+| `affiliateLink` | `str` |  |
 | `currency` | `str` |  |
 | `discount` | `float` |  |
-| `in_stock` | `bool` |  |
-| `last_updated` | `str` |  |
-| `original_price` | `float` |  |
+| `inStock` | `bool` |  |
+| `lastUpdated` | `str` |  |
+| `originalPrice` | `float` |  |
 | `price` | `float` |  |
 | `region` | `str` |  |
-| `retailer_id` | `str` |  |
-| `retailer_name` | `str` |  |
+| `retailerId` | `str` |  |
+| `retailerName` | `str` |  |
 
 #### Example: List
 
@@ -631,11 +628,11 @@ Create an instance: `retailer = client.Retailer()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `approved` | `bool` |  |
-| `currency` | `list` |  |
+| `currencies` | `list` |  |
 | `id` | `str` |  |
 | `logo` | `str` |  |
 | `name` | `str` |  |
-| `region` | `list` |  |
+| `regions` | `list` |  |
 | `website` | `str` |  |
 
 #### Example: List
@@ -659,8 +656,9 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `success` | `bool` |  |
+| `consoles` | `list` |  |
+| `games` | `list` |  |
+| `totalResults` | `int` |  |
 
 #### Example: Load
 
@@ -684,15 +682,13 @@ Create an instance: `studio = client.Studio()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
 | `description` | `str` |  |
-| `founding_year` | `int` |  |
-| `game` | `list` |  |
+| `foundingYear` | `int` |  |
+| `games` | `list` |  |
 | `id` | `str` |  |
 | `location` | `dict` |  |
 | `logo` | `str` |  |
 | `name` | `str` |  |
-| `success` | `bool` |  |
 | `type` | `str` |  |
 | `website` | `str` |  |
 
@@ -724,21 +720,24 @@ Create an instance: `user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `str` |  |
-| `cover_image` | `str` |  |
-| `data` | `dict` |  |
+| `ageRating` | `str` |  |
+| `avatar` | `str` |  |
+| `coverImage` | `str` |  |
 | `description` | `str` |  |
 | `developer` | `str` |  |
-| `franchise_id` | `str` |  |
-| `genre` | `list` |  |
+| `franchiseId` | `str` |  |
+| `genres` | `list` |  |
 | `id` | `str` |  |
+| `joinDate` | `str` |  |
+| `libraryCount` | `int` |  |
 | `name` | `str` |  |
-| `platform` | `list` |  |
+| `platforms` | `list` |  |
 | `publisher` | `str` |  |
-| `release_date` | `str` |  |
-| `screenshot` | `list` |  |
-| `success` | `bool` |  |
-| `video` | `list` |  |
+| `releaseDate` | `str` |  |
+| `screenshots` | `list` |  |
+| `username` | `str` |  |
+| `videos` | `list` |  |
+| `wishlistCount` | `int` |  |
 
 #### Example: Load
 
@@ -749,7 +748,7 @@ user = client.User().load({"id": "user_id"})
 #### Example: List
 
 ```python
-users = client.User().list()
+users = client.User().list({"id": "example_id"})
 ```
 
 
@@ -845,11 +844,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-console = client.Console()
-console.list()
+studio = client.Studio()
+studio.list()
 
-# console.data_get() now returns the console data from the last list
-# console.match_get() returns the last match criteria
+# studio.data_get() now returns the studio data from the last list
+# studio.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

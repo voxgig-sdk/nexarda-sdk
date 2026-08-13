@@ -6,17 +6,12 @@ main: kit: entity: franchis: {
 
   fields: [
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "description"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "game"
+      name: "games"
       req: false
       type: "`$ARRAY`"
     }
@@ -36,12 +31,7 @@ main: kit: entity: franchis: {
       type: "`$STRING`"
     }
     {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
-    }
-    {
-      name: "total_game"
+      name: "totalGames"
       req: false
       type: "`$INTEGER`"
     }
@@ -82,7 +72,7 @@ main: kit: entity: franchis: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -120,7 +110,7 @@ main: kit: entity: franchis: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

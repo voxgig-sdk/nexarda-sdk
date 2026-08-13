@@ -11,7 +11,7 @@ main: kit: entity: retailer: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "currency"
+      name: "currencies"
       req: false
       type: "`$ARRAY`"
     }
@@ -31,7 +31,7 @@ main: kit: entity: retailer: {
       type: "`$STRING`"
     }
     {
-      name: "region"
+      name: "regions"
       req: false
       type: "`$ARRAY`"
     }
@@ -60,7 +60,7 @@ main: kit: entity: retailer: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

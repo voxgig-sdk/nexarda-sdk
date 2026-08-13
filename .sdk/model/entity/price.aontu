@@ -6,7 +6,7 @@ main: kit: entity: price: {
 
   fields: [
     {
-      name: "affiliate_link"
+      name: "affiliateLink"
       req: false
       type: "`$STRING`"
     }
@@ -21,17 +21,17 @@ main: kit: entity: price: {
       type: "`$NUMBER`"
     }
     {
-      name: "in_stock"
+      name: "inStock"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "last_updated"
+      name: "lastUpdated"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "original_price"
+      name: "originalPrice"
       req: false
       type: "`$NUMBER`"
     }
@@ -46,12 +46,12 @@ main: kit: entity: price: {
       type: "`$STRING`"
     }
     {
-      name: "retailer_id"
+      name: "retailerId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "retailer_name"
+      name: "retailerName"
       req: false
       type: "`$STRING`"
     }
@@ -112,7 +112,7 @@ main: kit: entity: price: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -157,7 +157,7 @@ main: kit: entity: price: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

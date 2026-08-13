@@ -8,20 +8,24 @@ guide: {
   entity: console: {
     path: "/consoles": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/consoles/{consoleId}": {
       rename: param: "consoleId": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: franchis: {
     path: "/franchises": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/franchises/{franchiseId}": {
       rename: param: "franchiseId": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -32,16 +36,19 @@ guide: {
     path: "/games/platform/{platformId}": {
       rename: param: "platformId": *"platform_id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/games/{gameId}": {
       rename: param: "gameId": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: platform: {
     path: "/status": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -49,32 +56,38 @@ guide: {
     path: "/consoles/{consoleId}/prices": {
       rename: param: "consoleId": *"console_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/games/{gameId}/prices": {
       rename: param: "gameId": *"game_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: retailer: {
     path: "/retailers": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: search: {
     path: "/search": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: studio: {
     path: "/studios": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/studios/{studioId}": {
       rename: param: "studioId": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -82,16 +95,19 @@ guide: {
     path: "/users/{userId}": {
       rename: param: "userId": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/users/{userId}/library": {
       action: "library": {}
       rename: param: "userId": *"id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/users/{userId}/wishlist": {
       action: "wishlist": {}
       rename: param: "userId": *"id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 

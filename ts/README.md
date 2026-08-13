@@ -37,13 +37,15 @@ const client = new NexardaSDK({
 
 ### 2. List console records
 
-`list()` resolves to an array of Console objects — iterate it directly:
+`list()` resolves to an array of Console ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const consoles = await client.Console().list()
+const console_s = await client.Console().list()
 
-for (const console of consoles) {
-  console.log(console)
+for (const console_ of console_s) {
+  console.log(console_)
 }
 ```
 
@@ -53,8 +55,8 @@ for (const console of consoles) {
 
 ```ts
 try {
-  const console = await client.Console().load({ id: 'example_id' })
-  console.log(console)
+  const console_ = await client.Console().load({ id: 'example_id' })
+  console.log(console_)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -67,8 +69,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const consoles = await client.Console().list()
-  console.log(consoles)
+  const studios = await client.Studio().list()
+  console.log(studios)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -134,9 +136,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NexardaSDK.test()
 
-const console = await client.Console().list()
-// console is a bare entity populated with mock response data
-console.log(console)
+const studio = await client.Studio().list()
+// studio is the entity, populated with mock response data
+// — call studio.data() for the record itself
+console.log(studio)
 ```
 
 You can also use the instance method:
@@ -151,7 +154,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Console()
+const entity = client.Studio()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -314,15 +317,13 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `manufacturer` |  |
 | `name` |  |
-| `release_date` |  |
-| `specification` |  |
-| `success` |  |
+| `releaseDate` |  |
+| `specifications` |  |
 | `type` |  |
 
 Operations: list, load.
@@ -333,14 +334,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `game` |  |
+| `games` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
-| `total_game` |  |
+| `totalGames` |  |
 
 Operations: list, load.
 
@@ -350,21 +349,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `videos` |  |
 
 Operations: list, load.
 
@@ -374,8 +371,11 @@ API path: `/games`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `api` |  |
+| `priceUpdates` |  |
+| `status` |  |
+| `timestamp` |  |
+| `website` |  |
 
 Operations: load.
 
@@ -385,16 +385,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `affiliate_link` |  |
+| `affiliateLink` |  |
 | `currency` |  |
 | `discount` |  |
-| `in_stock` |  |
-| `last_updated` |  |
-| `original_price` |  |
+| `inStock` |  |
+| `lastUpdated` |  |
+| `originalPrice` |  |
 | `price` |  |
 | `region` |  |
-| `retailer_id` |  |
-| `retailer_name` |  |
+| `retailerId` |  |
+| `retailerName` |  |
 
 Operations: list.
 
@@ -405,11 +405,11 @@ API path: `/games/{gameId}/prices`
 | Field | Description |
 | --- | --- |
 | `approved` |  |
-| `currency` |  |
+| `currencies` |  |
 | `id` |  |
 | `logo` |  |
 | `name` |  |
-| `region` |  |
+| `regions` |  |
 | `website` |  |
 
 Operations: list.
@@ -420,8 +420,9 @@ API path: `/retailers`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `consoles` |  |
+| `games` |  |
+| `totalResults` |  |
 
 Operations: load.
 
@@ -431,15 +432,13 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `description` |  |
-| `founding_year` |  |
-| `game` |  |
+| `foundingYear` |  |
+| `games` |  |
 | `id` |  |
 | `location` |  |
 | `logo` |  |
 | `name` |  |
-| `success` |  |
 | `type` |  |
 | `website` |  |
 
@@ -451,21 +450,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `age_rating` |  |
-| `cover_image` |  |
-| `data` |  |
+| `ageRating` |  |
+| `avatar` |  |
+| `coverImage` |  |
 | `description` |  |
 | `developer` |  |
-| `franchise_id` |  |
-| `genre` |  |
+| `franchiseId` |  |
+| `genres` |  |
 | `id` |  |
+| `joinDate` |  |
+| `libraryCount` |  |
 | `name` |  |
-| `platform` |  |
+| `platforms` |  |
 | `publisher` |  |
-| `release_date` |  |
-| `screenshot` |  |
-| `success` |  |
-| `video` |  |
+| `releaseDate` |  |
+| `screenshots` |  |
+| `username` |  |
+| `videos` |  |
+| `wishlistCount` |  |
 
 Operations: list, load.
 
@@ -487,7 +489,7 @@ API path: `/widgets/button`
 
 ### Console
 
-Create an instance: `const console = client.Console()`
+Create an instance: `const console_ = client.Console()`
 
 #### Operations
 
@@ -500,27 +502,25 @@ Create an instance: `const console = client.Console()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `image` | `any[]` |  |
+| `images` | `any[]` |  |
 | `manufacturer` | `string` |  |
 | `name` | `string` |  |
-| `release_date` | `string` |  |
-| `specification` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `releaseDate` | `string` |  |
+| `specifications` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const console = await client.Console().load({ id: 'console_id' })
+const console_ = await client.Console().load({ id: 'console_id' })
 ```
 
 #### Example: List
 
 ```ts
-const consoles = await client.Console().list()
+const console_s = await client.Console().list()
 ```
 
 
@@ -539,14 +539,12 @@ Create an instance: `const franchis = client.Franchis()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
 | `description` | `string` |  |
-| `game` | `any[]` |  |
+| `games` | `any[]` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `boolean` |  |
-| `total_game` | `number` |  |
+| `totalGames` | `number` |  |
 
 #### Example: Load
 
@@ -576,21 +574,19 @@ Create an instance: `const game = client.Game()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `Record<string, any>` |  |
+| `ageRating` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `any[]` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `any[]` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `platform` | `any[]` |  |
+| `platforms` | `any[]` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `any[]` |  |
-| `success` | `boolean` |  |
-| `video` | `any[]` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `any[]` |  |
+| `videos` | `any[]` |  |
 
 #### Example: Load
 
@@ -619,8 +615,11 @@ Create an instance: `const platform = client.Platform()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `api` | `Record<string, any>` |  |
+| `priceUpdates` | `Record<string, any>` |  |
+| `status` | `string` |  |
+| `timestamp` | `string` |  |
+| `website` | `Record<string, any>` |  |
 
 #### Example: Load
 
@@ -643,16 +642,16 @@ Create an instance: `const price = client.Price()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliate_link` | `string` |  |
+| `affiliateLink` | `string` |  |
 | `currency` | `string` |  |
 | `discount` | `number` |  |
-| `in_stock` | `boolean` |  |
-| `last_updated` | `string` |  |
-| `original_price` | `number` |  |
+| `inStock` | `boolean` |  |
+| `lastUpdated` | `string` |  |
+| `originalPrice` | `number` |  |
 | `price` | `number` |  |
 | `region` | `string` |  |
-| `retailer_id` | `string` |  |
-| `retailer_name` | `string` |  |
+| `retailerId` | `string` |  |
+| `retailerName` | `string` |  |
 
 #### Example: List
 
@@ -676,11 +675,11 @@ Create an instance: `const retailer = client.Retailer()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `approved` | `boolean` |  |
-| `currency` | `any[]` |  |
+| `currencies` | `any[]` |  |
 | `id` | `string` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `region` | `any[]` |  |
+| `regions` | `any[]` |  |
 | `website` | `string` |  |
 
 #### Example: List
@@ -704,8 +703,9 @@ Create an instance: `const search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `consoles` | `any[]` |  |
+| `games` | `any[]` |  |
+| `totalResults` | `number` |  |
 
 #### Example: Load
 
@@ -729,15 +729,13 @@ Create an instance: `const studio = client.Studio()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
 | `description` | `string` |  |
-| `founding_year` | `number` |  |
-| `game` | `any[]` |  |
+| `foundingYear` | `number` |  |
+| `games` | `any[]` |  |
 | `id` | `string` |  |
 | `location` | `Record<string, any>` |  |
 | `logo` | `string` |  |
 | `name` | `string` |  |
-| `success` | `boolean` |  |
 | `type` | `string` |  |
 | `website` | `string` |  |
 
@@ -769,21 +767,24 @@ Create an instance: `const user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_rating` | `string` |  |
-| `cover_image` | `string` |  |
-| `data` | `Record<string, any>` |  |
+| `ageRating` | `string` |  |
+| `avatar` | `string` |  |
+| `coverImage` | `string` |  |
 | `description` | `string` |  |
 | `developer` | `string` |  |
-| `franchise_id` | `string` |  |
-| `genre` | `any[]` |  |
+| `franchiseId` | `string` |  |
+| `genres` | `any[]` |  |
 | `id` | `string` |  |
+| `joinDate` | `string` |  |
+| `libraryCount` | `number` |  |
 | `name` | `string` |  |
-| `platform` | `any[]` |  |
+| `platforms` | `any[]` |  |
 | `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshot` | `any[]` |  |
-| `success` | `boolean` |  |
-| `video` | `any[]` |  |
+| `releaseDate` | `string` |  |
+| `screenshots` | `any[]` |  |
+| `username` | `string` |  |
+| `videos` | `any[]` |  |
+| `wishlistCount` | `number` |  |
 
 #### Example: Load
 
@@ -794,7 +795,7 @@ const user = await client.User().load({ id: 'user_id' })
 #### Example: List
 
 ```ts
-const users = await client.User().list()
+const users = await client.User().list({ id: "example_id" })
 ```
 
 
@@ -884,11 +885,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const console = client.Console()
-await console.list()
+const studio = client.Studio()
+await studio.list()
 
-// console.data() now returns the console data from the last `list`
-// console.match() returns the last match criteria
+// studio.data() now returns the studio data from the last `list`
+// studio.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

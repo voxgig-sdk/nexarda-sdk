@@ -62,7 +62,7 @@ describe('WidgetEntity', async () => {
     // LOAD
     const widget_ref01_ent = client.Widget()
     const widget_ref01_match_dt0: any = {}
-    const widget_ref01_data_dt0 = await widget_ref01_ent.load(widget_ref01_match_dt0)
+    const widget_ref01_data_dt0 = (await widget_ref01_ent.load(widget_ref01_match_dt0)).data()
     assert(null != widget_ref01_data_dt0)
 
 
