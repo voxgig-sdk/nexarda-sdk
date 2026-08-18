@@ -495,7 +495,7 @@ const price = client.Price()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Price().list()
+const results = await client.Price().list({ game_id: "example" })
 ```
 
 ### Common Methods

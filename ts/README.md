@@ -656,7 +656,7 @@ Create an instance: `const price = client.Price()`
 #### Example: List
 
 ```ts
-const prices = await client.Price().list()
+const prices = await client.Price().list({ game_id: "example" })
 ```
 
 

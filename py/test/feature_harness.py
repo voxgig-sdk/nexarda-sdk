@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from nexarda_sdk.config import make_config
+from nexarda_sdk.config import shared_config
 from nexarda_sdk.features import _make_feature
 from nexarda_sdk.core.control import NexardaControl
 from nexarda_sdk.core.error import NexardaError
@@ -24,7 +24,7 @@ from nexarda_sdk.core.spec import NexardaSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

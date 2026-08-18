@@ -64,8 +64,7 @@
 ---@field videos? table
 
 ---@class GameLoadMatch
----@field platform_id? string
----@field id? string
+---@field id string
 
 ---@class GameListMatch
 ---@field ageRating? string
@@ -109,8 +108,7 @@
 ---@field retailerName? string
 
 ---@class PriceListMatch
----@field game_id? string
----@field console_id? string
+---@field game_id string
 
 ---@class Retailer
 ---@field approved? boolean

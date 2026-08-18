@@ -85,8 +85,7 @@ type Game struct {
 
 // GameLoadMatch is the typed request payload for Game.LoadTyped.
 type GameLoadMatch struct {
-	PlatformId *string `json:"platform_id,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 }
 
 // GameListMatch is the typed request payload for Game.ListTyped.
@@ -140,8 +139,7 @@ type Price struct {
 
 // PriceListMatch is the typed request payload for Price.ListTyped.
 type PriceListMatch struct {
-	GameId *string `json:"game_id,omitempty"`
-	ConsoleId *string `json:"console_id,omitempty"`
+	GameId string `json:"game_id"`
 }
 
 // Retailer is the typed data model for the retailer entity.

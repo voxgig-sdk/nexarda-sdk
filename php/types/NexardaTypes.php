@@ -93,8 +93,7 @@ class Game
 /** Request payload for Game#load. */
 class GameLoadMatch
 {
-    public ?string $platform_id = null;
-    public ?string $id = null;
+    public string $id;
 }
 
 /** Request payload for Game#list. */
@@ -153,8 +152,7 @@ class Price
 /** Request payload for Price#list. */
 class PriceListMatch
 {
-    public ?string $game_id = null;
-    public ?string $console_id = null;
+    public string $game_id;
 }
 
 /** Retailer entity data model. */

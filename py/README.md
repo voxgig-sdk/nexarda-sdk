@@ -609,7 +609,7 @@ Create an instance: `price = client.Price()`
 #### Example: List
 
 ```python
-prices = client.Price().list()
+prices = client.Price().list({"game_id": "example"})
 ```
 
 

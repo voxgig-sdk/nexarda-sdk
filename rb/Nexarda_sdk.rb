@@ -28,7 +28,7 @@ class NexardaSDK
     utility = NexardaUtility.new
     @_utility = utility
 
-    config = NexardaConfig.make_config
+    config = NexardaConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

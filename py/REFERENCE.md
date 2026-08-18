@@ -404,7 +404,7 @@ price = client.Price()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Price().list()
+results = client.Price().list({"game_id": "example"})
 for price in results:
     print(price)
 ```

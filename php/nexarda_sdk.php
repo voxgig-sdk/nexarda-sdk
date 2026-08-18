@@ -40,7 +40,7 @@ class NexardaSDK
         $utility = new NexardaUtility();
         $this->_utility = $utility;
 
-        $config = NexardaConfig::make_config();
+        $config = NexardaConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
