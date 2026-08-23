@@ -1,0 +1,12 @@
+# Flows
+
+@"BasicConsoleFlow.aon"
+@"BasicFranchisFlow.aon"
+@"BasicGameFlow.aon"
+@"BasicPlatformFlow.aon"
+@"BasicPriceFlow.aon"
+@"BasicRetailerFlow.aon"
+@"BasicSearchFlow.aon"
+@"BasicStudioFlow.aon"
+@"BasicUserFlow.aon"
+@"BasicWidgetFlow.aon"

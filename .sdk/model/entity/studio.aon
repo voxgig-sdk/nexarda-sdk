@@ -1,0 +1,154 @@
+# Entity: studio
+
+main: kit: entity: studio: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      short: "Studio description"
+      type: "`$STRING`"
+    }
+    {
+      name: "foundingYear"
+      req: false
+      short: "Year founded"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "games"
+      req: false
+      short: "Released game IDs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique studio identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "location"
+      req: false
+      short: "Studio location"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "logo"
+      req: false
+      short: "Studio logo URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Studio name"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Studio type"
+      type: "`$STRING`"
+    }
+    {
+      name: "website"
+      req: false
+      short: "Official website"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "studio"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/studios"
+          parts: [
+            "studios"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "studio_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/studios/{studioId}"
+          parts: [
+            "studios"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              studioId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

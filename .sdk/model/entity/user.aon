@@ -1,0 +1,242 @@
+# Entity: user
+
+main: kit: entity: user: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ageRating"
+      req: false
+      short: "Age rating (e.g., ESRB, PEGI)"
+      type: "`$STRING`"
+    }
+    {
+      name: "avatar"
+      req: false
+      short: "Avatar image URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "coverImage"
+      req: false
+      short: "Cover image URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Game description"
+      type: "`$STRING`"
+    }
+    {
+      name: "developer"
+      req: false
+      short: "Developer name"
+      type: "`$STRING`"
+    }
+    {
+      name: "franchiseId"
+      req: false
+      short: "Associated franchise ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "genres"
+      req: false
+      short: "Game genres"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique user identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "joinDate"
+      req: false
+      short: "Account creation date"
+      type: "`$STRING`"
+    }
+    {
+      name: "libraryCount"
+      req: false
+      short: "Number of games in library"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Game title"
+      type: "`$STRING`"
+    }
+    {
+      name: "platforms"
+      req: false
+      short: "Supported platforms"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "publisher"
+      req: false
+      short: "Publisher name"
+      type: "`$STRING`"
+    }
+    {
+      name: "releaseDate"
+      req: false
+      short: "Release date"
+      type: "`$STRING`"
+    }
+    {
+      name: "screenshots"
+      req: false
+      short: "Screenshot URLs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "username"
+      req: false
+      short: "Username"
+      type: "`$STRING`"
+    }
+    {
+      name: "videos"
+      req: false
+      short: "Video media"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "wishlistCount"
+      req: false
+      short: "Number of items in wishlist"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "user"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "user_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/users/{userId}/library"
+          parts: [
+            "users"
+            "{id}"
+            "library"
+          ]
+          rename: {
+            param: {
+              userId: "id"
+            }
+          }
+          select: {
+            "$action": "library"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "user_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/users/{userId}/wishlist"
+          parts: [
+            "users"
+            "{id}"
+            "wishlist"
+          ]
+          rename: {
+            param: {
+              userId: "id"
+            }
+          }
+          select: {
+            "$action": "wishlist"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "user_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/users/{userId}"
+          parts: [
+            "users"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              userId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

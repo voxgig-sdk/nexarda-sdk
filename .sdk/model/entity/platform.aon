@@ -1,0 +1,59 @@
+# Entity: platform
+
+main: kit: entity: platform: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "api"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "priceUpdates"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "status"
+      req: false
+      short: "Overall platform status"
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Status check timestamp"
+      type: "`$STRING`"
+    }
+    {
+      name: "website"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "platform"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/status"
+          parts: [
+            "status"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

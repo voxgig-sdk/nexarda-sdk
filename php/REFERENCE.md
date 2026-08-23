@@ -129,14 +129,14 @@ $console = $client->Console();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `id` | `string` | No |  |
-| `images` | `array` | No |  |
-| `manufacturer` | `string` | No |  |
-| `name` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `specifications` | `array` | No |  |
-| `type` | `string` | No |  |
+| `description` | `string` | No | Product description |
+| `id` | `string` | No | Unique console identifier |
+| `images` | `array` | No | Product images |
+| `manufacturer` | `string` | No | Manufacturer name |
+| `name` | `string` | No | Console name |
+| `releaseDate` | `string` | No | Release date |
+| `specifications` | `array` | No | Technical specifications |
+| `type` | `string` | No | Product type |
 
 ### Operations
 
@@ -196,12 +196,12 @@ $franchis = $client->Franchis();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `games` | `array` | No |  |
-| `id` | `string` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `totalGames` | `int` | No |  |
+| `description` | `string` | No | Franchise description |
+| `games` | `array` | No | Game IDs included in franchise |
+| `id` | `string` | No | Unique franchise identifier |
+| `logo` | `string` | No | Franchise logo URL |
+| `name` | `string` | No | Franchise name |
+| `totalGames` | `int` | No | Total number of games in franchise |
 
 ### Operations
 
@@ -261,19 +261,19 @@ $game = $client->Game();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `string` | No |  |
-| `coverImage` | `string` | No |  |
-| `description` | `string` | No |  |
-| `developer` | `string` | No |  |
-| `franchiseId` | `string` | No |  |
-| `genres` | `array` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `platforms` | `array` | No |  |
-| `publisher` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `screenshots` | `array` | No |  |
-| `videos` | `array` | No |  |
+| `ageRating` | `string` | No | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | `string` | No | Cover image URL |
+| `description` | `string` | No | Game description |
+| `developer` | `string` | No | Developer name |
+| `franchiseId` | `string` | No | Associated franchise ID |
+| `genres` | `array` | No | Game genres |
+| `id` | `string` | No | Unique game identifier |
+| `name` | `string` | No | Game title |
+| `platforms` | `array` | No | Supported platforms |
+| `publisher` | `string` | No | Publisher name |
+| `releaseDate` | `string` | No | Release date |
+| `screenshots` | `array` | No | Screenshot URLs |
+| `videos` | `array` | No | Video media |
 
 ### Operations
 
@@ -335,8 +335,8 @@ $platform = $client->Platform();
 | --- | --- | --- | --- |
 | `api` | `array` | No |  |
 | `priceUpdates` | `array` | No |  |
-| `status` | `string` | No |  |
-| `timestamp` | `string` | No |  |
+| `status` | `string` | No | Overall platform status |
+| `timestamp` | `string` | No | Status check timestamp |
 | `website` | `array` | No |  |
 
 ### Operations
@@ -389,16 +389,16 @@ $price = $client->Price();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliateLink` | `string` | No |  |
-| `currency` | `string` | No |  |
-| `discount` | `float` | No |  |
-| `inStock` | `bool` | No |  |
-| `lastUpdated` | `string` | No |  |
-| `originalPrice` | `float` | No |  |
-| `price` | `float` | No |  |
-| `region` | `string` | No |  |
-| `retailerId` | `string` | No |  |
-| `retailerName` | `string` | No |  |
+| `affiliateLink` | `string` | No | Affiliate link to retailer (do not modify) |
+| `currency` | `string` | No | Currency code (GBP, EUR, USD) |
+| `discount` | `float` | No | Discount percentage |
+| `inStock` | `bool` | No | Stock availability |
+| `lastUpdated` | `string` | No | Last price update timestamp |
+| `originalPrice` | `float` | No | Original price before discount |
+| `price` | `float` | No | Current price |
+| `region` | `string` | No | Region code |
+| `retailerId` | `string` | No | Retailer identifier |
+| `retailerName` | `string` | No | Retailer name |
 
 ### Operations
 
@@ -450,13 +450,13 @@ $retailer = $client->Retailer();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | `bool` | No |  |
-| `currencies` | `array` | No |  |
-| `id` | `string` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `regions` | `array` | No |  |
-| `website` | `string` | No |  |
+| `approved` | `bool` | No | Approval status |
+| `currencies` | `array` | No | Supported currencies |
+| `id` | `string` | No | Unique retailer identifier |
+| `logo` | `string` | No | Retailer logo URL |
+| `name` | `string` | No | Retailer name |
+| `regions` | `array` | No | Supported regions |
+| `website` | `string` | No | Retailer website |
 
 ### Operations
 
@@ -562,15 +562,15 @@ $studio = $client->Studio();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `foundingYear` | `int` | No |  |
-| `games` | `array` | No |  |
-| `id` | `string` | No |  |
-| `location` | `array` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
-| `website` | `string` | No |  |
+| `description` | `string` | No | Studio description |
+| `foundingYear` | `int` | No | Year founded |
+| `games` | `array` | No | Released game IDs |
+| `id` | `string` | No | Unique studio identifier |
+| `location` | `array` | No | Studio location |
+| `logo` | `string` | No | Studio logo URL |
+| `name` | `string` | No | Studio name |
+| `type` | `string` | No | Studio type |
+| `website` | `string` | No | Official website |
 
 ### Operations
 
@@ -630,24 +630,24 @@ $user = $client->User();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `string` | No |  |
-| `avatar` | `string` | No |  |
-| `coverImage` | `string` | No |  |
-| `description` | `string` | No |  |
-| `developer` | `string` | No |  |
-| `franchiseId` | `string` | No |  |
-| `genres` | `array` | No |  |
-| `id` | `string` | No |  |
-| `joinDate` | `string` | No |  |
-| `libraryCount` | `int` | No |  |
-| `name` | `string` | No |  |
-| `platforms` | `array` | No |  |
-| `publisher` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `screenshots` | `array` | No |  |
-| `username` | `string` | No |  |
-| `videos` | `array` | No |  |
-| `wishlistCount` | `int` | No |  |
+| `ageRating` | `string` | No | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | `string` | No | Avatar image URL |
+| `coverImage` | `string` | No | Cover image URL |
+| `description` | `string` | No | Game description |
+| `developer` | `string` | No | Developer name |
+| `franchiseId` | `string` | No | Associated franchise ID |
+| `genres` | `array` | No | Game genres |
+| `id` | `string` | No | Unique user identifier |
+| `joinDate` | `string` | No | Account creation date |
+| `libraryCount` | `int` | No | Number of games in library |
+| `name` | `string` | No | Game title |
+| `platforms` | `array` | No | Supported platforms |
+| `publisher` | `string` | No | Publisher name |
+| `releaseDate` | `string` | No | Release date |
+| `screenshots` | `array` | No | Screenshot URLs |
+| `username` | `string` | No | Username |
+| `videos` | `array` | No | Video media |
+| `wishlistCount` | `int` | No | Number of items in wishlist |
 
 ### Operations
 

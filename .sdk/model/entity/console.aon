@@ -1,0 +1,140 @@
+# Entity: console
+
+main: kit: entity: console: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      short: "Product description"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique console identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "images"
+      req: false
+      short: "Product images"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "manufacturer"
+      req: false
+      short: "Manufacturer name"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Console name"
+      type: "`$STRING`"
+    }
+    {
+      name: "releaseDate"
+      req: false
+      short: "Release date"
+      type: "`$STRING`"
+    }
+    {
+      name: "specifications"
+      req: false
+      short: "Technical specifications"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "Product type"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "console"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/consoles"
+          parts: [
+            "consoles"
+          ]
+          select: {
+            exist: [
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "console_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/consoles/{consoleId}"
+          parts: [
+            "consoles"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              consoleId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

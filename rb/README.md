@@ -266,14 +266,14 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `id` |  |
-| `images` |  |
-| `manufacturer` |  |
-| `name` |  |
-| `releaseDate` |  |
-| `specifications` |  |
-| `type` |  |
+| `description` | Product description |
+| `id` | Unique console identifier |
+| `images` | Product images |
+| `manufacturer` | Manufacturer name |
+| `name` | Console name |
+| `releaseDate` | Release date |
+| `specifications` | Technical specifications |
+| `type` | Product type |
 
 Operations: List, Load.
 
@@ -283,12 +283,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `games` |  |
-| `id` |  |
-| `logo` |  |
-| `name` |  |
-| `totalGames` |  |
+| `description` | Franchise description |
+| `games` | Game IDs included in franchise |
+| `id` | Unique franchise identifier |
+| `logo` | Franchise logo URL |
+| `name` | Franchise name |
+| `totalGames` | Total number of games in franchise |
 
 Operations: List, Load.
 
@@ -298,19 +298,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` |  |
-| `coverImage` |  |
-| `description` |  |
-| `developer` |  |
-| `franchiseId` |  |
-| `genres` |  |
-| `id` |  |
-| `name` |  |
-| `platforms` |  |
-| `publisher` |  |
-| `releaseDate` |  |
-| `screenshots` |  |
-| `videos` |  |
+| `ageRating` | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | Cover image URL |
+| `description` | Game description |
+| `developer` | Developer name |
+| `franchiseId` | Associated franchise ID |
+| `genres` | Game genres |
+| `id` | Unique game identifier |
+| `name` | Game title |
+| `platforms` | Supported platforms |
+| `publisher` | Publisher name |
+| `releaseDate` | Release date |
+| `screenshots` | Screenshot URLs |
+| `videos` | Video media |
 
 Operations: List, Load.
 
@@ -322,8 +322,8 @@ API path: `/games`
 | --- | --- |
 | `api` |  |
 | `priceUpdates` |  |
-| `status` |  |
-| `timestamp` |  |
+| `status` | Overall platform status |
+| `timestamp` | Status check timestamp |
 | `website` |  |
 
 Operations: Load.
@@ -334,16 +334,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `affiliateLink` |  |
-| `currency` |  |
-| `discount` |  |
-| `inStock` |  |
-| `lastUpdated` |  |
-| `originalPrice` |  |
-| `price` |  |
-| `region` |  |
-| `retailerId` |  |
-| `retailerName` |  |
+| `affiliateLink` | Affiliate link to retailer (do not modify) |
+| `currency` | Currency code (GBP, EUR, USD) |
+| `discount` | Discount percentage |
+| `inStock` | Stock availability |
+| `lastUpdated` | Last price update timestamp |
+| `originalPrice` | Original price before discount |
+| `price` | Current price |
+| `region` | Region code |
+| `retailerId` | Retailer identifier |
+| `retailerName` | Retailer name |
 
 Operations: List.
 
@@ -353,13 +353,13 @@ API path: `/games/{gameId}/prices`
 
 | Field | Description |
 | --- | --- |
-| `approved` |  |
-| `currencies` |  |
-| `id` |  |
-| `logo` |  |
-| `name` |  |
-| `regions` |  |
-| `website` |  |
+| `approved` | Approval status |
+| `currencies` | Supported currencies |
+| `id` | Unique retailer identifier |
+| `logo` | Retailer logo URL |
+| `name` | Retailer name |
+| `regions` | Supported regions |
+| `website` | Retailer website |
 
 Operations: List.
 
@@ -381,15 +381,15 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `foundingYear` |  |
-| `games` |  |
-| `id` |  |
-| `location` |  |
-| `logo` |  |
-| `name` |  |
-| `type` |  |
-| `website` |  |
+| `description` | Studio description |
+| `foundingYear` | Year founded |
+| `games` | Released game IDs |
+| `id` | Unique studio identifier |
+| `location` | Studio location |
+| `logo` | Studio logo URL |
+| `name` | Studio name |
+| `type` | Studio type |
+| `website` | Official website |
 
 Operations: List, Load.
 
@@ -399,24 +399,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` |  |
-| `avatar` |  |
-| `coverImage` |  |
-| `description` |  |
-| `developer` |  |
-| `franchiseId` |  |
-| `genres` |  |
-| `id` |  |
-| `joinDate` |  |
-| `libraryCount` |  |
-| `name` |  |
-| `platforms` |  |
-| `publisher` |  |
-| `releaseDate` |  |
-| `screenshots` |  |
-| `username` |  |
-| `videos` |  |
-| `wishlistCount` |  |
+| `ageRating` | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | Avatar image URL |
+| `coverImage` | Cover image URL |
+| `description` | Game description |
+| `developer` | Developer name |
+| `franchiseId` | Associated franchise ID |
+| `genres` | Game genres |
+| `id` | Unique user identifier |
+| `joinDate` | Account creation date |
+| `libraryCount` | Number of games in library |
+| `name` | Game title |
+| `platforms` | Supported platforms |
+| `publisher` | Publisher name |
+| `releaseDate` | Release date |
+| `screenshots` | Screenshot URLs |
+| `username` | Username |
+| `videos` | Video media |
+| `wishlistCount` | Number of items in wishlist |
 
 Operations: List, Load.
 
@@ -451,14 +451,14 @@ Create an instance: `console = client.Console`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `id` | `String` |  |
-| `images` | `Array` |  |
-| `manufacturer` | `String` |  |
-| `name` | `String` |  |
-| `releaseDate` | `String` |  |
-| `specifications` | `Hash` |  |
-| `type` | `String` |  |
+| `description` | `String` | Product description |
+| `id` | `String` | Unique console identifier |
+| `images` | `Array` | Product images |
+| `manufacturer` | `String` | Manufacturer name |
+| `name` | `String` | Console name |
+| `releaseDate` | `String` | Release date |
+| `specifications` | `Hash` | Technical specifications |
+| `type` | `String` | Product type |
 
 #### Example: Load
 
@@ -490,12 +490,12 @@ Create an instance: `franchis = client.Franchis`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `games` | `Array` |  |
-| `id` | `String` |  |
-| `logo` | `String` |  |
-| `name` | `String` |  |
-| `totalGames` | `Integer` |  |
+| `description` | `String` | Franchise description |
+| `games` | `Array` | Game IDs included in franchise |
+| `id` | `String` | Unique franchise identifier |
+| `logo` | `String` | Franchise logo URL |
+| `name` | `String` | Franchise name |
+| `totalGames` | `Integer` | Total number of games in franchise |
 
 #### Example: Load
 
@@ -527,19 +527,19 @@ Create an instance: `game = client.Game`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `String` |  |
-| `coverImage` | `String` |  |
-| `description` | `String` |  |
-| `developer` | `String` |  |
-| `franchiseId` | `String` |  |
-| `genres` | `Array` |  |
-| `id` | `String` |  |
-| `name` | `String` |  |
-| `platforms` | `Array` |  |
-| `publisher` | `String` |  |
-| `releaseDate` | `String` |  |
-| `screenshots` | `Array` |  |
-| `videos` | `Array` |  |
+| `ageRating` | `String` | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | `String` | Cover image URL |
+| `description` | `String` | Game description |
+| `developer` | `String` | Developer name |
+| `franchiseId` | `String` | Associated franchise ID |
+| `genres` | `Array` | Game genres |
+| `id` | `String` | Unique game identifier |
+| `name` | `String` | Game title |
+| `platforms` | `Array` | Supported platforms |
+| `publisher` | `String` | Publisher name |
+| `releaseDate` | `String` | Release date |
+| `screenshots` | `Array` | Screenshot URLs |
+| `videos` | `Array` | Video media |
 
 #### Example: Load
 
@@ -572,8 +572,8 @@ Create an instance: `platform = client.Platform`
 | --- | --- | --- |
 | `api` | `Hash` |  |
 | `priceUpdates` | `Hash` |  |
-| `status` | `String` |  |
-| `timestamp` | `String` |  |
+| `status` | `String` | Overall platform status |
+| `timestamp` | `String` | Status check timestamp |
 | `website` | `Hash` |  |
 
 #### Example: Load
@@ -598,16 +598,16 @@ Create an instance: `price = client.Price`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliateLink` | `String` |  |
-| `currency` | `String` |  |
-| `discount` | `Float` |  |
-| `inStock` | `Boolean` |  |
-| `lastUpdated` | `String` |  |
-| `originalPrice` | `Float` |  |
-| `price` | `Float` |  |
-| `region` | `String` |  |
-| `retailerId` | `String` |  |
-| `retailerName` | `String` |  |
+| `affiliateLink` | `String` | Affiliate link to retailer (do not modify) |
+| `currency` | `String` | Currency code (GBP, EUR, USD) |
+| `discount` | `Float` | Discount percentage |
+| `inStock` | `Boolean` | Stock availability |
+| `lastUpdated` | `String` | Last price update timestamp |
+| `originalPrice` | `Float` | Original price before discount |
+| `price` | `Float` | Current price |
+| `region` | `String` | Region code |
+| `retailerId` | `String` | Retailer identifier |
+| `retailerName` | `String` | Retailer name |
 
 #### Example: List
 
@@ -631,13 +631,13 @@ Create an instance: `retailer = client.Retailer`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | `Boolean` |  |
-| `currencies` | `Array` |  |
-| `id` | `String` |  |
-| `logo` | `String` |  |
-| `name` | `String` |  |
-| `regions` | `Array` |  |
-| `website` | `String` |  |
+| `approved` | `Boolean` | Approval status |
+| `currencies` | `Array` | Supported currencies |
+| `id` | `String` | Unique retailer identifier |
+| `logo` | `String` | Retailer logo URL |
+| `name` | `String` | Retailer name |
+| `regions` | `Array` | Supported regions |
+| `website` | `String` | Retailer website |
 
 #### Example: List
 
@@ -688,15 +688,15 @@ Create an instance: `studio = client.Studio`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `foundingYear` | `Integer` |  |
-| `games` | `Array` |  |
-| `id` | `String` |  |
-| `location` | `Hash` |  |
-| `logo` | `String` |  |
-| `name` | `String` |  |
-| `type` | `String` |  |
-| `website` | `String` |  |
+| `description` | `String` | Studio description |
+| `foundingYear` | `Integer` | Year founded |
+| `games` | `Array` | Released game IDs |
+| `id` | `String` | Unique studio identifier |
+| `location` | `Hash` | Studio location |
+| `logo` | `String` | Studio logo URL |
+| `name` | `String` | Studio name |
+| `type` | `String` | Studio type |
+| `website` | `String` | Official website |
 
 #### Example: Load
 
@@ -728,24 +728,24 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `String` |  |
-| `avatar` | `String` |  |
-| `coverImage` | `String` |  |
-| `description` | `String` |  |
-| `developer` | `String` |  |
-| `franchiseId` | `String` |  |
-| `genres` | `Array` |  |
-| `id` | `String` |  |
-| `joinDate` | `String` |  |
-| `libraryCount` | `Integer` |  |
-| `name` | `String` |  |
-| `platforms` | `Array` |  |
-| `publisher` | `String` |  |
-| `releaseDate` | `String` |  |
-| `screenshots` | `Array` |  |
-| `username` | `String` |  |
-| `videos` | `Array` |  |
-| `wishlistCount` | `Integer` |  |
+| `ageRating` | `String` | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | `String` | Avatar image URL |
+| `coverImage` | `String` | Cover image URL |
+| `description` | `String` | Game description |
+| `developer` | `String` | Developer name |
+| `franchiseId` | `String` | Associated franchise ID |
+| `genres` | `Array` | Game genres |
+| `id` | `String` | Unique user identifier |
+| `joinDate` | `String` | Account creation date |
+| `libraryCount` | `Integer` | Number of games in library |
+| `name` | `String` | Game title |
+| `platforms` | `Array` | Supported platforms |
+| `publisher` | `String` | Publisher name |
+| `releaseDate` | `String` | Release date |
+| `screenshots` | `Array` | Screenshot URLs |
+| `username` | `String` | Username |
+| `videos` | `Array` | Video media |
+| `wishlistCount` | `Integer` | Number of items in wishlist |
 
 #### Example: Load
 

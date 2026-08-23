@@ -33,6 +33,9 @@ class NexardaConfig
         return [
             "main" => [
                 "name" => "Nexarda",
+                "slug" => "nexarda",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -67,34 +70,42 @@ class NexardaConfig
           'fields' => [
             [
               'name' => 'description',
+              'short' => 'Product description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique console identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'images',
+              'short' => 'Product images',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'manufacturer',
+              'short' => 'Manufacturer name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'Console name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'releaseDate',
+              'short' => 'Release date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'specifications',
+              'short' => 'Technical specifications',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'type',
+              'short' => 'Product type',
               'type' => '`$STRING`',
             ],
           ],
@@ -183,26 +194,32 @@ class NexardaConfig
           'fields' => [
             [
               'name' => 'description',
+              'short' => 'Franchise description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'games',
+              'short' => 'Game IDs included in franchise',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique franchise identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'logo',
+              'short' => 'Franchise logo URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'Franchise name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'totalGames',
+              'short' => 'Total number of games in franchise',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -291,54 +308,67 @@ class NexardaConfig
           'fields' => [
             [
               'name' => 'ageRating',
+              'short' => 'Age rating (e.g., ESRB, PEGI)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'coverImage',
+              'short' => 'Cover image URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'description',
+              'short' => 'Game description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'developer',
+              'short' => 'Developer name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'franchiseId',
+              'short' => 'Associated franchise ID',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'genres',
+              'short' => 'Game genres',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique game identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'Game title',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'platforms',
+              'short' => 'Supported platforms',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'publisher',
+              'short' => 'Publisher name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'releaseDate',
+              'short' => 'Release date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'screenshots',
+              'short' => 'Screenshot URLs',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'videos',
+              'short' => 'Video media',
               'type' => '`$ARRAY`',
             ],
           ],
@@ -492,10 +522,12 @@ class NexardaConfig
             ],
             [
               'name' => 'status',
+              'short' => 'Overall platform status',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'timestamp',
+              'short' => 'Status check timestamp',
               'type' => '`$STRING`',
             ],
             [
@@ -534,42 +566,52 @@ class NexardaConfig
           'fields' => [
             [
               'name' => 'affiliateLink',
+              'short' => 'Affiliate link to retailer (do not modify)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'currency',
+              'short' => 'Currency code (GBP, EUR, USD)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'discount',
+              'short' => 'Discount percentage',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'inStock',
+              'short' => 'Stock availability',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'lastUpdated',
+              'short' => 'Last price update timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'originalPrice',
+              'short' => 'Original price before discount',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'price',
+              'short' => 'Current price',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'region',
+              'short' => 'Region code',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'retailerId',
+              'short' => 'Retailer identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'retailerName',
+              'short' => 'Retailer name',
               'type' => '`$STRING`',
             ],
           ],
@@ -694,30 +736,37 @@ class NexardaConfig
           'fields' => [
             [
               'name' => 'approved',
+              'short' => 'Approval status',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'currencies',
+              'short' => 'Supported currencies',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique retailer identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'logo',
+              'short' => 'Retailer logo URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'Retailer name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'regions',
+              'short' => 'Supported regions',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'website',
+              'short' => 'Retailer website',
               'type' => '`$STRING`',
             ],
           ],
@@ -824,38 +873,47 @@ class NexardaConfig
           'fields' => [
             [
               'name' => 'description',
+              'short' => 'Studio description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'foundingYear',
+              'short' => 'Year founded',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'games',
+              'short' => 'Released game IDs',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique studio identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'location',
+              'short' => 'Studio location',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'logo',
+              'short' => 'Studio logo URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'short' => 'Studio name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'Studio type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'website',
+              'short' => 'Official website',
               'type' => '`$STRING`',
             ],
           ],
@@ -951,74 +1009,92 @@ class NexardaConfig
           'fields' => [
             [
               'name' => 'ageRating',
+              'short' => 'Age rating (e.g., ESRB, PEGI)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'avatar',
+              'short' => 'Avatar image URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'coverImage',
+              'short' => 'Cover image URL',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'description',
+              'short' => 'Game description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'developer',
+              'short' => 'Developer name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'franchiseId',
+              'short' => 'Associated franchise ID',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'genres',
+              'short' => 'Game genres',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique user identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'joinDate',
+              'short' => 'Account creation date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'libraryCount',
+              'short' => 'Number of games in library',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'name',
+              'short' => 'Game title',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'platforms',
+              'short' => 'Supported platforms',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'publisher',
+              'short' => 'Publisher name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'releaseDate',
+              'short' => 'Release date',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'screenshots',
+              'short' => 'Screenshot URLs',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'username',
+              'short' => 'Username',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'videos',
+              'short' => 'Video media',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'wishlistCount',
+              'short' => 'Number of items in wishlist',
               'type' => '`$INTEGER`',
             ],
           ],

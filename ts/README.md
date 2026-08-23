@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -317,14 +317,14 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `id` |  |
-| `images` |  |
-| `manufacturer` |  |
-| `name` |  |
-| `releaseDate` |  |
-| `specifications` |  |
-| `type` |  |
+| `description` | Product description |
+| `id` | Unique console identifier |
+| `images` | Product images |
+| `manufacturer` | Manufacturer name |
+| `name` | Console name |
+| `releaseDate` | Release date |
+| `specifications` | Technical specifications |
+| `type` | Product type |
 
 Operations: list, load.
 
@@ -334,12 +334,12 @@ API path: `/consoles`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `games` |  |
-| `id` |  |
-| `logo` |  |
-| `name` |  |
-| `totalGames` |  |
+| `description` | Franchise description |
+| `games` | Game IDs included in franchise |
+| `id` | Unique franchise identifier |
+| `logo` | Franchise logo URL |
+| `name` | Franchise name |
+| `totalGames` | Total number of games in franchise |
 
 Operations: list, load.
 
@@ -349,19 +349,19 @@ API path: `/franchises`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` |  |
-| `coverImage` |  |
-| `description` |  |
-| `developer` |  |
-| `franchiseId` |  |
-| `genres` |  |
-| `id` |  |
-| `name` |  |
-| `platforms` |  |
-| `publisher` |  |
-| `releaseDate` |  |
-| `screenshots` |  |
-| `videos` |  |
+| `ageRating` | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | Cover image URL |
+| `description` | Game description |
+| `developer` | Developer name |
+| `franchiseId` | Associated franchise ID |
+| `genres` | Game genres |
+| `id` | Unique game identifier |
+| `name` | Game title |
+| `platforms` | Supported platforms |
+| `publisher` | Publisher name |
+| `releaseDate` | Release date |
+| `screenshots` | Screenshot URLs |
+| `videos` | Video media |
 
 Operations: list, load.
 
@@ -373,8 +373,8 @@ API path: `/games`
 | --- | --- |
 | `api` |  |
 | `priceUpdates` |  |
-| `status` |  |
-| `timestamp` |  |
+| `status` | Overall platform status |
+| `timestamp` | Status check timestamp |
 | `website` |  |
 
 Operations: load.
@@ -385,16 +385,16 @@ API path: `/status`
 
 | Field | Description |
 | --- | --- |
-| `affiliateLink` |  |
-| `currency` |  |
-| `discount` |  |
-| `inStock` |  |
-| `lastUpdated` |  |
-| `originalPrice` |  |
-| `price` |  |
-| `region` |  |
-| `retailerId` |  |
-| `retailerName` |  |
+| `affiliateLink` | Affiliate link to retailer (do not modify) |
+| `currency` | Currency code (GBP, EUR, USD) |
+| `discount` | Discount percentage |
+| `inStock` | Stock availability |
+| `lastUpdated` | Last price update timestamp |
+| `originalPrice` | Original price before discount |
+| `price` | Current price |
+| `region` | Region code |
+| `retailerId` | Retailer identifier |
+| `retailerName` | Retailer name |
 
 Operations: list.
 
@@ -404,13 +404,13 @@ API path: `/games/{gameId}/prices`
 
 | Field | Description |
 | --- | --- |
-| `approved` |  |
-| `currencies` |  |
-| `id` |  |
-| `logo` |  |
-| `name` |  |
-| `regions` |  |
-| `website` |  |
+| `approved` | Approval status |
+| `currencies` | Supported currencies |
+| `id` | Unique retailer identifier |
+| `logo` | Retailer logo URL |
+| `name` | Retailer name |
+| `regions` | Supported regions |
+| `website` | Retailer website |
 
 Operations: list.
 
@@ -432,15 +432,15 @@ API path: `/search`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `foundingYear` |  |
-| `games` |  |
-| `id` |  |
-| `location` |  |
-| `logo` |  |
-| `name` |  |
-| `type` |  |
-| `website` |  |
+| `description` | Studio description |
+| `foundingYear` | Year founded |
+| `games` | Released game IDs |
+| `id` | Unique studio identifier |
+| `location` | Studio location |
+| `logo` | Studio logo URL |
+| `name` | Studio name |
+| `type` | Studio type |
+| `website` | Official website |
 
 Operations: list, load.
 
@@ -450,24 +450,24 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` |  |
-| `avatar` |  |
-| `coverImage` |  |
-| `description` |  |
-| `developer` |  |
-| `franchiseId` |  |
-| `genres` |  |
-| `id` |  |
-| `joinDate` |  |
-| `libraryCount` |  |
-| `name` |  |
-| `platforms` |  |
-| `publisher` |  |
-| `releaseDate` |  |
-| `screenshots` |  |
-| `username` |  |
-| `videos` |  |
-| `wishlistCount` |  |
+| `ageRating` | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | Avatar image URL |
+| `coverImage` | Cover image URL |
+| `description` | Game description |
+| `developer` | Developer name |
+| `franchiseId` | Associated franchise ID |
+| `genres` | Game genres |
+| `id` | Unique user identifier |
+| `joinDate` | Account creation date |
+| `libraryCount` | Number of games in library |
+| `name` | Game title |
+| `platforms` | Supported platforms |
+| `publisher` | Publisher name |
+| `releaseDate` | Release date |
+| `screenshots` | Screenshot URLs |
+| `username` | Username |
+| `videos` | Video media |
+| `wishlistCount` | Number of items in wishlist |
 
 Operations: list, load.
 
@@ -502,14 +502,14 @@ Create an instance: `const console_ = client.Console()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `id` | `string` |  |
-| `images` | `any[]` |  |
-| `manufacturer` | `string` |  |
-| `name` | `string` |  |
-| `releaseDate` | `string` |  |
-| `specifications` | `Record<string, any>` |  |
-| `type` | `string` |  |
+| `description` | `string` | Product description |
+| `id` | `string` | Unique console identifier |
+| `images` | `any[]` | Product images |
+| `manufacturer` | `string` | Manufacturer name |
+| `name` | `string` | Console name |
+| `releaseDate` | `string` | Release date |
+| `specifications` | `Record<string, any>` | Technical specifications |
+| `type` | `string` | Product type |
 
 #### Example: Load
 
@@ -539,12 +539,12 @@ Create an instance: `const franchis = client.Franchis()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `games` | `any[]` |  |
-| `id` | `string` |  |
-| `logo` | `string` |  |
-| `name` | `string` |  |
-| `totalGames` | `number` |  |
+| `description` | `string` | Franchise description |
+| `games` | `any[]` | Game IDs included in franchise |
+| `id` | `string` | Unique franchise identifier |
+| `logo` | `string` | Franchise logo URL |
+| `name` | `string` | Franchise name |
+| `totalGames` | `number` | Total number of games in franchise |
 
 #### Example: Load
 
@@ -574,19 +574,19 @@ Create an instance: `const game = client.Game()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `string` |  |
-| `coverImage` | `string` |  |
-| `description` | `string` |  |
-| `developer` | `string` |  |
-| `franchiseId` | `string` |  |
-| `genres` | `any[]` |  |
-| `id` | `string` |  |
-| `name` | `string` |  |
-| `platforms` | `any[]` |  |
-| `publisher` | `string` |  |
-| `releaseDate` | `string` |  |
-| `screenshots` | `any[]` |  |
-| `videos` | `any[]` |  |
+| `ageRating` | `string` | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | `string` | Cover image URL |
+| `description` | `string` | Game description |
+| `developer` | `string` | Developer name |
+| `franchiseId` | `string` | Associated franchise ID |
+| `genres` | `any[]` | Game genres |
+| `id` | `string` | Unique game identifier |
+| `name` | `string` | Game title |
+| `platforms` | `any[]` | Supported platforms |
+| `publisher` | `string` | Publisher name |
+| `releaseDate` | `string` | Release date |
+| `screenshots` | `any[]` | Screenshot URLs |
+| `videos` | `any[]` | Video media |
 
 #### Example: Load
 
@@ -617,8 +617,8 @@ Create an instance: `const platform = client.Platform()`
 | --- | --- | --- |
 | `api` | `Record<string, any>` |  |
 | `priceUpdates` | `Record<string, any>` |  |
-| `status` | `string` |  |
-| `timestamp` | `string` |  |
+| `status` | `string` | Overall platform status |
+| `timestamp` | `string` | Status check timestamp |
 | `website` | `Record<string, any>` |  |
 
 #### Example: Load
@@ -642,16 +642,16 @@ Create an instance: `const price = client.Price()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `affiliateLink` | `string` |  |
-| `currency` | `string` |  |
-| `discount` | `number` |  |
-| `inStock` | `boolean` |  |
-| `lastUpdated` | `string` |  |
-| `originalPrice` | `number` |  |
-| `price` | `number` |  |
-| `region` | `string` |  |
-| `retailerId` | `string` |  |
-| `retailerName` | `string` |  |
+| `affiliateLink` | `string` | Affiliate link to retailer (do not modify) |
+| `currency` | `string` | Currency code (GBP, EUR, USD) |
+| `discount` | `number` | Discount percentage |
+| `inStock` | `boolean` | Stock availability |
+| `lastUpdated` | `string` | Last price update timestamp |
+| `originalPrice` | `number` | Original price before discount |
+| `price` | `number` | Current price |
+| `region` | `string` | Region code |
+| `retailerId` | `string` | Retailer identifier |
+| `retailerName` | `string` | Retailer name |
 
 #### Example: List
 
@@ -674,13 +674,13 @@ Create an instance: `const retailer = client.Retailer()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `approved` | `boolean` |  |
-| `currencies` | `any[]` |  |
-| `id` | `string` |  |
-| `logo` | `string` |  |
-| `name` | `string` |  |
-| `regions` | `any[]` |  |
-| `website` | `string` |  |
+| `approved` | `boolean` | Approval status |
+| `currencies` | `any[]` | Supported currencies |
+| `id` | `string` | Unique retailer identifier |
+| `logo` | `string` | Retailer logo URL |
+| `name` | `string` | Retailer name |
+| `regions` | `any[]` | Supported regions |
+| `website` | `string` | Retailer website |
 
 #### Example: List
 
@@ -729,15 +729,15 @@ Create an instance: `const studio = client.Studio()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `foundingYear` | `number` |  |
-| `games` | `any[]` |  |
-| `id` | `string` |  |
-| `location` | `Record<string, any>` |  |
-| `logo` | `string` |  |
-| `name` | `string` |  |
-| `type` | `string` |  |
-| `website` | `string` |  |
+| `description` | `string` | Studio description |
+| `foundingYear` | `number` | Year founded |
+| `games` | `any[]` | Released game IDs |
+| `id` | `string` | Unique studio identifier |
+| `location` | `Record<string, any>` | Studio location |
+| `logo` | `string` | Studio logo URL |
+| `name` | `string` | Studio name |
+| `type` | `string` | Studio type |
+| `website` | `string` | Official website |
 
 #### Example: Load
 
@@ -767,24 +767,24 @@ Create an instance: `const user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `string` |  |
-| `avatar` | `string` |  |
-| `coverImage` | `string` |  |
-| `description` | `string` |  |
-| `developer` | `string` |  |
-| `franchiseId` | `string` |  |
-| `genres` | `any[]` |  |
-| `id` | `string` |  |
-| `joinDate` | `string` |  |
-| `libraryCount` | `number` |  |
-| `name` | `string` |  |
-| `platforms` | `any[]` |  |
-| `publisher` | `string` |  |
-| `releaseDate` | `string` |  |
-| `screenshots` | `any[]` |  |
-| `username` | `string` |  |
-| `videos` | `any[]` |  |
-| `wishlistCount` | `number` |  |
+| `ageRating` | `string` | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | `string` | Avatar image URL |
+| `coverImage` | `string` | Cover image URL |
+| `description` | `string` | Game description |
+| `developer` | `string` | Developer name |
+| `franchiseId` | `string` | Associated franchise ID |
+| `genres` | `any[]` | Game genres |
+| `id` | `string` | Unique user identifier |
+| `joinDate` | `string` | Account creation date |
+| `libraryCount` | `number` | Number of games in library |
+| `name` | `string` | Game title |
+| `platforms` | `any[]` | Supported platforms |
+| `publisher` | `string` | Publisher name |
+| `releaseDate` | `string` | Release date |
+| `screenshots` | `any[]` | Screenshot URLs |
+| `username` | `string` | Username |
+| `videos` | `any[]` | Video media |
+| `wishlistCount` | `number` | Number of items in wishlist |
 
 #### Example: Load
 

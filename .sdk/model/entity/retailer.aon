@@ -1,0 +1,79 @@
+# Entity: retailer
+
+main: kit: entity: retailer: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "approved"
+      req: false
+      short: "Approval status"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "currencies"
+      req: false
+      short: "Supported currencies"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique retailer identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "logo"
+      req: false
+      short: "Retailer logo URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Retailer name"
+      type: "`$STRING`"
+    }
+    {
+      name: "regions"
+      req: false
+      short: "Supported regions"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "website"
+      req: false
+      short: "Retailer website"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "retailer"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/retailers"
+          parts: [
+            "retailers"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

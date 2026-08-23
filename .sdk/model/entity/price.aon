@@ -1,0 +1,190 @@
+# Entity: price
+
+main: kit: entity: price: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "affiliateLink"
+      req: false
+      short: "Affiliate link to retailer (do not modify)"
+      type: "`$STRING`"
+    }
+    {
+      name: "currency"
+      req: false
+      short: "Currency code (GBP, EUR, USD)"
+      type: "`$STRING`"
+    }
+    {
+      name: "discount"
+      req: false
+      short: "Discount percentage"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "inStock"
+      req: false
+      short: "Stock availability"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "lastUpdated"
+      req: false
+      short: "Last price update timestamp"
+      type: "`$STRING`"
+    }
+    {
+      name: "originalPrice"
+      req: false
+      short: "Original price before discount"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "price"
+      req: false
+      short: "Current price"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "region"
+      req: false
+      short: "Region code"
+      type: "`$STRING`"
+    }
+    {
+      name: "retailerId"
+      req: false
+      short: "Retailer identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "retailerName"
+      req: false
+      short: "Retailer name"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "price"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "game_id"
+                orig: "game_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "USD"
+                kind: "query"
+                name: "currency"
+                orig: "currency"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "region"
+                orig: "region"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/games/{gameId}/prices"
+          parts: [
+            "games"
+            "{game_id}"
+            "prices"
+          ]
+          rename: {
+            param: {
+              gameId: "game_id"
+            }
+          }
+          select: {
+            exist: [
+              "currency"
+              "game_id"
+              "region"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "console_id"
+                orig: "console_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "USD"
+                kind: "query"
+                name: "currency"
+                orig: "currency"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/consoles/{consoleId}/prices"
+          parts: [
+            "consoles"
+            "{console_id}"
+            "prices"
+          ]
+          rename: {
+            param: {
+              consoleId: "console_id"
+            }
+          }
+          select: {
+            exist: [
+              "console_id"
+              "currency"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "console"
+      ]
+      [
+        "game"
+      ]
+    ]
+  }
+
+
+
+}

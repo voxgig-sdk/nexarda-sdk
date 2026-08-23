@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Nexarda",
+			"slug": "nexarda",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -45,34 +48,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Product description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique console identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "images",
+						"short": "Product images",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "manufacturer",
+						"short": "Manufacturer name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Console name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "releaseDate",
+						"short": "Release date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "specifications",
+						"short": "Technical specifications",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Product type",
 						"type": "`$STRING`",
 					},
 				},
@@ -161,26 +172,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Franchise description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "games",
+						"short": "Game IDs included in franchise",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique franchise identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "logo",
+						"short": "Franchise logo URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Franchise name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "totalGames",
+						"short": "Total number of games in franchise",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -269,54 +286,67 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageRating",
+						"short": "Age rating (e.g., ESRB, PEGI)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "coverImage",
+						"short": "Cover image URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "Game description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "developer",
+						"short": "Developer name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "franchiseId",
+						"short": "Associated franchise ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "genres",
+						"short": "Game genres",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique game identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Game title",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "platforms",
+						"short": "Supported platforms",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "publisher",
+						"short": "Publisher name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "releaseDate",
+						"short": "Release date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "screenshots",
+						"short": "Screenshot URLs",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "videos",
+						"short": "Video media",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -470,10 +500,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "status",
+						"short": "Overall platform status",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Status check timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -512,42 +544,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "affiliateLink",
+						"short": "Affiliate link to retailer (do not modify)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "currency",
+						"short": "Currency code (GBP, EUR, USD)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "discount",
+						"short": "Discount percentage",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "inStock",
+						"short": "Stock availability",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "lastUpdated",
+						"short": "Last price update timestamp",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "originalPrice",
+						"short": "Original price before discount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "price",
+						"short": "Current price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "region",
+						"short": "Region code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "retailerId",
+						"short": "Retailer identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "retailerName",
+						"short": "Retailer name",
 						"type": "`$STRING`",
 					},
 				},
@@ -672,30 +714,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "approved",
+						"short": "Approval status",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "currencies",
+						"short": "Supported currencies",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique retailer identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "logo",
+						"short": "Retailer logo URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Retailer name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "regions",
+						"short": "Supported regions",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "website",
+						"short": "Retailer website",
 						"type": "`$STRING`",
 					},
 				},
@@ -802,38 +851,47 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Studio description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "foundingYear",
+						"short": "Year founded",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "games",
+						"short": "Released game IDs",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique studio identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "location",
+						"short": "Studio location",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "logo",
+						"short": "Studio logo URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Studio name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Studio type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "website",
+						"short": "Official website",
 						"type": "`$STRING`",
 					},
 				},
@@ -929,74 +987,92 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageRating",
+						"short": "Age rating (e.g., ESRB, PEGI)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "avatar",
+						"short": "Avatar image URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "coverImage",
+						"short": "Cover image URL",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "Game description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "developer",
+						"short": "Developer name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "franchiseId",
+						"short": "Associated franchise ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "genres",
+						"short": "Game genres",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique user identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "joinDate",
+						"short": "Account creation date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "libraryCount",
+						"short": "Number of games in library",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Game title",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "platforms",
+						"short": "Supported platforms",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "publisher",
+						"short": "Publisher name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "releaseDate",
+						"short": "Release date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "screenshots",
+						"short": "Screenshot URLs",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "username",
+						"short": "Username",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "videos",
+						"short": "Video media",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "wishlistCount",
+						"short": "Number of items in wishlist",
 						"type": "`$INTEGER`",
 					},
 				},

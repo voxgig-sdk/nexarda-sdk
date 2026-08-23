@@ -135,14 +135,14 @@ fmt.Println(console.GetName()) // "console"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `id` | `string` | No |  |
-| `images` | `[]any` | No |  |
-| `manufacturer` | `string` | No |  |
-| `name` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `specifications` | `map[string]any` | No |  |
-| `type` | `string` | No |  |
+| `description` | `string` | No | Product description |
+| `id` | `string` | No | Unique console identifier |
+| `images` | `[]any` | No | Product images |
+| `manufacturer` | `string` | No | Manufacturer name |
+| `name` | `string` | No | Console name |
+| `releaseDate` | `string` | No | Release date |
+| `specifications` | `map[string]any` | No | Technical specifications |
+| `type` | `string` | No | Product type |
 
 ### Operations
 
@@ -205,12 +205,12 @@ fmt.Println(franchis.GetName()) // "franchis"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `games` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `totalGames` | `int` | No |  |
+| `description` | `string` | No | Franchise description |
+| `games` | `[]any` | No | Game IDs included in franchise |
+| `id` | `string` | No | Unique franchise identifier |
+| `logo` | `string` | No | Franchise logo URL |
+| `name` | `string` | No | Franchise name |
+| `totalGames` | `int` | No | Total number of games in franchise |
 
 ### Operations
 
@@ -273,19 +273,19 @@ fmt.Println(game.GetName()) // "game"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `string` | No |  |
-| `coverImage` | `string` | No |  |
-| `description` | `string` | No |  |
-| `developer` | `string` | No |  |
-| `franchiseId` | `string` | No |  |
-| `genres` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `platforms` | `[]any` | No |  |
-| `publisher` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `screenshots` | `[]any` | No |  |
-| `videos` | `[]any` | No |  |
+| `ageRating` | `string` | No | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | `string` | No | Cover image URL |
+| `description` | `string` | No | Game description |
+| `developer` | `string` | No | Developer name |
+| `franchiseId` | `string` | No | Associated franchise ID |
+| `genres` | `[]any` | No | Game genres |
+| `id` | `string` | No | Unique game identifier |
+| `name` | `string` | No | Game title |
+| `platforms` | `[]any` | No | Supported platforms |
+| `publisher` | `string` | No | Publisher name |
+| `releaseDate` | `string` | No | Release date |
+| `screenshots` | `[]any` | No | Screenshot URLs |
+| `videos` | `[]any` | No | Video media |
 
 ### Operations
 
@@ -350,8 +350,8 @@ fmt.Println(platform.GetName()) // "platform"
 | --- | --- | --- | --- |
 | `api` | `map[string]any` | No |  |
 | `priceUpdates` | `map[string]any` | No |  |
-| `status` | `string` | No |  |
-| `timestamp` | `string` | No |  |
+| `status` | `string` | No | Overall platform status |
+| `timestamp` | `string` | No | Status check timestamp |
 | `website` | `map[string]any` | No |  |
 
 ### Operations
@@ -403,16 +403,16 @@ fmt.Println(price.GetName()) // "price"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliateLink` | `string` | No |  |
-| `currency` | `string` | No |  |
-| `discount` | `float64` | No |  |
-| `inStock` | `bool` | No |  |
-| `lastUpdated` | `string` | No |  |
-| `originalPrice` | `float64` | No |  |
-| `price` | `float64` | No |  |
-| `region` | `string` | No |  |
-| `retailerId` | `string` | No |  |
-| `retailerName` | `string` | No |  |
+| `affiliateLink` | `string` | No | Affiliate link to retailer (do not modify) |
+| `currency` | `string` | No | Currency code (GBP, EUR, USD) |
+| `discount` | `float64` | No | Discount percentage |
+| `inStock` | `bool` | No | Stock availability |
+| `lastUpdated` | `string` | No | Last price update timestamp |
+| `originalPrice` | `float64` | No | Original price before discount |
+| `price` | `float64` | No | Current price |
+| `region` | `string` | No | Region code |
+| `retailerId` | `string` | No | Retailer identifier |
+| `retailerName` | `string` | No | Retailer name |
 
 ### Operations
 
@@ -463,13 +463,13 @@ fmt.Println(retailer.GetName()) // "retailer"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | `bool` | No |  |
-| `currencies` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `regions` | `[]any` | No |  |
-| `website` | `string` | No |  |
+| `approved` | `bool` | No | Approval status |
+| `currencies` | `[]any` | No | Supported currencies |
+| `id` | `string` | No | Unique retailer identifier |
+| `logo` | `string` | No | Retailer logo URL |
+| `name` | `string` | No | Retailer name |
+| `regions` | `[]any` | No | Supported regions |
+| `website` | `string` | No | Retailer website |
 
 ### Operations
 
@@ -573,15 +573,15 @@ fmt.Println(studio.GetName()) // "studio"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `foundingYear` | `int` | No |  |
-| `games` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `location` | `map[string]any` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
-| `website` | `string` | No |  |
+| `description` | `string` | No | Studio description |
+| `foundingYear` | `int` | No | Year founded |
+| `games` | `[]any` | No | Released game IDs |
+| `id` | `string` | No | Unique studio identifier |
+| `location` | `map[string]any` | No | Studio location |
+| `logo` | `string` | No | Studio logo URL |
+| `name` | `string` | No | Studio name |
+| `type` | `string` | No | Studio type |
+| `website` | `string` | No | Official website |
 
 ### Operations
 
@@ -644,24 +644,24 @@ fmt.Println(user.GetName()) // "user"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `string` | No |  |
-| `avatar` | `string` | No |  |
-| `coverImage` | `string` | No |  |
-| `description` | `string` | No |  |
-| `developer` | `string` | No |  |
-| `franchiseId` | `string` | No |  |
-| `genres` | `[]any` | No |  |
-| `id` | `string` | No |  |
-| `joinDate` | `string` | No |  |
-| `libraryCount` | `int` | No |  |
-| `name` | `string` | No |  |
-| `platforms` | `[]any` | No |  |
-| `publisher` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `screenshots` | `[]any` | No |  |
-| `username` | `string` | No |  |
-| `videos` | `[]any` | No |  |
-| `wishlistCount` | `int` | No |  |
+| `ageRating` | `string` | No | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | `string` | No | Avatar image URL |
+| `coverImage` | `string` | No | Cover image URL |
+| `description` | `string` | No | Game description |
+| `developer` | `string` | No | Developer name |
+| `franchiseId` | `string` | No | Associated franchise ID |
+| `genres` | `[]any` | No | Game genres |
+| `id` | `string` | No | Unique user identifier |
+| `joinDate` | `string` | No | Account creation date |
+| `libraryCount` | `int` | No | Number of games in library |
+| `name` | `string` | No | Game title |
+| `platforms` | `[]any` | No | Supported platforms |
+| `publisher` | `string` | No | Publisher name |
+| `releaseDate` | `string` | No | Release date |
+| `screenshots` | `[]any` | No | Screenshot URLs |
+| `username` | `string` | No | Username |
+| `videos` | `[]any` | No | Video media |
+| `wishlistCount` | `int` | No | Number of items in wishlist |
 
 ### Operations
 

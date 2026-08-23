@@ -1,0 +1,231 @@
+# Entity: game
+
+main: kit: entity: game: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ageRating"
+      req: false
+      short: "Age rating (e.g., ESRB, PEGI)"
+      type: "`$STRING`"
+    }
+    {
+      name: "coverImage"
+      req: false
+      short: "Cover image URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      short: "Game description"
+      type: "`$STRING`"
+    }
+    {
+      name: "developer"
+      req: false
+      short: "Developer name"
+      type: "`$STRING`"
+    }
+    {
+      name: "franchiseId"
+      req: false
+      short: "Associated franchise ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "genres"
+      req: false
+      short: "Game genres"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique game identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Game title"
+      type: "`$STRING`"
+    }
+    {
+      name: "platforms"
+      req: false
+      short: "Supported platforms"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "publisher"
+      req: false
+      short: "Publisher name"
+      type: "`$STRING`"
+    }
+    {
+      name: "releaseDate"
+      req: false
+      short: "Release date"
+      type: "`$STRING`"
+    }
+    {
+      name: "screenshots"
+      req: false
+      short: "Screenshot URLs"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "videos"
+      req: false
+      short: "Video media"
+      type: "`$ARRAY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "game"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/games"
+          parts: [
+            "games"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "offset"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "platform_id"
+                orig: "platform_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "platform"
+                orig: "platform"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/games/platform/{platformId}"
+          parts: [
+            "games"
+            "platform"
+            "{platform_id}"
+          ]
+          rename: {
+            param: {
+              platformId: "platform_id"
+            }
+          }
+          select: {
+            exist: [
+              "platform"
+              "platform_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "game_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/games/{gameId}"
+          parts: [
+            "games"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              gameId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "platform"
+      ]
+    ]
+  }
+
+
+
+}

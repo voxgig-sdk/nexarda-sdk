@@ -1,0 +1,128 @@
+# Entity: franchis
+
+main: kit: entity: franchis: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "description"
+      req: false
+      short: "Franchise description"
+      type: "`$STRING`"
+    }
+    {
+      name: "games"
+      req: false
+      short: "Game IDs included in franchise"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique franchise identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "logo"
+      req: false
+      short: "Franchise logo URL"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Franchise name"
+      type: "`$STRING`"
+    }
+    {
+      name: "totalGames"
+      req: false
+      short: "Total number of games in franchise"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "franchis"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 20
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/franchises"
+          parts: [
+            "franchises"
+          ]
+          select: {
+            exist: [
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "franchise_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/franchises/{franchiseId}"
+          parts: [
+            "franchises"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              franchiseId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -124,14 +124,14 @@ console = client.Console()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `id` | `str` | No |  |
-| `images` | `list` | No |  |
-| `manufacturer` | `str` | No |  |
-| `name` | `str` | No |  |
-| `releaseDate` | `str` | No |  |
-| `specifications` | `dict` | No |  |
-| `type` | `str` | No |  |
+| `description` | `str` | No | Product description |
+| `id` | `str` | No | Unique console identifier |
+| `images` | `list` | No | Product images |
+| `manufacturer` | `str` | No | Manufacturer name |
+| `name` | `str` | No | Console name |
+| `releaseDate` | `str` | No | Release date |
+| `specifications` | `dict` | No | Technical specifications |
+| `type` | `str` | No | Product type |
 
 ### Operations
 
@@ -192,12 +192,12 @@ franchis = client.Franchis()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `games` | `list` | No |  |
-| `id` | `str` | No |  |
-| `logo` | `str` | No |  |
-| `name` | `str` | No |  |
-| `totalGames` | `int` | No |  |
+| `description` | `str` | No | Franchise description |
+| `games` | `list` | No | Game IDs included in franchise |
+| `id` | `str` | No | Unique franchise identifier |
+| `logo` | `str` | No | Franchise logo URL |
+| `name` | `str` | No | Franchise name |
+| `totalGames` | `int` | No | Total number of games in franchise |
 
 ### Operations
 
@@ -258,19 +258,19 @@ game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `str` | No |  |
-| `coverImage` | `str` | No |  |
-| `description` | `str` | No |  |
-| `developer` | `str` | No |  |
-| `franchiseId` | `str` | No |  |
-| `genres` | `list` | No |  |
-| `id` | `str` | No |  |
-| `name` | `str` | No |  |
-| `platforms` | `list` | No |  |
-| `publisher` | `str` | No |  |
-| `releaseDate` | `str` | No |  |
-| `screenshots` | `list` | No |  |
-| `videos` | `list` | No |  |
+| `ageRating` | `str` | No | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | `str` | No | Cover image URL |
+| `description` | `str` | No | Game description |
+| `developer` | `str` | No | Developer name |
+| `franchiseId` | `str` | No | Associated franchise ID |
+| `genres` | `list` | No | Game genres |
+| `id` | `str` | No | Unique game identifier |
+| `name` | `str` | No | Game title |
+| `platforms` | `list` | No | Supported platforms |
+| `publisher` | `str` | No | Publisher name |
+| `releaseDate` | `str` | No | Release date |
+| `screenshots` | `list` | No | Screenshot URLs |
+| `videos` | `list` | No | Video media |
 
 ### Operations
 
@@ -333,8 +333,8 @@ platform = client.Platform()
 | --- | --- | --- | --- |
 | `api` | `dict` | No |  |
 | `priceUpdates` | `dict` | No |  |
-| `status` | `str` | No |  |
-| `timestamp` | `str` | No |  |
+| `status` | `str` | No | Overall platform status |
+| `timestamp` | `str` | No | Status check timestamp |
 | `website` | `dict` | No |  |
 
 ### Operations
@@ -386,16 +386,16 @@ price = client.Price()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliateLink` | `str` | No |  |
-| `currency` | `str` | No |  |
-| `discount` | `float` | No |  |
-| `inStock` | `bool` | No |  |
-| `lastUpdated` | `str` | No |  |
-| `originalPrice` | `float` | No |  |
-| `price` | `float` | No |  |
-| `region` | `str` | No |  |
-| `retailerId` | `str` | No |  |
-| `retailerName` | `str` | No |  |
+| `affiliateLink` | `str` | No | Affiliate link to retailer (do not modify) |
+| `currency` | `str` | No | Currency code (GBP, EUR, USD) |
+| `discount` | `float` | No | Discount percentage |
+| `inStock` | `bool` | No | Stock availability |
+| `lastUpdated` | `str` | No | Last price update timestamp |
+| `originalPrice` | `float` | No | Original price before discount |
+| `price` | `float` | No | Current price |
+| `region` | `str` | No | Region code |
+| `retailerId` | `str` | No | Retailer identifier |
+| `retailerName` | `str` | No | Retailer name |
 
 ### Operations
 
@@ -448,13 +448,13 @@ retailer = client.Retailer()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | `bool` | No |  |
-| `currencies` | `list` | No |  |
-| `id` | `str` | No |  |
-| `logo` | `str` | No |  |
-| `name` | `str` | No |  |
-| `regions` | `list` | No |  |
-| `website` | `str` | No |  |
+| `approved` | `bool` | No | Approval status |
+| `currencies` | `list` | No | Supported currencies |
+| `id` | `str` | No | Unique retailer identifier |
+| `logo` | `str` | No | Retailer logo URL |
+| `name` | `str` | No | Retailer name |
+| `regions` | `list` | No | Supported regions |
+| `website` | `str` | No | Retailer website |
 
 ### Operations
 
@@ -560,15 +560,15 @@ studio = client.Studio()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `foundingYear` | `int` | No |  |
-| `games` | `list` | No |  |
-| `id` | `str` | No |  |
-| `location` | `dict` | No |  |
-| `logo` | `str` | No |  |
-| `name` | `str` | No |  |
-| `type` | `str` | No |  |
-| `website` | `str` | No |  |
+| `description` | `str` | No | Studio description |
+| `foundingYear` | `int` | No | Year founded |
+| `games` | `list` | No | Released game IDs |
+| `id` | `str` | No | Unique studio identifier |
+| `location` | `dict` | No | Studio location |
+| `logo` | `str` | No | Studio logo URL |
+| `name` | `str` | No | Studio name |
+| `type` | `str` | No | Studio type |
+| `website` | `str` | No | Official website |
 
 ### Operations
 
@@ -629,24 +629,24 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `str` | No |  |
-| `avatar` | `str` | No |  |
-| `coverImage` | `str` | No |  |
-| `description` | `str` | No |  |
-| `developer` | `str` | No |  |
-| `franchiseId` | `str` | No |  |
-| `genres` | `list` | No |  |
-| `id` | `str` | No |  |
-| `joinDate` | `str` | No |  |
-| `libraryCount` | `int` | No |  |
-| `name` | `str` | No |  |
-| `platforms` | `list` | No |  |
-| `publisher` | `str` | No |  |
-| `releaseDate` | `str` | No |  |
-| `screenshots` | `list` | No |  |
-| `username` | `str` | No |  |
-| `videos` | `list` | No |  |
-| `wishlistCount` | `int` | No |  |
+| `ageRating` | `str` | No | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | `str` | No | Avatar image URL |
+| `coverImage` | `str` | No | Cover image URL |
+| `description` | `str` | No | Game description |
+| `developer` | `str` | No | Developer name |
+| `franchiseId` | `str` | No | Associated franchise ID |
+| `genres` | `list` | No | Game genres |
+| `id` | `str` | No | Unique user identifier |
+| `joinDate` | `str` | No | Account creation date |
+| `libraryCount` | `int` | No | Number of games in library |
+| `name` | `str` | No | Game title |
+| `platforms` | `list` | No | Supported platforms |
+| `publisher` | `str` | No | Publisher name |
+| `releaseDate` | `str` | No | Release date |
+| `screenshots` | `list` | No | Screenshot URLs |
+| `username` | `str` | No | Username |
+| `videos` | `list` | No | Video media |
+| `wishlistCount` | `int` | No | Number of items in wishlist |
 
 ### Operations
 

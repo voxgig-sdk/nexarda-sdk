@@ -127,14 +127,14 @@ local console = client:Console(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `id` | `string` | No |  |
-| `images` | `table` | No |  |
-| `manufacturer` | `string` | No |  |
-| `name` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `specifications` | `table` | No |  |
-| `type` | `string` | No |  |
+| `description` | `string` | No | Product description |
+| `id` | `string` | No | Unique console identifier |
+| `images` | `table` | No | Product images |
+| `manufacturer` | `string` | No | Manufacturer name |
+| `name` | `string` | No | Console name |
+| `releaseDate` | `string` | No | Release date |
+| `specifications` | `table` | No | Technical specifications |
+| `type` | `string` | No | Product type |
 
 ### Operations
 
@@ -194,12 +194,12 @@ local franchis = client:Franchis(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `games` | `table` | No |  |
-| `id` | `string` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `totalGames` | `number` | No |  |
+| `description` | `string` | No | Franchise description |
+| `games` | `table` | No | Game IDs included in franchise |
+| `id` | `string` | No | Unique franchise identifier |
+| `logo` | `string` | No | Franchise logo URL |
+| `name` | `string` | No | Franchise name |
+| `totalGames` | `number` | No | Total number of games in franchise |
 
 ### Operations
 
@@ -259,19 +259,19 @@ local game = client:Game(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `string` | No |  |
-| `coverImage` | `string` | No |  |
-| `description` | `string` | No |  |
-| `developer` | `string` | No |  |
-| `franchiseId` | `string` | No |  |
-| `genres` | `table` | No |  |
-| `id` | `string` | No |  |
-| `name` | `string` | No |  |
-| `platforms` | `table` | No |  |
-| `publisher` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `screenshots` | `table` | No |  |
-| `videos` | `table` | No |  |
+| `ageRating` | `string` | No | Age rating (e.g., ESRB, PEGI) |
+| `coverImage` | `string` | No | Cover image URL |
+| `description` | `string` | No | Game description |
+| `developer` | `string` | No | Developer name |
+| `franchiseId` | `string` | No | Associated franchise ID |
+| `genres` | `table` | No | Game genres |
+| `id` | `string` | No | Unique game identifier |
+| `name` | `string` | No | Game title |
+| `platforms` | `table` | No | Supported platforms |
+| `publisher` | `string` | No | Publisher name |
+| `releaseDate` | `string` | No | Release date |
+| `screenshots` | `table` | No | Screenshot URLs |
+| `videos` | `table` | No | Video media |
 
 ### Operations
 
@@ -333,8 +333,8 @@ local platform = client:Platform(nil)
 | --- | --- | --- | --- |
 | `api` | `table` | No |  |
 | `priceUpdates` | `table` | No |  |
-| `status` | `string` | No |  |
-| `timestamp` | `string` | No |  |
+| `status` | `string` | No | Overall platform status |
+| `timestamp` | `string` | No | Status check timestamp |
 | `website` | `table` | No |  |
 
 ### Operations
@@ -387,16 +387,16 @@ local price = client:Price(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `affiliateLink` | `string` | No |  |
-| `currency` | `string` | No |  |
-| `discount` | `number` | No |  |
-| `inStock` | `boolean` | No |  |
-| `lastUpdated` | `string` | No |  |
-| `originalPrice` | `number` | No |  |
-| `price` | `number` | No |  |
-| `region` | `string` | No |  |
-| `retailerId` | `string` | No |  |
-| `retailerName` | `string` | No |  |
+| `affiliateLink` | `string` | No | Affiliate link to retailer (do not modify) |
+| `currency` | `string` | No | Currency code (GBP, EUR, USD) |
+| `discount` | `number` | No | Discount percentage |
+| `inStock` | `boolean` | No | Stock availability |
+| `lastUpdated` | `string` | No | Last price update timestamp |
+| `originalPrice` | `number` | No | Original price before discount |
+| `price` | `number` | No | Current price |
+| `region` | `string` | No | Region code |
+| `retailerId` | `string` | No | Retailer identifier |
+| `retailerName` | `string` | No | Retailer name |
 
 ### Operations
 
@@ -448,13 +448,13 @@ local retailer = client:Retailer(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `approved` | `boolean` | No |  |
-| `currencies` | `table` | No |  |
-| `id` | `string` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `regions` | `table` | No |  |
-| `website` | `string` | No |  |
+| `approved` | `boolean` | No | Approval status |
+| `currencies` | `table` | No | Supported currencies |
+| `id` | `string` | No | Unique retailer identifier |
+| `logo` | `string` | No | Retailer logo URL |
+| `name` | `string` | No | Retailer name |
+| `regions` | `table` | No | Supported regions |
+| `website` | `string` | No | Retailer website |
 
 ### Operations
 
@@ -560,15 +560,15 @@ local studio = client:Studio(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `foundingYear` | `number` | No |  |
-| `games` | `table` | No |  |
-| `id` | `string` | No |  |
-| `location` | `table` | No |  |
-| `logo` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
-| `website` | `string` | No |  |
+| `description` | `string` | No | Studio description |
+| `foundingYear` | `number` | No | Year founded |
+| `games` | `table` | No | Released game IDs |
+| `id` | `string` | No | Unique studio identifier |
+| `location` | `table` | No | Studio location |
+| `logo` | `string` | No | Studio logo URL |
+| `name` | `string` | No | Studio name |
+| `type` | `string` | No | Studio type |
+| `website` | `string` | No | Official website |
 
 ### Operations
 
@@ -628,24 +628,24 @@ local user = client:User(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `string` | No |  |
-| `avatar` | `string` | No |  |
-| `coverImage` | `string` | No |  |
-| `description` | `string` | No |  |
-| `developer` | `string` | No |  |
-| `franchiseId` | `string` | No |  |
-| `genres` | `table` | No |  |
-| `id` | `string` | No |  |
-| `joinDate` | `string` | No |  |
-| `libraryCount` | `number` | No |  |
-| `name` | `string` | No |  |
-| `platforms` | `table` | No |  |
-| `publisher` | `string` | No |  |
-| `releaseDate` | `string` | No |  |
-| `screenshots` | `table` | No |  |
-| `username` | `string` | No |  |
-| `videos` | `table` | No |  |
-| `wishlistCount` | `number` | No |  |
+| `ageRating` | `string` | No | Age rating (e.g., ESRB, PEGI) |
+| `avatar` | `string` | No | Avatar image URL |
+| `coverImage` | `string` | No | Cover image URL |
+| `description` | `string` | No | Game description |
+| `developer` | `string` | No | Developer name |
+| `franchiseId` | `string` | No | Associated franchise ID |
+| `genres` | `table` | No | Game genres |
+| `id` | `string` | No | Unique user identifier |
+| `joinDate` | `string` | No | Account creation date |
+| `libraryCount` | `number` | No | Number of games in library |
+| `name` | `string` | No | Game title |
+| `platforms` | `table` | No | Supported platforms |
+| `publisher` | `string` | No | Publisher name |
+| `releaseDate` | `string` | No | Release date |
+| `screenshots` | `table` | No | Screenshot URLs |
+| `username` | `string` | No | Username |
+| `videos` | `table` | No | Video media |
+| `wishlistCount` | `number` | No | Number of items in wishlist |
 
 ### Operations
 
