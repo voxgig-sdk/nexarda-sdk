@@ -712,7 +712,7 @@ Create an instance: `search := client.Search(nil)`
 #### Example: Load
 
 ```go
-search, err := client.Search(nil).Load(nil, nil)
+search, err := client.Search(nil).Load(map[string]any{"q": "q"}, nil)
 if err != nil {
     panic(err)
 }
@@ -834,12 +834,35 @@ Create an instance: `widget := client.Widget(nil)`
 #### Example: Load
 
 ```go
-widget, err := client.Widget(nil).Load(nil, nil)
+widget, err := client.Widget(nil).Load(map[string]any{"product_id": "product_id"}, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(widget) // the loaded record
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

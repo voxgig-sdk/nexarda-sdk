@@ -32,14 +32,7 @@ class ConsoleLoadMatch(TypedDict):
 
 
 class ConsoleListMatch(TypedDict, total=False):
-    description: str
-    id: str
-    images: list
-    manufacturer: str
-    name: str
-    releaseDate: str
-    specifications: dict
-    type: str
+    limit: int
 
 
 class Franchis(TypedDict, total=False):
@@ -56,12 +49,7 @@ class FranchisLoadMatch(TypedDict):
 
 
 class FranchisListMatch(TypedDict, total=False):
-    description: str
-    games: list
-    id: str
-    logo: str
-    name: str
-    totalGames: int
+    limit: int
 
 
 class Game(TypedDict, total=False):
@@ -85,19 +73,8 @@ class GameLoadMatch(TypedDict):
 
 
 class GameListMatch(TypedDict, total=False):
-    ageRating: str
-    coverImage: str
-    description: str
-    developer: str
-    franchiseId: str
-    genres: list
-    id: str
-    name: str
-    platforms: list
-    publisher: str
-    releaseDate: str
-    screenshots: list
-    videos: list
+    limit: int
+    offset: int
 
 
 class Platform(TypedDict, total=False):
@@ -129,8 +106,13 @@ class Price(TypedDict, total=False):
     retailerName: str
 
 
-class PriceListMatch(TypedDict):
+class PriceListMatchRequired(TypedDict):
     game_id: str
+
+
+class PriceListMatch(PriceListMatchRequired, total=False):
+    currency: str
+    region: str
 
 
 class Retailer(TypedDict, total=False):
@@ -159,10 +141,13 @@ class Search(TypedDict, total=False):
     totalResults: int
 
 
-class SearchLoadMatch(TypedDict, total=False):
-    consoles: list
-    games: list
-    totalResults: int
+class SearchLoadMatchRequired(TypedDict):
+    q: str
+
+
+class SearchLoadMatch(SearchLoadMatchRequired, total=False):
+    limit: int
+    type: str
 
 
 class Studio(TypedDict, total=False):
@@ -182,15 +167,8 @@ class StudioLoadMatch(TypedDict):
 
 
 class StudioListMatch(TypedDict, total=False):
-    description: str
-    foundingYear: int
-    games: list
-    id: str
-    location: dict
-    logo: str
-    name: str
+    limit: int
     type: str
-    website: str
 
 
 class User(TypedDict, total=False):
@@ -226,5 +204,10 @@ class Widget(TypedDict):
     pass
 
 
-class WidgetLoadMatch(TypedDict):
-    pass
+class WidgetLoadMatchRequired(TypedDict):
+    product_id: str
+
+
+class WidgetLoadMatch(WidgetLoadMatchRequired, total=False):
+    text: str
+    theme: str

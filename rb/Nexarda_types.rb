@@ -56,38 +56,10 @@ ConsoleLoadMatch = Struct.new(
 
 # Request payload for Console#list.
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] images
-#   @return [Array, nil]
-#
-# @!attribute [rw] manufacturer
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] releaseDate
-#   @return [String, nil]
-#
-# @!attribute [rw] specifications
-#   @return [Hash, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 ConsoleListMatch = Struct.new(
-  :description,
-  :id,
-  :images,
-  :manufacturer,
-  :name,
-  :releaseDate,
-  :specifications,
-  :type,
+  :limit,
   keyword_init: true
 )
 
@@ -131,30 +103,10 @@ FranchisLoadMatch = Struct.new(
 
 # Request payload for Franchis#list.
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] games
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] logo
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] totalGames
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 FranchisListMatch = Struct.new(
-  :description,
-  :games,
-  :id,
-  :logo,
-  :name,
-  :totalGames,
+  :limit,
   keyword_init: true
 )
 
@@ -226,58 +178,14 @@ GameLoadMatch = Struct.new(
 
 # Request payload for Game#list.
 #
-# @!attribute [rw] ageRating
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 #
-# @!attribute [rw] coverImage
-#   @return [String, nil]
-#
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] developer
-#   @return [String, nil]
-#
-# @!attribute [rw] franchiseId
-#   @return [String, nil]
-#
-# @!attribute [rw] genres
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] platforms
-#   @return [Array, nil]
-#
-# @!attribute [rw] publisher
-#   @return [String, nil]
-#
-# @!attribute [rw] releaseDate
-#   @return [String, nil]
-#
-# @!attribute [rw] screenshots
-#   @return [Array, nil]
-#
-# @!attribute [rw] videos
-#   @return [Array, nil]
+# @!attribute [rw] offset
+#   @return [Integer, nil]
 GameListMatch = Struct.new(
-  :ageRating,
-  :coverImage,
-  :description,
-  :developer,
-  :franchiseId,
-  :genres,
-  :id,
-  :name,
-  :platforms,
-  :publisher,
-  :releaseDate,
-  :screenshots,
-  :videos,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -380,8 +288,16 @@ Price = Struct.new(
 #
 # @!attribute [rw] game_id
 #   @return [String]
+#
+# @!attribute [rw] currency
+#   @return [String, nil]
+#
+# @!attribute [rw] region
+#   @return [String, nil]
 PriceListMatch = Struct.new(
   :game_id,
+  :currency,
+  :region,
   keyword_init: true
 )
 
@@ -470,18 +386,18 @@ Search = Struct.new(
 
 # Request payload for Search#load.
 #
-# @!attribute [rw] consoles
-#   @return [Array, nil]
-#
-# @!attribute [rw] games
-#   @return [Array, nil]
-#
-# @!attribute [rw] totalResults
+# @!attribute [rw] limit
 #   @return [Integer, nil]
+#
+# @!attribute [rw] q
+#   @return [String]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 SearchLoadMatch = Struct.new(
-  :consoles,
-  :games,
-  :totalResults,
+  :limit,
+  :q,
+  :type,
   keyword_init: true
 )
 
@@ -537,42 +453,14 @@ StudioLoadMatch = Struct.new(
 
 # Request payload for Studio#list.
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] foundingYear
+# @!attribute [rw] limit
 #   @return [Integer, nil]
-#
-# @!attribute [rw] games
-#   @return [Array, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] location
-#   @return [Hash, nil]
-#
-# @!attribute [rw] logo
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
-#
-# @!attribute [rw] website
-#   @return [String, nil]
 StudioListMatch = Struct.new(
-  :description,
-  :foundingYear,
-  :games,
-  :id,
-  :location,
-  :logo,
-  :name,
+  :limit,
   :type,
-  :website,
   keyword_init: true
 )
 
@@ -676,6 +564,19 @@ class Widget
 end
 
 # Request payload for Widget#load.
-class WidgetLoadMatch
-end
+#
+# @!attribute [rw] product_id
+#   @return [String]
+#
+# @!attribute [rw] text
+#   @return [String, nil]
+#
+# @!attribute [rw] theme
+#   @return [String, nil]
+WidgetLoadMatch = Struct.new(
+  :product_id,
+  :text,
+  :theme,
+  keyword_init: true
+)
 

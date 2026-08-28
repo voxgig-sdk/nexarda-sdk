@@ -31,14 +31,7 @@ type ConsoleLoadMatch struct {
 
 // ConsoleListMatch is the typed request payload for Console.ListTyped.
 type ConsoleListMatch struct {
-	Description *string `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Images *[]any `json:"images,omitempty"`
-	Manufacturer *string `json:"manufacturer,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ReleaseDate *string `json:"releaseDate,omitempty"`
-	Specifications *map[string]any `json:"specifications,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // Franchis is the typed data model for the franchis entity.
@@ -58,12 +51,7 @@ type FranchisLoadMatch struct {
 
 // FranchisListMatch is the typed request payload for Franchis.ListTyped.
 type FranchisListMatch struct {
-	Description *string `json:"description,omitempty"`
-	Games *[]any `json:"games,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Logo *string `json:"logo,omitempty"`
-	Name *string `json:"name,omitempty"`
-	TotalGames *int `json:"totalGames,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // Game is the typed data model for the game entity.
@@ -90,19 +78,8 @@ type GameLoadMatch struct {
 
 // GameListMatch is the typed request payload for Game.ListTyped.
 type GameListMatch struct {
-	AgeRating *string `json:"ageRating,omitempty"`
-	CoverImage *string `json:"coverImage,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Developer *string `json:"developer,omitempty"`
-	FranchiseId *string `json:"franchiseId,omitempty"`
-	Genres *[]any `json:"genres,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Platforms *[]any `json:"platforms,omitempty"`
-	Publisher *string `json:"publisher,omitempty"`
-	ReleaseDate *string `json:"releaseDate,omitempty"`
-	Screenshots *[]any `json:"screenshots,omitempty"`
-	Videos *[]any `json:"videos,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
 }
 
 // Platform is the typed data model for the platform entity.
@@ -140,6 +117,8 @@ type Price struct {
 // PriceListMatch is the typed request payload for Price.ListTyped.
 type PriceListMatch struct {
 	GameId string `json:"game_id"`
+	Currency *string `json:"currency,omitempty"`
+	Region *string `json:"region,omitempty"`
 }
 
 // Retailer is the typed data model for the retailer entity.
@@ -173,9 +152,9 @@ type Search struct {
 
 // SearchLoadMatch is the typed request payload for Search.LoadTyped.
 type SearchLoadMatch struct {
-	Consoles *[]any `json:"consoles,omitempty"`
-	Games *[]any `json:"games,omitempty"`
-	TotalResults *int `json:"totalResults,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Q string `json:"q"`
+	Type *string `json:"type,omitempty"`
 }
 
 // Studio is the typed data model for the studio entity.
@@ -198,15 +177,8 @@ type StudioLoadMatch struct {
 
 // StudioListMatch is the typed request payload for Studio.ListTyped.
 type StudioListMatch struct {
-	Description *string `json:"description,omitempty"`
-	FoundingYear *int `json:"foundingYear,omitempty"`
-	Games *[]any `json:"games,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Logo *string `json:"logo,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Website *string `json:"website,omitempty"`
 }
 
 // User is the typed data model for the user entity.
@@ -247,6 +219,9 @@ type Widget struct {
 
 // WidgetLoadMatch is the typed request payload for Widget.LoadTyped.
 type WidgetLoadMatch struct {
+	ProductId string `json:"product_id"`
+	Text *string `json:"text,omitempty"`
+	Theme *string `json:"theme,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

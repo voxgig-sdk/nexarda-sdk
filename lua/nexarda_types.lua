@@ -20,14 +20,7 @@
 ---@field id string
 
 ---@class ConsoleListMatch
----@field description? string
----@field id? string
----@field images? table
----@field manufacturer? string
----@field name? string
----@field releaseDate? string
----@field specifications? table
----@field type? string
+---@field limit? number
 
 ---@class Franchis
 ---@field description? string
@@ -41,12 +34,7 @@
 ---@field id string
 
 ---@class FranchisListMatch
----@field description? string
----@field games? table
----@field id? string
----@field logo? string
----@field name? string
----@field totalGames? number
+---@field limit? number
 
 ---@class Game
 ---@field ageRating? string
@@ -67,19 +55,8 @@
 ---@field id string
 
 ---@class GameListMatch
----@field ageRating? string
----@field coverImage? string
----@field description? string
----@field developer? string
----@field franchiseId? string
----@field genres? table
----@field id? string
----@field name? string
----@field platforms? table
----@field publisher? string
----@field releaseDate? string
----@field screenshots? table
----@field videos? table
+---@field limit? number
+---@field offset? number
 
 ---@class Platform
 ---@field api? table
@@ -109,6 +86,8 @@
 
 ---@class PriceListMatch
 ---@field game_id string
+---@field currency? string
+---@field region? string
 
 ---@class Retailer
 ---@field approved? boolean
@@ -134,9 +113,9 @@
 ---@field totalResults? number
 
 ---@class SearchLoadMatch
----@field consoles? table
----@field games? table
----@field totalResults? number
+---@field limit? number
+---@field q string
+---@field type? string
 
 ---@class Studio
 ---@field description? string
@@ -153,15 +132,8 @@
 ---@field id string
 
 ---@class StudioListMatch
----@field description? string
----@field foundingYear? number
----@field games? table
----@field id? string
----@field location? table
----@field logo? string
----@field name? string
+---@field limit? number
 ---@field type? string
----@field website? string
 
 ---@class User
 ---@field ageRating? string
@@ -192,6 +164,9 @@
 ---@class Widget
 
 ---@class WidgetLoadMatch
+---@field product_id string
+---@field text? string
+---@field theme? string
 
 local M = {}
 

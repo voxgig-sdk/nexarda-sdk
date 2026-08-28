@@ -21,14 +21,7 @@ export interface ConsoleLoadMatch {
 }
 
 export interface ConsoleListMatch {
-  description?: string
-  id?: string
-  images?: any[]
-  manufacturer?: string
-  name?: string
-  releaseDate?: string
-  specifications?: Record<string, any>
-  type?: string
+  limit?: number
 }
 
 export interface Franchis {
@@ -45,12 +38,7 @@ export interface FranchisLoadMatch {
 }
 
 export interface FranchisListMatch {
-  description?: string
-  games?: any[]
-  id?: string
-  logo?: string
-  name?: string
-  totalGames?: number
+  limit?: number
 }
 
 export interface Game {
@@ -74,19 +62,8 @@ export interface GameLoadMatch {
 }
 
 export interface GameListMatch {
-  ageRating?: string
-  coverImage?: string
-  description?: string
-  developer?: string
-  franchiseId?: string
-  genres?: any[]
-  id?: string
-  name?: string
-  platforms?: any[]
-  publisher?: string
-  releaseDate?: string
-  screenshots?: any[]
-  videos?: any[]
+  limit?: number
+  offset?: number
 }
 
 export interface Platform {
@@ -120,6 +97,8 @@ export interface Price {
 
 export interface PriceListMatch {
   game_id: string
+  currency?: string
+  region?: string
 }
 
 export interface Retailer {
@@ -149,9 +128,9 @@ export interface Search {
 }
 
 export interface SearchLoadMatch {
-  consoles?: any[]
-  games?: any[]
-  totalResults?: number
+  limit?: number
+  q: string
+  type?: string
 }
 
 export interface Studio {
@@ -171,15 +150,8 @@ export interface StudioLoadMatch {
 }
 
 export interface StudioListMatch {
-  description?: string
-  foundingYear?: number
-  games?: any[]
-  id?: string
-  location?: Record<string, any>
-  logo?: string
-  name?: string
+  limit?: number
   type?: string
-  website?: string
 }
 
 export interface User {
@@ -221,6 +193,9 @@ export interface Widget {
 }
 
 export interface WidgetLoadMatch {
+  product_id: string
+  text?: string
+  theme?: string
 
   // Selects a custom action instead of the plain load:
   //   'button' | 'product_card'

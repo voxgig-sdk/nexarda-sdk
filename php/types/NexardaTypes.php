@@ -34,14 +34,7 @@ class ConsoleLoadMatch
 /** Request payload for Console#list. */
 class ConsoleListMatch
 {
-    public ?string $description = null;
-    public ?string $id = null;
-    public ?array $images = null;
-    public ?string $manufacturer = null;
-    public ?string $name = null;
-    public ?string $releaseDate = null;
-    public ?array $specifications = null;
-    public ?string $type = null;
+    public ?int $limit = null;
 }
 
 /** Franchis entity data model. */
@@ -64,12 +57,7 @@ class FranchisLoadMatch
 /** Request payload for Franchis#list. */
 class FranchisListMatch
 {
-    public ?string $description = null;
-    public ?array $games = null;
-    public ?string $id = null;
-    public ?string $logo = null;
-    public ?string $name = null;
-    public ?int $totalGames = null;
+    public ?int $limit = null;
 }
 
 /** Game entity data model. */
@@ -99,19 +87,8 @@ class GameLoadMatch
 /** Request payload for Game#list. */
 class GameListMatch
 {
-    public ?string $ageRating = null;
-    public ?string $coverImage = null;
-    public ?string $description = null;
-    public ?string $developer = null;
-    public ?string $franchiseId = null;
-    public ?array $genres = null;
-    public ?string $id = null;
-    public ?string $name = null;
-    public ?array $platforms = null;
-    public ?string $publisher = null;
-    public ?string $releaseDate = null;
-    public ?array $screenshots = null;
-    public ?array $videos = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
 }
 
 /** Platform entity data model. */
@@ -153,6 +130,8 @@ class Price
 class PriceListMatch
 {
     public string $game_id;
+    public ?string $currency = null;
+    public ?string $region = null;
 }
 
 /** Retailer entity data model. */
@@ -190,9 +169,9 @@ class Search
 /** Request payload for Search#load. */
 class SearchLoadMatch
 {
-    public ?array $consoles = null;
-    public ?array $games = null;
-    public ?int $totalResults = null;
+    public ?int $limit = null;
+    public string $q;
+    public ?string $type = null;
 }
 
 /** Studio entity data model. */
@@ -218,15 +197,8 @@ class StudioLoadMatch
 /** Request payload for Studio#list. */
 class StudioListMatch
 {
-    public ?string $description = null;
-    public ?int $foundingYear = null;
-    public ?array $games = null;
-    public ?string $id = null;
-    public ?array $location = null;
-    public ?string $logo = null;
-    public ?string $name = null;
+    public ?int $limit = null;
     public ?string $type = null;
-    public ?string $website = null;
 }
 
 /** User entity data model. */
@@ -272,5 +244,8 @@ class Widget
 /** Request payload for Widget#load. */
 class WidgetLoadMatch
 {
+    public string $product_id;
+    public ?string $text = null;
+    public ?string $theme = null;
 }
 
