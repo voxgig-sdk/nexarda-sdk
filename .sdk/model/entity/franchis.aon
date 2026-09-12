@@ -24,6 +24,7 @@ main: kit: entity: franchis: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "logo"
       req: false
       short: "Franchise logo URL"
@@ -68,8 +69,10 @@ main: kit: entity: franchis: {
           }
           method: "GET"
           orig: "/franchises"
-          parts: [
-            "franchises"
+          segments: [
+            {
+              lit: "franchises"
+            }
           ]
           select: {
             exist: [
@@ -100,15 +103,19 @@ main: kit: entity: franchis: {
           }
           method: "GET"
           orig: "/franchises/{franchiseId}"
-          parts: [
-            "franchises"
-            "{id}"
-          ]
           rename: {
             param: {
               franchiseId: "id"
             }
           }
+          segments: [
+            {
+              lit: "franchises"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

@@ -6,6 +6,7 @@ main: kit: entity: price: {
 
   fields: [
     {
+      format: "uri"
       name: "affiliateLink"
       req: false
       short: "Affiliate link to retailer (do not modify)"
@@ -18,6 +19,7 @@ main: kit: entity: price: {
       type: "`$STRING`"
     }
     {
+      format: "float"
       name: "discount"
       req: false
       short: "Discount percentage"
@@ -30,18 +32,21 @@ main: kit: entity: price: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "date-time"
       name: "lastUpdated"
       req: false
       short: "Last price update timestamp"
       type: "`$STRING`"
     }
     {
+      format: "float"
       name: "originalPrice"
       req: false
       short: "Original price before discount"
       type: "`$NUMBER`"
     }
     {
+      format: "float"
       name: "price"
       req: false
       short: "Current price"
@@ -103,16 +108,22 @@ main: kit: entity: price: {
           }
           method: "GET"
           orig: "/games/{gameId}/prices"
-          parts: [
-            "games"
-            "{game_id}"
-            "prices"
-          ]
           rename: {
             param: {
               gameId: "game_id"
             }
           }
+          segments: [
+            {
+              lit: "games"
+            }
+            {
+              var: "game_id"
+            }
+            {
+              lit: "prices"
+            }
+          ]
           select: {
             exist: [
               "currency"
@@ -149,16 +160,22 @@ main: kit: entity: price: {
           }
           method: "GET"
           orig: "/consoles/{consoleId}/prices"
-          parts: [
-            "consoles"
-            "{console_id}"
-            "prices"
-          ]
           rename: {
             param: {
               consoleId: "console_id"
             }
           }
+          segments: [
+            {
+              lit: "consoles"
+            }
+            {
+              var: "console_id"
+            }
+            {
+              lit: "prices"
+            }
+          ]
           select: {
             exist: [
               "console_id"

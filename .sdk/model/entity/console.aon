@@ -36,6 +36,7 @@ main: kit: entity: console: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "releaseDate"
       req: false
       short: "Release date"
@@ -80,8 +81,10 @@ main: kit: entity: console: {
           }
           method: "GET"
           orig: "/consoles"
-          parts: [
-            "consoles"
+          segments: [
+            {
+              lit: "consoles"
+            }
           ]
           select: {
             exist: [
@@ -112,15 +115,19 @@ main: kit: entity: console: {
           }
           method: "GET"
           orig: "/consoles/{consoleId}"
-          parts: [
-            "consoles"
-            "{id}"
-          ]
           rename: {
             param: {
               consoleId: "id"
             }
           }
+          segments: [
+            {
+              lit: "consoles"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -123,6 +134,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "releaseDate",
           "short": "Release date",
           "type": "`$STRING`"
@@ -138,6 +150,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "console",
       "op": {
         "list": {
@@ -159,8 +175,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/consoles",
-              "parts": [
-                "consoles"
+              "segments": [
+                {
+                  "lit": "consoles"
+                }
               ],
               "select": {
                 "exist": [
@@ -170,7 +188,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "consoles"
+              ]
             }
           ]
         },
@@ -193,15 +214,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/consoles/{consoleId}",
-              "parts": [
-                "consoles",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "consoleId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "consoles"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -210,7 +235,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "consoles",
+                "{id}"
+              ]
             }
           ]
         }
@@ -237,6 +266,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "logo",
           "short": "Franchise logo URL",
           "type": "`$STRING`"
@@ -252,6 +282,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "franchis",
       "op": {
         "list": {
@@ -273,8 +307,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/franchises",
-              "parts": [
-                "franchises"
+              "segments": [
+                {
+                  "lit": "franchises"
+                }
               ],
               "select": {
                 "exist": [
@@ -284,7 +320,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "franchises"
+              ]
             }
           ]
         },
@@ -307,15 +346,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/franchises/{franchiseId}",
-              "parts": [
-                "franchises",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "franchiseId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "franchises"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -324,7 +367,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "franchises",
+                "{id}"
+              ]
             }
           ]
         }
@@ -341,6 +388,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "coverImage",
           "short": "Cover image URL",
           "type": "`$STRING`"
@@ -386,6 +434,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "releaseDate",
           "short": "Release date",
           "type": "`$STRING`"
@@ -401,6 +450,10 @@ class Config {
           "type": "`$ARRAY`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "game",
       "op": {
         "list": {
@@ -429,8 +482,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/games",
-              "parts": [
-                "games"
+              "segments": [
+                {
+                  "lit": "games"
+                }
               ],
               "select": {
                 "exist": [
@@ -441,7 +496,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "games"
+              ]
             }
           ]
         },
@@ -473,16 +531,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/games/platform/{platformId}",
-              "parts": [
-                "games",
-                "platform",
-                "{platform_id}"
-              ],
               "rename": {
                 "param": {
                   "platformId": "platform_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "games"
+                },
+                {
+                  "lit": "platform"
+                },
+                {
+                  "var": "platform_id"
+                }
+              ],
               "select": {
                 "exist": [
                   "platform",
@@ -492,7 +556,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "games",
+                "platform",
+                "{platform_id}"
+              ]
             },
             {
               "args": {
@@ -509,15 +578,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/games/{gameId}",
-              "parts": [
-                "games",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "gameId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "games"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -526,7 +599,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "games",
+                "{id}"
+              ]
             }
           ]
         }
@@ -555,6 +632,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "short": "Status check timestamp",
           "type": "`$STRING`"
@@ -575,14 +653,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/status",
-              "parts": [
-                "status"
+              "segments": [
+                {
+                  "lit": "status"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "status"
+              ]
             }
           ]
         }
@@ -594,6 +677,7 @@ class Config {
     "price": {
       "fields": [
         {
+          "format": "uri",
           "name": "affiliateLink",
           "short": "Affiliate link to retailer (do not modify)",
           "type": "`$STRING`"
@@ -604,6 +688,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "float",
           "name": "discount",
           "short": "Discount percentage",
           "type": "`$NUMBER`"
@@ -614,16 +699,19 @@ class Config {
           "type": "`$BOOLEAN`"
         },
         {
+          "format": "date-time",
           "name": "lastUpdated",
           "short": "Last price update timestamp",
           "type": "`$STRING`"
         },
         {
+          "format": "float",
           "name": "originalPrice",
           "short": "Original price before discount",
           "type": "`$NUMBER`"
         },
         {
+          "format": "float",
           "name": "price",
           "short": "Current price",
           "type": "`$NUMBER`"
@@ -680,16 +768,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/games/{gameId}/prices",
-              "parts": [
-                "games",
-                "{game_id}",
-                "prices"
-              ],
               "rename": {
                 "param": {
                   "gameId": "game_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "games"
+                },
+                {
+                  "var": "game_id"
+                },
+                {
+                  "lit": "prices"
+                }
+              ],
               "select": {
                 "exist": [
                   "currency",
@@ -700,7 +794,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "games",
+                "{game_id}",
+                "prices"
+              ]
             },
             {
               "args": {
@@ -726,16 +825,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/consoles/{consoleId}/prices",
-              "parts": [
-                "consoles",
-                "{console_id}",
-                "prices"
-              ],
               "rename": {
                 "param": {
                   "consoleId": "console_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "consoles"
+                },
+                {
+                  "var": "console_id"
+                },
+                {
+                  "lit": "prices"
+                }
+              ],
               "select": {
                 "exist": [
                   "console_id",
@@ -745,7 +850,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "consoles",
+                "{console_id}",
+                "prices"
+              ]
             }
           ]
         }
@@ -779,6 +889,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "logo",
           "short": "Retailer logo URL",
           "type": "`$STRING`"
@@ -794,11 +905,16 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "uri",
           "name": "website",
           "short": "Retailer website",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "retailer",
       "op": {
         "list": {
@@ -810,14 +926,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/retailers",
-              "parts": [
-                "retailers"
+              "segments": [
+                {
+                  "lit": "retailers"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "retailers"
+              ]
             }
           ]
         }
@@ -876,8 +997,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/search",
-              "parts": [
-                "search"
+              "segments": [
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "exist": [
@@ -889,7 +1012,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "search"
+              ]
             }
           ]
         }
@@ -926,6 +1052,7 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "uri",
           "name": "logo",
           "short": "Studio logo URL",
           "type": "`$STRING`"
@@ -941,11 +1068,16 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "website",
           "short": "Official website",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "studio",
       "op": {
         "list": {
@@ -973,8 +1105,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/studios",
-              "parts": [
-                "studios"
+              "segments": [
+                {
+                  "lit": "studios"
+                }
               ],
               "select": {
                 "exist": [
@@ -985,7 +1119,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "studios"
+              ]
             }
           ]
         },
@@ -1008,15 +1145,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/studios/{studioId}",
-              "parts": [
-                "studios",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "studioId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "studios"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -1025,7 +1166,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "studios",
+                "{id}"
+              ]
             }
           ]
         }
@@ -1042,11 +1187,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "avatar",
           "short": "Avatar image URL",
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "coverImage",
           "short": "Cover image URL",
           "type": "`$STRING`"
@@ -1077,6 +1224,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "joinDate",
           "short": "Account creation date",
           "type": "`$STRING`"
@@ -1102,6 +1250,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "releaseDate",
           "short": "Release date",
           "type": "`$STRING`"
@@ -1127,6 +1276,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "user",
       "op": {
         "list": {
@@ -1148,16 +1301,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/users/{userId}/library",
-              "parts": [
-                "users",
-                "{id}",
-                "library"
-              ],
               "rename": {
                 "param": {
                   "userId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "users"
+                },
+                {
+                  "var": "id"
+                },
+                {
+                  "lit": "library"
+                }
+              ],
               "select": {
                 "$action": "library",
                 "exist": [
@@ -1167,7 +1326,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "users",
+                "{id}",
+                "library"
+              ]
             },
             {
               "args": {
@@ -1184,16 +1348,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/users/{userId}/wishlist",
-              "parts": [
-                "users",
-                "{id}",
-                "wishlist"
-              ],
               "rename": {
                 "param": {
                   "userId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "users"
+                },
+                {
+                  "var": "id"
+                },
+                {
+                  "lit": "wishlist"
+                }
+              ],
               "select": {
                 "$action": "wishlist",
                 "exist": [
@@ -1203,7 +1373,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "users",
+                "{id}",
+                "wishlist"
+              ]
             }
           ]
         },
@@ -1226,15 +1401,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/users/{userId}",
-              "parts": [
-                "users",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "userId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "users"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -1243,7 +1422,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "users",
+                "{id}"
+              ]
             }
           ]
         }
@@ -1282,9 +1465,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/widgets/button",
-              "parts": [
-                "widgets",
-                "button"
+              "segments": [
+                {
+                  "lit": "widgets"
+                },
+                {
+                  "lit": "button"
+                }
               ],
               "select": {
                 "$action": "button",
@@ -1296,7 +1483,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "widgets",
+                "button"
+              ]
             },
             {
               "args": {
@@ -1320,9 +1511,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/widgets/product-card",
-              "parts": [
-                "widgets",
-                "product-card"
+              "segments": [
+                {
+                  "lit": "widgets"
+                },
+                {
+                  "lit": "product-card"
+                }
               ],
               "select": {
                 "$action": "product_card",
@@ -1334,7 +1529,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "widgets",
+                "product-card"
+              ]
             }
           ]
         }
@@ -1350,6 +1549,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

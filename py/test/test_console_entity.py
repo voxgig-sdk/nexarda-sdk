@@ -134,7 +134,7 @@ def _console_basic_setup(extra):
         "NEXARDA_TEST_CONSOLE_ENTID": idmap,
         "NEXARDA_TEST_LIVE": "FALSE",
         "NEXARDA_TEST_EXPLAIN": "FALSE",
-        "NEXARDA_APIKEY": "NONE",
+        "NEXARDA_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -144,6 +144,10 @@ def _console_basic_setup(extra):
 
     if env.get("NEXARDA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("NEXARDA_APIKEY"),
             },

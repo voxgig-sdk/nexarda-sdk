@@ -69,6 +69,7 @@
             },
             {
               "active": true,
+              "format": "date",
               "name": "releaseDate",
               "req": false,
               "short": "Release date",
@@ -117,8 +118,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/consoles",
-                  "parts": [
-                    "consoles"
+                  "segments": [
+                    {
+                      "lit": "consoles"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -153,15 +156,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/consoles/{consoleId}",
-                  "parts": [
-                    "consoles",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "consoleId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "consoles"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -208,6 +215,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "logo",
               "req": false,
               "short": "Franchise logo URL",
@@ -256,8 +264,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/franchises",
-                  "parts": [
-                    "franchises"
+                  "segments": [
+                    {
+                      "lit": "franchises"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -292,15 +302,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/franchises/{franchiseId}",
-                  "parts": [
-                    "franchises",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "franchiseId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "franchises"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -333,6 +347,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "coverImage",
               "req": false,
               "short": "Cover image URL",
@@ -396,6 +411,7 @@
             },
             {
               "active": true,
+              "format": "date",
               "name": "releaseDate",
               "req": false,
               "short": "Release date",
@@ -453,8 +469,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/games",
-                  "parts": [
-                    "games"
+                  "segments": [
+                    {
+                      "lit": "games"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -500,16 +518,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/games/platform/{platformId}",
-                  "parts": [
-                    "games",
-                    "platform",
-                    "{platform_id}"
-                  ],
                   "rename": {
                     "param": {
                       "platformId": "platform_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "games"
+                    },
+                    {
+                      "lit": "platform"
+                    },
+                    {
+                      "var": "platform_id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "platform",
@@ -538,15 +562,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/games/{gameId}",
-                  "parts": [
-                    "games",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "gameId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "games"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -595,6 +623,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "timestamp",
               "req": false,
               "short": "Status check timestamp",
@@ -619,8 +648,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/status",
-                  "parts": [
-                    "status"
+                  "segments": [
+                    {
+                      "lit": "status"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -643,6 +674,7 @@
           "fields": [
             {
               "active": true,
+              "format": "uri",
               "name": "affiliateLink",
               "req": false,
               "short": "Affiliate link to retailer (do not modify)",
@@ -657,6 +689,7 @@
             },
             {
               "active": true,
+              "format": "float",
               "name": "discount",
               "req": false,
               "short": "Discount percentage",
@@ -671,6 +704,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "lastUpdated",
               "req": false,
               "short": "Last price update timestamp",
@@ -678,6 +712,7 @@
             },
             {
               "active": true,
+              "format": "float",
               "name": "originalPrice",
               "req": false,
               "short": "Original price before discount",
@@ -685,6 +720,7 @@
             },
             {
               "active": true,
+              "format": "float",
               "name": "price",
               "req": false,
               "short": "Current price",
@@ -754,16 +790,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/games/{gameId}/prices",
-                  "parts": [
-                    "games",
-                    "{game_id}",
-                    "prices"
-                  ],
                   "rename": {
                     "param": {
                       "gameId": "game_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "games"
+                    },
+                    {
+                      "var": "game_id"
+                    },
+                    {
+                      "lit": "prices"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "currency",
@@ -804,16 +846,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/consoles/{consoleId}/prices",
-                  "parts": [
-                    "consoles",
-                    "{console_id}",
-                    "prices"
-                  ],
                   "rename": {
                     "param": {
                       "consoleId": "console_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "consoles"
+                    },
+                    {
+                      "var": "console_id"
+                    },
+                    {
+                      "lit": "prices"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "console_id",
@@ -868,6 +916,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "logo",
               "req": false,
               "short": "Retailer logo URL",
@@ -889,6 +938,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "website",
               "req": false,
               "short": "Retailer website",
@@ -911,8 +961,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/retailers",
-                  "parts": [
-                    "retailers"
+                  "segments": [
+                    {
+                      "lit": "retailers"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -993,8 +1045,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/search",
-                  "parts": [
-                    "search"
+                  "segments": [
+                    {
+                      "lit": "search"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1058,6 +1112,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "logo",
               "req": false,
               "short": "Studio logo URL",
@@ -1079,6 +1134,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "website",
               "req": false,
               "short": "Official website",
@@ -1121,8 +1177,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/studios",
-                  "parts": [
-                    "studios"
+                  "segments": [
+                    {
+                      "lit": "studios"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1158,15 +1216,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/studios/{studioId}",
-                  "parts": [
-                    "studios",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "studioId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "studios"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1199,6 +1261,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "avatar",
               "req": false,
               "short": "Avatar image URL",
@@ -1206,6 +1269,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "coverImage",
               "req": false,
               "short": "Cover image URL",
@@ -1248,6 +1312,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "joinDate",
               "req": false,
               "short": "Account creation date",
@@ -1283,6 +1348,7 @@
             },
             {
               "active": true,
+              "format": "date",
               "name": "releaseDate",
               "req": false,
               "short": "Release date",
@@ -1344,16 +1410,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/users/{userId}/library",
-                  "parts": [
-                    "users",
-                    "{id}",
-                    "library"
-                  ],
                   "rename": {
                     "param": {
                       "userId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "users"
+                    },
+                    {
+                      "var": "id"
+                    },
+                    {
+                      "lit": "library"
+                    }
+                  ],
                   "select": {
                     "$action": "library",
                     "exist": [
@@ -1382,16 +1454,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/users/{userId}/wishlist",
-                  "parts": [
-                    "users",
-                    "{id}",
-                    "wishlist"
-                  ],
                   "rename": {
                     "param": {
                       "userId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "users"
+                    },
+                    {
+                      "var": "id"
+                    },
+                    {
+                      "lit": "wishlist"
+                    }
+                  ],
                   "select": {
                     "$action": "wishlist",
                     "exist": [
@@ -1426,15 +1504,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/users/{userId}",
-                  "parts": [
-                    "users",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "userId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "users"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1490,9 +1572,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/widgets/button",
-                  "parts": [
-                    "widgets",
-                    "button"
+                  "segments": [
+                    {
+                      "lit": "widgets"
+                    },
+                    {
+                      "lit": "button"
+                    }
                   ],
                   "select": {
                     "$action": "button",
@@ -1532,9 +1618,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/widgets/product-card",
-                  "parts": [
-                    "widgets",
-                    "product-card"
+                  "segments": [
+                    {
+                      "lit": "widgets"
+                    },
+                    {
+                      "lit": "product-card"
+                    }
                   ],
                   "select": {
                     "$action": "product_card",
@@ -1620,8 +1710,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -2109,6 +2202,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2134,6 +2230,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -2185,6 +2285,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2209,6 +2310,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -2260,6 +2362,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2284,6 +2387,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -2324,6 +2428,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2349,6 +2456,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -2383,6 +2493,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2408,6 +2521,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -2448,6 +2564,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2473,6 +2592,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -2518,6 +2640,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2543,6 +2668,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -2560,11 +2688,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -2593,6 +2716,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2617,6 +2743,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

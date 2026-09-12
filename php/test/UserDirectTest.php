@@ -137,15 +137,17 @@ function user_direct_setup($mockres)
     $env = Runner::env_override([
         "NEXARDA_TEST_USER_ENTID" => [],
         "NEXARDA_TEST_LIVE" => "FALSE",
-        "NEXARDA_APIKEY" => "NONE",
+        "NEXARDA_APIKEY" => "",
     ]);
 
     $live = $env["NEXARDA_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["NEXARDA_APIKEY"],
-        ];
+        ]);
         $client = new NexardaSDK($merged_opts);
         return [
             "client" => $client,

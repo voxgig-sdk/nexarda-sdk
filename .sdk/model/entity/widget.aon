@@ -31,9 +31,13 @@ main: kit: entity: widget: {
           }
           method: "GET"
           orig: "/widgets/button"
-          parts: [
-            "widgets"
-            "button"
+          segments: [
+            {
+              lit: "widgets"
+            }
+            {
+              lit: "button"
+            }
           ]
           select: {
             "$action": "button"
@@ -69,9 +73,13 @@ main: kit: entity: widget: {
           }
           method: "GET"
           orig: "/widgets/product-card"
-          parts: [
-            "widgets"
-            "product-card"
+          segments: [
+            {
+              lit: "widgets"
+            }
+            {
+              lit: "product-card"
+            }
           ]
           select: {
             "$action": "product_card"

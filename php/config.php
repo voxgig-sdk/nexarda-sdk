@@ -95,6 +95,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'releaseDate',
               'short' => 'Release date',
               'type' => '`$STRING`',
@@ -109,6 +110,10 @@ class NexardaConfig
               'short' => 'Product type',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'console',
           'op' => [
@@ -131,8 +136,10 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/consoles',
-                  'parts' => [
-                    'consoles',
+                  'segments' => [
+                    [
+                      'lit' => 'consoles',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -142,6 +149,9 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'consoles',
                   ],
                 ],
               ],
@@ -165,13 +175,17 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/consoles/{consoleId}',
-                  'parts' => [
-                    'consoles',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'consoleId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'consoles',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -182,6 +196,10 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'consoles',
+                    '{id}',
                   ],
                 ],
               ],
@@ -209,6 +227,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'logo',
               'short' => 'Franchise logo URL',
               'type' => '`$STRING`',
@@ -223,6 +242,10 @@ class NexardaConfig
               'short' => 'Total number of games in franchise',
               'type' => '`$INTEGER`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'franchis',
           'op' => [
@@ -245,8 +268,10 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/franchises',
-                  'parts' => [
-                    'franchises',
+                  'segments' => [
+                    [
+                      'lit' => 'franchises',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -256,6 +281,9 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'franchises',
                   ],
                 ],
               ],
@@ -279,13 +307,17 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/franchises/{franchiseId}',
-                  'parts' => [
-                    'franchises',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'franchiseId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'franchises',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -296,6 +328,10 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'franchises',
+                    '{id}',
                   ],
                 ],
               ],
@@ -313,6 +349,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'coverImage',
               'short' => 'Cover image URL',
               'type' => '`$STRING`',
@@ -358,6 +395,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'releaseDate',
               'short' => 'Release date',
               'type' => '`$STRING`',
@@ -372,6 +410,10 @@ class NexardaConfig
               'short' => 'Video media',
               'type' => '`$ARRAY`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'game',
           'op' => [
@@ -401,8 +443,10 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/games',
-                  'parts' => [
-                    'games',
+                  'segments' => [
+                    [
+                      'lit' => 'games',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -413,6 +457,9 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'games',
                   ],
                 ],
               ],
@@ -445,14 +492,20 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/games/platform/{platformId}',
-                  'parts' => [
-                    'games',
-                    'platform',
-                    '{platform_id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'platformId' => 'platform_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'games',
+                    ],
+                    [
+                      'lit' => 'platform',
+                    ],
+                    [
+                      'var' => 'platform_id',
                     ],
                   ],
                   'select' => [
@@ -464,6 +517,11 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'games',
+                    'platform',
+                    '{platform_id}',
                   ],
                 ],
                 [
@@ -481,13 +539,17 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/games/{gameId}',
-                  'parts' => [
-                    'games',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'gameId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'games',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -498,6 +560,10 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'games',
+                    '{id}',
                   ],
                 ],
               ],
@@ -527,6 +593,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'short' => 'Status check timestamp',
               'type' => '`$STRING`',
@@ -547,13 +614,18 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/status',
-                  'parts' => [
-                    'status',
+                  'segments' => [
+                    [
+                      'lit' => 'status',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'status',
                   ],
                 ],
               ],
@@ -566,6 +638,7 @@ class NexardaConfig
         'price' => [
           'fields' => [
             [
+              'format' => 'uri',
               'name' => 'affiliateLink',
               'short' => 'Affiliate link to retailer (do not modify)',
               'type' => '`$STRING`',
@@ -576,6 +649,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'float',
               'name' => 'discount',
               'short' => 'Discount percentage',
               'type' => '`$NUMBER`',
@@ -586,16 +660,19 @@ class NexardaConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'lastUpdated',
               'short' => 'Last price update timestamp',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'float',
               'name' => 'originalPrice',
               'short' => 'Original price before discount',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'float',
               'name' => 'price',
               'short' => 'Current price',
               'type' => '`$NUMBER`',
@@ -652,14 +729,20 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/games/{gameId}/prices',
-                  'parts' => [
-                    'games',
-                    '{game_id}',
-                    'prices',
-                  ],
                   'rename' => [
                     'param' => [
                       'gameId' => 'game_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'games',
+                    ],
+                    [
+                      'var' => 'game_id',
+                    ],
+                    [
+                      'lit' => 'prices',
                     ],
                   ],
                   'select' => [
@@ -672,6 +755,11 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'games',
+                    '{game_id}',
+                    'prices',
                   ],
                 ],
                 [
@@ -698,14 +786,20 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/consoles/{consoleId}/prices',
-                  'parts' => [
-                    'consoles',
-                    '{console_id}',
-                    'prices',
-                  ],
                   'rename' => [
                     'param' => [
                       'consoleId' => 'console_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'consoles',
+                    ],
+                    [
+                      'var' => 'console_id',
+                    ],
+                    [
+                      'lit' => 'prices',
                     ],
                   ],
                   'select' => [
@@ -717,6 +811,11 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'consoles',
+                    '{console_id}',
+                    'prices',
                   ],
                 ],
               ],
@@ -751,6 +850,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'logo',
               'short' => 'Retailer logo URL',
               'type' => '`$STRING`',
@@ -766,10 +866,15 @@ class NexardaConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'uri',
               'name' => 'website',
               'short' => 'Retailer website',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'retailer',
           'op' => [
@@ -782,13 +887,18 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/retailers',
-                  'parts' => [
-                    'retailers',
+                  'segments' => [
+                    [
+                      'lit' => 'retailers',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'retailers',
                   ],
                 ],
               ],
@@ -848,8 +958,10 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
-                  'parts' => [
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -861,6 +973,9 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'search',
                   ],
                 ],
               ],
@@ -898,6 +1013,7 @@ class NexardaConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'uri',
               'name' => 'logo',
               'short' => 'Studio logo URL',
               'type' => '`$STRING`',
@@ -913,10 +1029,15 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'website',
               'short' => 'Official website',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'studio',
           'op' => [
@@ -945,8 +1066,10 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/studios',
-                  'parts' => [
-                    'studios',
+                  'segments' => [
+                    [
+                      'lit' => 'studios',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -957,6 +1080,9 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'studios',
                   ],
                 ],
               ],
@@ -980,13 +1106,17 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/studios/{studioId}',
-                  'parts' => [
-                    'studios',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'studioId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'studios',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -997,6 +1127,10 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'studios',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1014,11 +1148,13 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'avatar',
               'short' => 'Avatar image URL',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'coverImage',
               'short' => 'Cover image URL',
               'type' => '`$STRING`',
@@ -1049,6 +1185,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'joinDate',
               'short' => 'Account creation date',
               'type' => '`$STRING`',
@@ -1074,6 +1211,7 @@ class NexardaConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'releaseDate',
               'short' => 'Release date',
               'type' => '`$STRING`',
@@ -1099,6 +1237,10 @@ class NexardaConfig
               'type' => '`$INTEGER`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'user',
           'op' => [
             'list' => [
@@ -1120,14 +1262,20 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/users/{userId}/library',
-                  'parts' => [
-                    'users',
-                    '{id}',
-                    'library',
-                  ],
                   'rename' => [
                     'param' => [
                       'userId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'users',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
+                    [
+                      'lit' => 'library',
                     ],
                   ],
                   'select' => [
@@ -1139,6 +1287,11 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'users',
+                    '{id}',
+                    'library',
                   ],
                 ],
                 [
@@ -1156,14 +1309,20 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/users/{userId}/wishlist',
-                  'parts' => [
-                    'users',
-                    '{id}',
-                    'wishlist',
-                  ],
                   'rename' => [
                     'param' => [
                       'userId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'users',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
+                    [
+                      'lit' => 'wishlist',
                     ],
                   ],
                   'select' => [
@@ -1175,6 +1334,11 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'users',
+                    '{id}',
+                    'wishlist',
                   ],
                 ],
               ],
@@ -1198,13 +1362,17 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/users/{userId}',
-                  'parts' => [
-                    'users',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'userId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'users',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -1215,6 +1383,10 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'users',
+                    '{id}',
                   ],
                 ],
               ],
@@ -1254,9 +1426,13 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/widgets/button',
-                  'parts' => [
-                    'widgets',
-                    'button',
+                  'segments' => [
+                    [
+                      'lit' => 'widgets',
+                    ],
+                    [
+                      'lit' => 'button',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'button',
@@ -1268,6 +1444,10 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'widgets',
+                    'button',
                   ],
                 ],
                 [
@@ -1292,9 +1472,13 @@ class NexardaConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/widgets/product-card',
-                  'parts' => [
-                    'widgets',
-                    'product-card',
+                  'segments' => [
+                    [
+                      'lit' => 'widgets',
+                    ],
+                    [
+                      'lit' => 'product-card',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'product_card',
@@ -1306,6 +1490,10 @@ class NexardaConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'widgets',
+                    'product-card',
                   ],
                 ],
               ],

@@ -36,6 +36,7 @@ main: kit: entity: studio: {
       type: "`$OBJECT`"
     }
     {
+      format: "uri"
       name: "logo"
       req: false
       short: "Studio logo URL"
@@ -54,6 +55,7 @@ main: kit: entity: studio: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "website"
       req: false
       short: "Official website"
@@ -93,8 +95,10 @@ main: kit: entity: studio: {
           }
           method: "GET"
           orig: "/studios"
-          parts: [
-            "studios"
+          segments: [
+            {
+              lit: "studios"
+            }
           ]
           select: {
             exist: [
@@ -126,15 +130,19 @@ main: kit: entity: studio: {
           }
           method: "GET"
           orig: "/studios/{studioId}"
-          parts: [
-            "studios"
-            "{id}"
-          ]
           rename: {
             param: {
               studioId: "id"
             }
           }
+          segments: [
+            {
+              lit: "studios"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

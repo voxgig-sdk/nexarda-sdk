@@ -22,6 +22,7 @@ main: kit: entity: platform: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "timestamp"
       req: false
       short: "Status check timestamp"
@@ -42,8 +43,10 @@ main: kit: entity: platform: {
         {
           method: "GET"
           orig: "/status"
-          parts: [
-            "status"
+          segments: [
+            {
+              lit: "status"
+            }
           ]
           transform: {
             req: "`reqdata`"

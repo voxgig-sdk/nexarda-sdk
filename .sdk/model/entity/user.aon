@@ -12,12 +12,14 @@ main: kit: entity: user: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "avatar"
       req: false
       short: "Avatar image URL"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "coverImage"
       req: false
       short: "Cover image URL"
@@ -54,6 +56,7 @@ main: kit: entity: user: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "joinDate"
       req: false
       short: "Account creation date"
@@ -84,6 +87,7 @@ main: kit: entity: user: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "releaseDate"
       req: false
       short: "Release date"
@@ -139,16 +143,22 @@ main: kit: entity: user: {
           }
           method: "GET"
           orig: "/users/{userId}/library"
-          parts: [
-            "users"
-            "{id}"
-            "library"
-          ]
           rename: {
             param: {
               userId: "id"
             }
           }
+          segments: [
+            {
+              lit: "users"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "library"
+            }
+          ]
           select: {
             "$action": "library"
             exist: [
@@ -174,16 +184,22 @@ main: kit: entity: user: {
           }
           method: "GET"
           orig: "/users/{userId}/wishlist"
-          parts: [
-            "users"
-            "{id}"
-            "wishlist"
-          ]
           rename: {
             param: {
               userId: "id"
             }
           }
+          segments: [
+            {
+              lit: "users"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "wishlist"
+            }
+          ]
           select: {
             "$action": "wishlist"
             exist: [
@@ -214,15 +230,19 @@ main: kit: entity: user: {
           }
           method: "GET"
           orig: "/users/{userId}"
-          parts: [
-            "users"
-            "{id}"
-          ]
           rename: {
             param: {
               userId: "id"
             }
           }
+          segments: [
+            {
+              lit: "users"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

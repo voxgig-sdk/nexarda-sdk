@@ -24,6 +24,7 @@ main: kit: entity: retailer: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "logo"
       req: false
       short: "Retailer logo URL"
@@ -42,6 +43,7 @@ main: kit: entity: retailer: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "website"
       req: false
       short: "Retailer website"
@@ -62,8 +64,10 @@ main: kit: entity: retailer: {
         {
           method: "GET"
           orig: "/retailers"
-          parts: [
-            "retailers"
+          segments: [
+            {
+              lit: "retailers"
+            }
           ]
           transform: {
             req: "`reqdata`"

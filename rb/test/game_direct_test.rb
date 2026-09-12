@@ -116,15 +116,17 @@ def game_direct_setup(mockres)
   env = Runner.env_override({
     "NEXARDA_TEST_GAME_ENTID" => {},
     "NEXARDA_TEST_LIVE" => "FALSE",
-    "NEXARDA_APIKEY" => "NONE",
+    "NEXARDA_APIKEY" => "",
   })
 
   live = env["NEXARDA_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["NEXARDA_APIKEY"],
-    }
+    })
     client = NexardaSDK.new(merged_opts)
     return {
       client: client,

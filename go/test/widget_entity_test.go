@@ -50,7 +50,7 @@ func TestWidgetEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		widgetRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.widget", setup.data)))
+		widgetRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.widget")))
 		var widgetRef01Data map[string]any
 		if len(widgetRef01DataRaw) > 0 {
 			widgetRef01Data = core.ToMapAny(widgetRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func widgetBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"widget01", "widget02", "widget03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func widgetBasicSetup(extra map[string]any) *entityTestSetup {
 		"NEXARDA_TEST_WIDGET_ENTID": idmap,
 		"NEXARDA_TEST_LIVE":      "FALSE",
 		"NEXARDA_TEST_EXPLAIN":   "FALSE",
-		"NEXARDA_APIKEY":         "NONE",
+		"NEXARDA_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["NEXARDA_TEST_WIDGET_ENTID"])
@@ -126,11 +126,23 @@ func widgetBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["NEXARDA_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["NEXARDA_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewNexardaSDK(core.ToMapAny(mergedOpts))
 	}
