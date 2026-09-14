@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NexardaSDK } from '@voxgig-sdk/nexarda'
+import { NexardaSDK } from '@voxgig-sdk/nexarda-sdk'
 
 const client = new NexardaSDK({
   apikey: process.env.NEXARDA_APIKEY,
@@ -898,7 +898,7 @@ nexarda/
 Import the SDK from the package root:
 
 ```ts
-import { NexardaSDK } from '@voxgig-sdk/nexarda'
+import { NexardaSDK } from '@voxgig-sdk/nexarda-sdk'
 ```
 
 ### Entity state

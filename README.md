@@ -105,7 +105,7 @@ local results, err = client:Studio():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nexarda-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
 | Python | `voxgig-sdk-nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
 | PHP | `voxgig-sdk/nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/nexarda-sdk/go` | `go get github.com/voxgig-sdk/nexarda-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Studio():list()
 ### TypeScript
 
 ```ts
-import { NexardaSDK } from '@voxgig-sdk/nexarda'
+import { NexardaSDK } from '@voxgig-sdk/nexarda-sdk'
 
 const client = new NexardaSDK({
   apikey: process.env.NEXARDA_APIKEY,
