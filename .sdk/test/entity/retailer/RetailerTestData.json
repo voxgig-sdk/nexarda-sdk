@@ -41,5 +41,143 @@
         "website": "s11e"
       }
     }
+  },
+  "requests": {
+    "GET /retailers": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRetailers",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "approved": {
+                            "description": "Approval status",
+                            "type": "boolean"
+                          },
+                          "currencies": {
+                            "description": "Supported currencies",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "description": "Unique retailer identifier",
+                            "type": "string"
+                          },
+                          "logo": {
+                            "description": "Retailer logo URL",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Retailer name",
+                            "type": "string"
+                          },
+                          "regions": {
+                            "description": "Supported regions",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "website": {
+                            "description": "Retailer website",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { NexardaSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('StudioEntity', async () => {
 
     const live = 'TRUE' === process.env.NEXARDA_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'studio.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'studio.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set NEXARDA_TEST_STUDIO_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"description","req":false,"short":"Studio description","type":"`$STRING`","index$":0},{"active":true,"name":"foundingYear","req":false,"short":"Year founded","type":"`$INTEGER`","index$":1},{"active":true,"name":"games","req":false,"short":"Released game IDs","type":"`$ARRAY`","index$":2},{"active":true,"name":"id","req":false,"short":"Unique studio identifier","type":"`$STRING`","index$":3},{"active":true,"name":"location","req":false,"short":"Studio location","type":"`$OBJECT`","index$":4},{"active":true,"format":"uri","name":"logo","req":false,"short":"Studio logo URL","type":"`$STRING`","index$":5},{"active":true,"name":"name","req":false,"short":"Studio name","type":"`$STRING`","index$":6},{"active":true,"name":"type","req":false,"short":"Studio type","type":"`$STRING`","index$":7},{"active":true,"format":"uri","name":"website","req":false,"short":"Official website","type":"`$STRING`","index$":8}],"id":{"field":"id","name":"id"},"name":"studio","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":20,"kind":"query","name":"limit","orig":"limit","reqd":false,"type":"`$INTEGER`","index$":0},{"active":true,"kind":"query","name":"type","orig":"type","reqd":false,"type":"`$STRING`","index$":1}]},"contract":{"id":"GET /studios","json":"{\"operationId\":\"getStudios\",\"parameters\":[{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Filter by studio type\",\"in\":\"query\",\"name\":\"type\",\"schema\":{\"enum\":[\"developer\",\"publisher\",\"both\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Studio description\",\"type\":\"string\"},\"foundingYear\":{\"description\":\"Year founded\",\"type\":\"integer\"},\"games\":{\"description\":\"Released game IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique studio identifier\",\"type\":\"string\"},\"location\":{\"description\":\"Studio location\",\"properties\":{\"city\":{\"type\":\"string\"},\"country\":{\"type\":\"string\"}},\"type\":\"object\"},\"logo\":{\"description\":\"Studio logo URL\",\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"description\":\"Studio name\",\"type\":\"string\"},\"type\":{\"description\":\"Studio type\",\"enum\":[\"developer\",\"publisher\",\"both\"],\"type\":\"string\"},\"website\":{\"description\":\"Official website\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/studios","segments":[{"lit":"studios"}],"select":{"exist":["limit","type"]},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"studio_id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /studios/{studioId}","json":"{\"operationId\":\"getStudioById\",\"parameters\":[{\"description\":\"Unique identifier for the studio\",\"in\":\"path\",\"name\":\"studioId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"description\":{\"description\":\"Studio description\",\"type\":\"string\"},\"foundingYear\":{\"description\":\"Year founded\",\"type\":\"integer\"},\"games\":{\"description\":\"Released game IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique studio identifier\",\"type\":\"string\"},\"location\":{\"description\":\"Studio location\",\"properties\":{\"city\":{\"type\":\"string\"},\"country\":{\"type\":\"string\"}},\"type\":\"object\"},\"logo\":{\"description\":\"Studio logo URL\",\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"description\":\"Studio name\",\"type\":\"string\"},\"type\":{\"description\":\"Studio type\",\"enum\":[\"developer\",\"publisher\",\"both\"],\"type\":\"string\"},\"website\":{\"description\":\"Official website\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/studios/{studioId}","rename":{"param":{"studioId":"id"}},"segments":[{"lit":"studios"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"studio","name__orig":"studio","Name":"Studio","name_":"studio","name-":"studio","NAME":"STUDIO","index$":7}, {"active":true,"entity":"studio","key$":"BasicStudioFlow","kind":"basic","name":"BasicStudioFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"studio_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"studio_ref01","srcdatavar":"studio_ref01_data","suffix":"_dt0"},"match":{"id":"studio01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-studio_ref01"}}],"index$":1}]}, 'Studio')
     }
     const client = setup.client
     const struct = setup.struct
@@ -116,13 +115,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['NEXARDA_TEST_STUDIO_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'NEXARDA_TEST_STUDIO_ENTID': idmap,
     'NEXARDA_TEST_LIVE': 'FALSE',
@@ -134,7 +126,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.NEXARDA_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['NEXARDA_TEST_STUDIO_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new NexardaSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -147,7 +145,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -160,7 +159,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.NEXARDA_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

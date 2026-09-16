@@ -1,12 +1,18 @@
 # Nexarda SDK feature factory
 
 from nexarda_sdk.feature.base_feature import NexardaBaseFeature
+from nexarda_sdk.feature.ratelimit_feature import NexardaRatelimitFeature
+from nexarda_sdk.feature.retry_feature import NexardaRetryFeature
 from nexarda_sdk.feature.test_feature import NexardaTestFeature
+from nexarda_sdk.feature.timeout_feature import NexardaTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: NexardaBaseFeature(),
+    "ratelimit": lambda: NexardaRatelimitFeature(),
+    "retry": lambda: NexardaRetryFeature(),
     "test": lambda: NexardaTestFeature(),
+    "timeout": lambda: NexardaTimeoutFeature(),
 }
 
 

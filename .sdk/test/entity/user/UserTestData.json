@@ -11,7 +11,7 @@
         "genres": [],
         "id": "USER00",
         "joinDate": "sbc",
-        "libraryCount": "sbd",
+        "libraryCount": 189,
         "name": "sbe",
         "platforms": [],
         "publisher": "sc0",
@@ -19,7 +19,7 @@
         "screenshots": [],
         "username": "sc3",
         "videos": [],
-        "wishlistCount": "sc5"
+        "wishlistCount": 197
       },
       "USER01": {
         "ageRating": "s168",
@@ -31,7 +31,7 @@
         "genres": [],
         "id": "USER01",
         "joinDate": "s170",
-        "libraryCount": "s171",
+        "libraryCount": 369,
         "name": "s172",
         "platforms": [],
         "publisher": "s174",
@@ -39,7 +39,7 @@
         "screenshots": [],
         "username": "s177",
         "videos": [],
-        "wishlistCount": "s179"
+        "wishlistCount": 377
       },
       "USER02": {
         "ageRating": "s21c",
@@ -51,7 +51,7 @@
         "genres": [],
         "id": "USER02",
         "joinDate": "s224",
-        "libraryCount": "s225",
+        "libraryCount": 549,
         "name": "s226",
         "platforms": [],
         "publisher": "s228",
@@ -59,7 +59,7 @@
         "screenshots": [],
         "username": "s22b",
         "videos": [],
-        "wishlistCount": "s22d"
+        "wishlistCount": 557
       }
     }
   },
@@ -74,7 +74,7 @@
         "franchiseId": "s2d5",
         "genres": [],
         "joinDate": "s2d8",
-        "libraryCount": "s2d9",
+        "libraryCount": 729,
         "name": "s2da",
         "platforms": [],
         "publisher": "s2dc",
@@ -82,7 +82,703 @@
         "screenshots": [],
         "username": "s2df",
         "videos": [],
-        "wishlistCount": "s2e1"
+        "wishlistCount": 737
+      }
+    }
+  },
+  "requests": {
+    "GET /users/{userId}/library": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUserLibrary",
+        "parameters": [
+          {
+            "description": "Unique identifier for the user",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "ageRating": {
+                            "description": "Age rating (e.g., ESRB, PEGI)",
+                            "type": "string"
+                          },
+                          "coverImage": {
+                            "description": "Cover image URL",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Game description",
+                            "type": "string"
+                          },
+                          "developer": {
+                            "description": "Developer name",
+                            "type": "string"
+                          },
+                          "franchiseId": {
+                            "description": "Associated franchise ID",
+                            "type": "string"
+                          },
+                          "genres": {
+                            "description": "Game genres",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "description": "Unique game identifier",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Game title",
+                            "type": "string"
+                          },
+                          "platforms": {
+                            "description": "Supported platforms",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "publisher": {
+                            "description": "Publisher name",
+                            "type": "string"
+                          },
+                          "releaseDate": {
+                            "description": "Release date",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "screenshots": {
+                            "description": "Screenshot URLs",
+                            "items": {
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "videos": {
+                            "description": "Video media",
+                            "items": {
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "format": "uri",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - invalid or missing API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /users/{userId}/wishlist": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUserWishlist",
+        "parameters": [
+          {
+            "description": "Unique identifier for the user",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "ageRating": {
+                            "description": "Age rating (e.g., ESRB, PEGI)",
+                            "type": "string"
+                          },
+                          "coverImage": {
+                            "description": "Cover image URL",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Game description",
+                            "type": "string"
+                          },
+                          "developer": {
+                            "description": "Developer name",
+                            "type": "string"
+                          },
+                          "franchiseId": {
+                            "description": "Associated franchise ID",
+                            "type": "string"
+                          },
+                          "genres": {
+                            "description": "Game genres",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "description": "Unique game identifier",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Game title",
+                            "type": "string"
+                          },
+                          "platforms": {
+                            "description": "Supported platforms",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "publisher": {
+                            "description": "Publisher name",
+                            "type": "string"
+                          },
+                          "releaseDate": {
+                            "description": "Release date",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "screenshots": {
+                            "description": "Screenshot URLs",
+                            "items": {
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "videos": {
+                            "description": "Video media",
+                            "items": {
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "format": "uri",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - invalid or missing API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /users/{userId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUserProfile",
+        "parameters": [
+          {
+            "description": "Unique identifier for the user",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "avatar": {
+                          "description": "Avatar image URL",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "Unique user identifier",
+                          "type": "string"
+                        },
+                        "joinDate": {
+                          "description": "Account creation date",
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "libraryCount": {
+                          "description": "Number of games in library",
+                          "type": "integer"
+                        },
+                        "username": {
+                          "description": "Username",
+                          "type": "string"
+                        },
+                        "wishlistCount": {
+                          "description": "Number of items in wishlist",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - invalid or missing API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }

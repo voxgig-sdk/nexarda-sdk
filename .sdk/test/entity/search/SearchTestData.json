@@ -4,19 +4,19 @@
       "SEARCH00": {
         "consoles": [],
         "games": [],
-        "totalResults": "s20",
+        "totalResults": 32,
         "id": "SEARCH00"
       },
       "SEARCH01": {
         "consoles": [],
         "games": [],
-        "totalResults": "s3e",
+        "totalResults": 62,
         "id": "SEARCH01"
       },
       "SEARCH02": {
         "consoles": [],
         "games": [],
-        "totalResults": "s5c",
+        "totalResults": 92,
         "id": "SEARCH02"
       }
     }
@@ -26,7 +26,310 @@
       "search_ref01": {
         "consoles": [],
         "games": [],
-        "totalResults": "s7a"
+        "totalResults": 122
+      }
+    }
+  },
+  "requests": {
+    "GET /search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "search",
+        "parameters": [
+          {
+            "description": "Search query string",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by product type",
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "default": "all",
+              "enum": [
+                "game",
+                "console",
+                "gear",
+                "all"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "consoles": {
+                          "items": {
+                            "properties": {
+                              "description": {
+                                "description": "Product description",
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "Unique console identifier",
+                                "type": "string"
+                              },
+                              "images": {
+                                "description": "Product images",
+                                "items": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "manufacturer": {
+                                "description": "Manufacturer name",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Console name",
+                                "type": "string"
+                              },
+                              "releaseDate": {
+                                "description": "Release date",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "specifications": {
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "description": "Technical specifications",
+                                "type": "object"
+                              },
+                              "type": {
+                                "description": "Product type",
+                                "enum": [
+                                  "console",
+                                  "gear"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "games": {
+                          "items": {
+                            "properties": {
+                              "ageRating": {
+                                "description": "Age rating (e.g., ESRB, PEGI)",
+                                "type": "string"
+                              },
+                              "coverImage": {
+                                "description": "Cover image URL",
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "Game description",
+                                "type": "string"
+                              },
+                              "developer": {
+                                "description": "Developer name",
+                                "type": "string"
+                              },
+                              "franchiseId": {
+                                "description": "Associated franchise ID",
+                                "type": "string"
+                              },
+                              "genres": {
+                                "description": "Game genres",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "id": {
+                                "description": "Unique game identifier",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Game title",
+                                "type": "string"
+                              },
+                              "platforms": {
+                                "description": "Supported platforms",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "publisher": {
+                                "description": "Publisher name",
+                                "type": "string"
+                              },
+                              "releaseDate": {
+                                "description": "Release date",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "screenshots": {
+                                "description": "Screenshot URLs",
+                                "items": {
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "videos": {
+                                "description": "Video media",
+                                "items": {
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "format": "uri",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "totalResults": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

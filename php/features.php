@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Nexarda SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class NexardaFeatures
@@ -14,8 +17,14 @@ class NexardaFeatures
         switch ($name) {
             case "base":
                 return new NexardaBaseFeature();
+            case "ratelimit":
+                return new NexardaRatelimitFeature();
+            case "retry":
+                return new NexardaRetryFeature();
             case "test":
                 return new NexardaTestFeature();
+            case "timeout":
+                return new NexardaTimeoutFeature();
             default:
                 return new NexardaBaseFeature();
         }
@@ -31,7 +40,10 @@ class NexardaFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
