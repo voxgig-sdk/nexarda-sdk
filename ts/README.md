@@ -455,23 +455,11 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | Avatar image URL |
-| `coverImage` | Cover image URL |
-| `description` | Game description |
-| `developer` | Developer name |
-| `franchiseId` | Associated franchise ID |
-| `genres` | Game genres |
 | `id` | Unique user identifier |
 | `joinDate` | Account creation date |
 | `libraryCount` | Number of games in library |
-| `name` | Game title |
-| `platforms` | Supported platforms |
-| `publisher` | Publisher name |
-| `releaseDate` | Release date |
-| `screenshots` | Screenshot URLs |
 | `username` | Username |
-| `videos` | Video media |
 | `wishlistCount` | Number of items in wishlist |
 
 Operations: list, load.
@@ -772,23 +760,11 @@ Create an instance: `const user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `string` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | `string` | Avatar image URL |
-| `coverImage` | `string` | Cover image URL |
-| `description` | `string` | Game description |
-| `developer` | `string` | Developer name |
-| `franchiseId` | `string` | Associated franchise ID |
-| `genres` | `any[]` | Game genres |
 | `id` | `string` | Unique user identifier |
 | `joinDate` | `string` | Account creation date |
 | `libraryCount` | `number` | Number of games in library |
-| `name` | `string` | Game title |
-| `platforms` | `any[]` | Supported platforms |
-| `publisher` | `string` | Publisher name |
-| `releaseDate` | `string` | Release date |
-| `screenshots` | `any[]` | Screenshot URLs |
 | `username` | `string` | Username |
-| `videos` | `any[]` | Video media |
 | `wishlistCount` | `number` | Number of items in wishlist |
 
 #### Example: Load

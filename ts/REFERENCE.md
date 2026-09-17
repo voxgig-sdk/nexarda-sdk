@@ -710,23 +710,11 @@ const user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `string` | No | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | `string` | No | Avatar image URL |
-| `coverImage` | `string` | No | Cover image URL |
-| `description` | `string` | No | Game description |
-| `developer` | `string` | No | Developer name |
-| `franchiseId` | `string` | No | Associated franchise ID |
-| `genres` | `any[]` | No | Game genres |
 | `id` | `string` | No | Unique user identifier |
 | `joinDate` | `string` | No | Account creation date |
 | `libraryCount` | `number` | No | Number of games in library |
-| `name` | `string` | No | Game title |
-| `platforms` | `any[]` | No | Supported platforms |
-| `publisher` | `string` | No | Publisher name |
-| `releaseDate` | `string` | No | Release date |
-| `screenshots` | `any[]` | No | Screenshot URLs |
 | `username` | `string` | No | Username |
-| `videos` | `any[]` | No | Video media |
 | `wishlistCount` | `number` | No | Number of items in wishlist |
 
 ### Actions

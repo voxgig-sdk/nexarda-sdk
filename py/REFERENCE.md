@@ -629,23 +629,11 @@ user = client.User()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRating` | `str` | No | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | `str` | No | Avatar image URL |
-| `coverImage` | `str` | No | Cover image URL |
-| `description` | `str` | No | Game description |
-| `developer` | `str` | No | Developer name |
-| `franchiseId` | `str` | No | Associated franchise ID |
-| `genres` | `list` | No | Game genres |
 | `id` | `str` | No | Unique user identifier |
 | `joinDate` | `str` | No | Account creation date |
 | `libraryCount` | `int` | No | Number of games in library |
-| `name` | `str` | No | Game title |
-| `platforms` | `list` | No | Supported platforms |
-| `publisher` | `str` | No | Publisher name |
-| `releaseDate` | `str` | No | Release date |
-| `screenshots` | `list` | No | Screenshot URLs |
 | `username` | `str` | No | Username |
-| `videos` | `list` | No | Video media |
 | `wishlistCount` | `int` | No | Number of items in wishlist |
 
 ### Operations

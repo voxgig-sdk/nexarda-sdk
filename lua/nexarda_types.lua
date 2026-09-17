@@ -136,23 +136,11 @@
 ---@field type? string
 
 ---@class User
----@field ageRating? string
 ---@field avatar? string
----@field coverImage? string
----@field description? string
----@field developer? string
----@field franchiseId? string
----@field genres? table
 ---@field id? string
 ---@field joinDate? string
 ---@field libraryCount? number
----@field name? string
----@field platforms? table
----@field publisher? string
----@field releaseDate? string
----@field screenshots? table
 ---@field username? string
----@field videos? table
 ---@field wishlistCount? number
 
 ---@class UserLoadMatch

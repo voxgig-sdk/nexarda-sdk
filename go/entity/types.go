@@ -183,23 +183,11 @@ type StudioListMatch struct {
 
 // User is the typed data model for the user entity.
 type User struct {
-	AgeRating *string `json:"ageRating,omitempty"`
 	Avatar *string `json:"avatar,omitempty"`
-	CoverImage *string `json:"coverImage,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Developer *string `json:"developer,omitempty"`
-	FranchiseId *string `json:"franchiseId,omitempty"`
-	Genres *[]any `json:"genres,omitempty"`
 	Id *string `json:"id,omitempty"`
 	JoinDate *string `json:"joinDate,omitempty"`
 	LibraryCount *int `json:"libraryCount,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Platforms *[]any `json:"platforms,omitempty"`
-	Publisher *string `json:"publisher,omitempty"`
-	ReleaseDate *string `json:"releaseDate,omitempty"`
-	Screenshots *[]any `json:"screenshots,omitempty"`
 	Username *string `json:"username,omitempty"`
-	Videos *[]any `json:"videos,omitempty"`
 	WishlistCount *int `json:"wishlistCount,omitempty"`
 }
 

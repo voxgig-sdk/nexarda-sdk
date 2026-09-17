@@ -204,23 +204,11 @@ class StudioListMatch
 /** User entity data model. */
 class User
 {
-    public ?string $ageRating = null;
     public ?string $avatar = null;
-    public ?string $coverImage = null;
-    public ?string $description = null;
-    public ?string $developer = null;
-    public ?string $franchiseId = null;
-    public ?array $genres = null;
     public ?string $id = null;
     public ?string $joinDate = null;
     public ?int $libraryCount = null;
-    public ?string $name = null;
-    public ?array $platforms = null;
-    public ?string $publisher = null;
-    public ?string $releaseDate = null;
-    public ?array $screenshots = null;
     public ?string $username = null;
-    public ?array $videos = null;
     public ?int $wishlistCount = null;
 }
 

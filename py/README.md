@@ -403,23 +403,11 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | Avatar image URL |
-| `coverImage` | Cover image URL |
-| `description` | Game description |
-| `developer` | Developer name |
-| `franchiseId` | Associated franchise ID |
-| `genres` | Game genres |
 | `id` | Unique user identifier |
 | `joinDate` | Account creation date |
 | `libraryCount` | Number of games in library |
-| `name` | Game title |
-| `platforms` | Supported platforms |
-| `publisher` | Publisher name |
-| `releaseDate` | Release date |
-| `screenshots` | Screenshot URLs |
 | `username` | Username |
-| `videos` | Video media |
 | `wishlistCount` | Number of items in wishlist |
 
 Operations: List, Load.
@@ -720,23 +708,11 @@ Create an instance: `user = client.User()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `str` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | `str` | Avatar image URL |
-| `coverImage` | `str` | Cover image URL |
-| `description` | `str` | Game description |
-| `developer` | `str` | Developer name |
-| `franchiseId` | `str` | Associated franchise ID |
-| `genres` | `list` | Game genres |
 | `id` | `str` | Unique user identifier |
 | `joinDate` | `str` | Account creation date |
 | `libraryCount` | `int` | Number of games in library |
-| `name` | `str` | Game title |
-| `platforms` | `list` | Supported platforms |
-| `publisher` | `str` | Publisher name |
-| `releaseDate` | `str` | Release date |
-| `screenshots` | `list` | Screenshot URLs |
 | `username` | `str` | Username |
-| `videos` | `list` | Video media |
 | `wishlistCount` | `int` | Number of items in wishlist |
 
 #### Example: Load
@@ -911,6 +887,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── nexarda_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

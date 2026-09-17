@@ -67,6 +67,7 @@ declare class Config {
         base: string;
         auth: {
             prefix: string;
+            name: string;
         };
         headers: {
             "content-type": string;
@@ -749,15 +750,15 @@ declare class Config {
         };
         user: {
             fields: ({
-                name: string;
-                short: string;
-                type: string;
-                format?: undefined;
-            } | {
                 format: string;
                 name: string;
                 short: string;
                 type: string;
+            } | {
+                name: string;
+                short: string;
+                type: string;
+                format?: undefined;
             })[];
             id: {
                 field: string;

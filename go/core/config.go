@@ -81,6 +81,7 @@ func MakeConfig() map[string]any {
 			"base": "https://api.nexarda.com",
 			"auth": map[string]any{
 				"prefix": "",
+				"name": "X-API-Key",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",
@@ -1175,41 +1176,10 @@ func MakeConfig() map[string]any {
 			"user": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "ageRating",
-						"short": "Age rating (e.g., ESRB, PEGI)",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"format": "uri",
 						"name": "avatar",
 						"short": "Avatar image URL",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uri",
-						"name": "coverImage",
-						"short": "Cover image URL",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "description",
-						"short": "Game description",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "developer",
-						"short": "Developer name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "franchiseId",
-						"short": "Associated franchise ID",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "genres",
-						"short": "Game genres",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
@@ -1228,40 +1198,9 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
-						"name": "name",
-						"short": "Game title",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "platforms",
-						"short": "Supported platforms",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "publisher",
-						"short": "Publisher name",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "date",
-						"name": "releaseDate",
-						"short": "Release date",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "screenshots",
-						"short": "Screenshot URLs",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
 						"name": "username",
 						"short": "Username",
 						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "videos",
-						"short": "Video media",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "wishlistCount",

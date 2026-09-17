@@ -123,6 +123,7 @@ class Config {
 
     auth: {
       prefix: '',
+      name: 'X-API-Key',
     },
 
     headers: {
@@ -131,36 +132,36 @@ class Config {
 
     entity: {
       
-      console: {
-      },
-
-      franchis: {
-      },
-
-      game: {
-      },
-
-      platform: {
-      },
-
-      price: {
-      },
-
-      retailer: {
-      },
-
-      search: {
-      },
-
-      studio: {
-      },
-
-      user: {
-      },
-
-      widget: {
-      },
-
+        console: {
+        },
+  
+        franchis: {
+        },
+  
+        game: {
+        },
+  
+        platform: {
+        },
+  
+        price: {
+        },
+  
+        retailer: {
+        },
+  
+        search: {
+        },
+  
+        studio: {
+        },
+  
+        user: {
+        },
+  
+        widget: {
+        },
+  
     }
   }
 
@@ -1242,41 +1243,10 @@ class Config {
     "user": {
       "fields": [
         {
-          "name": "ageRating",
-          "short": "Age rating (e.g., ESRB, PEGI)",
-          "type": "`$STRING`"
-        },
-        {
           "format": "uri",
           "name": "avatar",
           "short": "Avatar image URL",
           "type": "`$STRING`"
-        },
-        {
-          "format": "uri",
-          "name": "coverImage",
-          "short": "Cover image URL",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "description",
-          "short": "Game description",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "developer",
-          "short": "Developer name",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "franchiseId",
-          "short": "Associated franchise ID",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "genres",
-          "short": "Game genres",
-          "type": "`$ARRAY`"
         },
         {
           "name": "id",
@@ -1295,40 +1265,9 @@ class Config {
           "type": "`$INTEGER`"
         },
         {
-          "name": "name",
-          "short": "Game title",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "platforms",
-          "short": "Supported platforms",
-          "type": "`$ARRAY`"
-        },
-        {
-          "name": "publisher",
-          "short": "Publisher name",
-          "type": "`$STRING`"
-        },
-        {
-          "format": "date",
-          "name": "releaseDate",
-          "short": "Release date",
-          "type": "`$STRING`"
-        },
-        {
-          "name": "screenshots",
-          "short": "Screenshot URLs",
-          "type": "`$ARRAY`"
-        },
-        {
           "name": "username",
           "short": "Username",
           "type": "`$STRING`"
-        },
-        {
-          "name": "videos",
-          "short": "Video media",
-          "type": "`$ARRAY`"
         },
         {
           "name": "wishlistCount",

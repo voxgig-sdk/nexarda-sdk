@@ -105,12 +105,12 @@ local results, err = client:Studio():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nexarda-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
-| Python | `voxgig-sdk-nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
-| PHP | `voxgig-sdk/nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nexarda-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/tags) |
+| Python | `voxgig-sdk-nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/tags) |
+| PHP | `voxgig-sdk/nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/nexarda-sdk/go` | `go get github.com/voxgig-sdk/nexarda-sdk/go@latest` |
-| Ruby | `voxgig-sdk-nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
-| Lua | `voxgig-sdk-nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/releases) |
+| Ruby | `voxgig-sdk-nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/tags) |
+| Lua | `voxgig-sdk-nexarda` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nexarda-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/nexarda-sdk/go-cli` | `go install github.com/voxgig-sdk/nexarda-sdk/go-cli/cmd/nexarda@latest` |
 | Go MCP server | `github.com/voxgig-sdk/nexarda-sdk/go-mcp` | `go get github.com/voxgig-sdk/nexarda-sdk/go-mcp@latest` |
 

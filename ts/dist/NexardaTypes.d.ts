@@ -128,23 +128,11 @@ export interface StudioListMatch {
     type?: string;
 }
 export interface User {
-    ageRating?: string;
     avatar?: string;
-    coverImage?: string;
-    description?: string;
-    developer?: string;
-    franchiseId?: string;
-    genres?: any[];
     id?: string;
     joinDate?: string;
     libraryCount?: number;
-    name?: string;
-    platforms?: any[];
-    publisher?: string;
-    releaseDate?: string;
-    screenshots?: any[];
     username?: string;
-    videos?: any[];
     wishlistCount?: number;
 }
 export interface UserLoadMatch {

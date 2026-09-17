@@ -466,26 +466,8 @@ StudioListMatch = Struct.new(
 
 # User entity data model.
 #
-# @!attribute [rw] ageRating
-#   @return [String, nil]
-#
 # @!attribute [rw] avatar
 #   @return [String, nil]
-#
-# @!attribute [rw] coverImage
-#   @return [String, nil]
-#
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] developer
-#   @return [String, nil]
-#
-# @!attribute [rw] franchiseId
-#   @return [String, nil]
-#
-# @!attribute [rw] genres
-#   @return [Array, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
@@ -496,47 +478,17 @@ StudioListMatch = Struct.new(
 # @!attribute [rw] libraryCount
 #   @return [Integer, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] platforms
-#   @return [Array, nil]
-#
-# @!attribute [rw] publisher
-#   @return [String, nil]
-#
-# @!attribute [rw] releaseDate
-#   @return [String, nil]
-#
-# @!attribute [rw] screenshots
-#   @return [Array, nil]
-#
 # @!attribute [rw] username
 #   @return [String, nil]
-#
-# @!attribute [rw] videos
-#   @return [Array, nil]
 #
 # @!attribute [rw] wishlistCount
 #   @return [Integer, nil]
 User = Struct.new(
-  :ageRating,
   :avatar,
-  :coverImage,
-  :description,
-  :developer,
-  :franchiseId,
-  :genres,
   :id,
   :joinDate,
   :libraryCount,
-  :name,
-  :platforms,
-  :publisher,
-  :releaseDate,
-  :screenshots,
   :username,
-  :videos,
   :wishlistCount,
   keyword_init: true
 )

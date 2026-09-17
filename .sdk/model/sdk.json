@@ -24,71 +24,6 @@
         "repr": "auto"
       },
       "contributor": {},
-      "doc": {
-        "active": true,
-        "assets": {
-          "path": ".sdk/doc/assets"
-        },
-        "brand": {
-          "label": "",
-          "notice": "",
-          "shortNotice": "",
-          "url": ""
-        },
-        "ci": {
-          "active": true,
-          "branch": "main"
-        },
-        "content": {
-          "path": ".sdk/doc/content"
-        },
-        "edition": {
-          "summary": {
-            "active": true,
-            "base": "node_modules/@voxgig/docgen/project/.sdk",
-            "brand": {},
-            "filter": {
-              "entities": [],
-              "features": [],
-              "targets": []
-            },
-            "kind": "summary",
-            "name": "summary",
-            "origname": "",
-            "output": {
-              "path": "SUMMARY.md"
-            },
-            "package": "@voxgig/docgen",
-            "site": {
-              "active": true
-            },
-            "style": {},
-            "title": ""
-          }
-        },
-        "qa": {
-          "vocabulary": []
-        },
-        "style": {
-          "color": {
-            "accent": "#00c6d8",
-            "background": "#f5f5f9",
-            "darkBackground": "#0f1117",
-            "darkText": "#e6edf3",
-            "primary": "#e70042",
-            "text": "#0a0a0a"
-          },
-          "font": "Nunito, system-ui, sans-serif",
-          "fontFile": "",
-          "headingFont": "Nunito, system-ui, sans-serif",
-          "headingFontFile": "",
-          "logo": "",
-          "mode": "light",
-          "mono": "ui-monospace, monospace",
-          "monoFile": ""
-        },
-        "target": {}
-      },
       "entity": {
         "console": {
           "active": true,
@@ -1402,54 +1337,11 @@
           "fields": [
             {
               "active": true,
-              "name": "ageRating",
-              "req": false,
-              "short": "Age rating (e.g., ESRB, PEGI)",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
               "format": "uri",
               "name": "avatar",
               "req": false,
               "short": "Avatar image URL",
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "coverImage",
-              "req": false,
-              "short": "Cover image URL",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Game description",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "developer",
-              "req": false,
-              "short": "Developer name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "franchiseId",
-              "req": false,
-              "short": "Associated franchise ID",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "genres",
-              "req": false,
-              "short": "Game genres",
-              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -1475,53 +1367,10 @@
             },
             {
               "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Game title",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "platforms",
-              "req": false,
-              "short": "Supported platforms",
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "publisher",
-              "req": false,
-              "short": "Publisher name",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "format": "date",
-              "name": "releaseDate",
-              "req": false,
-              "short": "Release date",
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "screenshots",
-              "req": false,
-              "short": "Screenshot URLs",
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "username",
               "req": false,
               "short": "Username",
               "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "videos",
-              "req": false,
-              "short": "Video media",
-              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -2655,6 +2504,8 @@
         "apikey": "",
         "auth": {
           "basic": false,
+          "in": "",
+          "name": "",
           "prefix": ""
         },
         "base": "http://localhost:8000",
@@ -2729,6 +2580,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -2955,6 +2807,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -3020,6 +2873,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -3091,6 +2945,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -3167,6 +3022,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {

@@ -2,87 +2,39 @@
   "existing": {
     "user": {
       "USER00": {
-        "ageRating": "sb4",
-        "avatar": "sb5",
-        "coverImage": "sb6",
-        "description": "sb7",
-        "developer": "sb8",
-        "franchiseId": "sb9",
-        "genres": [],
+        "avatar": "s3c",
         "id": "USER00",
-        "joinDate": "sbc",
-        "libraryCount": 189,
-        "name": "sbe",
-        "platforms": [],
-        "publisher": "sc0",
-        "releaseDate": "sc1",
-        "screenshots": [],
-        "username": "sc3",
-        "videos": [],
-        "wishlistCount": 197
+        "joinDate": "s3e",
+        "libraryCount": 63,
+        "username": "s40",
+        "wishlistCount": 65
       },
       "USER01": {
-        "ageRating": "s168",
-        "avatar": "s169",
-        "coverImage": "s16a",
-        "description": "s16b",
-        "developer": "s16c",
-        "franchiseId": "s16d",
-        "genres": [],
+        "avatar": "s78",
         "id": "USER01",
-        "joinDate": "s170",
-        "libraryCount": 369,
-        "name": "s172",
-        "platforms": [],
-        "publisher": "s174",
-        "releaseDate": "s175",
-        "screenshots": [],
-        "username": "s177",
-        "videos": [],
-        "wishlistCount": 377
+        "joinDate": "s7a",
+        "libraryCount": 123,
+        "username": "s7c",
+        "wishlistCount": 125
       },
       "USER02": {
-        "ageRating": "s21c",
-        "avatar": "s21d",
-        "coverImage": "s21e",
-        "description": "s21f",
-        "developer": "s220",
-        "franchiseId": "s221",
-        "genres": [],
+        "avatar": "sb4",
         "id": "USER02",
-        "joinDate": "s224",
-        "libraryCount": 549,
-        "name": "s226",
-        "platforms": [],
-        "publisher": "s228",
-        "releaseDate": "s229",
-        "screenshots": [],
-        "username": "s22b",
-        "videos": [],
-        "wishlistCount": 557
+        "joinDate": "sb6",
+        "libraryCount": 183,
+        "username": "sb8",
+        "wishlistCount": 185
       }
     }
   },
   "new": {
     "user": {
       "user_ref01": {
-        "ageRating": "s2d0",
-        "avatar": "s2d1",
-        "coverImage": "s2d2",
-        "description": "s2d3",
-        "developer": "s2d4",
-        "franchiseId": "s2d5",
-        "genres": [],
-        "joinDate": "s2d8",
-        "libraryCount": 729,
-        "name": "s2da",
-        "platforms": [],
-        "publisher": "s2dc",
-        "releaseDate": "s2dd",
-        "screenshots": [],
-        "username": "s2df",
-        "videos": [],
-        "wishlistCount": 737
+        "avatar": "sf0",
+        "joinDate": "sf2",
+        "libraryCount": 243,
+        "username": "sf4",
+        "wishlistCount": 245
       }
     }
   },

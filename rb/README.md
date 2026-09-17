@@ -399,23 +399,11 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | Avatar image URL |
-| `coverImage` | Cover image URL |
-| `description` | Game description |
-| `developer` | Developer name |
-| `franchiseId` | Associated franchise ID |
-| `genres` | Game genres |
 | `id` | Unique user identifier |
 | `joinDate` | Account creation date |
 | `libraryCount` | Number of games in library |
-| `name` | Game title |
-| `platforms` | Supported platforms |
-| `publisher` | Publisher name |
-| `releaseDate` | Release date |
-| `screenshots` | Screenshot URLs |
 | `username` | Username |
-| `videos` | Video media |
 | `wishlistCount` | Number of items in wishlist |
 
 Operations: List, Load.
@@ -728,23 +716,11 @@ Create an instance: `user = client.User`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `String` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | `String` | Avatar image URL |
-| `coverImage` | `String` | Cover image URL |
-| `description` | `String` | Game description |
-| `developer` | `String` | Developer name |
-| `franchiseId` | `String` | Associated franchise ID |
-| `genres` | `Array` | Game genres |
 | `id` | `String` | Unique user identifier |
 | `joinDate` | `String` | Account creation date |
 | `libraryCount` | `Integer` | Number of games in library |
-| `name` | `String` | Game title |
-| `platforms` | `Array` | Supported platforms |
-| `publisher` | `String` | Publisher name |
-| `releaseDate` | `String` | Release date |
-| `screenshots` | `Array` | Screenshot URLs |
 | `username` | `String` | Username |
-| `videos` | `Array` | Video media |
 | `wishlistCount` | `Integer` | Number of items in wishlist |
 
 #### Example: Load
@@ -922,6 +898,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── Nexarda_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

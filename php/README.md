@@ -410,23 +410,11 @@ API path: `/studios`
 
 | Field | Description |
 | --- | --- |
-| `ageRating` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | Avatar image URL |
-| `coverImage` | Cover image URL |
-| `description` | Game description |
-| `developer` | Developer name |
-| `franchiseId` | Associated franchise ID |
-| `genres` | Game genres |
 | `id` | Unique user identifier |
 | `joinDate` | Account creation date |
 | `libraryCount` | Number of games in library |
-| `name` | Game title |
-| `platforms` | Supported platforms |
-| `publisher` | Publisher name |
-| `releaseDate` | Release date |
-| `screenshots` | Screenshot URLs |
 | `username` | Username |
-| `videos` | Video media |
 | `wishlistCount` | Number of items in wishlist |
 
 Operations: List, Load.
@@ -739,23 +727,11 @@ Create an instance: `$user = $client->User();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRating` | `string` | Age rating (e.g., ESRB, PEGI) |
 | `avatar` | `string` | Avatar image URL |
-| `coverImage` | `string` | Cover image URL |
-| `description` | `string` | Game description |
-| `developer` | `string` | Developer name |
-| `franchiseId` | `string` | Associated franchise ID |
-| `genres` | `array` | Game genres |
 | `id` | `string` | Unique user identifier |
 | `joinDate` | `string` | Account creation date |
 | `libraryCount` | `int` | Number of games in library |
-| `name` | `string` | Game title |
-| `platforms` | `array` | Supported platforms |
-| `publisher` | `string` | Publisher name |
-| `releaseDate` | `string` | Release date |
-| `screenshots` | `array` | Screenshot URLs |
 | `username` | `string` | Username |
-| `videos` | `array` | Video media |
 | `wishlistCount` | `int` | Number of items in wishlist |
 
 #### Example: Load
@@ -933,6 +909,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── nexarda_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

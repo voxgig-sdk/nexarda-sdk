@@ -172,23 +172,11 @@ class StudioListMatch(TypedDict, total=False):
 
 
 class User(TypedDict, total=False):
-    ageRating: str
     avatar: str
-    coverImage: str
-    description: str
-    developer: str
-    franchiseId: str
-    genres: list
     id: str
     joinDate: str
     libraryCount: int
-    name: str
-    platforms: list
-    publisher: str
-    releaseDate: str
-    screenshots: list
     username: str
-    videos: list
     wishlistCount: int
 
 
