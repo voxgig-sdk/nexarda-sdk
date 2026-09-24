@@ -1,0 +1,115 @@
+# Entity: widget
+
+main: kit: entity: widget: {
+
+  alias: field: {}
+
+  name: "widget"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /widgets/button"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "product_id"
+                or: "product_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "View Deals"
+                k: "query"
+                n: "text"
+                or: "text"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/widgets/button"
+          q: {
+            "$action": "button"
+            exist: [
+              "product_id"
+              "text"
+            ]
+          }
+          s: [
+            {
+              lit: "widgets"
+            }
+            {
+              lit: "button"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /widgets/product-card"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "product_id"
+                or: "product_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "light"
+                k: "query"
+                n: "theme"
+                or: "theme"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/widgets/product-card"
+          q: {
+            "$action": "product_card"
+            exist: [
+              "product_id"
+              "theme"
+            ]
+          }
+          s: [
+            {
+              lit: "widgets"
+            }
+            {
+              lit: "product-card"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

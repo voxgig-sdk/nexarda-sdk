@@ -104,44 +104,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
-						"short": "Product description",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Product description",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique console identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique console identifier",
 					},
 					map[string]any{
 						"name": "images",
-						"short": "Product images",
+						"title": "Images",
 						"type": "`$ARRAY`",
+						"short": "Product images",
 					},
 					map[string]any{
 						"name": "manufacturer",
-						"short": "Manufacturer name",
+						"title": "Manufacturer",
 						"type": "`$STRING`",
+						"short": "Manufacturer name",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Console name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Console name",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "releaseDate",
-						"short": "Release date",
+						"title": "Release Date",
 						"type": "`$STRING`",
+						"short": "Release date",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "specifications",
-						"short": "Technical specifications",
+						"title": "Specifications",
 						"type": "`$OBJECT`",
+						"short": "Technical specifications",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Product type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Product type",
 					},
 				},
 				"id": map[string]any{
@@ -155,17 +163,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/consoles",
@@ -174,17 +171,29 @@ func MakeConfig() map[string]any {
 										"lit": "consoles",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"limit",
-									},
+								"parts": []any{
+									"consoles",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"consoles",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"limit",
+									},
 								},
 							},
 						},
@@ -194,25 +203,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "console_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/consoles/{consoleId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"consoleId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "consoles",
@@ -221,18 +214,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"consoles",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"consoleId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"consoles",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "console_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -246,34 +255,40 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
-						"short": "Franchise description",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Franchise description",
 					},
 					map[string]any{
 						"name": "games",
-						"short": "Game IDs included in franchise",
+						"title": "Games",
 						"type": "`$ARRAY`",
+						"short": "Game IDs included in franchise",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique franchise identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique franchise identifier",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "logo",
-						"short": "Franchise logo URL",
+						"title": "Logo",
 						"type": "`$STRING`",
+						"short": "Franchise logo URL",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Franchise name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Franchise name",
 					},
 					map[string]any{
 						"name": "totalGames",
-						"short": "Total number of games in franchise",
+						"title": "Total Games",
 						"type": "`$INTEGER`",
+						"short": "Total number of games in franchise",
 					},
 				},
 				"id": map[string]any{
@@ -287,17 +302,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/franchises",
@@ -306,17 +310,29 @@ func MakeConfig() map[string]any {
 										"lit": "franchises",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"limit",
-									},
+								"parts": []any{
+									"franchises",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"franchises",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"limit",
+									},
 								},
 							},
 						},
@@ -326,25 +342,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "franchise_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/franchises/{franchiseId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"franchiseId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "franchises",
@@ -353,18 +353,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"franchises",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"franchiseId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"franchises",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "franchise_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -378,70 +394,83 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageRating",
-						"short": "Age rating (e.g., ESRB, PEGI)",
+						"title": "Age Rating",
 						"type": "`$STRING`",
+						"short": "Age rating (e.g., ESRB, PEGI)",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "coverImage",
-						"short": "Cover image URL",
+						"title": "Cover Image",
 						"type": "`$STRING`",
+						"short": "Cover image URL",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "Game description",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Game description",
 					},
 					map[string]any{
 						"name": "developer",
-						"short": "Developer name",
+						"title": "Developer",
 						"type": "`$STRING`",
+						"short": "Developer name",
 					},
 					map[string]any{
 						"name": "franchiseId",
-						"short": "Associated franchise ID",
+						"title": "Franchise Id",
 						"type": "`$STRING`",
+						"short": "Associated franchise ID",
 					},
 					map[string]any{
 						"name": "genres",
-						"short": "Game genres",
+						"title": "Genres",
 						"type": "`$ARRAY`",
+						"short": "Game genres",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique game identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique game identifier",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Game title",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Game title",
 					},
 					map[string]any{
 						"name": "platforms",
-						"short": "Supported platforms",
+						"title": "Platforms",
 						"type": "`$ARRAY`",
+						"short": "Supported platforms",
 					},
 					map[string]any{
 						"name": "publisher",
-						"short": "Publisher name",
+						"title": "Publisher",
 						"type": "`$STRING`",
+						"short": "Publisher name",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "releaseDate",
-						"short": "Release date",
+						"title": "Release Date",
 						"type": "`$STRING`",
+						"short": "Release date",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "screenshots",
-						"short": "Screenshot URLs",
+						"title": "Screenshots",
 						"type": "`$ARRAY`",
+						"short": "Screenshot URLs",
 					},
 					map[string]any{
 						"name": "videos",
-						"short": "Video media",
+						"title": "Videos",
 						"type": "`$ARRAY`",
+						"short": "Video media",
 					},
 				},
 				"id": map[string]any{
@@ -455,24 +484,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/games",
@@ -481,18 +492,37 @@ func MakeConfig() map[string]any {
 										"lit": "games",
 									},
 								},
+								"parts": []any{
+									"games",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"offset",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"games",
 								},
 							},
 						},
@@ -502,34 +532,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "platform_id",
-											"orig": "platform_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "platform",
-											"orig": "platform",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/games/platform/{platformId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"platformId": "platform_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "games",
@@ -541,42 +546,51 @@ func MakeConfig() map[string]any {
 										"var": "platform_id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"platform",
-										"platform_id",
+								"parts": []any{
+									"games",
+									"platform",
+									"{platform_id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"platformId": "platform_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"games",
-									"platform",
-									"{platform_id}",
-								},
-							},
-							map[string]any{
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "game_id",
-											"reqd": true,
+											"name": "platform_id",
+											"orig": "platform_id",
 											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "platform",
+											"orig": "platform",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"platform",
+										"platform_id",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/games/{gameId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"gameId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "games",
@@ -585,18 +599,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"games",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"gameId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"games",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "game_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -605,7 +635,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"platform",
+							"$.main.kit.entity.platform",
 						},
 					},
 				},
@@ -614,25 +644,30 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "api",
+						"title": "Api",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "priceUpdates",
+						"title": "Price Updates",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Overall platform status",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Overall platform status",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Status check timestamp",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Status check timestamp",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "website",
+						"title": "Website",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -643,7 +678,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/status",
@@ -652,14 +686,16 @@ func MakeConfig() map[string]any {
 										"lit": "status",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"status",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"status",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -671,59 +707,69 @@ func MakeConfig() map[string]any {
 			"price": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "uri",
 						"name": "affiliateLink",
-						"short": "Affiliate link to retailer (do not modify)",
+						"title": "Affiliate Link",
 						"type": "`$STRING`",
+						"short": "Affiliate link to retailer (do not modify)",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "currency",
-						"short": "Currency code (GBP, EUR, USD)",
+						"title": "Currency",
 						"type": "`$STRING`",
+						"short": "Currency code (GBP, EUR, USD)",
 					},
 					map[string]any{
-						"format": "float",
 						"name": "discount",
-						"short": "Discount percentage",
+						"title": "Discount",
 						"type": "`$NUMBER`",
+						"short": "Discount percentage",
+						"format": "float",
 					},
 					map[string]any{
 						"name": "inStock",
-						"short": "Stock availability",
+						"title": "In Stock",
 						"type": "`$BOOLEAN`",
+						"short": "Stock availability",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "lastUpdated",
-						"short": "Last price update timestamp",
+						"title": "Last Updated",
 						"type": "`$STRING`",
+						"short": "Last price update timestamp",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "float",
 						"name": "originalPrice",
-						"short": "Original price before discount",
+						"title": "Original Price",
 						"type": "`$NUMBER`",
+						"short": "Original price before discount",
+						"format": "float",
 					},
 					map[string]any{
-						"format": "float",
 						"name": "price",
-						"short": "Current price",
+						"title": "Price",
 						"type": "`$NUMBER`",
+						"short": "Current price",
+						"format": "float",
 					},
 					map[string]any{
 						"name": "region",
-						"short": "Region code",
+						"title": "Region",
 						"type": "`$STRING`",
+						"short": "Region code",
 					},
 					map[string]any{
 						"name": "retailerId",
-						"short": "Retailer identifier",
+						"title": "Retailer Id",
 						"type": "`$STRING`",
+						"short": "Retailer identifier",
 					},
 					map[string]any{
 						"name": "retailerName",
-						"short": "Retailer name",
+						"title": "Retailer Name",
 						"type": "`$STRING`",
+						"short": "Retailer name",
 					},
 				},
 				"name": "price",
@@ -733,40 +779,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "game_id",
-											"orig": "game_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "USD",
-											"kind": "query",
-											"name": "currency",
-											"orig": "currency",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "region",
-											"orig": "region",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/games/{gameId}/prices",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"gameId": "game_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "games",
@@ -778,6 +793,46 @@ func MakeConfig() map[string]any {
 										"lit": "prices",
 									},
 								},
+								"parts": []any{
+									"games",
+									"{game_id}",
+									"prices",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"gameId": "game_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "game_id",
+											"orig": "game_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "currency",
+											"orig": "currency",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "USD",
+										},
+										map[string]any{
+											"name": "region",
+											"orig": "region",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"currency",
@@ -785,45 +840,11 @@ func MakeConfig() map[string]any {
 										"region",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"games",
-									"{game_id}",
-									"prices",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "console_id",
-											"orig": "console_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": "USD",
-											"kind": "query",
-											"name": "currency",
-											"orig": "currency",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/consoles/{consoleId}/prices",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"consoleId": "console_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "consoles",
@@ -835,20 +856,45 @@ func MakeConfig() map[string]any {
 										"lit": "prices",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"console_id",
-										"currency",
+								"parts": []any{
+									"consoles",
+									"{console_id}",
+									"prices",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"consoleId": "console_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"consoles",
-									"{console_id}",
-									"prices",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "console_id",
+											"orig": "console_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "currency",
+											"orig": "currency",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "USD",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"console_id",
+										"currency",
+									},
 								},
 							},
 						},
@@ -857,10 +903,10 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"console",
+							"$.main.kit.entity.console",
 						},
 						[]any{
-							"game",
+							"$.main.kit.entity.game",
 						},
 					},
 				},
@@ -869,40 +915,47 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "approved",
-						"short": "Approval status",
+						"title": "Approved",
 						"type": "`$BOOLEAN`",
+						"short": "Approval status",
 					},
 					map[string]any{
 						"name": "currencies",
-						"short": "Supported currencies",
+						"title": "Currencies",
 						"type": "`$ARRAY`",
+						"short": "Supported currencies",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique retailer identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique retailer identifier",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "logo",
-						"short": "Retailer logo URL",
+						"title": "Logo",
 						"type": "`$STRING`",
+						"short": "Retailer logo URL",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Retailer name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Retailer name",
 					},
 					map[string]any{
 						"name": "regions",
-						"short": "Supported regions",
+						"title": "Regions",
 						"type": "`$ARRAY`",
+						"short": "Supported regions",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "website",
-						"short": "Retailer website",
+						"title": "Website",
 						"type": "`$STRING`",
+						"short": "Retailer website",
+						"format": "uri",
 					},
 				},
 				"id": map[string]any{
@@ -916,7 +969,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/retailers",
@@ -925,14 +977,16 @@ func MakeConfig() map[string]any {
 										"lit": "retailers",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"retailers",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"retailers",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -945,14 +999,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "consoles",
+						"title": "Consoles",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "games",
+						"title": "Games",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "totalResults",
+						"title": "Total Results",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -963,31 +1020,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "all",
-											"kind": "query",
-											"name": "type",
-											"orig": "type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
@@ -996,19 +1028,45 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "all",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"q",
 										"type",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"search",
 								},
 							},
 						},
@@ -1022,50 +1080,59 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
-						"short": "Studio description",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Studio description",
 					},
 					map[string]any{
 						"name": "foundingYear",
-						"short": "Year founded",
+						"title": "Founding Year",
 						"type": "`$INTEGER`",
+						"short": "Year founded",
 					},
 					map[string]any{
 						"name": "games",
-						"short": "Released game IDs",
+						"title": "Games",
 						"type": "`$ARRAY`",
+						"short": "Released game IDs",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique studio identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique studio identifier",
 					},
 					map[string]any{
 						"name": "location",
-						"short": "Studio location",
+						"title": "Location",
 						"type": "`$OBJECT`",
+						"short": "Studio location",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "logo",
-						"short": "Studio logo URL",
+						"title": "Logo",
 						"type": "`$STRING`",
+						"short": "Studio logo URL",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Studio name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Studio name",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "Studio type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "Studio type",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "website",
-						"short": "Official website",
+						"title": "Website",
 						"type": "`$STRING`",
+						"short": "Official website",
+						"format": "uri",
 					},
 				},
 				"id": map[string]any{
@@ -1079,23 +1146,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "type",
-											"orig": "type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/studios",
@@ -1104,18 +1154,36 @@ func MakeConfig() map[string]any {
 										"lit": "studios",
 									},
 								},
+								"parts": []any{
+									"studios",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"type",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
-								"parts": []any{
-									"studios",
 								},
 							},
 						},
@@ -1125,25 +1193,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "studio_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/studios/{studioId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"studioId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "studios",
@@ -1152,18 +1204,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"studios",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"studioId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"studios",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "studio_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1176,36 +1244,42 @@ func MakeConfig() map[string]any {
 			"user": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "uri",
 						"name": "avatar",
-						"short": "Avatar image URL",
+						"title": "Avatar",
 						"type": "`$STRING`",
+						"short": "Avatar image URL",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique user identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique user identifier",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "joinDate",
-						"short": "Account creation date",
+						"title": "Join Date",
 						"type": "`$STRING`",
+						"short": "Account creation date",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "libraryCount",
-						"short": "Number of games in library",
+						"title": "Library Count",
 						"type": "`$INTEGER`",
+						"short": "Number of games in library",
 					},
 					map[string]any{
 						"name": "username",
-						"short": "Username",
+						"title": "Username",
 						"type": "`$STRING`",
+						"short": "Username",
 					},
 					map[string]any{
 						"name": "wishlistCount",
-						"short": "Number of items in wishlist",
+						"title": "Wishlist Count",
 						"type": "`$INTEGER`",
+						"short": "Number of items in wishlist",
 					},
 				},
 				"id": map[string]any{
@@ -1219,25 +1293,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "user_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/users/{userId}/library",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"userId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "users",
@@ -1249,42 +1307,42 @@ func MakeConfig() map[string]any {
 										"lit": "library",
 									},
 								},
-								"select": map[string]any{
-									"$action": "library",
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"users",
+									"{id}",
+									"library",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"userId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"users",
-									"{id}",
-									"library",
-								},
-							},
-							map[string]any{
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"kind": "param",
 											"name": "id",
 											"orig": "user_id",
-											"reqd": true,
 											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
 										},
 									},
 								},
+								"select": map[string]any{
+									"$action": "library",
+									"exist": []any{
+										"id",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/users/{userId}/wishlist",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"userId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "users",
@@ -1296,20 +1354,36 @@ func MakeConfig() map[string]any {
 										"lit": "wishlist",
 									},
 								},
-								"select": map[string]any{
-									"$action": "wishlist",
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"users",
+									"{id}",
+									"wishlist",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"userId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"users",
-									"{id}",
-									"wishlist",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "user_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "wishlist",
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1319,25 +1393,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "user_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/users/{userId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"userId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "users",
@@ -1346,18 +1404,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"users",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"userId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
-								"parts": []any{
-									"users",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "user_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -1376,24 +1450,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "product_id",
-											"orig": "product_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "View Deals",
-											"kind": "query",
-											"name": "text",
-											"orig": "text",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/widgets/button",
@@ -1405,6 +1461,33 @@ func MakeConfig() map[string]any {
 										"lit": "button",
 									},
 								},
+								"parts": []any{
+									"widgets",
+									"button",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "product_id",
+											"orig": "product_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "text",
+											"orig": "text",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "View Deals",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "button",
 									"exist": []any{
@@ -1412,34 +1495,8 @@ func MakeConfig() map[string]any {
 										"text",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"widgets",
-									"button",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "product_id",
-											"orig": "product_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "light",
-											"kind": "query",
-											"name": "theme",
-											"orig": "theme",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/widgets/product-card",
@@ -1451,20 +1508,39 @@ func MakeConfig() map[string]any {
 										"lit": "product-card",
 									},
 								},
+								"parts": []any{
+									"widgets",
+									"product-card",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "product_id",
+											"orig": "product_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "theme",
+											"orig": "theme",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "light",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "product_card",
 									"exist": []any{
 										"product_id",
 										"theme",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"widgets",
-									"product-card",
 								},
 							},
 						},

@@ -1,0 +1,26 @@
+# BasicPriceFlow
+
+main: kit: flow: BasicPriceFlow:
+{
+  entity: "price",
+  kind: "basic",
+  name: "BasicPriceFlow",
+  step: [
+    {
+      m: {
+        console_id: "console01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "price_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPriceFlow"
+}

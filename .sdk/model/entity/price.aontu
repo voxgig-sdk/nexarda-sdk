@@ -1,0 +1,220 @@
+# Entity: price
+
+main: kit: entity: price: {
+
+  alias: field: {}
+
+  fields: {
+    affiliateLink: {
+      fo: "uri"
+      h: "Affiliate Link"
+      n: "affiliateLink"
+      r: false
+      sh: "Affiliate link to retailer (do not modify)"
+      t: "`$STRING`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: false
+      sh: "Currency code (GBP, EUR, USD)"
+      t: "`$STRING`"
+    }
+    discount: {
+      fo: "float"
+      h: "Discount"
+      n: "discount"
+      r: false
+      sh: "Discount percentage"
+      t: "`$NUMBER`"
+    }
+    inStock: {
+      h: "In Stock"
+      n: "inStock"
+      r: false
+      sh: "Stock availability"
+      t: "`$BOOLEAN`"
+    }
+    lastUpdated: {
+      fo: "date-time"
+      h: "Last Updated"
+      n: "lastUpdated"
+      r: false
+      sh: "Last price update timestamp"
+      t: "`$STRING`"
+    }
+    originalPrice: {
+      fo: "float"
+      h: "Original Price"
+      n: "originalPrice"
+      r: false
+      sh: "Original price before discount"
+      t: "`$NUMBER`"
+    }
+    price: {
+      fo: "float"
+      h: "Price"
+      n: "price"
+      r: false
+      sh: "Current price"
+      t: "`$NUMBER`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      sh: "Region code"
+      t: "`$STRING`"
+    }
+    retailerId: {
+      h: "Retailer Id"
+      n: "retailerId"
+      r: false
+      sh: "Retailer identifier"
+      t: "`$STRING`"
+    }
+    retailerName: {
+      h: "Retailer Name"
+      n: "retailerName"
+      r: false
+      sh: "Retailer name"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "price"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /games/{gameId}/prices"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "game_id"
+                or: "game_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "USD"
+                k: "query"
+                n: "currency"
+                or: "currency"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "region"
+                or: "region"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/games/{gameId}/prices"
+          q: {
+            exist: [
+              "currency"
+              "game_id"
+              "region"
+            ]
+          }
+          r: {
+            param: {
+              gameId: "game_id"
+            }
+          }
+          s: [
+            {
+              lit: "games"
+            }
+            {
+              var: "game_id"
+            }
+            {
+              lit: "prices"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /consoles/{consoleId}/prices"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "console_id"
+                or: "console_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "USD"
+                k: "query"
+                n: "currency"
+                or: "currency"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/consoles/{consoleId}/prices"
+          q: {
+            exist: [
+              "console_id"
+              "currency"
+            ]
+          }
+          r: {
+            param: {
+              consoleId: "console_id"
+            }
+          }
+          s: [
+            {
+              lit: "consoles"
+            }
+            {
+              var: "console_id"
+            }
+            {
+              lit: "prices"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.console")]
+    [path("$.main.kit.entity.game")]
+  ]
+
+}

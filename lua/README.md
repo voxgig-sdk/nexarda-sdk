@@ -45,7 +45,7 @@ local consoles, err = client:Console():list()
 if err then error(err) end
 
 for _, item in ipairs(consoles) do
-  print(item["id"], item["description"])
+  print(item["id"])
 end
 ```
 

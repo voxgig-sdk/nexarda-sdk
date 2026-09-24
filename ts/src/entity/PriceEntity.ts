@@ -19,7 +19,6 @@ import type {
   PriceListMatch,
 } from '../NexardaTypes'
 
-// TODO: needs Entity superclass
 class PriceEntity extends NexardaEntityBase<Price> {
 
   constructor(client: NexardaSDK, entopts: any) {

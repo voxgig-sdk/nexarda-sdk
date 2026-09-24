@@ -1,0 +1,151 @@
+# Entity: franchis
+
+main: kit: entity: franchis: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Franchise description"
+      t: "`$STRING`"
+    }
+    games: {
+      h: "Games"
+      n: "games"
+      r: false
+      sh: "Game IDs included in franchise"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique franchise identifier"
+      t: "`$STRING`"
+    }
+    logo: {
+      fo: "uri"
+      h: "Logo"
+      n: "logo"
+      r: false
+      sh: "Franchise logo URL"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Franchise name"
+      t: "`$STRING`"
+    }
+    totalGames: {
+      h: "Total Games"
+      n: "totalGames"
+      r: false
+      sh: "Total number of games in franchise"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "franchis"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /franchises"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/franchises"
+          q: {
+            exist: [
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "franchises"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /franchises/{franchiseId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "franchise_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/franchises/{franchiseId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              franchiseId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "franchises"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

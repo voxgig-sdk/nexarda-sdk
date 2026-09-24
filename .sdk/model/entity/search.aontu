@@ -1,0 +1,91 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  fields: {
+    consoles: {
+      h: "Consoles"
+      n: "consoles"
+      r: false
+      t: "`$ARRAY`"
+    }
+    games: {
+      h: "Games"
+      n: "games"
+      r: false
+      t: "`$ARRAY`"
+    }
+    totalResults: {
+      h: "Total Results"
+      n: "totalResults"
+      r: false
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "search"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/search"
+          q: {
+            exist: [
+              "limit"
+              "q"
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

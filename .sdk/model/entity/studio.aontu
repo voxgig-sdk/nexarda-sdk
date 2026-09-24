@@ -1,0 +1,181 @@
+# Entity: studio
+
+main: kit: entity: studio: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Studio description"
+      t: "`$STRING`"
+    }
+    foundingYear: {
+      h: "Founding Year"
+      n: "foundingYear"
+      r: false
+      sh: "Year founded"
+      t: "`$INTEGER`"
+    }
+    games: {
+      h: "Games"
+      n: "games"
+      r: false
+      sh: "Released game IDs"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique studio identifier"
+      t: "`$STRING`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      sh: "Studio location"
+      t: "`$OBJECT`"
+    }
+    logo: {
+      fo: "uri"
+      h: "Logo"
+      n: "logo"
+      r: false
+      sh: "Studio logo URL"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Studio name"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Studio type"
+      t: "`$STRING`"
+    }
+    website: {
+      fo: "uri"
+      h: "Website"
+      n: "website"
+      r: false
+      sh: "Official website"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "studio"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /studios"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/studios"
+          q: {
+            exist: [
+              "limit"
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "studios"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /studios/{studioId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "studio_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/studios/{studioId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              studioId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "studios"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

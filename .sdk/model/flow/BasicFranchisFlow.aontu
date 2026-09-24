@@ -1,0 +1,44 @@
+# BasicFranchisFlow
+
+main: kit: flow: BasicFranchisFlow:
+{
+  entity: "franchis",
+  kind: "basic",
+  name: "BasicFranchisFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "franchis_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "franchis_ref01",
+        srcdatavar: "franchis_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "franchis01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-franchis_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicFranchisFlow"
+}

@@ -1,0 +1,72 @@
+# Entity: platform
+
+main: kit: entity: platform: {
+
+  alias: field: {}
+
+  fields: {
+    api: {
+      h: "Api"
+      n: "api"
+      r: false
+      t: "`$OBJECT`"
+    }
+    priceUpdates: {
+      h: "Price Updates"
+      n: "priceUpdates"
+      r: false
+      t: "`$OBJECT`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Overall platform status"
+      t: "`$STRING`"
+    }
+    timestamp: {
+      fo: "date-time"
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Status check timestamp"
+      t: "`$STRING`"
+    }
+    website: {
+      h: "Website"
+      n: "website"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "platform"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /status"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/status"
+          s: [
+            {
+              lit: "status"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

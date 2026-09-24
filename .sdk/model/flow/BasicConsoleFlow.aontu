@@ -1,0 +1,44 @@
+# BasicConsoleFlow
+
+main: kit: flow: BasicConsoleFlow:
+{
+  entity: "console",
+  kind: "basic",
+  name: "BasicConsoleFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "console_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "console_ref01",
+        srcdatavar: "console_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "console01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-console_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicConsoleFlow"
+}

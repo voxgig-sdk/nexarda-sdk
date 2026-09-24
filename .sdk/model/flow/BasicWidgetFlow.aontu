@@ -1,0 +1,28 @@
+# BasicWidgetFlow
+
+main: kit: flow: BasicWidgetFlow:
+{
+  entity: "widget",
+  kind: "basic",
+  name: "BasicWidgetFlow",
+  step: [
+    {
+      i: {
+        ref: "widget_ref01",
+        srcdatavar: "widget_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-widget_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWidgetFlow"
+}

@@ -19,7 +19,6 @@ import type {
   RetailerListMatch,
 } from '../NexardaTypes'
 
-// TODO: needs Entity superclass
 class RetailerEntity extends NexardaEntityBase<Retailer> {
 
   constructor(client: NexardaSDK, entopts: any) {

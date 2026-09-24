@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RetailerEntity = void 0;
 const NexardaEntityBase_1 = require("../NexardaEntityBase");
-// TODO: needs Entity superclass
 class RetailerEntity extends NexardaEntityBase_1.NexardaEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

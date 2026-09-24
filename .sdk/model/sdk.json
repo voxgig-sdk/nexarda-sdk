@@ -24,71 +24,145 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "console": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Product description",
-              "type": "`$STRING`"
+          "fields": {
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Product description",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique console identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique console identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "images",
-              "req": false,
-              "short": "Product images",
-              "type": "`$ARRAY`"
+            "images": {
+              "a": true,
+              "h": "Images",
+              "n": "images",
+              "r": false,
+              "sh": "Product images",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "manufacturer",
-              "req": false,
-              "short": "Manufacturer name",
-              "type": "`$STRING`"
+            "manufacturer": {
+              "a": true,
+              "h": "Manufacturer",
+              "n": "manufacturer",
+              "r": false,
+              "sh": "Manufacturer name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Console name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Console name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "releaseDate",
-              "req": false,
-              "short": "Release date",
-              "type": "`$STRING`"
+            "releaseDate": {
+              "a": true,
+              "fo": "date",
+              "h": "Release Date",
+              "n": "releaseDate",
+              "r": false,
+              "sh": "Release date",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "specifications",
-              "req": false,
-              "short": "Technical specifications",
-              "type": "`$OBJECT`"
+            "specifications": {
+              "a": true,
+              "h": "Specifications",
+              "n": "specifications",
+              "r": false,
+              "sh": "Technical specifications",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Product type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Product type",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -100,40 +174,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /consoles",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /consoles",
-                    "json": "{\"operationId\":\"getConsoles\",\"parameters\":[{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Product description\",\"type\":\"string\"},\"id\":{\"description\":\"Unique console identifier\",\"type\":\"string\"},\"images\":{\"description\":\"Product images\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"manufacturer\":{\"description\":\"Manufacturer name\",\"type\":\"string\"},\"name\":{\"description\":\"Console name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"specifications\":{\"additionalProperties\":{\"type\":\"string\"},\"description\":\"Technical specifications\",\"type\":\"object\"},\"type\":{\"description\":\"Product type\",\"enum\":[\"console\",\"gear\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/consoles",
-                  "segments": [
-                    {
-                      "lit": "consoles"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/consoles",
+                  "q": {
                     "exist": [
                       "limit"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "consoles"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -145,34 +219,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /consoles/{consoleId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "console_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "console_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /consoles/{consoleId}",
-                    "json": "{\"operationId\":\"getConsoleById\",\"parameters\":[{\"description\":\"Unique identifier for the console\",\"in\":\"path\",\"name\":\"consoleId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"description\":{\"description\":\"Product description\",\"type\":\"string\"},\"id\":{\"description\":\"Unique console identifier\",\"type\":\"string\"},\"images\":{\"description\":\"Product images\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"manufacturer\":{\"description\":\"Manufacturer name\",\"type\":\"string\"},\"name\":{\"description\":\"Console name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"specifications\":{\"additionalProperties\":{\"type\":\"string\"},\"description\":\"Technical specifications\",\"type\":\"object\"},\"type\":{\"description\":\"Product type\",\"enum\":[\"console\",\"gear\"],\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/consoles/{consoleId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/consoles/{consoleId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "consoleId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "consoles"
                     },
@@ -180,12 +258,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -202,51 +275,57 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Franchise description",
-              "type": "`$STRING`"
+          "fields": {
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Franchise description",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "games",
-              "req": false,
-              "short": "Game IDs included in franchise",
-              "type": "`$ARRAY`"
+            "games": {
+              "a": true,
+              "h": "Games",
+              "n": "games",
+              "r": false,
+              "sh": "Game IDs included in franchise",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique franchise identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique franchise identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "logo",
-              "req": false,
-              "short": "Franchise logo URL",
-              "type": "`$STRING`"
+            "logo": {
+              "a": true,
+              "fo": "uri",
+              "h": "Logo",
+              "n": "logo",
+              "r": false,
+              "sh": "Franchise logo URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Franchise name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Franchise name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "totalGames",
-              "req": false,
-              "short": "Total number of games in franchise",
-              "type": "`$INTEGER`"
+            "totalGames": {
+              "a": true,
+              "h": "Total Games",
+              "n": "totalGames",
+              "r": false,
+              "sh": "Total number of games in franchise",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -258,40 +337,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /franchises",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /franchises",
-                    "json": "{\"operationId\":\"getFranchises\",\"parameters\":[{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Franchise description\",\"type\":\"string\"},\"games\":{\"description\":\"Game IDs included in franchise\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique franchise identifier\",\"type\":\"string\"},\"logo\":{\"description\":\"Franchise logo URL\",\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"description\":\"Franchise name\",\"type\":\"string\"},\"totalGames\":{\"description\":\"Total number of games in franchise\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/franchises",
-                  "segments": [
-                    {
-                      "lit": "franchises"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/franchises",
+                  "q": {
                     "exist": [
                       "limit"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "franchises"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -303,34 +382,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /franchises/{franchiseId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "franchise_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "franchise_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /franchises/{franchiseId}",
-                    "json": "{\"operationId\":\"getFranchiseById\",\"parameters\":[{\"description\":\"Unique identifier for the franchise\",\"in\":\"path\",\"name\":\"franchiseId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"description\":{\"description\":\"Franchise description\",\"type\":\"string\"},\"games\":{\"description\":\"Game IDs included in franchise\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique franchise identifier\",\"type\":\"string\"},\"logo\":{\"description\":\"Franchise logo URL\",\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"description\":\"Franchise name\",\"type\":\"string\"},\"totalGames\":{\"description\":\"Total number of games in franchise\",\"type\":\"integer\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/franchises/{franchiseId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/franchises/{franchiseId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "franchiseId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "franchises"
                     },
@@ -338,12 +421,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -360,101 +438,114 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "ageRating",
-              "req": false,
-              "short": "Age rating (e.g., ESRB, PEGI)",
-              "type": "`$STRING`"
+          "fields": {
+            "ageRating": {
+              "a": true,
+              "h": "Age Rating",
+              "n": "ageRating",
+              "r": false,
+              "sh": "Age rating (e.g., ESRB, PEGI)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "coverImage",
-              "req": false,
-              "short": "Cover image URL",
-              "type": "`$STRING`"
+            "coverImage": {
+              "a": true,
+              "fo": "uri",
+              "h": "Cover Image",
+              "n": "coverImage",
+              "r": false,
+              "sh": "Cover image URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Game description",
-              "type": "`$STRING`"
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Game description",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "developer",
-              "req": false,
-              "short": "Developer name",
-              "type": "`$STRING`"
+            "developer": {
+              "a": true,
+              "h": "Developer",
+              "n": "developer",
+              "r": false,
+              "sh": "Developer name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "franchiseId",
-              "req": false,
-              "short": "Associated franchise ID",
-              "type": "`$STRING`"
+            "franchiseId": {
+              "a": true,
+              "h": "Franchise Id",
+              "n": "franchiseId",
+              "r": false,
+              "sh": "Associated franchise ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "genres",
-              "req": false,
-              "short": "Game genres",
-              "type": "`$ARRAY`"
+            "genres": {
+              "a": true,
+              "h": "Genres",
+              "n": "genres",
+              "r": false,
+              "sh": "Game genres",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique game identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique game identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Game title",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Game title",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "platforms",
-              "req": false,
-              "short": "Supported platforms",
-              "type": "`$ARRAY`"
+            "platforms": {
+              "a": true,
+              "h": "Platforms",
+              "n": "platforms",
+              "r": false,
+              "sh": "Supported platforms",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "publisher",
-              "req": false,
-              "short": "Publisher name",
-              "type": "`$STRING`"
+            "publisher": {
+              "a": true,
+              "h": "Publisher",
+              "n": "publisher",
+              "r": false,
+              "sh": "Publisher name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "releaseDate",
-              "req": false,
-              "short": "Release date",
-              "type": "`$STRING`"
+            "releaseDate": {
+              "a": true,
+              "fo": "date",
+              "h": "Release Date",
+              "n": "releaseDate",
+              "r": false,
+              "sh": "Release date",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "screenshots",
-              "req": false,
-              "short": "Screenshot URLs",
-              "type": "`$ARRAY`"
+            "screenshots": {
+              "a": true,
+              "h": "Screenshots",
+              "n": "screenshots",
+              "r": false,
+              "sh": "Screenshot URLs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "videos",
-              "req": false,
-              "short": "Video media",
-              "type": "`$ARRAY`"
+            "videos": {
+              "a": true,
+              "h": "Videos",
+              "n": "videos",
+              "r": false,
+              "sh": "Video media",
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -466,50 +557,50 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /games",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 0,
-                        "kind": "query",
-                        "name": "offset",
-                        "orig": "offset",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 0,
+                        "k": "query",
+                        "n": "offset",
+                        "or": "offset",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /games",
-                    "json": "{\"operationId\":\"getGames\",\"parameters\":[{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of results to skip for pagination\",\"in\":\"query\",\"name\":\"offset\",\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"ageRating\":{\"description\":\"Age rating (e.g., ESRB, PEGI)\",\"type\":\"string\"},\"coverImage\":{\"description\":\"Cover image URL\",\"format\":\"uri\",\"type\":\"string\"},\"description\":{\"description\":\"Game description\",\"type\":\"string\"},\"developer\":{\"description\":\"Developer name\",\"type\":\"string\"},\"franchiseId\":{\"description\":\"Associated franchise ID\",\"type\":\"string\"},\"genres\":{\"description\":\"Game genres\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique game identifier\",\"type\":\"string\"},\"name\":{\"description\":\"Game title\",\"type\":\"string\"},\"platforms\":{\"description\":\"Supported platforms\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"publisher\":{\"description\":\"Publisher name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"screenshots\":{\"description\":\"Screenshot URLs\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"videos\":{\"description\":\"Video media\",\"items\":{\"properties\":{\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"pagination\":{\"properties\":{\"hasMore\":{\"description\":\"Whether more results are available\",\"type\":\"boolean\"},\"limit\":{\"description\":\"Results per page\",\"type\":\"integer\"},\"offset\":{\"description\":\"Current offset\",\"type\":\"integer\"},\"total\":{\"description\":\"Total number of results\",\"type\":\"integer\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/games",
-                  "segments": [
-                    {
-                      "lit": "games"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/games",
+                  "q": {
                     "exist": [
                       "limit",
                       "offset"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "games"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -521,44 +612,49 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /games/platform/{platformId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "platform_id",
-                        "orig": "platform_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "platform_id",
+                        "or": "platform_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "platform",
-                        "orig": "platform",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "platform",
+                        "or": "platform",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /games/platform/{platformId}",
-                    "json": "{\"operationId\":\"getGameByPlatformId\",\"parameters\":[{\"description\":\"Platform-specific ID (e.g., Steam App ID)\",\"in\":\"path\",\"name\":\"platformId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Platform name\",\"in\":\"query\",\"name\":\"platform\",\"required\":true,\"schema\":{\"enum\":[\"steam\",\"gog\",\"epic\",\"playstation\",\"xbox\",\"nintendo\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"ageRating\":{\"description\":\"Age rating (e.g., ESRB, PEGI)\",\"type\":\"string\"},\"coverImage\":{\"description\":\"Cover image URL\",\"format\":\"uri\",\"type\":\"string\"},\"description\":{\"description\":\"Game description\",\"type\":\"string\"},\"developer\":{\"description\":\"Developer name\",\"type\":\"string\"},\"franchiseId\":{\"description\":\"Associated franchise ID\",\"type\":\"string\"},\"genres\":{\"description\":\"Game genres\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique game identifier\",\"type\":\"string\"},\"name\":{\"description\":\"Game title\",\"type\":\"string\"},\"platforms\":{\"description\":\"Supported platforms\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"publisher\":{\"description\":\"Publisher name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"screenshots\":{\"description\":\"Screenshot URLs\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"videos\":{\"description\":\"Video media\",\"items\":{\"properties\":{\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/games/platform/{platformId}",
+                  "q": {
+                    "exist": [
+                      "platform",
+                      "platform_id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/games/platform/{platformId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "platformId": "platform_id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "games"
                     },
@@ -569,46 +665,44 @@
                       "var": "platform_id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "platform",
-                      "platform_id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /games/{gameId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "game_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "game_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /games/{gameId}",
-                    "json": "{\"operationId\":\"getGameById\",\"parameters\":[{\"description\":\"Unique identifier for the game\",\"in\":\"path\",\"name\":\"gameId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"ageRating\":{\"description\":\"Age rating (e.g., ESRB, PEGI)\",\"type\":\"string\"},\"coverImage\":{\"description\":\"Cover image URL\",\"format\":\"uri\",\"type\":\"string\"},\"description\":{\"description\":\"Game description\",\"type\":\"string\"},\"developer\":{\"description\":\"Developer name\",\"type\":\"string\"},\"franchiseId\":{\"description\":\"Associated franchise ID\",\"type\":\"string\"},\"genres\":{\"description\":\"Game genres\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique game identifier\",\"type\":\"string\"},\"name\":{\"description\":\"Game title\",\"type\":\"string\"},\"platforms\":{\"description\":\"Supported platforms\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"publisher\":{\"description\":\"Publisher name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"screenshots\":{\"description\":\"Screenshot URLs\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"videos\":{\"description\":\"Video media\",\"items\":{\"properties\":{\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/games/{gameId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/games/{gameId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "gameId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "games"
                     },
@@ -616,12 +710,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -632,7 +721,7 @@
           "relations": {
             "ancestors": [
               [
-                "platform"
+                "$.main.kit.entity.platform"
               ]
             ]
           }
@@ -642,41 +731,46 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "api",
-              "req": false,
-              "type": "`$OBJECT`"
+          "fields": {
+            "api": {
+              "a": true,
+              "h": "Api",
+              "n": "api",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "priceUpdates",
-              "req": false,
-              "type": "`$OBJECT`"
+            "priceUpdates": {
+              "a": true,
+              "h": "Price Updates",
+              "n": "priceUpdates",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "Overall platform status",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Overall platform status",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "timestamp",
-              "req": false,
-              "short": "Status check timestamp",
-              "type": "`$STRING`"
+            "timestamp": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Timestamp",
+              "n": "timestamp",
+              "r": false,
+              "sh": "Status check timestamp",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "website",
-              "req": false,
-              "type": "`$OBJECT`"
+            "website": {
+              "a": true,
+              "h": "Website",
+              "n": "website",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          ],
+          },
           "name": "platform",
           "op": {
             "load": {
@@ -684,24 +778,24 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /status",
-                    "json": "{\"operationId\":\"getPlatformStatus\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"api\":{\"properties\":{\"responseTime\":{\"description\":\"Average response time in milliseconds\",\"type\":\"number\"},\"status\":{\"enum\":[\"operational\",\"degraded\",\"down\"],\"type\":\"string\"}},\"type\":\"object\"},\"priceUpdates\":{\"properties\":{\"lastUpdate\":{\"format\":\"date-time\",\"type\":\"string\"},\"status\":{\"enum\":[\"operational\",\"degraded\",\"down\"],\"type\":\"string\"}},\"type\":\"object\"},\"status\":{\"description\":\"Overall platform status\",\"enum\":[\"operational\",\"degraded\",\"down\"],\"type\":\"string\"},\"timestamp\":{\"description\":\"Status check timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"website\":{\"properties\":{\"status\":{\"enum\":[\"operational\",\"degraded\",\"down\"],\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/status",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/status",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "status"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -718,83 +812,93 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "uri",
-              "name": "affiliateLink",
-              "req": false,
-              "short": "Affiliate link to retailer (do not modify)",
-              "type": "`$STRING`"
+          "fields": {
+            "affiliateLink": {
+              "a": true,
+              "fo": "uri",
+              "h": "Affiliate Link",
+              "n": "affiliateLink",
+              "r": false,
+              "sh": "Affiliate link to retailer (do not modify)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "currency",
-              "req": false,
-              "short": "Currency code (GBP, EUR, USD)",
-              "type": "`$STRING`"
+            "currency": {
+              "a": true,
+              "h": "Currency",
+              "n": "currency",
+              "r": false,
+              "sh": "Currency code (GBP, EUR, USD)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "float",
-              "name": "discount",
-              "req": false,
-              "short": "Discount percentage",
-              "type": "`$NUMBER`"
+            "discount": {
+              "a": true,
+              "fo": "float",
+              "h": "Discount",
+              "n": "discount",
+              "r": false,
+              "sh": "Discount percentage",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "inStock",
-              "req": false,
-              "short": "Stock availability",
-              "type": "`$BOOLEAN`"
+            "inStock": {
+              "a": true,
+              "h": "In Stock",
+              "n": "inStock",
+              "r": false,
+              "sh": "Stock availability",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "lastUpdated",
-              "req": false,
-              "short": "Last price update timestamp",
-              "type": "`$STRING`"
+            "lastUpdated": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Last Updated",
+              "n": "lastUpdated",
+              "r": false,
+              "sh": "Last price update timestamp",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "float",
-              "name": "originalPrice",
-              "req": false,
-              "short": "Original price before discount",
-              "type": "`$NUMBER`"
+            "originalPrice": {
+              "a": true,
+              "fo": "float",
+              "h": "Original Price",
+              "n": "originalPrice",
+              "r": false,
+              "sh": "Original price before discount",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "format": "float",
-              "name": "price",
-              "req": false,
-              "short": "Current price",
-              "type": "`$NUMBER`"
+            "price": {
+              "a": true,
+              "fo": "float",
+              "h": "Price",
+              "n": "price",
+              "r": false,
+              "sh": "Current price",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "region",
-              "req": false,
-              "short": "Region code",
-              "type": "`$STRING`"
+            "region": {
+              "a": true,
+              "h": "Region",
+              "n": "region",
+              "r": false,
+              "sh": "Region code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "retailerId",
-              "req": false,
-              "short": "Retailer identifier",
-              "type": "`$STRING`"
+            "retailerId": {
+              "a": true,
+              "h": "Retailer Id",
+              "n": "retailerId",
+              "r": false,
+              "sh": "Retailer identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "retailerName",
-              "req": false,
-              "short": "Retailer name",
-              "type": "`$STRING`"
+            "retailerName": {
+              "a": true,
+              "h": "Retailer Name",
+              "n": "retailerName",
+              "r": false,
+              "sh": "Retailer name",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "price",
           "op": {
             "list": {
@@ -802,53 +906,59 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /games/{gameId}/prices",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "game_id",
-                        "orig": "game_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "game_id",
+                        "or": "game_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "USD",
-                        "kind": "query",
-                        "name": "currency",
-                        "orig": "currency",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "USD",
+                        "k": "query",
+                        "n": "currency",
+                        "or": "currency",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "region",
-                        "orig": "region",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "region",
+                        "or": "region",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /games/{gameId}/prices",
-                    "json": "{\"operationId\":\"getGamePrices\",\"parameters\":[{\"description\":\"Unique identifier for the game\",\"in\":\"path\",\"name\":\"gameId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Currency code for price display\",\"in\":\"query\",\"name\":\"currency\",\"schema\":{\"default\":\"USD\",\"enum\":[\"GBP\",\"EUR\",\"USD\"],\"type\":\"string\"}},{\"description\":\"Region code for regional pricing\",\"in\":\"query\",\"name\":\"region\",\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"affiliateLink\":{\"description\":\"Affiliate link to retailer (do not modify)\",\"format\":\"uri\",\"type\":\"string\"},\"currency\":{\"description\":\"Currency code (GBP, EUR, USD)\",\"type\":\"string\"},\"discount\":{\"description\":\"Discount percentage\",\"format\":\"float\",\"type\":\"number\"},\"inStock\":{\"description\":\"Stock availability\",\"type\":\"boolean\"},\"lastUpdated\":{\"description\":\"Last price update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"originalPrice\":{\"description\":\"Original price before discount\",\"format\":\"float\",\"type\":\"number\"},\"price\":{\"description\":\"Current price\",\"format\":\"float\",\"type\":\"number\"},\"region\":{\"description\":\"Region code\",\"type\":\"string\"},\"retailerId\":{\"description\":\"Retailer identifier\",\"type\":\"string\"},\"retailerName\":{\"description\":\"Retailer name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/games/{gameId}/prices",
+                  "q": {
+                    "exist": [
+                      "currency",
+                      "game_id",
+                      "region"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/games/{gameId}/prices",
-                  "rename": {
+                  "r": {
                     "param": {
                       "gameId": "game_id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "games"
                     },
@@ -859,58 +969,56 @@
                       "lit": "prices"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "currency",
-                      "game_id",
-                      "region"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /consoles/{consoleId}/prices",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "console_id",
-                        "orig": "console_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "console_id",
+                        "or": "console_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": "USD",
-                        "kind": "query",
-                        "name": "currency",
-                        "orig": "currency",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "USD",
+                        "k": "query",
+                        "n": "currency",
+                        "or": "currency",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /consoles/{consoleId}/prices",
-                    "json": "{\"operationId\":\"getConsolePrices\",\"parameters\":[{\"description\":\"Unique identifier for the console\",\"in\":\"path\",\"name\":\"consoleId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Currency code for price display\",\"in\":\"query\",\"name\":\"currency\",\"schema\":{\"default\":\"USD\",\"enum\":[\"GBP\",\"EUR\",\"USD\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"affiliateLink\":{\"description\":\"Affiliate link to retailer (do not modify)\",\"format\":\"uri\",\"type\":\"string\"},\"currency\":{\"description\":\"Currency code (GBP, EUR, USD)\",\"type\":\"string\"},\"discount\":{\"description\":\"Discount percentage\",\"format\":\"float\",\"type\":\"number\"},\"inStock\":{\"description\":\"Stock availability\",\"type\":\"boolean\"},\"lastUpdated\":{\"description\":\"Last price update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"originalPrice\":{\"description\":\"Original price before discount\",\"format\":\"float\",\"type\":\"number\"},\"price\":{\"description\":\"Current price\",\"format\":\"float\",\"type\":\"number\"},\"region\":{\"description\":\"Region code\",\"type\":\"string\"},\"retailerId\":{\"description\":\"Retailer identifier\",\"type\":\"string\"},\"retailerName\":{\"description\":\"Retailer name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/consoles/{consoleId}/prices",
+                  "q": {
+                    "exist": [
+                      "console_id",
+                      "currency"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/consoles/{consoleId}/prices",
-                  "rename": {
+                  "r": {
                     "param": {
                       "consoleId": "console_id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "consoles"
                     },
@@ -921,13 +1029,7 @@
                       "lit": "prices"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "console_id",
-                      "currency"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -938,10 +1040,10 @@
           "relations": {
             "ancestors": [
               [
-                "console"
+                "$.main.kit.entity.console"
               ],
               [
-                "game"
+                "$.main.kit.entity.game"
               ]
             ]
           }
@@ -951,59 +1053,66 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "approved",
-              "req": false,
-              "short": "Approval status",
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "approved": {
+              "a": true,
+              "h": "Approved",
+              "n": "approved",
+              "r": false,
+              "sh": "Approval status",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "currencies",
-              "req": false,
-              "short": "Supported currencies",
-              "type": "`$ARRAY`"
+            "currencies": {
+              "a": true,
+              "h": "Currencies",
+              "n": "currencies",
+              "r": false,
+              "sh": "Supported currencies",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique retailer identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique retailer identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "logo",
-              "req": false,
-              "short": "Retailer logo URL",
-              "type": "`$STRING`"
+            "logo": {
+              "a": true,
+              "fo": "uri",
+              "h": "Logo",
+              "n": "logo",
+              "r": false,
+              "sh": "Retailer logo URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Retailer name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Retailer name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "regions",
-              "req": false,
-              "short": "Supported regions",
-              "type": "`$ARRAY`"
+            "regions": {
+              "a": true,
+              "h": "Regions",
+              "n": "regions",
+              "r": false,
+              "sh": "Supported regions",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "website",
-              "req": false,
-              "short": "Retailer website",
-              "type": "`$STRING`"
+            "website": {
+              "a": true,
+              "fo": "uri",
+              "h": "Website",
+              "n": "website",
+              "r": false,
+              "sh": "Retailer website",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1015,24 +1124,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /retailers",
-                    "json": "{\"operationId\":\"getRetailers\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"approved\":{\"description\":\"Approval status\",\"type\":\"boolean\"},\"currencies\":{\"description\":\"Supported currencies\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique retailer identifier\",\"type\":\"string\"},\"logo\":{\"description\":\"Retailer logo URL\",\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"description\":\"Retailer name\",\"type\":\"string\"},\"regions\":{\"description\":\"Supported regions\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"website\":{\"description\":\"Retailer website\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/retailers",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/retailers",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "retailers"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1049,26 +1158,29 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "consoles",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "consoles": {
+              "a": true,
+              "h": "Consoles",
+              "n": "consoles",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "games",
-              "req": false,
-              "type": "`$ARRAY`"
+            "games": {
+              "a": true,
+              "h": "Games",
+              "n": "games",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "totalResults",
-              "req": false,
-              "type": "`$INTEGER`"
+            "totalResults": {
+              "a": true,
+              "h": "Total Results",
+              "n": "totalResults",
+              "r": false,
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "name": "search",
           "op": {
             "load": {
@@ -1076,59 +1188,59 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /search",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "q",
-                        "orig": "q",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "all",
-                        "kind": "query",
-                        "name": "type",
-                        "orig": "type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "all",
+                        "k": "query",
+                        "n": "type",
+                        "or": "type",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /search",
-                    "json": "{\"operationId\":\"search\",\"parameters\":[{\"description\":\"Search query string\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by product type\",\"in\":\"query\",\"name\":\"type\",\"schema\":{\"default\":\"all\",\"enum\":[\"game\",\"console\",\"gear\",\"all\"],\"type\":\"string\"}},{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"consoles\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Product description\",\"type\":\"string\"},\"id\":{\"description\":\"Unique console identifier\",\"type\":\"string\"},\"images\":{\"description\":\"Product images\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"manufacturer\":{\"description\":\"Manufacturer name\",\"type\":\"string\"},\"name\":{\"description\":\"Console name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"specifications\":{\"additionalProperties\":{\"type\":\"string\"},\"description\":\"Technical specifications\",\"type\":\"object\"},\"type\":{\"description\":\"Product type\",\"enum\":[\"console\",\"gear\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"games\":{\"items\":{\"properties\":{\"ageRating\":{\"description\":\"Age rating (e.g., ESRB, PEGI)\",\"type\":\"string\"},\"coverImage\":{\"description\":\"Cover image URL\",\"format\":\"uri\",\"type\":\"string\"},\"description\":{\"description\":\"Game description\",\"type\":\"string\"},\"developer\":{\"description\":\"Developer name\",\"type\":\"string\"},\"franchiseId\":{\"description\":\"Associated franchise ID\",\"type\":\"string\"},\"genres\":{\"description\":\"Game genres\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique game identifier\",\"type\":\"string\"},\"name\":{\"description\":\"Game title\",\"type\":\"string\"},\"platforms\":{\"description\":\"Supported platforms\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"publisher\":{\"description\":\"Publisher name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"screenshots\":{\"description\":\"Screenshot URLs\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"videos\":{\"description\":\"Video media\",\"items\":{\"properties\":{\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"totalResults\":{\"type\":\"integer\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/search",
-                  "segments": [
-                    {
-                      "lit": "search"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/search",
+                  "q": {
                     "exist": [
                       "limit",
                       "q",
                       "type"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "search"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1145,73 +1257,82 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "short": "Studio description",
-              "type": "`$STRING`"
+          "fields": {
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Studio description",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "foundingYear",
-              "req": false,
-              "short": "Year founded",
-              "type": "`$INTEGER`"
+            "foundingYear": {
+              "a": true,
+              "h": "Founding Year",
+              "n": "foundingYear",
+              "r": false,
+              "sh": "Year founded",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "games",
-              "req": false,
-              "short": "Released game IDs",
-              "type": "`$ARRAY`"
+            "games": {
+              "a": true,
+              "h": "Games",
+              "n": "games",
+              "r": false,
+              "sh": "Released game IDs",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique studio identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique studio identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "location",
-              "req": false,
-              "short": "Studio location",
-              "type": "`$OBJECT`"
+            "location": {
+              "a": true,
+              "h": "Location",
+              "n": "location",
+              "r": false,
+              "sh": "Studio location",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "logo",
-              "req": false,
-              "short": "Studio logo URL",
-              "type": "`$STRING`"
+            "logo": {
+              "a": true,
+              "fo": "uri",
+              "h": "Logo",
+              "n": "logo",
+              "r": false,
+              "sh": "Studio logo URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Studio name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Studio name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "short": "Studio type",
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "sh": "Studio type",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "website",
-              "req": false,
-              "short": "Official website",
-              "type": "`$STRING`"
+            "website": {
+              "a": true,
+              "fo": "uri",
+              "h": "Website",
+              "n": "website",
+              "r": false,
+              "sh": "Official website",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1223,49 +1344,49 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /studios",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "type",
-                        "orig": "type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "type",
+                        "or": "type",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /studios",
-                    "json": "{\"operationId\":\"getStudios\",\"parameters\":[{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":20,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Filter by studio type\",\"in\":\"query\",\"name\":\"type\",\"schema\":{\"enum\":[\"developer\",\"publisher\",\"both\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"description\":{\"description\":\"Studio description\",\"type\":\"string\"},\"foundingYear\":{\"description\":\"Year founded\",\"type\":\"integer\"},\"games\":{\"description\":\"Released game IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique studio identifier\",\"type\":\"string\"},\"location\":{\"description\":\"Studio location\",\"properties\":{\"city\":{\"type\":\"string\"},\"country\":{\"type\":\"string\"}},\"type\":\"object\"},\"logo\":{\"description\":\"Studio logo URL\",\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"description\":\"Studio name\",\"type\":\"string\"},\"type\":{\"description\":\"Studio type\",\"enum\":[\"developer\",\"publisher\",\"both\"],\"type\":\"string\"},\"website\":{\"description\":\"Official website\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/studios",
-                  "segments": [
-                    {
-                      "lit": "studios"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/studios",
+                  "q": {
                     "exist": [
                       "limit",
                       "type"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "studios"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1277,34 +1398,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /studios/{studioId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "studio_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "studio_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /studios/{studioId}",
-                    "json": "{\"operationId\":\"getStudioById\",\"parameters\":[{\"description\":\"Unique identifier for the studio\",\"in\":\"path\",\"name\":\"studioId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"description\":{\"description\":\"Studio description\",\"type\":\"string\"},\"foundingYear\":{\"description\":\"Year founded\",\"type\":\"integer\"},\"games\":{\"description\":\"Released game IDs\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique studio identifier\",\"type\":\"string\"},\"location\":{\"description\":\"Studio location\",\"properties\":{\"city\":{\"type\":\"string\"},\"country\":{\"type\":\"string\"}},\"type\":\"object\"},\"logo\":{\"description\":\"Studio logo URL\",\"format\":\"uri\",\"type\":\"string\"},\"name\":{\"description\":\"Studio name\",\"type\":\"string\"},\"type\":{\"description\":\"Studio type\",\"enum\":[\"developer\",\"publisher\",\"both\"],\"type\":\"string\"},\"website\":{\"description\":\"Official website\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/studios/{studioId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/studios/{studioId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "studioId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "studios"
                     },
@@ -1312,12 +1437,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1334,52 +1454,58 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "uri",
-              "name": "avatar",
-              "req": false,
-              "short": "Avatar image URL",
-              "type": "`$STRING`"
+          "fields": {
+            "avatar": {
+              "a": true,
+              "fo": "uri",
+              "h": "Avatar",
+              "n": "avatar",
+              "r": false,
+              "sh": "Avatar image URL",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique user identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique user identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "joinDate",
-              "req": false,
-              "short": "Account creation date",
-              "type": "`$STRING`"
+            "joinDate": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Join Date",
+              "n": "joinDate",
+              "r": false,
+              "sh": "Account creation date",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "libraryCount",
-              "req": false,
-              "short": "Number of games in library",
-              "type": "`$INTEGER`"
+            "libraryCount": {
+              "a": true,
+              "h": "Library Count",
+              "n": "libraryCount",
+              "r": false,
+              "sh": "Number of games in library",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "username",
-              "req": false,
-              "short": "Username",
-              "type": "`$STRING`"
+            "username": {
+              "a": true,
+              "h": "Username",
+              "n": "username",
+              "r": false,
+              "sh": "Username",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "wishlistCount",
-              "req": false,
-              "short": "Number of items in wishlist",
-              "type": "`$INTEGER`"
+            "wishlistCount": {
+              "a": true,
+              "h": "Wishlist Count",
+              "n": "wishlistCount",
+              "r": false,
+              "sh": "Number of items in wishlist",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1391,34 +1517,39 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /users/{userId}/library",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "user_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "user_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /users/{userId}/library",
-                    "json": "{\"operationId\":\"getUserLibrary\",\"parameters\":[{\"description\":\"Unique identifier for the user\",\"in\":\"path\",\"name\":\"userId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"ageRating\":{\"description\":\"Age rating (e.g., ESRB, PEGI)\",\"type\":\"string\"},\"coverImage\":{\"description\":\"Cover image URL\",\"format\":\"uri\",\"type\":\"string\"},\"description\":{\"description\":\"Game description\",\"type\":\"string\"},\"developer\":{\"description\":\"Developer name\",\"type\":\"string\"},\"franchiseId\":{\"description\":\"Associated franchise ID\",\"type\":\"string\"},\"genres\":{\"description\":\"Game genres\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique game identifier\",\"type\":\"string\"},\"name\":{\"description\":\"Game title\",\"type\":\"string\"},\"platforms\":{\"description\":\"Supported platforms\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"publisher\":{\"description\":\"Publisher name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"screenshots\":{\"description\":\"Screenshot URLs\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"videos\":{\"description\":\"Video media\",\"items\":{\"properties\":{\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - invalid or missing API key\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"apiKey\":[]}],\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/users/{userId}/library",
+                  "q": {
+                    "$action": "library",
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/users/{userId}/library",
-                  "rename": {
+                  "r": {
                     "param": {
                       "userId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "users"
                     },
@@ -1429,46 +1560,45 @@
                       "lit": "library"
                     }
                   ],
-                  "select": {
-                    "$action": "library",
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /users/{userId}/wishlist",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "user_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "user_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /users/{userId}/wishlist",
-                    "json": "{\"operationId\":\"getUserWishlist\",\"parameters\":[{\"description\":\"Unique identifier for the user\",\"in\":\"path\",\"name\":\"userId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"ageRating\":{\"description\":\"Age rating (e.g., ESRB, PEGI)\",\"type\":\"string\"},\"coverImage\":{\"description\":\"Cover image URL\",\"format\":\"uri\",\"type\":\"string\"},\"description\":{\"description\":\"Game description\",\"type\":\"string\"},\"developer\":{\"description\":\"Developer name\",\"type\":\"string\"},\"franchiseId\":{\"description\":\"Associated franchise ID\",\"type\":\"string\"},\"genres\":{\"description\":\"Game genres\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"id\":{\"description\":\"Unique game identifier\",\"type\":\"string\"},\"name\":{\"description\":\"Game title\",\"type\":\"string\"},\"platforms\":{\"description\":\"Supported platforms\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"publisher\":{\"description\":\"Publisher name\",\"type\":\"string\"},\"releaseDate\":{\"description\":\"Release date\",\"format\":\"date\",\"type\":\"string\"},\"screenshots\":{\"description\":\"Screenshot URLs\",\"items\":{\"format\":\"uri\",\"type\":\"string\"},\"type\":\"array\"},\"videos\":{\"description\":\"Video media\",\"items\":{\"properties\":{\"type\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - invalid or missing API key\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"apiKey\":[]}],\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/users/{userId}/wishlist",
+                  "q": {
+                    "$action": "wishlist",
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/users/{userId}/wishlist",
-                  "rename": {
+                  "r": {
                     "param": {
                       "userId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "users"
                     },
@@ -1479,13 +1609,7 @@
                       "lit": "wishlist"
                     }
                   ],
-                  "select": {
-                    "$action": "wishlist",
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1497,34 +1621,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /users/{userId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "user_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "user_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /users/{userId}",
-                    "json": "{\"operationId\":\"getUserProfile\",\"parameters\":[{\"description\":\"Unique identifier for the user\",\"in\":\"path\",\"name\":\"userId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"avatar\":{\"description\":\"Avatar image URL\",\"format\":\"uri\",\"type\":\"string\"},\"id\":{\"description\":\"Unique user identifier\",\"type\":\"string\"},\"joinDate\":{\"description\":\"Account creation date\",\"format\":\"date-time\",\"type\":\"string\"},\"libraryCount\":{\"description\":\"Number of games in library\",\"type\":\"integer\"},\"username\":{\"description\":\"Username\",\"type\":\"string\"},\"wishlistCount\":{\"description\":\"Number of items in wishlist\",\"type\":\"integer\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - invalid or missing API key\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"apiKey\":[]}],\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"operation\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/users/{userId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/users/{userId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "userId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "users"
                     },
@@ -1532,12 +1660,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1554,7 +1677,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "widget",
           "op": {
             "load": {
@@ -1562,38 +1685,45 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /widgets/button",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "product_id",
-                        "orig": "product_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "product_id",
+                        "or": "product_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "View Deals",
-                        "kind": "query",
-                        "name": "text",
-                        "orig": "text",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "View Deals",
+                        "k": "query",
+                        "n": "text",
+                        "or": "text",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /widgets/button",
-                    "json": "{\"operationId\":\"getButtonWidget\",\"parameters\":[{\"description\":\"Product ID for the widget\",\"in\":\"query\",\"name\":\"productId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Button text\",\"in\":\"query\",\"name\":\"text\",\"schema\":{\"default\":\"View Deals\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/html\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/widgets/button",
+                  "q": {
+                    "$action": "button",
+                    "exist": [
+                      "product_id",
+                      "text"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/widgets/button",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "widgets"
                     },
@@ -1601,51 +1731,51 @@
                       "lit": "button"
                     }
                   ],
-                  "select": {
-                    "$action": "button",
-                    "exist": [
-                      "product_id",
-                      "text"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /widgets/product-card",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "product_id",
-                        "orig": "product_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "product_id",
+                        "or": "product_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "light",
-                        "kind": "query",
-                        "name": "theme",
-                        "orig": "theme",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "light",
+                        "k": "query",
+                        "n": "theme",
+                        "or": "theme",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /widgets/product-card",
-                    "json": "{\"operationId\":\"getProductCardWidget\",\"parameters\":[{\"description\":\"Product ID for the widget\",\"in\":\"query\",\"name\":\"productId\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Widget theme\",\"in\":\"query\",\"name\":\"theme\",\"schema\":{\"default\":\"light\",\"enum\":[\"light\",\"dark\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"text/html\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"apiKey\":{\"description\":\"API key for authenticated endpoints. Contact devteam@nexarda.com to request an API key.\",\"in\":\"header\",\"name\":\"X-API-Key\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/widgets/product-card",
+                  "q": {
+                    "$action": "product_card",
+                    "exist": [
+                      "product_id",
+                      "theme"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/widgets/product-card",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "widgets"
                     },
@@ -1653,14 +1783,7 @@
                       "lit": "product-card"
                     }
                   ],
-                  "select": {
-                    "$action": "product_card",
-                    "exist": [
-                      "product_id",
-                      "theme"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -2089,13 +2212,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2105,19 +2228,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "console_ref01",
                 "srcdatavar": "console_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "console01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2137,13 +2260,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2153,19 +2276,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "franchis_ref01",
                 "srcdatavar": "franchis_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "franchis01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2185,13 +2308,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2201,19 +2324,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "game_ref01",
                 "srcdatavar": "game_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "game01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2233,17 +2356,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "platform_ref01",
                 "srcdatavar": "platform_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2263,15 +2386,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "console_id": "console01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2291,13 +2414,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2317,17 +2440,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "search_ref01",
                 "srcdatavar": "search_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2347,13 +2470,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2363,19 +2486,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "studio_ref01",
                 "srcdatavar": "studio_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "studio01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2395,15 +2518,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "user_id": "user01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2413,19 +2536,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "user_ref01",
                 "srcdatavar": "user_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "user01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -2445,17 +2568,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "widget_ref01",
                 "srcdatavar": "widget_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

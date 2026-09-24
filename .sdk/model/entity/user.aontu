@@ -1,0 +1,209 @@
+# Entity: user
+
+main: kit: entity: user: {
+
+  alias: field: {}
+
+  fields: {
+    avatar: {
+      fo: "uri"
+      h: "Avatar"
+      n: "avatar"
+      r: false
+      sh: "Avatar image URL"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique user identifier"
+      t: "`$STRING`"
+    }
+    joinDate: {
+      fo: "date-time"
+      h: "Join Date"
+      n: "joinDate"
+      r: false
+      sh: "Account creation date"
+      t: "`$STRING`"
+    }
+    libraryCount: {
+      h: "Library Count"
+      n: "libraryCount"
+      r: false
+      sh: "Number of games in library"
+      t: "`$INTEGER`"
+    }
+    username: {
+      h: "Username"
+      n: "username"
+      r: false
+      sh: "Username"
+      t: "`$STRING`"
+    }
+    wishlistCount: {
+      h: "Wishlist Count"
+      n: "wishlistCount"
+      r: false
+      sh: "Number of items in wishlist"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "user"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /users/{userId}/library"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "user_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/users/{userId}/library"
+          q: {
+            "$action": "library"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              userId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "users"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "library"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /users/{userId}/wishlist"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "user_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/users/{userId}/wishlist"
+          q: {
+            "$action": "wishlist"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              userId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "users"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "wishlist"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /users/{userId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "user_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/users/{userId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              userId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "users"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

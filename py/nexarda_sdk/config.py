@@ -129,44 +129,52 @@ def make_config():
         "fields": [
           {
             "name": "description",
-            "short": "Product description",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Product description",
           },
           {
             "name": "id",
-            "short": "Unique console identifier",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique console identifier",
           },
           {
             "name": "images",
-            "short": "Product images",
+            "title": "Images",
             "type": "`$ARRAY`",
+            "short": "Product images",
           },
           {
             "name": "manufacturer",
-            "short": "Manufacturer name",
+            "title": "Manufacturer",
             "type": "`$STRING`",
+            "short": "Manufacturer name",
           },
           {
             "name": "name",
-            "short": "Console name",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "Console name",
           },
           {
-            "format": "date",
             "name": "releaseDate",
-            "short": "Release date",
+            "title": "Release Date",
             "type": "`$STRING`",
+            "short": "Release date",
+            "format": "date",
           },
           {
             "name": "specifications",
-            "short": "Technical specifications",
+            "title": "Specifications",
             "type": "`$OBJECT`",
+            "short": "Technical specifications",
           },
           {
             "name": "type",
-            "short": "Product type",
+            "title": "Type",
             "type": "`$STRING`",
+            "short": "Product type",
           },
         ],
         "id": {
@@ -180,17 +188,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 20,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/consoles",
@@ -199,18 +196,30 @@ def make_config():
                     "lit": "consoles",
                   },
                 ],
+                "parts": [
+                  "consoles",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 20,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "limit",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "consoles",
-                ],
               },
             ],
           },
@@ -219,25 +228,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "console_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/consoles/{consoleId}",
-                "rename": {
-                  "param": {
-                    "consoleId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "consoles",
@@ -246,19 +239,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "consoles",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "consoleId": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "consoles",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "console_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -271,34 +280,40 @@ def make_config():
         "fields": [
           {
             "name": "description",
-            "short": "Franchise description",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Franchise description",
           },
           {
             "name": "games",
-            "short": "Game IDs included in franchise",
+            "title": "Games",
             "type": "`$ARRAY`",
+            "short": "Game IDs included in franchise",
           },
           {
             "name": "id",
-            "short": "Unique franchise identifier",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique franchise identifier",
           },
           {
-            "format": "uri",
             "name": "logo",
-            "short": "Franchise logo URL",
+            "title": "Logo",
             "type": "`$STRING`",
+            "short": "Franchise logo URL",
+            "format": "uri",
           },
           {
             "name": "name",
-            "short": "Franchise name",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "Franchise name",
           },
           {
             "name": "totalGames",
-            "short": "Total number of games in franchise",
+            "title": "Total Games",
             "type": "`$INTEGER`",
+            "short": "Total number of games in franchise",
           },
         ],
         "id": {
@@ -312,17 +327,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 20,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/franchises",
@@ -331,18 +335,30 @@ def make_config():
                     "lit": "franchises",
                   },
                 ],
+                "parts": [
+                  "franchises",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 20,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "limit",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "franchises",
-                ],
               },
             ],
           },
@@ -351,25 +367,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "franchise_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/franchises/{franchiseId}",
-                "rename": {
-                  "param": {
-                    "franchiseId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "franchises",
@@ -378,19 +378,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "franchises",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "franchiseId": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "franchises",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "franchise_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -403,70 +419,83 @@ def make_config():
         "fields": [
           {
             "name": "ageRating",
-            "short": "Age rating (e.g., ESRB, PEGI)",
+            "title": "Age Rating",
             "type": "`$STRING`",
+            "short": "Age rating (e.g., ESRB, PEGI)",
           },
           {
-            "format": "uri",
             "name": "coverImage",
-            "short": "Cover image URL",
+            "title": "Cover Image",
             "type": "`$STRING`",
+            "short": "Cover image URL",
+            "format": "uri",
           },
           {
             "name": "description",
-            "short": "Game description",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Game description",
           },
           {
             "name": "developer",
-            "short": "Developer name",
+            "title": "Developer",
             "type": "`$STRING`",
+            "short": "Developer name",
           },
           {
             "name": "franchiseId",
-            "short": "Associated franchise ID",
+            "title": "Franchise Id",
             "type": "`$STRING`",
+            "short": "Associated franchise ID",
           },
           {
             "name": "genres",
-            "short": "Game genres",
+            "title": "Genres",
             "type": "`$ARRAY`",
+            "short": "Game genres",
           },
           {
             "name": "id",
-            "short": "Unique game identifier",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique game identifier",
           },
           {
             "name": "name",
-            "short": "Game title",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "Game title",
           },
           {
             "name": "platforms",
-            "short": "Supported platforms",
+            "title": "Platforms",
             "type": "`$ARRAY`",
+            "short": "Supported platforms",
           },
           {
             "name": "publisher",
-            "short": "Publisher name",
+            "title": "Publisher",
             "type": "`$STRING`",
+            "short": "Publisher name",
           },
           {
-            "format": "date",
             "name": "releaseDate",
-            "short": "Release date",
+            "title": "Release Date",
             "type": "`$STRING`",
+            "short": "Release date",
+            "format": "date",
           },
           {
             "name": "screenshots",
-            "short": "Screenshot URLs",
+            "title": "Screenshots",
             "type": "`$ARRAY`",
+            "short": "Screenshot URLs",
           },
           {
             "name": "videos",
-            "short": "Video media",
+            "title": "Videos",
             "type": "`$ARRAY`",
+            "short": "Video media",
           },
         ],
         "id": {
@@ -480,24 +509,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 20,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "example": 0,
-                      "kind": "query",
-                      "name": "offset",
-                      "orig": "offset",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/games",
@@ -506,19 +517,38 @@ def make_config():
                     "lit": "games",
                   },
                 ],
+                "parts": [
+                  "games",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 20,
+                    },
+                    {
+                      "name": "offset",
+                      "orig": "offset",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 0,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "limit",
                     "offset",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "games",
-                ],
               },
             ],
           },
@@ -527,34 +557,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "platform_id",
-                      "orig": "platform_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "platform",
-                      "orig": "platform",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/games/platform/{platformId}",
-                "rename": {
-                  "param": {
-                    "platformId": "platform_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "games",
@@ -566,42 +571,51 @@ def make_config():
                     "var": "platform_id",
                   },
                 ],
+                "parts": [
+                  "games",
+                  "platform",
+                  "{platform_id}",
+                ],
+                "rename": {
+                  "param": {
+                    "platformId": "platform_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "platform_id",
+                      "orig": "platform_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "platform",
+                      "orig": "platform",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "platform",
                     "platform_id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "games",
-                  "platform",
-                  "{platform_id}",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "game_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/games/{gameId}",
-                "rename": {
-                  "param": {
-                    "gameId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "games",
@@ -610,19 +624,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "games",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "gameId": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "games",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "game_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -630,7 +660,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "platform",
+              "$.main.kit.entity.platform",
             ],
           ],
         },
@@ -639,25 +669,30 @@ def make_config():
         "fields": [
           {
             "name": "api",
+            "title": "Api",
             "type": "`$OBJECT`",
           },
           {
             "name": "priceUpdates",
+            "title": "Price Updates",
             "type": "`$OBJECT`",
           },
           {
             "name": "status",
-            "short": "Overall platform status",
+            "title": "Status",
             "type": "`$STRING`",
+            "short": "Overall platform status",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
-            "short": "Status check timestamp",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "short": "Status check timestamp",
+            "format": "date-time",
           },
           {
             "name": "website",
+            "title": "Website",
             "type": "`$OBJECT`",
           },
         ],
@@ -668,7 +703,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/status",
@@ -677,14 +711,16 @@ def make_config():
                     "lit": "status",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "status",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "status",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -696,59 +732,69 @@ def make_config():
       "price": {
         "fields": [
           {
-            "format": "uri",
             "name": "affiliateLink",
-            "short": "Affiliate link to retailer (do not modify)",
+            "title": "Affiliate Link",
             "type": "`$STRING`",
+            "short": "Affiliate link to retailer (do not modify)",
+            "format": "uri",
           },
           {
             "name": "currency",
-            "short": "Currency code (GBP, EUR, USD)",
+            "title": "Currency",
             "type": "`$STRING`",
+            "short": "Currency code (GBP, EUR, USD)",
           },
           {
-            "format": "float",
             "name": "discount",
-            "short": "Discount percentage",
+            "title": "Discount",
             "type": "`$NUMBER`",
+            "short": "Discount percentage",
+            "format": "float",
           },
           {
             "name": "inStock",
-            "short": "Stock availability",
+            "title": "In Stock",
             "type": "`$BOOLEAN`",
+            "short": "Stock availability",
           },
           {
-            "format": "date-time",
             "name": "lastUpdated",
-            "short": "Last price update timestamp",
+            "title": "Last Updated",
             "type": "`$STRING`",
+            "short": "Last price update timestamp",
+            "format": "date-time",
           },
           {
-            "format": "float",
             "name": "originalPrice",
-            "short": "Original price before discount",
+            "title": "Original Price",
             "type": "`$NUMBER`",
+            "short": "Original price before discount",
+            "format": "float",
           },
           {
-            "format": "float",
             "name": "price",
-            "short": "Current price",
+            "title": "Price",
             "type": "`$NUMBER`",
+            "short": "Current price",
+            "format": "float",
           },
           {
             "name": "region",
-            "short": "Region code",
+            "title": "Region",
             "type": "`$STRING`",
+            "short": "Region code",
           },
           {
             "name": "retailerId",
-            "short": "Retailer identifier",
+            "title": "Retailer Id",
             "type": "`$STRING`",
+            "short": "Retailer identifier",
           },
           {
             "name": "retailerName",
-            "short": "Retailer name",
+            "title": "Retailer Name",
             "type": "`$STRING`",
+            "short": "Retailer name",
           },
         ],
         "name": "price",
@@ -758,40 +804,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "game_id",
-                      "orig": "game_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "USD",
-                      "kind": "query",
-                      "name": "currency",
-                      "orig": "currency",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "region",
-                      "orig": "region",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/games/{gameId}/prices",
-                "rename": {
-                  "param": {
-                    "gameId": "game_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "games",
@@ -803,6 +818,46 @@ def make_config():
                     "lit": "prices",
                   },
                 ],
+                "parts": [
+                  "games",
+                  "{game_id}",
+                  "prices",
+                ],
+                "rename": {
+                  "param": {
+                    "gameId": "game_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "game_id",
+                      "orig": "game_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "currency",
+                      "orig": "currency",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "USD",
+                    },
+                    {
+                      "name": "region",
+                      "orig": "region",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "currency",
@@ -810,45 +865,11 @@ def make_config():
                     "region",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "games",
-                  "{game_id}",
-                  "prices",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "console_id",
-                      "orig": "console_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "example": "USD",
-                      "kind": "query",
-                      "name": "currency",
-                      "orig": "currency",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/consoles/{consoleId}/prices",
-                "rename": {
-                  "param": {
-                    "consoleId": "console_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "consoles",
@@ -860,21 +881,46 @@ def make_config():
                     "lit": "prices",
                   },
                 ],
+                "parts": [
+                  "consoles",
+                  "{console_id}",
+                  "prices",
+                ],
+                "rename": {
+                  "param": {
+                    "consoleId": "console_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "console_id",
+                      "orig": "console_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "currency",
+                      "orig": "currency",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "USD",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "console_id",
                     "currency",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "consoles",
-                  "{console_id}",
-                  "prices",
-                ],
               },
             ],
           },
@@ -882,10 +928,10 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "console",
+              "$.main.kit.entity.console",
             ],
             [
-              "game",
+              "$.main.kit.entity.game",
             ],
           ],
         },
@@ -894,40 +940,47 @@ def make_config():
         "fields": [
           {
             "name": "approved",
-            "short": "Approval status",
+            "title": "Approved",
             "type": "`$BOOLEAN`",
+            "short": "Approval status",
           },
           {
             "name": "currencies",
-            "short": "Supported currencies",
+            "title": "Currencies",
             "type": "`$ARRAY`",
+            "short": "Supported currencies",
           },
           {
             "name": "id",
-            "short": "Unique retailer identifier",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique retailer identifier",
           },
           {
-            "format": "uri",
             "name": "logo",
-            "short": "Retailer logo URL",
+            "title": "Logo",
             "type": "`$STRING`",
+            "short": "Retailer logo URL",
+            "format": "uri",
           },
           {
             "name": "name",
-            "short": "Retailer name",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "Retailer name",
           },
           {
             "name": "regions",
-            "short": "Supported regions",
+            "title": "Regions",
             "type": "`$ARRAY`",
+            "short": "Supported regions",
           },
           {
-            "format": "uri",
             "name": "website",
-            "short": "Retailer website",
+            "title": "Website",
             "type": "`$STRING`",
+            "short": "Retailer website",
+            "format": "uri",
           },
         ],
         "id": {
@@ -941,7 +994,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/retailers",
@@ -950,14 +1002,16 @@ def make_config():
                     "lit": "retailers",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "retailers",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "retailers",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -970,14 +1024,17 @@ def make_config():
         "fields": [
           {
             "name": "consoles",
+            "title": "Consoles",
             "type": "`$ARRAY`",
           },
           {
             "name": "games",
+            "title": "Games",
             "type": "`$ARRAY`",
           },
           {
             "name": "totalResults",
+            "title": "Total Results",
             "type": "`$INTEGER`",
           },
         ],
@@ -988,31 +1045,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 20,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "q",
-                      "orig": "q",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "all",
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search",
@@ -1021,6 +1053,39 @@ def make_config():
                     "lit": "search",
                   },
                 ],
+                "parts": [
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 20,
+                    },
+                    {
+                      "name": "q",
+                      "orig": "q",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "all",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "limit",
@@ -1028,13 +1093,6 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "search",
-                ],
               },
             ],
           },
@@ -1047,50 +1105,59 @@ def make_config():
         "fields": [
           {
             "name": "description",
-            "short": "Studio description",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Studio description",
           },
           {
             "name": "foundingYear",
-            "short": "Year founded",
+            "title": "Founding Year",
             "type": "`$INTEGER`",
+            "short": "Year founded",
           },
           {
             "name": "games",
-            "short": "Released game IDs",
+            "title": "Games",
             "type": "`$ARRAY`",
+            "short": "Released game IDs",
           },
           {
             "name": "id",
-            "short": "Unique studio identifier",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique studio identifier",
           },
           {
             "name": "location",
-            "short": "Studio location",
+            "title": "Location",
             "type": "`$OBJECT`",
+            "short": "Studio location",
           },
           {
-            "format": "uri",
             "name": "logo",
-            "short": "Studio logo URL",
+            "title": "Logo",
             "type": "`$STRING`",
+            "short": "Studio logo URL",
+            "format": "uri",
           },
           {
             "name": "name",
-            "short": "Studio name",
+            "title": "Name",
             "type": "`$STRING`",
+            "short": "Studio name",
           },
           {
             "name": "type",
-            "short": "Studio type",
+            "title": "Type",
             "type": "`$STRING`",
+            "short": "Studio type",
           },
           {
-            "format": "uri",
             "name": "website",
-            "short": "Official website",
+            "title": "Website",
             "type": "`$STRING`",
+            "short": "Official website",
+            "format": "uri",
           },
         ],
         "id": {
@@ -1104,23 +1171,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 20,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/studios",
@@ -1129,19 +1179,37 @@ def make_config():
                     "lit": "studios",
                   },
                 ],
+                "parts": [
+                  "studios",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 20,
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "limit",
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "studios",
-                ],
               },
             ],
           },
@@ -1150,25 +1218,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "studio_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/studios/{studioId}",
-                "rename": {
-                  "param": {
-                    "studioId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "studios",
@@ -1177,19 +1229,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "studios",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "studioId": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "studios",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "studio_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1201,36 +1269,42 @@ def make_config():
       "user": {
         "fields": [
           {
-            "format": "uri",
             "name": "avatar",
-            "short": "Avatar image URL",
+            "title": "Avatar",
             "type": "`$STRING`",
+            "short": "Avatar image URL",
+            "format": "uri",
           },
           {
             "name": "id",
-            "short": "Unique user identifier",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique user identifier",
           },
           {
-            "format": "date-time",
             "name": "joinDate",
-            "short": "Account creation date",
+            "title": "Join Date",
             "type": "`$STRING`",
+            "short": "Account creation date",
+            "format": "date-time",
           },
           {
             "name": "libraryCount",
-            "short": "Number of games in library",
+            "title": "Library Count",
             "type": "`$INTEGER`",
+            "short": "Number of games in library",
           },
           {
             "name": "username",
-            "short": "Username",
+            "title": "Username",
             "type": "`$STRING`",
+            "short": "Username",
           },
           {
             "name": "wishlistCount",
-            "short": "Number of items in wishlist",
+            "title": "Wishlist Count",
             "type": "`$INTEGER`",
+            "short": "Number of items in wishlist",
           },
         ],
         "id": {
@@ -1244,25 +1318,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "user_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/users/{userId}/library",
-                "rename": {
-                  "param": {
-                    "userId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "users",
@@ -1274,42 +1332,42 @@ def make_config():
                     "lit": "library",
                   },
                 ],
+                "parts": [
+                  "users",
+                  "{id}",
+                  "library",
+                ],
+                "rename": {
+                  "param": {
+                    "userId": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "user_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "library",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "users",
-                  "{id}",
-                  "library",
-                ],
               },
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "user_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/users/{userId}/wishlist",
-                "rename": {
-                  "param": {
-                    "userId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "users",
@@ -1321,21 +1379,37 @@ def make_config():
                     "lit": "wishlist",
                   },
                 ],
+                "parts": [
+                  "users",
+                  "{id}",
+                  "wishlist",
+                ],
+                "rename": {
+                  "param": {
+                    "userId": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.data`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "user_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "wishlist",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.data`",
-                },
-                "parts": [
-                  "users",
-                  "{id}",
-                  "wishlist",
-                ],
               },
             ],
           },
@@ -1344,25 +1418,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "user_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/users/{userId}",
-                "rename": {
-                  "param": {
-                    "userId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "users",
@@ -1371,19 +1429,35 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "users",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "userId": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
-                "parts": [
-                  "users",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "user_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },
@@ -1401,24 +1475,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "product_id",
-                      "orig": "product_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "View Deals",
-                      "kind": "query",
-                      "name": "text",
-                      "orig": "text",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/widgets/button",
@@ -1430,6 +1486,33 @@ def make_config():
                     "lit": "button",
                   },
                 ],
+                "parts": [
+                  "widgets",
+                  "button",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "product_id",
+                      "orig": "product_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "text",
+                      "orig": "text",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "View Deals",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "button",
                   "exist": [
@@ -1437,34 +1520,8 @@ def make_config():
                     "text",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "widgets",
-                  "button",
-                ],
               },
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "product_id",
-                      "orig": "product_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "light",
-                      "kind": "query",
-                      "name": "theme",
-                      "orig": "theme",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/widgets/product-card",
@@ -1476,6 +1533,33 @@ def make_config():
                     "lit": "product-card",
                   },
                 ],
+                "parts": [
+                  "widgets",
+                  "product-card",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "product_id",
+                      "orig": "product_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "theme",
+                      "orig": "theme",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "light",
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "product_card",
                   "exist": [
@@ -1483,14 +1567,6 @@ def make_config():
                     "theme",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "widgets",
-                  "product-card",
-                ],
               },
             ],
           },

@@ -1,0 +1,95 @@
+# Entity: retailer
+
+main: kit: entity: retailer: {
+
+  alias: field: {}
+
+  fields: {
+    approved: {
+      h: "Approved"
+      n: "approved"
+      r: false
+      sh: "Approval status"
+      t: "`$BOOLEAN`"
+    }
+    currencies: {
+      h: "Currencies"
+      n: "currencies"
+      r: false
+      sh: "Supported currencies"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique retailer identifier"
+      t: "`$STRING`"
+    }
+    logo: {
+      fo: "uri"
+      h: "Logo"
+      n: "logo"
+      r: false
+      sh: "Retailer logo URL"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Retailer name"
+      t: "`$STRING`"
+    }
+    regions: {
+      h: "Regions"
+      n: "regions"
+      r: false
+      sh: "Supported regions"
+      t: "`$ARRAY`"
+    }
+    website: {
+      fo: "uri"
+      h: "Website"
+      n: "website"
+      r: false
+      sh: "Retailer website"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "retailer"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /retailers"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/retailers"
+          s: [
+            {
+              lit: "retailers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

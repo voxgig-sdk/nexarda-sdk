@@ -1,0 +1,268 @@
+# Entity: game
+
+main: kit: entity: game: {
+
+  alias: field: {}
+
+  fields: {
+    ageRating: {
+      h: "Age Rating"
+      n: "ageRating"
+      r: false
+      sh: "Age rating (e.g., ESRB, PEGI)"
+      t: "`$STRING`"
+    }
+    coverImage: {
+      fo: "uri"
+      h: "Cover Image"
+      n: "coverImage"
+      r: false
+      sh: "Cover image URL"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Game description"
+      t: "`$STRING`"
+    }
+    developer: {
+      h: "Developer"
+      n: "developer"
+      r: false
+      sh: "Developer name"
+      t: "`$STRING`"
+    }
+    franchiseId: {
+      h: "Franchise Id"
+      n: "franchiseId"
+      r: false
+      sh: "Associated franchise ID"
+      t: "`$STRING`"
+    }
+    genres: {
+      h: "Genres"
+      n: "genres"
+      r: false
+      sh: "Game genres"
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique game identifier"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Game title"
+      t: "`$STRING`"
+    }
+    platforms: {
+      h: "Platforms"
+      n: "platforms"
+      r: false
+      sh: "Supported platforms"
+      t: "`$ARRAY`"
+    }
+    publisher: {
+      h: "Publisher"
+      n: "publisher"
+      r: false
+      sh: "Publisher name"
+      t: "`$STRING`"
+    }
+    releaseDate: {
+      fo: "date"
+      h: "Release Date"
+      n: "releaseDate"
+      r: false
+      sh: "Release date"
+      t: "`$STRING`"
+    }
+    screenshots: {
+      h: "Screenshots"
+      n: "screenshots"
+      r: false
+      sh: "Screenshot URLs"
+      t: "`$ARRAY`"
+    }
+    videos: {
+      h: "Videos"
+      n: "videos"
+      r: false
+      sh: "Video media"
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "game"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /games"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/games"
+          q: {
+            exist: [
+              "limit"
+              "offset"
+            ]
+          }
+          s: [
+            {
+              lit: "games"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /games/platform/{platformId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "platform_id"
+                or: "platform_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "platform"
+                or: "platform"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/games/platform/{platformId}"
+          q: {
+            exist: [
+              "platform"
+              "platform_id"
+            ]
+          }
+          r: {
+            param: {
+              platformId: "platform_id"
+            }
+          }
+          s: [
+            {
+              lit: "games"
+            }
+            {
+              lit: "platform"
+            }
+            {
+              var: "platform_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /games/{gameId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "game_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/games/{gameId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              gameId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "games"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.platform")]
+  ]
+
+}
