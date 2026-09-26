@@ -15,7 +15,7 @@ import (
 // reqdata map passed through to the SDK. For load, `query` should be
 // `{"id": <value>}`. For list, omit `query` or pass an empty map.
 type Args struct {
-	Entity string         `json:"entity" jsonschema:"console | franchis | game | platform | price | retailer | search | studio | user | widget"`
+	Entity string         `json:"entity" jsonschema:"console | franchise | game | platform | price | retailer | search | studio | user | widget"`
 	Query  map[string]any `json:"query,omitempty" jsonschema:"optional match map e.g. {\"id\":1} for load, omit for list"`
 }
 
@@ -78,8 +78,8 @@ func entityFor(client *sdk.NexardaSDK, name string) (sdk.NexardaEntity, error) {
 	switch strings.ToLower(name) {
 	case "console":
 		return client.Console(nil), nil
-	case "franchis":
-		return client.Franchis(nil), nil
+	case "franchise":
+		return client.Franchise(nil), nil
 	case "game":
 		return client.Game(nil), nil
 	case "platform":

@@ -1,6 +1,6 @@
-# Entity: franchis
+# Entity: franchise
 
-main: kit: entity: franchis: {
+main: kit: entity: franchise: {
 
   alias: field: {}
 
@@ -55,7 +55,7 @@ main: kit: entity: franchis: {
     name: "id"
   }
 
-  name: "franchis"
+  name: "franchise"
   op: {
     list: {
       name: "list"

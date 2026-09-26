@@ -35,7 +35,7 @@ class ConsoleListMatch(TypedDict, total=False):
     limit: int
 
 
-class Franchis(TypedDict, total=False):
+class Franchise(TypedDict, total=False):
     description: str
     games: list
     id: str
@@ -44,11 +44,11 @@ class Franchis(TypedDict, total=False):
     totalGames: int
 
 
-class FranchisLoadMatch(TypedDict):
+class FranchiseLoadMatch(TypedDict):
     id: str
 
 
-class FranchisListMatch(TypedDict, total=False):
+class FranchiseListMatch(TypedDict, total=False):
     limit: int
 
 

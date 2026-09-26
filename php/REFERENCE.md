@@ -46,9 +46,9 @@ $client = NexardaSDK::test();
 
 Create a new `ConsoleEntity` instance. Pass `null` for no initial data.
 
-#### `Franchis($data = null)`
+#### `Franchise($data = null)`
 
-Create a new `FranchisEntity` instance. Pass `null` for no initial data.
+Create a new `FranchiseEntity` instance. Pass `null` for no initial data.
 
 #### `Game($data = null)`
 
@@ -186,10 +186,10 @@ Return the entity name.
 
 ---
 
-## FranchisEntity
+## FranchiseEntity
 
 ```php
-$franchis = $client->Franchis();
+$franchise = $client->Franchise();
 ```
 
 ### Fields
@@ -210,7 +210,7 @@ $franchis = $client->Franchis();
 List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Franchis()->list();
+$results = $client->Franchise()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -218,7 +218,7 @@ $results = $client->Franchis()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Franchis()->load(["id" => "franchis_id"]);
+$result = $client->Franchise()->load(["id" => "franchise_id"]);
 ```
 
 ### Common Methods
@@ -239,9 +239,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): FranchisEntity`
+#### `make(): FranchiseEntity`
 
-Create a new `FranchisEntity` instance with the same client and
+Create a new `FranchiseEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

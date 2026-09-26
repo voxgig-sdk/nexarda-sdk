@@ -313,10 +313,10 @@ class NexardaSDK:
         return ConsoleEntity(self, data)
 
 
-    def Franchis(self, data=None) -> "FranchisEntity":
-        """Entity factory: client.Franchis().list() / client.Franchis().load({"id": ...})."""
-        from nexarda_sdk.entity.franchis_entity import FranchisEntity
-        return FranchisEntity(self, data)
+    def Franchise(self, data=None) -> "FranchiseEntity":
+        """Entity factory: client.Franchise().list() / client.Franchise().load({"id": ...})."""
+        from nexarda_sdk.entity.franchise_entity import FranchiseEntity
+        return FranchiseEntity(self, data)
 
 
     def Game(self, data=None) -> "GameEntity":
@@ -395,7 +395,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from nexarda_sdk.entity.console_entity import ConsoleEntity
-    from nexarda_sdk.entity.franchis_entity import FranchisEntity
+    from nexarda_sdk.entity.franchise_entity import FranchiseEntity
     from nexarda_sdk.entity.game_entity import GameEntity
     from nexarda_sdk.entity.platform_entity import PlatformEntity
     from nexarda_sdk.entity.price_entity import PriceEntity

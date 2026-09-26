@@ -1,7 +1,7 @@
 # Entity Models
 
 @"./console.aontu"
-@"./franchis.aontu"
+@"./franchise.aontu"
 @"./game.aontu"
 @"./platform.aontu"
 @"./price.aontu"

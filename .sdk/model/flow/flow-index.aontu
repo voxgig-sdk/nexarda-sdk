@@ -1,7 +1,7 @@
 # Flows
 
 @"./BasicConsoleFlow.aontu"
-@"./BasicFranchisFlow.aontu"
+@"./BasicFranchiseFlow.aontu"
 @"./BasicGameFlow.aontu"
 @"./BasicPlatformFlow.aontu"
 @"./BasicPriceFlow.aontu"

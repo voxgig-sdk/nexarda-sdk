@@ -26,17 +26,17 @@ type ConsoleListMatch struct {
 	Limit *int `json:"limit,omitempty"`
 }
 
-// Franchis is the typed data model for the franchis entity.
-type Franchis struct {
+// Franchise is the typed data model for the franchise entity.
+type Franchise struct {
 }
 
-// FranchisLoadMatch is the typed request payload for Franchis.LoadTyped.
-type FranchisLoadMatch struct {
+// FranchiseLoadMatch is the typed request payload for Franchise.LoadTyped.
+type FranchiseLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// FranchisListMatch is the typed request payload for Franchis.ListTyped.
-type FranchisListMatch struct {
+// FranchiseListMatch is the typed request payload for Franchise.ListTyped.
+type FranchiseListMatch struct {
 	Limit *int `json:"limit,omitempty"`
 }
 

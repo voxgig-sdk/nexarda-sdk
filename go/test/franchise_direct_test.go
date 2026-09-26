@@ -10,9 +10,9 @@ import (
 	"github.com/voxgig-sdk/nexarda-sdk/go/core"
 )
 
-func TestFranchisDirect(t *testing.T) {
-	t.Run("direct-list-franchis", func(t *testing.T) {
-		setup := franchisDirectSetup([]any{
+func TestFranchiseDirect(t *testing.T) {
+	t.Run("direct-list-franchise", func(t *testing.T) {
+		setup := franchiseDirectSetup([]any{
 			map[string]any{"id": "direct01"},
 			map[string]any{"id": "direct02"},
 		})
@@ -20,7 +20,7 @@ func TestFranchisDirect(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		if _shouldSkip, _reason := isControlSkipped("direct", "direct-list-franchis", _mode); _shouldSkip {
+		if _shouldSkip, _reason := isControlSkipped("direct", "direct-list-franchise", _mode); _shouldSkip {
 			if _reason == "" {
 				_reason = "skipped via sdk-test-control.json"
 			}
@@ -77,13 +77,13 @@ func TestFranchisDirect(t *testing.T) {
 		}
 	})
 
-	t.Run("direct-load-franchis", func(t *testing.T) {
-		setup := franchisDirectSetup(map[string]any{"id": "direct01"})
+	t.Run("direct-load-franchise", func(t *testing.T) {
+		setup := franchiseDirectSetup(map[string]any{"id": "direct01"})
 		_mode := "unit"
 		if setup.live {
 			_mode = "live"
 		}
-		if _shouldSkip, _reason := isControlSkipped("direct", "direct-load-franchis", _mode); _shouldSkip {
+		if _shouldSkip, _reason := isControlSkipped("direct", "direct-load-franchise", _mode); _shouldSkip {
 			if _reason == "" {
 				_reason = "skipped via sdk-test-control.json"
 			}
@@ -181,20 +181,20 @@ func TestFranchisDirect(t *testing.T) {
 
 }
 
-type franchisDirectSetupResult struct {
+type franchiseDirectSetupResult struct {
 	client *sdk.NexardaSDK
 	calls  *[]map[string]any
 	live   bool
 	idmap  map[string]any
 }
 
-func franchisDirectSetup(mockres any) *franchisDirectSetupResult {
+func franchiseDirectSetup(mockres any) *franchiseDirectSetupResult {
 	loadEnvLocal()
 
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"NEXARDA_TEST_FRANCHIS_ENTID": map[string]any{},
+		"NEXARDA_TEST_FRANCHISE_ENTID": map[string]any{},
 		"NEXARDA_TEST_LIVE":    "FALSE",
 		"NEXARDA_APIKEY":       "",
 	})
@@ -216,7 +216,7 @@ func franchisDirectSetup(mockres any) *franchisDirectSetupResult {
 		client := sdk.NewNexardaSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["NEXARDA_TEST_FRANCHIS_ENTID"]; ok {
+		if entidRaw, ok := env["NEXARDA_TEST_FRANCHISE_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {
@@ -224,7 +224,7 @@ func franchisDirectSetup(mockres any) *franchisDirectSetupResult {
 			}
 		}
 
-		return &franchisDirectSetupResult{client: client, calls: calls, live: true, idmap: idmap}
+		return &franchiseDirectSetupResult{client: client, calls: calls, live: true, idmap: idmap}
 	}
 
 	mockFetch := func(url string, init map[string]any) (map[string]any, error) {
@@ -249,7 +249,7 @@ func franchisDirectSetup(mockres any) *franchisDirectSetupResult {
 		},
 	})
 
-	return &franchisDirectSetupResult{client: client, calls: calls, live: false, idmap: map[string]any{}}
+	return &franchiseDirectSetupResult{client: client, calls: calls, live: false, idmap: map[string]any{}}
 }
 
 var _ = os.Getenv

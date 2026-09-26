@@ -296,10 +296,10 @@ class NexardaSDK
   end
 
 
-  # Canonical facade: client.Franchis.list / client.Franchis.load({ "id" => ... })
-  def Franchis(data = nil)
-    require_relative 'entity/franchis_entity'
-    FranchisEntity.new(self, data)
+  # Canonical facade: client.Franchise.list / client.Franchise.load({ "id" => ... })
+  def Franchise(data = nil)
+    require_relative 'entity/franchise_entity'
+    FranchiseEntity.new(self, data)
   end
 
 

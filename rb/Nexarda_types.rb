@@ -63,7 +63,7 @@ ConsoleListMatch = Struct.new(
   keyword_init: true
 )
 
-# Franchis entity data model.
+# Franchise entity data model.
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -82,7 +82,7 @@ ConsoleListMatch = Struct.new(
 #
 # @!attribute [rw] totalGames
 #   @return [Integer, nil]
-Franchis = Struct.new(
+Franchise = Struct.new(
   :description,
   :games,
   :id,
@@ -92,20 +92,20 @@ Franchis = Struct.new(
   keyword_init: true
 )
 
-# Request payload for Franchis#load.
+# Request payload for Franchise#load.
 #
 # @!attribute [rw] id
 #   @return [String]
-FranchisLoadMatch = Struct.new(
+FranchiseLoadMatch = Struct.new(
   :id,
   keyword_init: true
 )
 
-# Request payload for Franchis#list.
+# Request payload for Franchise#list.
 #
 # @!attribute [rw] limit
 #   @return [Integer, nil]
-FranchisListMatch = Struct.new(
+FranchiseListMatch = Struct.new(
   :limit,
   keyword_init: true
 )

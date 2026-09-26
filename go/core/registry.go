@@ -14,7 +14,7 @@ var NewTimeoutFeatureFunc func() Feature
 
 var NewConsoleEntityFunc func(client *NexardaSDK, entopts map[string]any) NexardaEntity
 
-var NewFranchisEntityFunc func(client *NexardaSDK, entopts map[string]any) NexardaEntity
+var NewFranchiseEntityFunc func(client *NexardaSDK, entopts map[string]any) NexardaEntity
 
 var NewGameEntityFunc func(client *NexardaSDK, entopts map[string]any) NexardaEntity
 

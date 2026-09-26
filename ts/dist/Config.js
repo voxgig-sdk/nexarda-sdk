@@ -104,7 +104,7 @@ class Config {
         },
         entity: {
             console: {},
-            franchis: {},
+            franchise: {},
             game: {},
             platform: {},
             price: {},
@@ -267,7 +267,7 @@ class Config {
                 "ancestors": []
             }
         },
-        "franchis": {
+        "franchise": {
             "fields": [
                 {
                     "name": "description",
@@ -311,7 +311,7 @@ class Config {
                 "field": "id",
                 "name": "id"
             },
-            "name": "franchis",
+            "name": "franchise",
             "op": {
                 "list": {
                     "input": "data",

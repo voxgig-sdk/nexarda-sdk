@@ -153,7 +153,7 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 The 10 entities valid as the `entity` argument:
 
-console | franchis | game | platform | price | retailer | search | studio | user | widget
+console | franchise | game | platform | price | retailer | search | studio | user | widget
 
 ### Smoke test via HTTP (raw JSON-RPC)
 

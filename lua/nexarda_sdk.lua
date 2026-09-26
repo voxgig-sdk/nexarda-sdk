@@ -363,15 +363,15 @@ function NexardaSDK:Console(data)
 end
 
 
--- Idiomatic facade: client:Franchis():list() / client:Franchis():load({ id = ... })
+-- Idiomatic facade: client:Franchise():list() / client:Franchise():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function NexardaSDK:Franchis(data)
-  local EntityMod = require("entity.franchis_entity")
+function NexardaSDK:Franchise(data)
+  local EntityMod = require("entity.franchise_entity")
   if data == nil then
-    if self._franchis == nil then
-      self._franchis = EntityMod.new(self, nil)
+    if self._franchise == nil then
+      self._franchise = EntityMod.new(self, nil)
     end
-    return self._franchis
+    return self._franchise
   end
   return EntityMod.new(self, data)
 end

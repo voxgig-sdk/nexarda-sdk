@@ -79,8 +79,8 @@ func entityFor(client *sdk.NexardaSDK, name string) (sdk.NexardaEntity, error) {
 	switch strings.ToLower(name) {
 	case "console":
 		return client.Console(nil), nil
-	case "franchis":
-		return client.Franchis(nil), nil
+	case "franchise":
+		return client.Franchise(nil), nil
 	case "game":
 		return client.Game(nil), nil
 	case "platform":

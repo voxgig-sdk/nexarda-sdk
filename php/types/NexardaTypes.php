@@ -37,8 +37,8 @@ class ConsoleListMatch
     public ?int $limit = null;
 }
 
-/** Franchis entity data model. */
-class Franchis
+/** Franchise entity data model. */
+class Franchise
 {
     public ?string $description = null;
     public ?array $games = null;
@@ -48,14 +48,14 @@ class Franchis
     public ?int $totalGames = null;
 }
 
-/** Request payload for Franchis#load. */
-class FranchisLoadMatch
+/** Request payload for Franchise#load. */
+class FranchiseLoadMatch
 {
     public string $id;
 }
 
-/** Request payload for Franchis#list. */
-class FranchisListMatch
+/** Request payload for Franchise#list. */
+class FranchiseListMatch
 {
     public ?int $limit = null;
 }

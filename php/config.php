@@ -110,7 +110,7 @@ class NexardaConfig
         ],
                 "entity" => [
                     "console" => [],
-                    "franchis" => [],
+                    "franchise" => [],
                     "game" => [],
                     "platform" => [],
                     "price" => [],
@@ -273,7 +273,7 @@ class NexardaConfig
             'ancestors' => [],
           ],
         ],
-        'franchis' => [
+        'franchise' => [
           'fields' => [
             [
               'name' => 'description',
@@ -317,7 +317,7 @@ class NexardaConfig
             'field' => 'id',
             'name' => 'id',
           ],
-          'name' => 'franchis',
+          'name' => 'franchise',
           'op' => [
             'list' => [
               'input' => 'data',

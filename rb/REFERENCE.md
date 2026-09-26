@@ -46,9 +46,9 @@ client = NexardaSDK.test
 
 Create a new `Console` entity instance. Pass `nil` for no initial data.
 
-#### `Franchis(data = nil)`
+#### `Franchise(data = nil)`
 
-Create a new `Franchis` entity instance. Pass `nil` for no initial data.
+Create a new `Franchise` entity instance. Pass `nil` for no initial data.
 
 #### `Game(data = nil)`
 
@@ -187,10 +187,10 @@ Return the entity name.
 
 ---
 
-## FranchisEntity
+## FranchiseEntity
 
 ```ruby
-franchis = client.Franchis
+franchise = client.Franchise
 ```
 
 ### Fields
@@ -211,7 +211,7 @@ franchis = client.Franchis
 List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Franchis.list
+results = client.Franchise.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -219,7 +219,7 @@ results = client.Franchis.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Franchis.load({ "id" => "franchis_id" })
+result = client.Franchise.load({ "id" => "franchise_id" })
 ```
 
 ### Common Methods
@@ -242,7 +242,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `FranchisEntity` instance with the same client and
+Create a new `FranchiseEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

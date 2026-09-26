@@ -242,7 +242,7 @@ new NexardaSDK(options?: {
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
 | `Console(data?)` | `ConsoleEntity` | Create a Console entity instance. |
-| `Franchis(data?)` | `FranchisEntity` | Create a Franchis entity instance. |
+| `Franchise(data?)` | `FranchiseEntity` | Create a Franchise entity instance. |
 | `Game(data?)` | `GameEntity` | Create a Game entity instance. |
 | `Platform(data?)` | `PlatformEntity` | Create a Platform entity instance. |
 | `Price(data?)` | `PriceEntity` | Create a Price entity instance. |
@@ -335,7 +335,7 @@ Operations: list, load.
 
 API path: `/consoles`
 
-#### Franchis
+#### Franchise
 
 | Field | Description |
 | --- | --- |
@@ -517,9 +517,9 @@ const console_s = await client.Console().list()
 ```
 
 
-### Franchis
+### Franchise
 
-Create an instance: `const franchis = client.Franchis()`
+Create an instance: `const franchise = client.Franchise()`
 
 #### Operations
 
@@ -542,13 +542,13 @@ Create an instance: `const franchis = client.Franchis()`
 #### Example: Load
 
 ```ts
-const franchis = await client.Franchis().load({ id: 'franchis_id' })
+const franchise = await client.Franchise().load({ id: 'franchise_id' })
 ```
 
 #### Example: List
 
 ```ts
-const franchiss = await client.Franchis().list()
+const franchises = await client.Franchise().list()
 ```
 
 

@@ -44,8 +44,8 @@ func init() {
 	core.NewConsoleEntityFunc = func(client *core.NexardaSDK, entopts map[string]any) core.NexardaEntity {
 		return entity.NewConsoleEntity(client, entopts)
 	}
-	core.NewFranchisEntityFunc = func(client *core.NexardaSDK, entopts map[string]any) core.NexardaEntity {
-		return entity.NewFranchisEntity(client, entopts)
+	core.NewFranchiseEntityFunc = func(client *core.NexardaSDK, entopts map[string]any) core.NexardaEntity {
+		return entity.NewFranchiseEntity(client, entopts)
 	}
 	core.NewGameEntityFunc = func(client *core.NexardaSDK, entopts map[string]any) core.NexardaEntity {
 		return entity.NewGameEntity(client, entopts)

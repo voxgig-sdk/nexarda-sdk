@@ -20,7 +20,7 @@ import (
 const prompt = "nexarda"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "console franchis game platform price retailer search studio user widget"
+const entitiesHelp = "console franchise game platform price retailer search studio user widget"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

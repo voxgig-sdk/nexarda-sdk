@@ -204,7 +204,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Console` | `(data) -> ConsoleEntity` | Create a Console entity instance. |
-| `Franchis` | `(data) -> FranchisEntity` | Create a Franchis entity instance. |
+| `Franchise` | `(data) -> FranchiseEntity` | Create a Franchise entity instance. |
 | `Game` | `(data) -> GameEntity` | Create a Game entity instance. |
 | `Platform` | `(data) -> PlatformEntity` | Create a Platform entity instance. |
 | `Price` | `(data) -> PriceEntity` | Create a Price entity instance. |
@@ -267,7 +267,7 @@ Operations: List, Load.
 
 API path: `/consoles`
 
-#### Franchis
+#### Franchise
 
 | Field | Description |
 | --- | --- |
@@ -449,9 +449,9 @@ local consoles, err = client:Console():list()
 ```
 
 
-### Franchis
+### Franchise
 
-Create an instance: `local franchis = client:Franchis(nil)`
+Create an instance: `local franchise = client:Franchise(nil)`
 
 #### Operations
 
@@ -474,13 +474,13 @@ Create an instance: `local franchis = client:Franchis(nil)`
 #### Example: Load
 
 ```lua
-local franchis, err = client:Franchis():load({ id = "franchis_id" })
+local franchise, err = client:Franchise():load({ id = "franchise_id" })
 ```
 
 #### Example: List
 
 ```lua
-local franchiss, err = client:Franchis():list()
+local franchises, err = client:Franchise():list()
 ```
 
 

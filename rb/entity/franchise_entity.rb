@@ -1,9 +1,9 @@
-# Nexarda SDK Franchis entity
+# Nexarda SDK Franchise entity
 
 require_relative '../utility/struct/voxgig_struct'
 require_relative '../core/helpers'
 
-class FranchisEntity
+class FranchiseEntity
   def initialize(client, entopts = nil)
     entopts ||= {}
     if entopts["active"].nil?
@@ -14,7 +14,7 @@ class FranchisEntity
       entopts["active"] = true
     end
 
-    @_name = "franchis"
+    @_name = "franchise"
     @_client = client
     @_utility = client.get_utility
     @_entopts = entopts
@@ -48,7 +48,7 @@ class FranchisEntity
 
   def make
     opts = @_entopts.dup
-    FranchisEntity.new(@_client, opts)
+    FranchiseEntity.new(@_client, opts)
   end
 
   def data_set(args)
@@ -58,7 +58,7 @@ class FranchisEntity
     end
   end
 
-  # @return [Franchis, Hash] the current Franchis data
+  # @return [Franchise, Hash] the current Franchise data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -71,7 +71,7 @@ class FranchisEntity
     end
   end
 
-  # @return [Hash] the current match filter (any subset of Franchis fields)
+  # @return [Hash] the current match filter (any subset of Franchise fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -171,13 +171,13 @@ class FranchisEntity
   end
 
   
-  # Load a single Franchis.
+  # Load a single Franchise.
   #
-  # @param reqmatch [FranchisLoadMatch, Hash, nil] match criteria (id/query fields);
+  # @param reqmatch [FranchiseLoadMatch, Hash, nil] match criteria (id/query fields);
   #   optional — an entity with no id-like key loads with no match (nil is treated
-  #   as an empty match, so client.Franchis.load works with no args).
+  #   as an empty match, so client.Franchise.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
-  # @return [Franchis, Hash] the loaded Franchis; raises NexardaError on failure
+  # @return [Franchise, Hash] the loaded Franchise; raises NexardaError on failure
   def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -201,12 +201,12 @@ class FranchisEntity
 
 
   
-  # List Franchis items matching the given filter.
+  # List Franchise items matching the given filter.
   #
-  # @param reqmatch [FranchisListMatch, Hash, nil] match filter (any subset of
-  #   Franchis fields); defaults to nil, treated as an empty match that lists all.
+  # @param reqmatch [FranchiseListMatch, Hash, nil] match filter (any subset of
+  #   Franchise fields); defaults to nil, treated as an empty match that lists all.
   # @param ctrl [Object, nil] optional per-call control
-  # @return [Array<Franchis>, Array] the matching Franchis items; raises NexardaError on failure
+  # @return [Array<Franchise>, Array] the matching Franchise items; raises NexardaError on failure
   def list(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

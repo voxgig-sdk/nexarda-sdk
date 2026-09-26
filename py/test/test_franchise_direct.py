@@ -1,4 +1,4 @@
-# Franchis direct test
+# Franchise direct test
 
 import json
 import pytest
@@ -9,14 +9,14 @@ from nexarda_sdk.core import helpers
 from test import runner
 
 
-class TestFranchisDirect:
+class TestFranchiseDirect:
 
-    def test_should_direct_list_franchis(self):
-        setup = _franchis_direct_setup([
+    def test_should_direct_list_franchise(self):
+        setup = _franchise_direct_setup([
             {"id": "direct01"},
             {"id": "direct02"},
         ])
-        _skip, _reason = runner.is_control_skipped("direct", "direct-list-franchis", "live" if setup["live"] else "unit")
+        _skip, _reason = runner.is_control_skipped("direct", "direct-list-franchise", "live" if setup["live"] else "unit")
         if _skip:
             # pytest already imported at module scope
             pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -50,9 +50,9 @@ class TestFranchisDirect:
             assert len(result["data"]) == 2
             assert len(setup["calls"]) == 1
 
-    def test_should_direct_load_franchis(self):
-        setup = _franchis_direct_setup({"id": "direct01"})
-        _skip, _reason = runner.is_control_skipped("direct", "direct-load-franchis", "live" if setup["live"] else "unit")
+    def test_should_direct_load_franchise(self):
+        setup = _franchise_direct_setup({"id": "direct01"})
+        _skip, _reason = runner.is_control_skipped("direct", "direct-load-franchise", "live" if setup["live"] else "unit")
         if _skip:
             # pytest already imported at module scope
             pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -99,13 +99,13 @@ class TestFranchisDirect:
 
 
 
-def _franchis_direct_setup(mockres):
+def _franchise_direct_setup(mockres):
     runner.load_env_local()
 
     calls = []
 
     env = runner.env_override({
-        "NEXARDA_TEST_FRANCHIS_ENTID": {},
+        "NEXARDA_TEST_FRANCHISE_ENTID": {},
         "NEXARDA_TEST_LIVE": "FALSE",
         "NEXARDA_APIKEY": "",
     })

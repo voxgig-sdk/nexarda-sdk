@@ -1,13 +1,13 @@
--- Nexarda SDK Franchis entity
+-- Nexarda SDK Franchise entity
 
 local vs = require("utility.struct.struct")
 local helpers = require("core.helpers")
 
-local FranchisEntity = {}
-FranchisEntity.__index = FranchisEntity
+local FranchiseEntity = {}
+FranchiseEntity.__index = FranchiseEntity
 
 
-function FranchisEntity.new(client, entopts)
+function FranchiseEntity.new(client, entopts)
   entopts = entopts or {}
   if entopts["active"] == nil then
     entopts["active"] = true
@@ -17,8 +17,8 @@ function FranchisEntity.new(client, entopts)
     entopts["active"] = true
   end
 
-  local self = setmetatable({}, FranchisEntity)
-  self._name = "franchis"
+  local self = setmetatable({}, FranchiseEntity)
+  self._name = "franchise"
   self._client = client
   self._utility = client:get_utility()
   self._entopts = entopts
@@ -37,34 +37,34 @@ function FranchisEntity.new(client, entopts)
 end
 
 
-function FranchisEntity:get_name()
+function FranchiseEntity:get_name()
   return self._name
 end
 
 
-function FranchisEntity:make()
+function FranchiseEntity:make()
   local opts = {}
   for k, v in pairs(self._entopts) do
     opts[k] = v
   end
-  return FranchisEntity.new(self._client, opts)
+  return FranchiseEntity.new(self._client, opts)
 end
 
 
 -- Every operation resolves to the entity; `remove` additionally marks
 -- it. The instance KEEPS the data it held — a caller can still read what
 -- was deleted — but it is no longer a live record. See AGENTS.md.
-function FranchisEntity:mark_deleted()
+function FranchiseEntity:mark_deleted()
   self._deleted = true
 end
 
 
-function FranchisEntity:deleted()
+function FranchiseEntity:deleted()
   return true == self._deleted
 end
 
 
-function FranchisEntity:data_set(args)
+function FranchiseEntity:data_set(args)
   if args ~= nil then
     self._data = helpers.to_map(vs.clone(args)) or {}
     self._utility.feature_hook(self._entctx, "SetData")
@@ -72,13 +72,13 @@ function FranchisEntity:data_set(args)
 end
 
 
-function FranchisEntity:data_get()
+function FranchiseEntity:data_get()
   self._utility.feature_hook(self._entctx, "GetData")
   return vs.clone(self._data)
 end
 
 
-function FranchisEntity:match_set(args)
+function FranchiseEntity:match_set(args)
   if args ~= nil then
     self._match = helpers.to_map(vs.clone(args)) or {}
     self._utility.feature_hook(self._entctx, "SetMatch")
@@ -86,7 +86,7 @@ function FranchisEntity:match_set(args)
 end
 
 
-function FranchisEntity:match_get()
+function FranchiseEntity:match_get()
   self._utility.feature_hook(self._entctx, "GetMatch")
   return vs.clone(self._match)
 end
@@ -102,7 +102,7 @@ end
 --   - outbound (upload): an iterable `body` in callopts is attached to the
 --     request so the transport can stream the payload;
 --   - `ctrl` (pipeline control) and `signal` (cancellation) honoured.
-function FranchisEntity:stream(action, args, callopts)
+function FranchiseEntity:stream(action, args, callopts)
   local utility = self._utility
   callopts = callopts or {}
   local signal = callopts["signal"]
@@ -230,11 +230,11 @@ end
 
 
 
----@param reqmatch FranchisLoadMatch
+---@param reqmatch FranchiseLoadMatch
 ---@param ctrl? table
----@return Franchis
+---@return Franchise
 ---@return string? err
-function FranchisEntity:load(reqmatch, ctrl)
+function FranchiseEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
     opname = "load",
@@ -259,11 +259,11 @@ end
 
 
 
----@param reqmatch FranchisListMatch
+---@param reqmatch FranchiseListMatch
 ---@param ctrl? table
----@return Franchis[]
+---@return Franchise[]
 ---@return string? err
-function FranchisEntity:list(reqmatch, ctrl)
+function FranchiseEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
     opname = "list",
@@ -291,7 +291,7 @@ end
 
 
 
-function FranchisEntity:_run_op(ctx, post_done)
+function FranchiseEntity:_run_op(ctx, post_done)
   local utility = self._utility
 
   utility.feature_hook(ctx, "PrePoint")
@@ -368,4 +368,4 @@ function FranchisEntity:_run_op(ctx, post_done)
 end
 
 
-return FranchisEntity
+return FranchiseEntity

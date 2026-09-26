@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.NexardaSDK = exports.NexardaEntityBase = exports.BaseFeature = exports.config = exports.stdutil = void 0;
 const ConsoleEntity_1 = require("./entity/ConsoleEntity");
-const FranchisEntity_1 = require("./entity/FranchisEntity");
+const FranchiseEntity_1 = require("./entity/FranchiseEntity");
 const GameEntity_1 = require("./entity/GameEntity");
 const PlatformEntity_1 = require("./entity/PlatformEntity");
 const PriceEntity_1 = require("./entity/PriceEntity");
@@ -226,12 +226,12 @@ class NexardaSDK {
         const self = this;
         return new ConsoleEntity_1.ConsoleEntity(self, entopts);
     }
-    // Entity access: `client.Franchis().list()` / `client.Franchis().load({ id })`.
+    // Entity access: `client.Franchise().list()` / `client.Franchise().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    Franchis(entopts) {
+    Franchise(entopts) {
         const self = this;
-        return new FranchisEntity_1.FranchisEntity(self, entopts);
+        return new FranchiseEntity_1.FranchiseEntity(self, entopts);
     }
     // Entity access: `client.Game().list()` / `client.Game().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

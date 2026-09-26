@@ -88,7 +88,7 @@ func MakeConfig() map[string]any {
 			},
 			"entity": map[string]any{
 				"console": map[string]any{},
-				"franchis": map[string]any{},
+				"franchise": map[string]any{},
 				"game": map[string]any{},
 				"platform": map[string]any{},
 				"price": map[string]any{},
@@ -251,7 +251,7 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"franchis": map[string]any{
+			"franchise": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "description",
@@ -295,7 +295,7 @@ func MakeConfig() map[string]any {
 					"field": "id",
 					"name": "id",
 				},
-				"name": "franchis",
+				"name": "franchise",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",

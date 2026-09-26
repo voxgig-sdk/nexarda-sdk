@@ -26,7 +26,7 @@ Key fields to recognise:
 - `manufacturer`: Manufacturer name
 - `name`: Console name
 
-### Franchis
+### Franchise
 
 Results: Successful response.
 
@@ -141,8 +141,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | --- | --- | --- | --- |
 | Console | `list` | `GET /consoles` | See reference |
 | Console | `load` | `GET /consoles/{consoleId}` | See reference |
-| Franchis | `list` | `GET /franchises` | See reference |
-| Franchis | `load` | `GET /franchises/{franchiseId}` | See reference |
+| Franchise | `list` | `GET /franchises` | See reference |
+| Franchise | `load` | `GET /franchises/{franchiseId}` | See reference |
 | Game | `list` | `GET /games` | See reference |
 | Game | `load` | `GET /games/platform/{platformId}` | See reference |
 | Game | `load` | `GET /games/{gameId}` | See reference |
@@ -209,8 +209,8 @@ Use the MCP server to expose supported API operations to an MCP client.
 
 Repository directory: `go-mcp/`. Not published. Build from the go-mcp directory.
 
-- `nexarda_list`: List records for an entity. Supported entities: `console`, `franchis`, `game`, `price`, `retailer`, `studio`, `user`.
-- `nexarda_load`: Load one record for an entity. Supported entities: `console`, `franchis`, `game`, `platform`, `search`, `studio`, `user`, `widget`.
+- `nexarda_list`: List records for an entity. Supported entities: `console`, `franchise`, `game`, `price`, `retailer`, `studio`, `user`.
+- `nexarda_load`: Load one record for an entity. Supported entities: `console`, `franchise`, `game`, `platform`, `search`, `studio`, `user`, `widget`.
 
 ## Operational features
 

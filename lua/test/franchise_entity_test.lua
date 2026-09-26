@@ -1,4 +1,4 @@
--- Franchis entity test
+-- Franchise entity test
 
 local json = require("dkjson")
 local vs = require("utility.struct.struct")
@@ -8,10 +8,10 @@ local runner = require("test.runner")
 
 local _test_dir = debug.getinfo(1, "S").source:match("^@(.+/)")  or "./"
 
-describe("FranchisEntity", function()
+describe("FranchiseEntity", function()
   it("should create instance", function()
     local testsdk = sdk.test(nil, nil)
-    local ent = testsdk:Franchis(nil)
+    local ent = testsdk:Franchise(nil)
     assert.is_not_nil(ent)
   end)
 
@@ -22,7 +22,7 @@ describe("FranchisEntity", function()
   it("should stream", function()
     local seed = {
       entity = {
-        ["franchis"] = {
+        ["franchise"] = {
           s1 = { id = "s1" },
           s2 = { id = "s2" },
           s3 = { id = "s3" },
@@ -33,7 +33,7 @@ describe("FranchisEntity", function()
     -- Fallback: streaming inactive -> yields the materialised list items.
     local base = sdk.test(seed, nil)
     local seen = {}
-    for item in base:Franchis(nil):stream("list", nil, nil) do
+    for item in base:Franchise(nil):stream("list", nil, nil) do
       table.insert(seen, item)
     end
     assert.are.equal(3, #seen)
@@ -43,7 +43,7 @@ describe("FranchisEntity", function()
     if type(config.feature) == "table" and config.feature.streaming ~= nil then
       local streamsdk = sdk.test(seed, { feature = { streaming = { active = true } } })
       local got = {}
-      for item in streamsdk:Franchis(nil):stream("list", nil, nil) do
+      for item in streamsdk:Franchise(nil):stream("list", nil, nil) do
         if vs.islist(item) then
           for _, sub in ipairs(item) do
             table.insert(got, sub)
@@ -57,11 +57,11 @@ describe("FranchisEntity", function()
   end)
 
   it("should run basic flow", function()
-    local setup = franchis_basic_setup(nil)
+    local setup = franchise_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
     for _, _op in ipairs({"list", "load"}) do
-      local _should_skip, _reason = runner.is_control_skipped("entityOp", "franchis." .. _op, _live and "live" or "unit")
+      local _should_skip, _reason = runner.is_control_skipped("entityOp", "franchise." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
         return
@@ -70,47 +70,47 @@ describe("FranchisEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set NEXARDA_TEST_FRANCHIS_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set NEXARDA_TEST_FRANCHISE_ENTID JSON to run live")
       return
     end
     local client = setup.client
 
     -- Bootstrap entity data from existing test data.
-    local franchis_ref01_data_raw = vs.items(helpers.to_map(
-      vs.getpath(setup.data, "existing.franchis")))
-    local franchis_ref01_data = nil
-    if #franchis_ref01_data_raw > 0 then
-      franchis_ref01_data = helpers.to_map(franchis_ref01_data_raw[1][2])
+    local franchise_ref01_data_raw = vs.items(helpers.to_map(
+      vs.getpath(setup.data, "existing.franchise")))
+    local franchise_ref01_data = nil
+    if #franchise_ref01_data_raw > 0 then
+      franchise_ref01_data = helpers.to_map(franchise_ref01_data_raw[1][2])
     end
 
     -- LIST
-    local franchis_ref01_ent = client:Franchis(nil)
-    local franchis_ref01_match = {}
+    local franchise_ref01_ent = client:Franchise(nil)
+    local franchise_ref01_match = {}
 
-    local franchis_ref01_list_result, err = franchis_ref01_ent:list(franchis_ref01_match, nil)
+    local franchise_ref01_list_result, err = franchise_ref01_ent:list(franchise_ref01_match, nil)
     assert.is_nil(err)
-    assert.is_table(franchis_ref01_list_result)
+    assert.is_table(franchise_ref01_list_result)
 
     -- LOAD
-    local franchis_ref01_match_dt0 = {
-      id = franchis_ref01_data["id"],
+    local franchise_ref01_match_dt0 = {
+      id = franchise_ref01_data["id"],
     }
-    local franchis_ref01_data_dt0_loaded, err = franchis_ref01_ent:load(franchis_ref01_match_dt0, nil)
+    local franchise_ref01_data_dt0_loaded, err = franchise_ref01_ent:load(franchise_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local franchis_ref01_data_dt0_load_result = helpers.to_map(type(franchis_ref01_data_dt0_loaded) == 'table' and franchis_ref01_data_dt0_loaded.data_get and franchis_ref01_data_dt0_loaded:data_get() or franchis_ref01_data_dt0_loaded)
-    assert.is_not_nil(franchis_ref01_data_dt0_load_result)
-    assert.are.equal(franchis_ref01_data_dt0_load_result["id"], franchis_ref01_data["id"])
+    local franchise_ref01_data_dt0_load_result = helpers.to_map(type(franchise_ref01_data_dt0_loaded) == 'table' and franchise_ref01_data_dt0_loaded.data_get and franchise_ref01_data_dt0_loaded:data_get() or franchise_ref01_data_dt0_loaded)
+    assert.is_not_nil(franchise_ref01_data_dt0_load_result)
+    assert.are.equal(franchise_ref01_data_dt0_load_result["id"], franchise_ref01_data["id"])
 
   end)
 end)
 
-function franchis_basic_setup(extra)
+function franchise_basic_setup(extra)
   runner.load_env_local()
 
-  local entity_data_file = _test_dir .. "../../.sdk/test/entity/franchis/FranchisTestData.json"
+  local entity_data_file = _test_dir .. "../../.sdk/test/entity/franchise/FranchiseTestData.json"
   local f = io.open(entity_data_file, "r")
   if f == nil then
-    error("failed to read franchis test data: " .. entity_data_file)
+    error("failed to read franchise test data: " .. entity_data_file)
   end
   local entity_data_source = f:read("*a")
   f:close()
@@ -124,7 +124,7 @@ function franchis_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "franchis01", "franchis02", "franchis03" },
+    { "franchise01", "franchise02", "franchise03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",
@@ -136,18 +136,18 @@ function franchis_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("NEXARDA_TEST_FRANCHIS_ENTID")
+  local entid_env_raw = os.getenv("NEXARDA_TEST_FRANCHISE_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["NEXARDA_TEST_FRANCHIS_ENTID"] = idmap,
+    ["NEXARDA_TEST_FRANCHISE_ENTID"] = idmap,
     ["NEXARDA_TEST_LIVE"] = "FALSE",
     ["NEXARDA_TEST_EXPLAIN"] = "FALSE",
     ["NEXARDA_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["NEXARDA_TEST_FRANCHIS_ENTID"])
+    env["NEXARDA_TEST_FRANCHISE_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end

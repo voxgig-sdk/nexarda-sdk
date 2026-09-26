@@ -113,7 +113,7 @@ def make_config():
       },
             "entity": {
                 "console": {},
-                "franchis": {},
+                "franchise": {},
                 "game": {},
                 "platform": {},
                 "price": {},
@@ -276,7 +276,7 @@ def make_config():
           "ancestors": [],
         },
       },
-      "franchis": {
+      "franchise": {
         "fields": [
           {
             "name": "description",
@@ -320,7 +320,7 @@ def make_config():
           "field": "id",
           "name": "id",
         },
-        "name": "franchis",
+        "name": "franchise",
         "op": {
           "list": {
             "input": "data",

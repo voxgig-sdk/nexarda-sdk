@@ -61,9 +61,9 @@ Create a new `Console` entity instance.
 
 **Returns:** `ConsoleEntity` instance.
 
-#### `Franchis(data?: object)`
+#### `Franchise(data?: object)`
 
-Create a new `Franchis` entity instance.
+Create a new `Franchise` entity instance.
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ Create a new `Franchis` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `FranchisEntity` instance.
+**Returns:** `FranchiseEntity` instance.
 
 #### `Game(data?: object)`
 
@@ -280,10 +280,10 @@ Return a copy of the entity options.
 
 ---
 
-## FranchisEntity
+## FranchiseEntity
 
 ```ts
-const franchis = client.Franchis()
+const franchise = client.Franchise()
 ```
 
 ### Fields
@@ -304,7 +304,7 @@ const franchis = client.Franchis()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Franchis().list()
+const results = await client.Franchise().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -312,7 +312,7 @@ const results = await client.Franchis().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Franchis().load({ id: 'franchis_id' })
+const result = await client.Franchise().load({ id: 'franchise_id' })
 ```
 
 ### Common Methods
@@ -329,7 +329,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `FranchisEntity` instance with the same client and
+Create a new `FranchiseEntity` instance with the same client and
 options.
 
 #### `client()`

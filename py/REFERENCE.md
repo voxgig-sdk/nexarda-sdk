@@ -46,9 +46,9 @@ client = NexardaSDK.test()
 
 Create a new `ConsoleEntity` instance. Pass `None` for no initial data.
 
-#### `Franchis(data=None)`
+#### `Franchise(data=None)`
 
-Create a new `FranchisEntity` instance. Pass `None` for no initial data.
+Create a new `FranchiseEntity` instance. Pass `None` for no initial data.
 
 #### `Game(data=None)`
 
@@ -182,10 +182,10 @@ Return the entity name.
 
 ---
 
-## FranchisEntity
+## FranchiseEntity
 
 ```python
-franchis = client.Franchis()
+franchise = client.Franchise()
 ```
 
 ### Fields
@@ -206,9 +206,9 @@ franchis = client.Franchis()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Franchis().list()
-for franchis in results:
-    print(franchis)
+results = client.Franchise().list()
+for franchise in results:
+    print(franchise)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -216,7 +216,7 @@ for franchis in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Franchis().load({"id": "franchis_id"})
+result = client.Franchise().load({"id": "franchise_id"})
 ```
 
 ### Common Methods
@@ -239,7 +239,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `FranchisEntity` instance with the same options.
+Create a new `FranchiseEntity` instance with the same options.
 
 #### `get_name() -> str`
 

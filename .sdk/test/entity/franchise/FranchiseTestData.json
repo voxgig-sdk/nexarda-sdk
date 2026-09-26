@@ -1,26 +1,26 @@
 {
   "existing": {
-    "franchis": {
-      "FRANCHIS00": {
+    "franchise": {
+      "FRANCHISE00": {
         "description": "s3c",
         "games": [],
-        "id": "FRANCHIS00",
+        "id": "FRANCHISE00",
         "logo": "s3f",
         "name": "s40",
         "totalGames": 65
       },
-      "FRANCHIS01": {
+      "FRANCHISE01": {
         "description": "s78",
         "games": [],
-        "id": "FRANCHIS01",
+        "id": "FRANCHISE01",
         "logo": "s7b",
         "name": "s7c",
         "totalGames": 125
       },
-      "FRANCHIS02": {
+      "FRANCHISE02": {
         "description": "sb4",
         "games": [],
-        "id": "FRANCHIS02",
+        "id": "FRANCHISE02",
         "logo": "sb7",
         "name": "sb8",
         "totalGames": 185
@@ -28,8 +28,8 @@
     }
   },
   "new": {
-    "franchis": {
-      "franchis_ref01": {
+    "franchise": {
+      "franchise_ref01": {
         "description": "sf0",
         "games": [],
         "logo": "sf3",

@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FranchisEntity = void 0;
+exports.FranchiseEntity = void 0;
 const NexardaEntityBase_1 = require("../NexardaEntityBase");
-class FranchisEntity extends NexardaEntityBase_1.NexardaEntityBase {
+class FranchiseEntity extends NexardaEntityBase_1.NexardaEntityBase {
     constructor(client, entopts) {
         super(client, entopts);
-        this.name = 'franchis';
-        this.name_ = 'franchis';
-        this.Name = 'Franchis';
+        this.name = 'franchise';
+        this.name_ = 'franchise';
+        this.Name = 'Franchise';
     }
     make() {
-        return new FranchisEntity(this._client, this.entopts());
+        return new FranchiseEntity(this._client, this.entopts());
     }
     async load(reqmatch, ctrl) {
         const utility = this._utility;
@@ -92,7 +92,7 @@ class FranchisEntity extends NexardaEntityBase_1.NexardaEntityBase {
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<Franchis> return stays clean under strict null checks.
+                // Promise<Franchise> return stays clean under strict null checks.
                 return undefined;
             }
         }
@@ -173,11 +173,11 @@ class FranchisEntity extends NexardaEntityBase_1.NexardaEntityBase {
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<Franchis[]> return stays clean under strict null checks.
+                // Promise<Franchise[]> return stays clean under strict null checks.
                 return undefined;
             }
         }
     }
 }
-exports.FranchisEntity = FranchisEntity;
-//# sourceMappingURL=FranchisEntity.js.map
+exports.FranchiseEntity = FranchiseEntity;
+//# sourceMappingURL=FranchiseEntity.js.map

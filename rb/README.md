@@ -218,7 +218,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Console` | `(data) -> ConsoleEntity` | Create a Console entity instance. |
-| `Franchis` | `(data) -> FranchisEntity` | Create a Franchis entity instance. |
+| `Franchise` | `(data) -> FranchiseEntity` | Create a Franchise entity instance. |
 | `Game` | `(data) -> GameEntity` | Create a Game entity instance. |
 | `Platform` | `(data) -> PlatformEntity` | Create a Platform entity instance. |
 | `Price` | `(data) -> PriceEntity` | Create a Price entity instance. |
@@ -279,7 +279,7 @@ Operations: List, Load.
 
 API path: `/consoles`
 
-#### Franchis
+#### Franchise
 
 | Field | Description |
 | --- | --- |
@@ -463,9 +463,9 @@ consoles = client.Console.list
 ```
 
 
-### Franchis
+### Franchise
 
-Create an instance: `franchis = client.Franchis`
+Create an instance: `franchise = client.Franchise`
 
 #### Operations
 
@@ -488,15 +488,15 @@ Create an instance: `franchis = client.Franchis`
 #### Example: Load
 
 ```ruby
-# load returns the ENTITY — call data_get for the Franchis record (raises on error).
-franchis = client.Franchis.load({ "id" => "franchis_id" })
+# load returns the ENTITY — call data_get for the Franchise record (raises on error).
+franchise = client.Franchise.load({ "id" => "franchise_id" })
 ```
 
 #### Example: List
 
 ```ruby
-# list returns an Array of Franchis records (raises on error).
-franchiss = client.Franchis.list
+# list returns an Array of Franchise records (raises on error).
+franchises = client.Franchise.list
 ```
 
 

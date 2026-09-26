@@ -1,17 +1,17 @@
-# Franchis direct test
+# Franchise direct test
 
 require "minitest/autorun"
 require "json"
 require_relative "../Nexarda_sdk"
 require_relative "runner"
 
-class FranchisDirectTest < Minitest::Test
-  def test_direct_list_franchis
-    setup = franchis_direct_setup([
+class FranchiseDirectTest < Minitest::Test
+  def test_direct_list_franchise
+    setup = franchise_direct_setup([
       { "id" => "direct01" },
       { "id" => "direct02" },
     ])
-    _should_skip, _reason = Runner.is_control_skipped("direct", "direct-list-franchis", setup[:live] ? "live" : "unit")
+    _should_skip, _reason = Runner.is_control_skipped("direct", "direct-list-franchise", setup[:live] ? "live" : "unit")
     if _should_skip
       skip(_reason || "skipped via sdk-test-control.json")
       return
@@ -51,9 +51,9 @@ class FranchisDirectTest < Minitest::Test
     end
   end
 
-  def test_direct_load_franchis
-    setup = franchis_direct_setup({ "id" => "direct01" })
-    _should_skip, _reason = Runner.is_control_skipped("direct", "direct-load-franchis", setup[:live] ? "live" : "unit")
+  def test_direct_load_franchise
+    setup = franchise_direct_setup({ "id" => "direct01" })
+    _should_skip, _reason = Runner.is_control_skipped("direct", "direct-load-franchise", setup[:live] ? "live" : "unit")
     if _should_skip
       skip(_reason || "skipped via sdk-test-control.json")
       return
@@ -108,13 +108,13 @@ class FranchisDirectTest < Minitest::Test
 end
 
 
-def franchis_direct_setup(mockres)
+def franchise_direct_setup(mockres)
   Runner.load_env_local
 
   calls = []
 
   env = Runner.env_override({
-    "NEXARDA_TEST_FRANCHIS_ENTID" => {},
+    "NEXARDA_TEST_FRANCHISE_ENTID" => {},
     "NEXARDA_TEST_LIVE" => "FALSE",
     "NEXARDA_APIKEY" => "",
   })

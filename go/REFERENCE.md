@@ -52,9 +52,9 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 Create a new `Console` entity instance. Pass `nil` for no initial data.
 
-#### `Franchis(data map[string]any) NexardaEntity`
+#### `Franchise(data map[string]any) NexardaEntity`
 
-Create a new `Franchis` entity instance. Pass `nil` for no initial data.
+Create a new `Franchise` entity instance. Pass `nil` for no initial data.
 
 #### `Game(data map[string]any) NexardaEntity`
 
@@ -194,11 +194,11 @@ Return the entity name.
 
 ---
 
-## FranchisEntity
+## FranchiseEntity
 
 ```go
-franchis := client.Franchis(nil)
-fmt.Println(franchis.GetName()) // "franchis"
+franchise := client.Franchise(nil)
+fmt.Println(franchise.GetName()) // "franchise"
 ```
 
 ### Fields
@@ -219,7 +219,7 @@ fmt.Println(franchis.GetName()) // "franchis"
 List entities matching the given criteria. Returns an array.
 
 ```go
-results, err := client.Franchis(nil).List(nil, nil)
+results, err := client.Franchise(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -231,7 +231,7 @@ fmt.Println(results)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Franchis(nil).Load(map[string]any{"id": "franchis_id"}, nil)
+result, err := client.Franchise(nil).Load(map[string]any{"id": "franchise_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -252,7 +252,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `FranchisEntity` instance with the same client and
+Create a new `FranchiseEntity` instance with the same client and
 options.
 
 #### `GetName() string`

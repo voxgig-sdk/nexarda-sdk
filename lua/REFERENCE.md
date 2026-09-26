@@ -45,9 +45,9 @@ local client = sdk.test()
 
 Create a new `Console` entity instance. Pass `nil` for no initial data.
 
-#### `Franchis(data)`
+#### `Franchise(data)`
 
-Create a new `Franchis` entity instance. Pass `nil` for no initial data.
+Create a new `Franchise` entity instance. Pass `nil` for no initial data.
 
 #### `Game(data)`
 
@@ -184,10 +184,10 @@ Return the entity name.
 
 ---
 
-## FranchisEntity
+## FranchiseEntity
 
 ```lua
-local franchis = client:Franchis(nil)
+local franchise = client:Franchise(nil)
 ```
 
 ### Fields
@@ -208,7 +208,7 @@ local franchis = client:Franchis(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Franchis():list()
+local results, err = client:Franchise():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -216,7 +216,7 @@ local results, err = client:Franchis():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Franchis():load({ id = "franchis_id" })
+local result, err = client:Franchise():load({ id = "franchise_id" })
 ```
 
 ### Common Methods
@@ -239,7 +239,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `FranchisEntity` instance with the same client and
+Create a new `FranchiseEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

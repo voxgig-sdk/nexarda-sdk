@@ -1,14 +1,14 @@
-# Franchis entity test
+# Franchise entity test
 
 require "minitest/autorun"
 require "json"
 require_relative "../Nexarda_sdk"
 require_relative "runner"
 
-class FranchisEntityTest < Minitest::Test
+class FranchiseEntityTest < Minitest::Test
   def test_create_instance
     testsdk = NexardaSDK.test(nil, nil)
-    ent = testsdk.Franchis(nil)
+    ent = testsdk.Franchise(nil)
     assert !ent.nil?
   end
 
@@ -19,7 +19,7 @@ class FranchisEntityTest < Minitest::Test
   def test_stream
     seed = {
       "entity" => {
-        "franchis" => {
+        "franchise" => {
           "s1" => { "id" => "s1" },
           "s2" => { "id" => "s2" },
           "s3" => { "id" => "s3" },
@@ -29,7 +29,7 @@ class FranchisEntityTest < Minitest::Test
 
     # Fallback: streaming inactive -> yields the materialised list items.
     base = NexardaSDK.test(seed, nil)
-    seen = base.Franchis(nil).stream("list", nil, nil).to_a
+    seen = base.Franchise(nil).stream("list", nil, nil).to_a
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
@@ -37,7 +37,7 @@ class FranchisEntityTest < Minitest::Test
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = NexardaSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []
-      sdk.Franchis(nil).stream("list", nil, nil).each do |item|
+      sdk.Franchise(nil).stream("list", nil, nil).each do |item|
         if item.is_a?(Array)
           got.concat(item)
         else
@@ -49,11 +49,11 @@ class FranchisEntityTest < Minitest::Test
   end
 
   def test_basic_flow
-    setup = franchis_basic_setup(nil)
+    setup = franchise_basic_setup(nil)
     # Per-op sdk-test-control.json skip.
     _live = setup[:live] || false
     ["list", "load"].each do |_op|
-      _should_skip, _reason = Runner.is_control_skipped("entityOp", "franchis." + _op, _live ? "live" : "unit")
+      _should_skip, _reason = Runner.is_control_skipped("entityOp", "franchise." + _op, _live ? "live" : "unit")
       if _should_skip
         skip(_reason || "skipped via sdk-test-control.json")
         return
@@ -62,42 +62,42 @@ class FranchisEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set NEXARDA_TEST_FRANCHIS_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set NEXARDA_TEST_FRANCHISE_ENTID JSON to run live"
       return
     end
     client = setup[:client]
 
     # Bootstrap entity data from existing test data.
-    franchis_ref01_data_raw = Vs.items(Helpers.to_map(
-      Vs.getpath(setup[:data], "existing.franchis")))
-    franchis_ref01_data = nil
-    if franchis_ref01_data_raw.length > 0
-      franchis_ref01_data = Helpers.to_map(franchis_ref01_data_raw[0][1])
+    franchise_ref01_data_raw = Vs.items(Helpers.to_map(
+      Vs.getpath(setup[:data], "existing.franchise")))
+    franchise_ref01_data = nil
+    if franchise_ref01_data_raw.length > 0
+      franchise_ref01_data = Helpers.to_map(franchise_ref01_data_raw[0][1])
     end
 
     # LIST
-    franchis_ref01_ent = client.Franchis(nil)
-    franchis_ref01_match = {}
+    franchise_ref01_ent = client.Franchise(nil)
+    franchise_ref01_match = {}
 
-    franchis_ref01_list_result = franchis_ref01_ent.list(franchis_ref01_match, nil)
-    assert franchis_ref01_list_result.is_a?(Array)
+    franchise_ref01_list_result = franchise_ref01_ent.list(franchise_ref01_match, nil)
+    assert franchise_ref01_list_result.is_a?(Array)
 
     # LOAD
-    franchis_ref01_match_dt0 = {
-      "id" => franchis_ref01_data["id"],
+    franchise_ref01_match_dt0 = {
+      "id" => franchise_ref01_data["id"],
     }
-    franchis_ref01_data_dt0_loaded = franchis_ref01_ent.load(franchis_ref01_match_dt0, nil)
-    franchis_ref01_data_dt0_load_result = Helpers.to_map(franchis_ref01_data_dt0_loaded.respond_to?(:data_get) ? franchis_ref01_data_dt0_loaded.data_get : franchis_ref01_data_dt0_loaded)
-    assert !franchis_ref01_data_dt0_load_result.nil?
-    assert_equal franchis_ref01_data_dt0_load_result["id"], franchis_ref01_data["id"]
+    franchise_ref01_data_dt0_loaded = franchise_ref01_ent.load(franchise_ref01_match_dt0, nil)
+    franchise_ref01_data_dt0_load_result = Helpers.to_map(franchise_ref01_data_dt0_loaded.respond_to?(:data_get) ? franchise_ref01_data_dt0_loaded.data_get : franchise_ref01_data_dt0_loaded)
+    assert !franchise_ref01_data_dt0_load_result.nil?
+    assert_equal franchise_ref01_data_dt0_load_result["id"], franchise_ref01_data["id"]
 
   end
 end
 
-def franchis_basic_setup(extra)
+def franchise_basic_setup(extra)
   Runner.load_env_local
 
-  entity_data_file = File.join(__dir__, "..", "..", ".sdk", "test", "entity", "franchis", "FranchisTestData.json")
+  entity_data_file = File.join(__dir__, "..", "..", ".sdk", "test", "entity", "franchise", "FranchiseTestData.json")
   entity_data_source = File.read(entity_data_file)
   entity_data = JSON.parse(entity_data_source)
 
@@ -108,7 +108,7 @@ def franchis_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["franchis01", "franchis02", "franchis03"],
+    ["franchise01", "franchise02", "franchise03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",
@@ -120,18 +120,18 @@ def franchis_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["NEXARDA_TEST_FRANCHIS_ENTID"]
+  entid_env_raw = ENV["NEXARDA_TEST_FRANCHISE_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "NEXARDA_TEST_FRANCHIS_ENTID" => idmap,
+    "NEXARDA_TEST_FRANCHISE_ENTID" => idmap,
     "NEXARDA_TEST_LIVE" => "FALSE",
     "NEXARDA_TEST_EXPLAIN" => "FALSE",
     "NEXARDA_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["NEXARDA_TEST_FRANCHIS_ENTID"])
+    env["NEXARDA_TEST_FRANCHISE_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end

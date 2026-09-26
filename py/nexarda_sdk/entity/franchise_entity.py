@@ -1,17 +1,17 @@
-# Nexarda SDK Franchis entity
+# Nexarda SDK Franchise entity
 
 from __future__ import annotations
 
 from nexarda_sdk.utility.voxgig_struct import voxgig_struct as vs
 from nexarda_sdk.core import helpers
 from nexarda_sdk.nexarda_types import (
-    Franchis,
-    FranchisLoadMatch,
-    FranchisListMatch,
+    Franchise,
+    FranchiseLoadMatch,
+    FranchiseListMatch,
 )
 
 
-class FranchisEntity:
+class FranchiseEntity:
 
     def __init__(self, client, entopts=None):
         if entopts is None:
@@ -23,7 +23,7 @@ class FranchisEntity:
         else:
             entopts["active"] = True
 
-        self._name = "franchis"
+        self._name = "franchise"
         self._client = client
         self._utility = client.get_utility()
         self._entopts = entopts
@@ -55,14 +55,14 @@ class FranchisEntity:
         opts = {}
         for k, v in self._entopts.items():
             opts[k] = v
-        return FranchisEntity(self._client, opts)
+        return FranchiseEntity(self._client, opts)
 
     def data_set(self, args=None):
         if args is not None:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self) -> Franchis:
+    def data_get(self) -> Franchise:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -71,7 +71,7 @@ class FranchisEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self) -> Franchis:
+    def match_get(self) -> Franchise:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
@@ -177,10 +177,10 @@ class FranchisEntity:
                 yield item
 
     
-    def load(self, reqmatch=None, ctrl=None) -> Franchis:
+    def load(self, reqmatch=None, ctrl=None) -> Franchise:
         utility = self._utility
         # reqmatch is optional: an entity with no id-like key loads with no
-        # match. Treat None as an empty match so client.Franchis().load()
+        # match. Treat None as an empty match so client.Franchise().load()
         # works with no args.
         if reqmatch is None:
             reqmatch = {}
@@ -204,10 +204,10 @@ class FranchisEntity:
 
 
     
-    def list(self, reqmatch=None, ctrl=None) -> list[Franchis]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Franchise]:
         utility = self._utility
         # reqmatch is optional: an omitted match lists all records. Treat None
-        # as an empty match so client.Franchis().list() works with no args.
+        # as an empty match so client.Franchise().list() works with no args.
         if reqmatch is None:
             reqmatch = {}
         ctx = utility.make_context({

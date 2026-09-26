@@ -20,7 +20,7 @@ local SDK_MODULE = "nexarda_sdk"
 -- A test-mode client seeded with a fixture for every entity. The constructor
 -- of each runnable snippet is rewritten to this form so the offline mock has
 -- data to return.
-local TEST_SEED = '{ entity = { ["console"] = { ["test01"] = { id = "test01" } }, ["franchis"] = { ["test01"] = { id = "test01" } }, ["game"] = { ["test01"] = { id = "test01" } }, ["platform"] = { ["test01"] = { id = "test01" } }, ["price"] = { ["test01"] = { id = "test01" } }, ["retailer"] = { ["test01"] = { id = "test01" } }, ["search"] = { ["test01"] = { id = "test01" } }, ["studio"] = { ["test01"] = { id = "test01" } }, ["user"] = { ["test01"] = { id = "test01" } }, ["widget"] = { ["test01"] = { id = "test01" } } } }'
+local TEST_SEED = '{ entity = { ["console"] = { ["test01"] = { id = "test01" } }, ["franchise"] = { ["test01"] = { id = "test01" } }, ["game"] = { ["test01"] = { id = "test01" } }, ["platform"] = { ["test01"] = { id = "test01" } }, ["price"] = { ["test01"] = { id = "test01" } }, ["retailer"] = { ["test01"] = { id = "test01" } }, ["search"] = { ["test01"] = { id = "test01" } }, ["studio"] = { ["test01"] = { id = "test01" } }, ["user"] = { ["test01"] = { id = "test01" } }, ["widget"] = { ["test01"] = { id = "test01" } } } }'
 local TEST_CTOR = "sdk.test(" .. TEST_SEED .. ")"
 
 local function script_dir()

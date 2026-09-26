@@ -1,10 +1,10 @@
-# BasicFranchisFlow
+# BasicFranchiseFlow
 
-main: kit: flow: BasicFranchisFlow:
+main: kit: flow: BasicFranchiseFlow:
 {
-  entity: "franchis",
+  entity: "franchise",
   kind: "basic",
-  name: "BasicFranchisFlow",
+  name: "BasicFranchiseFlow",
   step: [
     {
       o: "list",
@@ -12,7 +12,7 @@ main: kit: flow: BasicFranchisFlow:
         {
           apply: "ItemExists",
           def: {
-            ref: "franchis_ref01"
+            ref: "franchise_ref01"
           }
         }
       ]
@@ -20,13 +20,13 @@ main: kit: flow: BasicFranchisFlow:
 
     {
       i: {
-        ref: "franchis_ref01",
-        srcdatavar: "franchis_ref01_data",
+        ref: "franchise_ref01",
+        srcdatavar: "franchise_ref01_data",
         suffix: "_dt0"
       }
 
       m: {
-        id: "franchis01"
+        id: "franchise01"
       }
 
       o: "load",
@@ -34,11 +34,11 @@ main: kit: flow: BasicFranchisFlow:
         {
           apply: "TextFieldMark",
           def: {
-            mark: "Mark01-franchis_ref01"
+            mark: "Mark01-franchise_ref01"
           }
         }
       ]
     }
   ],
-  "key$": "BasicFranchisFlow"
+  "key$": "BasicFranchiseFlow"
 }

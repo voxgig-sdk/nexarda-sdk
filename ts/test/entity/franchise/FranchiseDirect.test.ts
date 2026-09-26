@@ -20,7 +20,7 @@ import {
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
-describe('FranchisDirect', async () => {
+describe('FranchiseDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
   // `test.live.delayMs`; only sleeps when NEXARDA_TEST_LIVE=TRUE.
@@ -36,10 +36,10 @@ describe('FranchisDirect', async () => {
   })
 
 
-  test('direct-load-franchis', async (t: any) => {
+  test('direct-load-franchise', async (t: any) => {
     if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
     const setup = directSetup({ id: 'direct01' })
-    if (maybeSkipControl(t, 'direct', 'direct-load-franchis', setup.live)) return
+    if (maybeSkipControl(t, 'direct', 'direct-load-franchise', setup.live)) return
     const { client, calls } = setup
 
     const params: any = {}
@@ -99,10 +99,10 @@ describe('FranchisDirect', async () => {
     }
   })
 
-  test('direct-list-franchis', async (t: any) => {
+  test('direct-list-franchise', async (t: any) => {
     if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
     const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }])
-    if (maybeSkipControl(t, 'direct', 'direct-list-franchis', setup.live)) return
+    if (maybeSkipControl(t, 'direct', 'direct-list-franchise', setup.live)) return
     const { client, calls } = setup
 
     const params: any = {}
@@ -149,7 +149,7 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'NEXARDA_TEST_FRANCHIS_ENTID': {},
+    'NEXARDA_TEST_FRANCHISE_ENTID': {},
     'NEXARDA_TEST_LIVE': 'FALSE',
     'NEXARDA_APIKEY': '',
   })
@@ -165,7 +165,7 @@ function directSetup(mockres?: any) {
       apikey: env.NEXARDA_APIKEY,
       }))
 
-    let idmap: any = env['NEXARDA_TEST_FRANCHIS_ENTID']
+    let idmap: any = env['NEXARDA_TEST_FRANCHISE_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

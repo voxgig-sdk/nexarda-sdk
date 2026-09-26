@@ -14,7 +14,7 @@ export interface ConsoleLoadMatch {
 export interface ConsoleListMatch {
     limit?: number;
 }
-export interface Franchis {
+export interface Franchise {
     description?: string;
     games?: any[];
     id?: string;
@@ -22,10 +22,10 @@ export interface Franchis {
     name?: string;
     totalGames?: number;
 }
-export interface FranchisLoadMatch {
+export interface FranchiseLoadMatch {
     id: string;
 }
-export interface FranchisListMatch {
+export interface FranchiseListMatch {
     limit?: number;
 }
 export interface Game {

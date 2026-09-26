@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-// Franchis direct test
+// Franchise direct test
 
 require_once __DIR__ . '/../nexarda_sdk.php';
 require_once __DIR__ . '/Runner.php';
 
 use PHPUnit\Framework\TestCase;
 
-class FranchisDirectTest extends TestCase
+class FranchiseDirectTest extends TestCase
 {
-    public function test_direct_list_franchis(): void
+    public function test_direct_list_franchise(): void
     {
-        $setup = franchis_direct_setup([
+        $setup = franchise_direct_setup([
             ["id" => "direct01"],
             ["id" => "direct02"],
         ]);
-        [$_shouldSkip, $_reason] = Runner::is_control_skipped("direct", "direct-list-franchis", $setup["live"] ? "live" : "unit");
+        [$_shouldSkip, $_reason] = Runner::is_control_skipped("direct", "direct-list-franchise", $setup["live"] ? "live" : "unit");
         if ($_shouldSkip) {
             $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
             return;
@@ -56,10 +56,10 @@ class FranchisDirectTest extends TestCase
         }
     }
 
-    public function test_direct_load_franchis(): void
+    public function test_direct_load_franchise(): void
     {
-        $setup = franchis_direct_setup(["id" => "direct01"]);
-        [$_shouldSkip, $_reason] = Runner::is_control_skipped("direct", "direct-load-franchis", $setup["live"] ? "live" : "unit");
+        $setup = franchise_direct_setup(["id" => "direct01"]);
+        [$_shouldSkip, $_reason] = Runner::is_control_skipped("direct", "direct-load-franchise", $setup["live"] ? "live" : "unit");
         if ($_shouldSkip) {
             $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
             return;
@@ -114,14 +114,14 @@ class FranchisDirectTest extends TestCase
 }
 
 
-function franchis_direct_setup($mockres)
+function franchise_direct_setup($mockres)
 {
     Runner::load_env_local();
 
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "NEXARDA_TEST_FRANCHIS_ENTID" => [],
+        "NEXARDA_TEST_FRANCHISE_ENTID" => [],
         "NEXARDA_TEST_LIVE" => "FALSE",
         "NEXARDA_APIKEY" => "",
     ]);

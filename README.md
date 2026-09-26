@@ -171,7 +171,7 @@ The API exposes 10 entities:
 | Entity | Description | API path |
 | --- | --- | --- |
 | **Console** | The Console entity (list, load). | `/consoles` |
-| **Franchis** | The Franchis entity (list, load). | `/franchises` |
+| **Franchise** | The Franchise entity (list, load). | `/franchises` |
 | **Game** | The Game entity (list, load). | `/games` |
 | **Platform** | The Platform entity (load). | `/status` |
 | **Price** | The Price entity (list). | `/games/{gameId}/prices` |

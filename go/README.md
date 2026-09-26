@@ -233,7 +233,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Console` | `(data map[string]any) NexardaEntity` | Create a Console entity instance. |
-| `Franchis` | `(data map[string]any) NexardaEntity` | Create a Franchis entity instance. |
+| `Franchise` | `(data map[string]any) NexardaEntity` | Create a Franchise entity instance. |
 | `Game` | `(data map[string]any) NexardaEntity` | Create a Game entity instance. |
 | `Platform` | `(data map[string]any) NexardaEntity` | Create a Platform entity instance. |
 | `Price` | `(data map[string]any) NexardaEntity` | Create a Price entity instance. |
@@ -296,7 +296,7 @@ Operations: List, Load.
 
 API path: `/consoles`
 
-#### Franchis
+#### Franchise
 
 | Field | Description |
 | --- | --- |
@@ -486,9 +486,9 @@ fmt.Println(consoles) // the array of records
 ```
 
 
-### Franchis
+### Franchise
 
-Create an instance: `franchis := client.Franchis(nil)`
+Create an instance: `franchise := client.Franchise(nil)`
 
 #### Operations
 
@@ -511,21 +511,21 @@ Create an instance: `franchis := client.Franchis(nil)`
 #### Example: Load
 
 ```go
-franchis, err := client.Franchis(nil).Load(map[string]any{"id": "franchis_id"}, nil)
+franchise, err := client.Franchise(nil).Load(map[string]any{"id": "franchise_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(franchis) // the loaded record
+fmt.Println(franchise) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-franchiss, err := client.Franchis(nil).List(nil, nil)
+franchises, err := client.Franchise(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(franchiss) // the array of records
+fmt.Println(franchises) // the array of records
 ```
 
 

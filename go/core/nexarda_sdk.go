@@ -334,11 +334,11 @@ func (sdk *NexardaSDK) Console(data map[string]any) NexardaEntity {
 }
 
 
-// Franchis returns a Franchis entity bound to this client.
-// Idiomatic usage: client.Franchis(nil).List(nil, nil) or
-// client.Franchis(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *NexardaSDK) Franchis(data map[string]any) NexardaEntity {
-	return NewFranchisEntityFunc(sdk, data)
+// Franchise returns a Franchise entity bound to this client.
+// Idiomatic usage: client.Franchise(nil).List(nil, nil) or
+// client.Franchise(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *NexardaSDK) Franchise(data map[string]any) NexardaEntity {
+	return NewFranchiseEntityFunc(sdk, data)
 }
 
 

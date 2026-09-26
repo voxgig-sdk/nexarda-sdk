@@ -22,7 +22,7 @@
 ---@class ConsoleListMatch
 ---@field limit? number
 
----@class Franchis
+---@class Franchise
 ---@field description? string
 ---@field games? table
 ---@field id? string
@@ -30,10 +30,10 @@
 ---@field name? string
 ---@field totalGames? number
 
----@class FranchisLoadMatch
+---@class FranchiseLoadMatch
 ---@field id string
 
----@class FranchisListMatch
+---@class FranchiseListMatch
 ---@field limit? number
 
 ---@class Game

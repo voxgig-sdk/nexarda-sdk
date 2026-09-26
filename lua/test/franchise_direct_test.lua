@@ -1,4 +1,4 @@
--- Franchis direct test
+-- Franchise direct test
 
 local json = require("dkjson")
 local vs = require("utility.struct.struct")
@@ -6,13 +6,13 @@ local sdk = require("nexarda_sdk")
 local helpers = require("core.helpers")
 local runner = require("test.runner")
 
-describe("FranchisDirect", function()
-  it("should direct-list-franchis", function()
-    local setup = franchis_direct_setup({
+describe("FranchiseDirect", function()
+  it("should direct-list-franchise", function()
+    local setup = franchise_direct_setup({
       { id = "direct01" },
       { id = "direct02" },
     })
-    local _should_skip, _reason = runner.is_control_skipped("direct", "direct-list-franchis", setup.live and "live" or "unit")
+    local _should_skip, _reason = runner.is_control_skipped("direct", "direct-list-franchise", setup.live and "live" or "unit")
     if _should_skip then
       pending(_reason or "skipped via sdk-test-control.json")
       return
@@ -52,9 +52,9 @@ describe("FranchisDirect", function()
     end
   end)
 
-  it("should direct-load-franchis", function()
-    local setup = franchis_direct_setup({ id = "direct01" })
-    local _should_skip, _reason = runner.is_control_skipped("direct", "direct-load-franchis", setup.live and "live" or "unit")
+  it("should direct-load-franchise", function()
+    local setup = franchise_direct_setup({ id = "direct01" })
+    local _should_skip, _reason = runner.is_control_skipped("direct", "direct-load-franchise", setup.live and "live" or "unit")
     if _should_skip then
       pending(_reason or "skipped via sdk-test-control.json")
       return
@@ -109,13 +109,13 @@ describe("FranchisDirect", function()
 end)
 
 
-function franchis_direct_setup(mockres)
+function franchise_direct_setup(mockres)
   runner.load_env_local()
 
   local calls = {}
 
   local env = runner.env_override({
-    ["NEXARDA_TEST_FRANCHIS_ENTID"] = {},
+    ["NEXARDA_TEST_FRANCHISE_ENTID"] = {},
     ["NEXARDA_TEST_LIVE"] = "FALSE",
     ["NEXARDA_APIKEY"] = "",
   })

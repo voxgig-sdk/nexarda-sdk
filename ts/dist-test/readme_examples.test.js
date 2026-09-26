@@ -70,7 +70,7 @@ const __1 = require("..");
 const SDK_NAME = 'NexardaSDK';
 // A fixture for every entity, so list()/load() resolve offline with no
 // network. Snippet client construction is rewritten to seed this.
-const TEST_SEED = { "entity": { "console": { "test01": { "id": "test01" } }, "franchis": { "test01": { "id": "test01" } }, "game": { "test01": { "id": "test01" } }, "platform": { "test01": { "id": "test01" } }, "price": { "test01": { "id": "test01" } }, "retailer": { "test01": { "id": "test01" } }, "search": { "test01": { "id": "test01" } }, "studio": { "test01": { "id": "test01" } }, "user": { "test01": { "id": "test01" } }, "widget": { "test01": { "id": "test01" } } } };
+const TEST_SEED = { "entity": { "console": { "test01": { "id": "test01" } }, "franchise": { "test01": { "id": "test01" } }, "game": { "test01": { "id": "test01" } }, "platform": { "test01": { "id": "test01" } }, "price": { "test01": { "id": "test01" } }, "retailer": { "test01": { "id": "test01" } }, "search": { "test01": { "id": "test01" } }, "studio": { "test01": { "id": "test01" } }, "user": { "test01": { "id": "test01" } }, "widget": { "test01": { "id": "test01" } } } };
 const SEED_ARG = JSON.stringify(TEST_SEED);
 const SEEDED_CTOR = SDK_NAME + '.test(' + SEED_ARG + ')';
 // The three docs this gate covers, resolved relative to dist-test/.

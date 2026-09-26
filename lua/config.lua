@@ -84,7 +84,7 @@ local function make_config()
       },
       entity = {
         ["console"] = {},
-        ["franchis"] = {},
+        ["franchise"] = {},
         ["game"] = {},
         ["platform"] = {},
         ["price"] = {},
@@ -247,7 +247,7 @@ local function make_config()
           ["ancestors"] = {},
         },
       },
-      ["franchis"] = {
+      ["franchise"] = {
         ["fields"] = {
           {
             ["name"] = "description",
@@ -291,7 +291,7 @@ local function make_config()
           ["field"] = "id",
           ["name"] = "id",
         },
-        ["name"] = "franchis",
+        ["name"] = "franchise",
         ["op"] = {
           ["list"] = {
             ["input"] = "data",

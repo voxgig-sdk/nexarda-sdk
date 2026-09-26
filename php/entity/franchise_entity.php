@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-// Nexarda SDK Franchis entity
+// Nexarda SDK Franchise entity
 
 require_once __DIR__ . '/../utility/struct/Struct.php';
 require_once __DIR__ . '/../core/Helpers.php';
 
 use Voxgig\Struct\Struct;
 
-class FranchisEntity
+class FranchiseEntity
 {
     private string $_name;
     private $_client;
@@ -30,7 +30,7 @@ class FranchisEntity
             $entopts["active"] = true;
         }
 
-        $this->_name = "franchis";
+        $this->_name = "franchise";
         $this->_client = $client;
         $this->_utility = $client->get_utility();
         $this->_entopts = $entopts;
@@ -74,11 +74,11 @@ class FranchisEntity
     public function make(): self
     {
         $opts = $this->_entopts;
-        return new FranchisEntity($this->_client, $opts);
+        return new FranchiseEntity($this->_client, $opts);
     }
 
     /**
-     * @param Franchis|array $args Franchis data (assoc-array) to store.
+     * @param Franchise|array $args Franchise data (assoc-array) to store.
      */
     public function data_set($args): void
     {
@@ -89,7 +89,7 @@ class FranchisEntity
     }
 
     /**
-     * @return Franchis|array The current Franchis data as an assoc-array.
+     * @return Franchise|array The current Franchise data as an assoc-array.
      */
     public function data_get()
     {
@@ -98,7 +98,7 @@ class FranchisEntity
     }
 
     /**
-     * @param array $args Match filter (any subset of Franchis fields).
+     * @param array $args Match filter (any subset of Franchise fields).
      */
     public function match_set($args): void
     {
@@ -109,7 +109,7 @@ class FranchisEntity
     }
 
     /**
-     * @return array The current match filter (any subset of Franchis fields).
+     * @return array The current match filter (any subset of Franchise fields).
      */
     public function match_get()
     {
@@ -243,12 +243,12 @@ class FranchisEntity
 
     
     /**
-     * Load a single Franchis.
+     * Load a single Franchise.
      *
-     * @param FranchisLoadMatch|array|null $reqmatch Match criteria (id/query
-     *   fields) as an assoc-array; a typed FranchisLoadMatch names the shape.
+     * @param FranchiseLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed FranchiseLoadMatch names the shape.
      * @param mixed $ctrl Optional per-call control overrides.
-     * @return Franchis|array The loaded Franchis as an assoc-array at the
+     * @return Franchise|array The loaded Franchise as an assoc-array at the
      *   SDK boundary; throws NexardaError on failure (item-5 convention).
      */
     public function load(?array $reqmatch = null, $ctrl = null): mixed
@@ -278,12 +278,12 @@ class FranchisEntity
 
     
     /**
-     * List Franchis items matching the given filter.
+     * List Franchise items matching the given filter.
      *
-     * @param FranchisListMatch|array|null $reqmatch Match filter (any subset
-     *   of Franchis fields) as an assoc-array; FranchisListMatch names the shape.
+     * @param FranchiseListMatch|array|null $reqmatch Match filter (any subset
+     *   of Franchise fields) as an assoc-array; FranchiseListMatch names the shape.
      * @param mixed $ctrl Optional per-call control overrides.
-     * @return Franchis[]|array A list of Franchis items as assoc-arrays at
+     * @return Franchise[]|array A list of Franchise items as assoc-arrays at
      *   the SDK boundary; throws NexardaError on failure (item-5 convention).
      */
     public function list(?array $reqmatch = null, $ctrl = null): mixed

@@ -74,7 +74,7 @@ declare class Config {
         };
         entity: {
             console: {};
-            franchis: {};
+            franchise: {};
             game: {};
             platform: {};
             price: {};
@@ -179,7 +179,7 @@ declare class Config {
                 ancestors: never[];
             };
         };
-        franchis: {
+        franchise: {
             fields: ({
                 name: string;
                 title: string;

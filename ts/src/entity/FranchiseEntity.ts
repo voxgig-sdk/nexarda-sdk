@@ -15,28 +15,28 @@ import type {
 } from '../types'
 
 import type {
-  Franchis,
-  FranchisLoadMatch,
-  FranchisListMatch,
+  Franchise,
+  FranchiseLoadMatch,
+  FranchiseListMatch,
 } from '../NexardaTypes'
 
-class FranchisEntity extends NexardaEntityBase<Franchis> {
+class FranchiseEntity extends NexardaEntityBase<Franchise> {
 
   constructor(client: NexardaSDK, entopts: any) {
     super(client, entopts)
-    this.name = 'franchis'
-    this.name_ = 'franchis'
-    this.Name = 'Franchis'
+    this.name = 'franchise'
+    this.name_ = 'franchise'
+    this.Name = 'Franchise'
   }
 
 
-  make(this: FranchisEntity) {
-    return new FranchisEntity(this._client, this.entopts())
+  make(this: FranchiseEntity) {
+    return new FranchiseEntity(this._client, this.entopts())
   }
 
 
 
-  async load(this: any, reqmatch?: FranchisLoadMatch, ctrl?: Control): Promise<FranchisEntity> {
+  async load(this: any, reqmatch?: FranchiseLoadMatch, ctrl?: Control): Promise<FranchiseEntity> {
 
     const utility = this._utility
 
@@ -144,7 +144,7 @@ class FranchisEntity extends NexardaEntityBase<Franchis> {
       }
       else {
         // Off-happy-path (throw disabled): typed as any so the method's
-        // Promise<Franchis> return stays clean under strict null checks.
+        // Promise<Franchise> return stays clean under strict null checks.
         return undefined as any
       }
     }
@@ -152,7 +152,7 @@ class FranchisEntity extends NexardaEntityBase<Franchis> {
 
 
 
-  async list(this: any, reqmatch?: FranchisListMatch, ctrl?: Control): Promise<FranchisEntity[]> {
+  async list(this: any, reqmatch?: FranchiseListMatch, ctrl?: Control): Promise<FranchiseEntity[]> {
 
     const utility = this._utility
 
@@ -254,7 +254,7 @@ class FranchisEntity extends NexardaEntityBase<Franchis> {
       }
       else {
         // Off-happy-path (throw disabled): typed as any so the method's
-        // Promise<Franchis[]> return stays clean under strict null checks.
+        // Promise<Franchise[]> return stays clean under strict null checks.
         return undefined as any
       }
     }
@@ -268,5 +268,5 @@ class FranchisEntity extends NexardaEntityBase<Franchis> {
 
 
 export {
-  FranchisEntity
+  FranchiseEntity
 }

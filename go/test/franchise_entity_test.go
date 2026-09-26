@@ -15,12 +15,12 @@ import (
 	vs "github.com/voxgig-sdk/nexarda-sdk/go/utility/struct"
 )
 
-func TestFranchisEntity(t *testing.T) {
+func TestFranchiseEntity(t *testing.T) {
 	t.Run("instance", func(t *testing.T) {
 		testsdk := sdk.TestSDK(nil, nil)
-		ent := testsdk.Franchis(nil)
+		ent := testsdk.Franchise(nil)
 		if ent == nil {
-			t.Fatal("expected non-nil FranchisEntity")
+			t.Fatal("expected non-nil FranchiseEntity")
 		}
 	})
 
@@ -31,7 +31,7 @@ func TestFranchisEntity(t *testing.T) {
 	t.Run("stream", func(t *testing.T) {
 		seed := map[string]any{
 			"entity": map[string]any{
-				"franchis": map[string]any{
+				"franchise": map[string]any{
 					"s1": map[string]any{"id": "s1"},
 					"s2": map[string]any{"id": "s2"},
 					"s3": map[string]any{"id": "s3"},
@@ -42,7 +42,7 @@ func TestFranchisEntity(t *testing.T) {
 		// Fallback: streaming inactive -> yields the materialised list items.
 		base := sdk.TestSDK(seed, nil)
 		var seen []any
-		for item := range base.Franchis(nil).Stream("list", nil, nil) {
+		for item := range base.Franchise(nil).Stream("list", nil, nil) {
 			seen = append(seen, item)
 		}
 		if len(seen) != 3 {
@@ -59,7 +59,7 @@ func TestFranchisEntity(t *testing.T) {
 				"feature": map[string]any{"streaming": map[string]any{"active": true}},
 			})
 			var got []any
-			for item := range streamSdk.Franchis(nil).Stream("list", nil, nil) {
+			for item := range streamSdk.Franchise(nil).Stream("list", nil, nil) {
 				if sub, ok := item.([]any); ok {
 					got = append(got, sub...)
 				} else {
@@ -73,7 +73,7 @@ func TestFranchisEntity(t *testing.T) {
 	})
 
 	t.Run("basic", func(t *testing.T) {
-		setup := franchisBasicSetup(nil)
+		setup := franchiseBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
 		// with multiple ops; skipping any op skips the whole flow.
 		_mode := "unit"
@@ -81,7 +81,7 @@ func TestFranchisEntity(t *testing.T) {
 			_mode = "live"
 		}
 		for _, _op := range []string{"list", "load"} {
-			if _shouldSkip, _reason := isControlSkipped("entityOp", "franchis." + _op, _mode); _shouldSkip {
+			if _shouldSkip, _reason := isControlSkipped("entityOp", "franchise." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
 				}
@@ -92,69 +92,69 @@ func TestFranchisEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set NEXARDA_TEST_FRANCHIS_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set NEXARDA_TEST_FRANCHISE_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		franchisRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.franchis")))
-		var franchisRef01Data map[string]any
-		if len(franchisRef01DataRaw) > 0 {
-			franchisRef01Data = core.ToMapAny(franchisRef01DataRaw[0][1])
+		franchiseRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.franchise")))
+		var franchiseRef01Data map[string]any
+		if len(franchiseRef01DataRaw) > 0 {
+			franchiseRef01Data = core.ToMapAny(franchiseRef01DataRaw[0][1])
 		}
 		// Discard guards against Go's unused-var check when the flow's steps
 		// happen not to consume the bootstrap data (e.g. list-only flows).
-		_ = franchisRef01Data
+		_ = franchiseRef01Data
 
 		// LIST
-		franchisRef01Ent := client.Franchis(nil)
-		franchisRef01Match := map[string]any{}
+		franchiseRef01Ent := client.Franchise(nil)
+		franchiseRef01Match := map[string]any{}
 
-		franchisRef01ListResult, err := franchisRef01Ent.List(franchisRef01Match, nil)
+		franchiseRef01ListResult, err := franchiseRef01Ent.List(franchiseRef01Match, nil)
 		if err != nil {
 			t.Fatalf("list failed: %v", err)
 		}
-		_, franchisRef01ListOk := franchisRef01ListResult.([]any)
-		if !franchisRef01ListOk {
-			t.Fatalf("expected list result to be an array, got %T", franchisRef01ListResult)
+		_, franchiseRef01ListOk := franchiseRef01ListResult.([]any)
+		if !franchiseRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", franchiseRef01ListResult)
 		}
 
 		// LOAD
-		franchisRef01MatchDt0 := map[string]any{
-			"id": franchisRef01Data["id"],
+		franchiseRef01MatchDt0 := map[string]any{
+			"id": franchiseRef01Data["id"],
 		}
-		franchisRef01DataDt0Loaded, err := franchisRef01Ent.Load(franchisRef01MatchDt0, nil)
+		franchiseRef01DataDt0Loaded, err := franchiseRef01Ent.Load(franchiseRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		franchisRef01DataDt0LoadResult := core.ToMapAny(entityData(franchisRef01DataDt0Loaded))
-		if franchisRef01DataDt0LoadResult == nil {
+		franchiseRef01DataDt0LoadResult := core.ToMapAny(entityData(franchiseRef01DataDt0Loaded))
+		if franchiseRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}
-		if franchisRef01DataDt0LoadResult["id"] != franchisRef01Data["id"] {
+		if franchiseRef01DataDt0LoadResult["id"] != franchiseRef01Data["id"] {
 			t.Fatal("expected load result id to match")
 		}
 
 	})
 }
 
-func franchisBasicSetup(extra map[string]any) *entityTestSetup {
+func franchiseBasicSetup(extra map[string]any) *entityTestSetup {
 	loadEnvLocal()
 
 	_, filename, _, _ := runtime.Caller(0)
 	dir := filepath.Dir(filename)
 
-	entityDataFile := filepath.Join(dir, "..", "..", ".sdk", "test", "entity", "franchis", "FranchisTestData.json")
+	entityDataFile := filepath.Join(dir, "..", "..", ".sdk", "test", "entity", "franchise", "FranchiseTestData.json")
 
 	entityDataSource, err := os.ReadFile(entityDataFile)
 	if err != nil {
-		panic("failed to read franchis test data: " + err.Error())
+		panic("failed to read franchise test data: " + err.Error())
 	}
 
 	var entityData map[string]any
 	if err := json.Unmarshal(entityDataSource, &entityData); err != nil {
-		panic("failed to parse franchis test data: " + err.Error())
+		panic("failed to parse franchise test data: " + err.Error())
 	}
 
 	options := map[string]any{}
@@ -164,7 +164,7 @@ func franchisBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"franchis01", "franchis02", "franchis03"},
+		[]any{"franchise01", "franchise02", "franchise03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",
@@ -176,17 +176,17 @@ func franchisBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("NEXARDA_TEST_FRANCHIS_ENTID")
+	entidEnvRaw := os.Getenv("NEXARDA_TEST_FRANCHISE_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"NEXARDA_TEST_FRANCHIS_ENTID": idmap,
+		"NEXARDA_TEST_FRANCHISE_ENTID": idmap,
 		"NEXARDA_TEST_LIVE":      "FALSE",
 		"NEXARDA_TEST_EXPLAIN":   "FALSE",
 		"NEXARDA_APIKEY":         "",
 	})
 
-	idmapResolved := core.ToMapAny(env["NEXARDA_TEST_FRANCHIS_ENTID"])
+	idmapResolved := core.ToMapAny(env["NEXARDA_TEST_FRANCHISE_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}

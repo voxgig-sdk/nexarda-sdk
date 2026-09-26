@@ -359,21 +359,21 @@ class NexardaSDK
     }
 
 
-    private $_franchis = null;
+    private $_franchise = null;
 
-    // Canonical facade: $client->Franchis()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->franchis()
+    // Canonical facade: $client->Franchise()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->franchise()
     // resolves here too.
-    public function Franchis($data = null)
+    public function Franchise($data = null)
     {
-        require_once __DIR__ . '/entity/franchis_entity.php';
+        require_once __DIR__ . '/entity/franchise_entity.php';
         if ($data === null) {
-            if ($this->_franchis === null) {
-                $this->_franchis = new FranchisEntity($this, null);
+            if ($this->_franchise === null) {
+                $this->_franchise = new FranchiseEntity($this, null);
             }
-            return $this->_franchis;
+            return $this->_franchise;
         }
-        return new FranchisEntity($this, $data);
+        return new FranchiseEntity($this, $data);
     }
 
 

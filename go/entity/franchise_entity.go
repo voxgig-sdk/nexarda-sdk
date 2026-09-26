@@ -6,7 +6,7 @@ import (
 	vs "github.com/voxgig-sdk/nexarda-sdk/go/utility/struct"
 )
 
-type FranchisEntity struct {
+type FranchiseEntity struct {
 	name    string
 	client  *core.NexardaSDK
 	utility *core.Utility
@@ -17,7 +17,7 @@ type FranchisEntity struct {
 	deleted bool
 }
 
-func NewFranchisEntity(client *core.NexardaSDK, entopts map[string]any) *FranchisEntity {
+func NewFranchiseEntity(client *core.NexardaSDK, entopts map[string]any) *FranchiseEntity {
 	if entopts == nil {
 		entopts = map[string]any{}
 	}
@@ -29,8 +29,8 @@ func NewFranchisEntity(client *core.NexardaSDK, entopts map[string]any) *Franchi
 		entopts["active"] = true
 	}
 
-	e := &FranchisEntity{
-		name:    "franchis",
+	e := &FranchiseEntity{
+		name:    "franchise",
 		client:  client,
 		utility: client.GetUtility(),
 		entopts: entopts,
@@ -48,28 +48,28 @@ func NewFranchisEntity(client *core.NexardaSDK, entopts map[string]any) *Franchi
 	return e
 }
 
-func (e *FranchisEntity) GetName() string { return e.name }
+func (e *FranchiseEntity) GetName() string { return e.name }
 
-func (e *FranchisEntity) MarkDeleted() {
+func (e *FranchiseEntity) MarkDeleted() {
 	e.deleted = true
 }
 
 
 // Deleted reports whether a successful Remove has resolved on this instance.
-func (e *FranchisEntity) Deleted() bool {
+func (e *FranchiseEntity) Deleted() bool {
 	return e.deleted
 }
 
 
-func (e *FranchisEntity) Make() core.Entity {
+func (e *FranchiseEntity) Make() core.Entity {
 	opts := map[string]any{}
 	for k, v := range e.entopts {
 		opts[k] = v
 	}
-	return NewFranchisEntity(e.client, opts)
+	return NewFranchiseEntity(e.client, opts)
 }
 
-func (e *FranchisEntity) Data(args ...any) any {
+func (e *FranchiseEntity) Data(args ...any) any {
 	if len(args) > 0 && args[0] != nil {
 		e.data = core.ToMapAny(vs.Clone(args[0]))
 		if e.data == nil {
@@ -83,7 +83,7 @@ func (e *FranchisEntity) Data(args ...any) any {
 	return out
 }
 
-func (e *FranchisEntity) Match(args ...any) any {
+func (e *FranchiseEntity) Match(args ...any) any {
 	if len(args) > 0 && args[0] != nil {
 		e.match = core.ToMapAny(vs.Clone(args[0]))
 		if e.match == nil {
@@ -98,27 +98,27 @@ func (e *FranchisEntity) Match(args ...any) any {
 }
 
 // DataTyped is the statically-typed accessor for this entity's data. With no
-// argument it returns the current data as an Franchis; with an argument it
+// argument it returns the current data as an Franchise; with an argument it
 // sets the data and returns the stored value. It delegates to the untyped Data
 // (identical runtime) and converts at the typed boundary.
-func (e *FranchisEntity) DataTyped(data ...Franchis) Franchis {
+func (e *FranchiseEntity) DataTyped(data ...Franchise) Franchise {
 	if len(data) > 0 {
-		return typedFrom[Franchis](e.Data(asMap(data[0])))
+		return typedFrom[Franchise](e.Data(asMap(data[0])))
 	}
-	return typedFrom[Franchis](e.Data())
+	return typedFrom[Franchise](e.Data())
 }
 
 // MatchTyped mirrors DataTyped for the entity's match filter. The match is a
-// partial of the entity, so it round-trips through Franchis (all fields
+// partial of the entity, so it round-trips through Franchise (all fields
 // optional at the wire level).
-func (e *FranchisEntity) MatchTyped(match ...Franchis) Franchis {
+func (e *FranchiseEntity) MatchTyped(match ...Franchise) Franchise {
 	if len(match) > 0 {
-		return typedFrom[Franchis](e.Match(asMap(match[0])))
+		return typedFrom[Franchise](e.Match(asMap(match[0])))
 	}
-	return typedFrom[Franchis](e.Match())
+	return typedFrom[Franchise](e.Match())
 }
 
-func (e *FranchisEntity) Stream(action string, args map[string]any, callopts map[string]any) <-chan any {
+func (e *FranchiseEntity) Stream(action string, args map[string]any, callopts map[string]any) <-chan any {
 	out := make(chan any)
 
 	if callopts == nil {
@@ -243,7 +243,7 @@ func (e *FranchisEntity) Stream(action string, args map[string]any, callopts map
 }
 
 
-func (e *FranchisEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+func (e *FranchiseEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
 	ctx := utility.MakeContext(map[string]any{
 		"opname":   "load",
@@ -269,20 +269,20 @@ func (e *FranchisEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any
 }
 
 // LoadTyped is the statically-typed variant of Load: it takes an
-// FranchisLoadMatch and returns an Franchis. It delegates to the untyped
+// FranchiseLoadMatch and returns an Franchise. It delegates to the untyped
 // Load (identical runtime) and converts at the typed boundary.
-func (e *FranchisEntity) LoadTyped(reqmatch FranchisLoadMatch, ctrl map[string]any) (Franchis, error) {
+func (e *FranchiseEntity) LoadTyped(reqmatch FranchiseLoadMatch, ctrl map[string]any) (Franchise, error) {
 	res, err := e.Load(asMap(reqmatch), ctrl)
 	if err != nil {
-		return Franchis{}, err
+		return Franchise{}, err
 	}
-	return typedFrom[Franchis](res), nil
+	return typedFrom[Franchise](res), nil
 }
 
 
 
 
-func (e *FranchisEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+func (e *FranchiseEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
 	ctx := utility.MakeContext(map[string]any{
 		"opname":   "list",
@@ -302,34 +302,34 @@ func (e *FranchisEntity) List(reqmatch map[string]any, ctrl map[string]any) (any
 }
 
 // ListTyped is the statically-typed variant of List: it takes an
-// FranchisListMatch and returns []Franchis. It delegates to the untyped
+// FranchiseListMatch and returns []Franchise. It delegates to the untyped
 // List (identical runtime) and converts at the typed boundary.
-func (e *FranchisEntity) ListTyped(reqmatch FranchisListMatch, ctrl map[string]any) ([]Franchis, error) {
+func (e *FranchiseEntity) ListTyped(reqmatch FranchiseListMatch, ctrl map[string]any) ([]Franchise, error) {
 	res, err := e.List(asMap(reqmatch), ctrl)
 	if err != nil {
 		return nil, err
 	}
-	return typedSliceFrom[Franchis](res), nil
+	return typedSliceFrom[Franchise](res), nil
 }
 
 
 
-func (e *FranchisEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
+func (e *FranchiseEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("create", e.name)
 }
 
 
-func (e *FranchisEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
+func (e *FranchiseEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("update", e.name)
 }
 
 
-func (e *FranchisEntity) Remove(_ map[string]any, _ map[string]any) (any, error) {
+func (e *FranchiseEntity) Remove(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("remove", e.name)
 }
 
 
-func (e *FranchisEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
+func (e *FranchiseEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
 	utility := e.utility
 
 	utility.FeatureHook(ctx, "PrePoint")

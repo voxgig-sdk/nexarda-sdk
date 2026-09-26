@@ -20,7 +20,7 @@ guide: {
     }
   }
 
-  entity: franchis: {
+  entity: franchise: {
     path: "/franchises": {
       op: list: method: *GET
       op: list: transform: res: *("`body.data`")|top

@@ -1,5 +1,5 @@
 import { ConsoleEntity } from './entity/ConsoleEntity';
-import { FranchisEntity } from './entity/FranchisEntity';
+import { FranchiseEntity } from './entity/FranchiseEntity';
 import { GameEntity } from './entity/GameEntity';
 import { PlatformEntity } from './entity/PlatformEntity';
 import { PriceEntity } from './entity/PriceEntity';
@@ -54,7 +54,7 @@ declare class NexardaSDK {
     }>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Console(entopts?: Record<string, any>): ConsoleEntity;
-    Franchis(entopts?: Record<string, any>): FranchisEntity;
+    Franchise(entopts?: Record<string, any>): FranchiseEntity;
     Game(entopts?: Record<string, any>): GameEntity;
     Platform(entopts?: Record<string, any>): PlatformEntity;
     Price(entopts?: Record<string, any>): PriceEntity;

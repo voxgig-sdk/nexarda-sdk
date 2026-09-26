@@ -22,7 +22,7 @@ export NEXARDA_APIKEY=sk_live_xxx
 ./nexarda-cli list console
 ./nexarda-cli load 1 console            # {id:1} shorthand
 ./nexarda-cli load '{id:1}' console       # explicit match map
-./nexarda-cli list franchis
+./nexarda-cli list franchise
 
 # 5. Override the API base URL for a single call
 NEXARDA_BASE=https://api.example.com ./nexarda-cli list console
@@ -174,7 +174,7 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 The 10 entities this SDK exposes (any is valid as `<entity>`):
 
-console franchis game platform price retailer search studio user widget
+console franchise game platform price retailer search studio user widget
 
 ## Explanation
 

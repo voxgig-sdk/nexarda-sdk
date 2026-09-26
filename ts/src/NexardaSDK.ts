@@ -1,7 +1,7 @@
 // Nexarda Ts SDK
 
 import { ConsoleEntity } from './entity/ConsoleEntity'
-import { FranchisEntity } from './entity/FranchisEntity'
+import { FranchiseEntity } from './entity/FranchiseEntity'
 import { GameEntity } from './entity/GameEntity'
 import { PlatformEntity } from './entity/PlatformEntity'
 import { PriceEntity } from './entity/PriceEntity'
@@ -300,12 +300,12 @@ class NexardaSDK {
   }
 
 
-  // Entity access: `client.Franchis().list()` / `client.Franchis().load({ id })`.
+  // Entity access: `client.Franchise().list()` / `client.Franchise().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
-  Franchis(entopts?: Record<string, any>) {
+  Franchise(entopts?: Record<string, any>) {
     const self = this
-    return new FranchisEntity(self, entopts)
+    return new FranchiseEntity(self, entopts)
   }
 
 
